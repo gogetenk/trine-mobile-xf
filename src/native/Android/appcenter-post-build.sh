@@ -10,6 +10,7 @@ echo "**************************************************************************
 
 echo "list files in APPCENTER_SOURCE_DIRECTORY"
 nuget locals all -list
+nuget /Users/vsts/.nuget/packages/xamarin.uitest/
 
 ##################################################
 # Start UI Tests
@@ -30,7 +31,7 @@ echo ""
 
 echo "> Run UI test command"
 # Note: must put a space after each parameter/value pair 
-appcenter test run uitest --app $appName --devices $deviceSetName --app-path $APPCENTER_OUTPUT_DIRECTORY/io.trine.trineapp-Signed.apk --test-series $testSeriesName --locale "fr_FR" --build-dir $APPCENTER_SOURCE_DIRECTORY/src/modules/Modules.Authentication.UITests/bin/Release --uitest-tools-dir /Users/vsts/.nuget/packages/Xamarin.UITest.*/tools --token $appCenterLoginApiToken 
+appcenter test run uitest --app $appName --devices $deviceSetName --app-path $APPCENTER_OUTPUT_DIRECTORY/io.trine.trineapp-Signed.apk --test-series $testSeriesName --locale "fr_FR" --build-dir $APPCENTER_SOURCE_DIRECTORY/src/modules/Modules.Authentication.UITests/bin/Release --uitest-tools-dir /Users/vsts/.nuget/packages/xamarin.uitest/3.0.0/tools --token $appCenterLoginApiToken 
 
 echo ""
 echo "**************************************************************************************************"
