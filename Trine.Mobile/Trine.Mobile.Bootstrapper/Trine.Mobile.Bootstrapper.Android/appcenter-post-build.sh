@@ -9,7 +9,7 @@ echo "Post Build Script"
 echo "**************************************************************************************************"
 
 echo "list files in APPCENTER_SOURCE_DIRECTORY"
-ls $APPCENTER_SOURCE_DIRECTORY
+ls $APPCENTER_SOURCE_DIRECTORY/Trine.Mobile
 
 ##################################################
 # Start UI Tests
