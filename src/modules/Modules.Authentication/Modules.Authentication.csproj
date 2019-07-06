@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Trine.Mobile.Components\Trine.Mobile.Components.csproj" />
+    <ProjectReference Include="..\..\Components\Trine.Mobile.Components.csproj" />
   </ItemGroup>
 
   <ItemGroup>

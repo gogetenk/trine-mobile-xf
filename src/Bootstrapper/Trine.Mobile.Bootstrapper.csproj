@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\modules\Modules.Authentication\Modules.Authentication.csproj" />
+    <ProjectReference Include="..\modules\Modules.Authentication\Modules.Authentication.csproj" />
   </ItemGroup>
 
   <ItemGroup>

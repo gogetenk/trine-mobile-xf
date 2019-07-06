@@ -202,8 +202,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper.csproj">
-      <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
+    <ProjectReference Include="..\..\Bootstrapper\Trine.Mobile.Bootstrapper.csproj">
+      <Project>{92f28cbd-cb0d-4f4e-a272-2004811b96ba}</Project>
       <Name>Trine.Mobile.Bootstrapper</Name>
     </ProjectReference>
   </ItemGroup>
