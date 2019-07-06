@@ -30,15 +30,16 @@
                      Margin="0,60">
             <Label Text="Pour commencer, quel est votre email ?"
                    FontSize="16"
-                   TextColor="Black" />
+                   TextColor="#333333" />
             <Entry AutomationId="tb_email" />
 
             <Label Text="Choisissez un mot de passe"
                    FontSize="16"
-                   TextColor="Black" />
+                   TextColor="#333333" />
             <Entry AutomationId="tb_password" />
 
             <Label Text="J'ai déjà un compte →"
+                   TextDecorations="Underline"
                    FontSize="13"
                    TextColor="#9A9A9A" />
 
