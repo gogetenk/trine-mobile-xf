@@ -22,7 +22,7 @@ testSeriesName="ui-tests"
 APKFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.apk | head -1`
 UITestDLL=`find "$APPCENTER_SOURCE_DIRECTORY" -name "Modules.Authentication.UITests.dll" | grep bin`
 
-echo UITestDLL
+echo $UITestDLL
 
 echo ""
 echo "Start Xamarin.UITest run"
