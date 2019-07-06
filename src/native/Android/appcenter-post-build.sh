@@ -27,6 +27,9 @@
     UITestVersionNumberSize=${#UITestVersionNumber} 
     echo UITestVersionNumberSize: $UITestVersionNumberSize
 
+	appCenterLoginApiToken=$AppCenterLoginForAutomatedUITests # this comes from the build environment variables
+
+
     if [ $UITestVersionNumberSize == 0 ]
     then
         UITestVersionNumber=`grep '[0-9]' $UITestProject | grep Xamarin.UITest|grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
@@ -45,4 +48,4 @@
 
     appcenter login --token token
 
-    appcenter test run uitest --app "Trine-App/Trine-Android" --devices "b82043e1" --app-path $APKFile --test-series "ui-tests" --locale "fr_FR" --build-dir $UITestBuildDir --uitest-tools-dir $TestCloudExeDirectory --async
+    appcenter test run uitest --app "Trine-App/Trine-Android" --devices "b82043e1" --app-path $APKFile --test-series "ui-tests" --locale "fr_FR" --build-dir $UITestBuildDir --token $appCenterLoginApiToken --uitest-tools-dir $TestCloudExeDirectory --async 
