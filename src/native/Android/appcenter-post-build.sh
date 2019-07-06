@@ -10,7 +10,7 @@ echo "**************************************************************************
 
 echo "list files in APPCENTER_SOURCE_DIRECTORY"
 nuget locals all -list
-nuget ls /Users/vsts/.nuget/packages/xamarin.uitest/
+ls /Users/vsts/.nuget/packages/xamarin.uitest/
 
 ##################################################
 # Start UI Tests
