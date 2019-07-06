@@ -20,6 +20,7 @@ appCenterLoginApiToken=$AppCenterLoginForAutomatedUITests # this comes from the 
 appName="Trine-App/Trine-Android"
 deviceSetName="b82043e1"
 testSeriesName="ui-tests"
+APKFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.apk | head -1`
 
 echo ""
 echo "Start Xamarin.UITest run"
@@ -30,7 +31,7 @@ echo ""
 
 echo "> Run UI test command"
 # Note: must put a space after each parameter/value pair 
-appcenter test run uitest --app $appName --devices $deviceSetName --app-path $APPCENTER_OUTPUT_DIRECTORY/io.trine.trineapp.apk --test-series $testSeriesName --locale "fr_FR" --build-dir $APPCENTER_SOURCE_DIRECTORY/src/modules/Modules.Authentication.UITests/bin/Release --uitest-tools-dir /Users/vsts/.nuget/packages/xamarin.uitest/3.0.0/tools --token $appCenterLoginApiToken 
+appcenter test run uitest --app $appName --devices $deviceSetName --app-path APKFile --test-series $testSeriesName --locale "fr_FR" --build-dir $APPCENTER_SOURCE_DIRECTORY/src/modules/Modules.Authentication.UITests/bin/Release --uitest-tools-dir /Users/vsts/.nuget/packages/xamarin.uitest/3.0.0/tools --token $appCenterLoginApiToken 
 
 echo ""
 echo "**************************************************************************************************"
