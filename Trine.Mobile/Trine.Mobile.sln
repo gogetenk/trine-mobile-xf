@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trine.Mobile.UWP", "Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper.UWP\Trine.Mobile.UWP.csproj", "{6149F141-1273-47DF-822D-E219D01EE7EF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Solution Items", "00 - Solution Items", "{F8DD56F6-FF6B-4B73-8C42-C461F7BFDF7F}"
+	ProjectSection(SolutionItems) = preProject
+		appcenter-post-build.sh = appcenter-post-build.sh
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - DAL", "01 - DAL", "{159FB821-DFD9-4AC1-88E9-9580183CD4B2}"
 EndProject
