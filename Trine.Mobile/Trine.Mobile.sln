@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Solution Items", "00 - Solution Items", "{F8DD56F6-FF6B-4B73-8C42-C461F7BFDF7F}"
 	ProjectSection(SolutionItems) = preProject
 		appcenter-post-build.sh = appcenter-post-build.sh
+		Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper.Android\appcenter-post-build.sh = Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper.Android\appcenter-post-build.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - DAL", "01 - DAL", "{159FB821-DFD9-4AC1-88E9-9580183CD4B2}"
@@ -30,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modules.Authentication", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.Authentication.UITests", "src\modules\Modules.Authentication.UITests\Modules.Authentication.UITests.csproj", "{B19C892E-2628-4CA7-AD27-08D406A3B14B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trine.Mobile.Components", "src\Trine.Mobile.Components\Trine.Mobile.Components.csproj", "{03733502-C617-4953-8CE2-1CE15638A973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trine.Mobile.Components", "src\Trine.Mobile.Components\Trine.Mobile.Components.csproj", "{03733502-C617-4953-8CE2-1CE15638A973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Post Build Script IOS
+# Post Build Script ANDROID
 
 set -e # Exit immediately if a command exits with a non-zero status (failure)
 
