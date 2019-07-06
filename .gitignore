@@ -3,3 +3,15 @@
 ################################################################################
 
 /.vs
+/src/Bootstrapper/bin/Debug/netstandard2.0
+/src/Bootstrapper/obj
+/src/Components/bin/Debug/netstandard2.0
+/src/Components/obj
+/src/modules/Modules.Authentication/bin/Debug/netstandard2.0
+/src/modules/Modules.Authentication/obj
+/src/modules/Modules.Authentication.UITests/bin/Debug
+/src/modules/Modules.Authentication.UITests/obj
+/src/native/Android/bin
+/src/native/Android/obj
+/src/native/iOS/obj
+/src/native/UWP/obj

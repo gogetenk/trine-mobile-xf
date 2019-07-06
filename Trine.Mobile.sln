@@ -3,18 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trine.Mobile.Bootstrapper", "Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper.csproj", "{92F28CBD-CB0D-4F4E-A272-2004811B96BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trine.Mobile.Bootstrapper", "src\Bootstrapper\Trine.Mobile.Bootstrapper.csproj", "{92F28CBD-CB0D-4F4E-A272-2004811B96BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trine.Mobile.Android", "Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper.Android\Trine.Mobile.Android.csproj", "{1EB6EC34-D630-4866-A08A-07DDC7F1D73F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trine.Mobile.Android", "src\native\Android\Trine.Mobile.Android.csproj", "{1EB6EC34-D630-4866-A08A-07DDC7F1D73F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trine.Mobile.iOS", "Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper.iOS\Trine.Mobile.iOS.csproj", "{1C876011-D7FC-4728-AC1F-41BABD3CC24F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trine.Mobile.iOS", "src\native\iOS\Trine.Mobile.iOS.csproj", "{1C876011-D7FC-4728-AC1F-41BABD3CC24F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trine.Mobile.UWP", "Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper.UWP\Trine.Mobile.UWP.csproj", "{6149F141-1273-47DF-822D-E219D01EE7EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trine.Mobile.UWP", "src\native\UWP\Trine.Mobile.UWP.csproj", "{6149F141-1273-47DF-822D-E219D01EE7EF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Solution Items", "00 - Solution Items", "{F8DD56F6-FF6B-4B73-8C42-C461F7BFDF7F}"
 	ProjectSection(SolutionItems) = preProject
 		appcenter-post-build.sh = appcenter-post-build.sh
-		Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper.Android\appcenter-post-build.sh = Trine.Mobile.Bootstrapper\Trine.Mobile.Bootstrapper.Android\appcenter-post-build.sh
+		src\native\Android\appcenter-post-build.sh = src\native\Android\appcenter-post-build.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - DAL", "01 - DAL", "{159FB821-DFD9-4AC1-88E9-9580183CD4B2}"
@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modules.Authentication", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modules.Authentication.UITests", "src\modules\Modules.Authentication.UITests\Modules.Authentication.UITests.csproj", "{B19C892E-2628-4CA7-AD27-08D406A3B14B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trine.Mobile.Components", "src\Trine.Mobile.Components\Trine.Mobile.Components.csproj", "{03733502-C617-4953-8CE2-1CE15638A973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trine.Mobile.Components", "src\Components\Trine.Mobile.Components.csproj", "{03733502-C617-4953-8CE2-1CE15638A973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
