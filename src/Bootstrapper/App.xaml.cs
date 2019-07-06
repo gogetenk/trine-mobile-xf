@@ -40,6 +40,7 @@ namespace Trine.Mobile.Bootstrapper
         {
             RegisterNavigation(containerRegistry);
             RegisterLogger(containerRegistry);
+            RegisterMapper(containerRegistry);
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
