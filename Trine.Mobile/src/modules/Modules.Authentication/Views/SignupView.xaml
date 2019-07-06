@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Modules.Authentication.Views.SignupView"
+             NavigationPage.HasNavigationBar="False"
+             Title="Log In">
+
+    <StackLayout Padding="40">
+
+        <Label Text="Trine"
+               FontSize="26"
+               TextColor="#333333"
+               Margin="0,0,0,50" />
+
+        <StackLayout VerticalOptions="Start">
+            <Label Text="Bienvenue"
+                   FontSize="24"
+                   TextColor="Black" />
+            <Label Text="Nous allons vous aider à gérer vos missions."
+                   FontSize="18"
+                   TextColor="#5A28D6" />
+            <BoxView BackgroundColor="#5A28D6"
+                     WidthRequest="45"
+                     HeightRequest="4"
+                     HorizontalOptions="Start"
+                     Margin="0,15" />
+        </StackLayout>
+
+        <StackLayout VerticalOptions="Start"
+                     Margin="0,60">
+            <Label Text="Pour commencer, quel est votre email ?"
+                   FontSize="16"
+                   TextColor="Black" />
+            <Entry AutomationId="tb_email" />
+
+            <Label Text="Choisissez un mot de passe"
+                   FontSize="16"
+                   TextColor="Black" />
+            <Entry AutomationId="tb_password" />
+
+            <Label Text="J'ai déjà un compte →"
+                   FontSize="13"
+                   TextColor="#9A9A9A" />
+
+            <Button Text="Commencer"
+                    x:Name="bt_start"
+                    Margin="0,70,0,0"
+                    BackgroundColor="#5A28D6"
+                    HorizontalOptions="Center"
+                    CornerRadius="5"
+                    HeightRequest="40"
+                    TextColor="White"
+                    Visual="Material"
+                    WidthRequest="180" />
+
+        </StackLayout>
+
+        <StackLayout VerticalOptions="EndAndExpand"
+                     Orientation="Horizontal">
+            <Label Text="Tarifs"
+                   FontSize="14"
+                   TextColor="#707070"
+                   TextDecorations="Underline"
+                   HorizontalOptions="Start" />
+
+            <Label Text="Aide"
+                   FontSize="14"
+                   TextColor="#707070"
+                   TextDecorations="Underline"
+                   HorizontalOptions="EndAndExpand" />
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
