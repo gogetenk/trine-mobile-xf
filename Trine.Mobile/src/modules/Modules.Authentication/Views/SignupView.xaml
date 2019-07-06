@@ -2,15 +2,26 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Modules.Authentication.Views.SignupView"
+             xmlns:components="clr-namespace:Trine.Mobile.Components;assembly=Trine.Mobile.Components"
              NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
              Title="Log In">
 
     <StackLayout Padding="40">
 
-        <Label Text="Trine"
-               FontSize="26"
-               TextColor="#333333"
-               Margin="0,0,0,50" />
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="Start"
+                     Margin="0,0,0,50">
+            <Image x:Name="img"
+                   VerticalOptions="Center"
+                   Margin="0,0,10,0"
+                   HeightRequest="26"
+                   WidthRequest="28" />
+            <Label Text="Trine"
+                   VerticalOptions="Center"
+                   FontSize="26"
+                   TextColor="#333333" />
+        </StackLayout>
 
         <StackLayout VerticalOptions="Start">
             <Label Text="Bienvenue"
@@ -31,12 +42,21 @@
             <Label Text="Pour commencer, quel est votre email ?"
                    FontSize="16"
                    TextColor="#333333" />
-            <Entry AutomationId="tb_email" />
+            <Entry AutomationId="tb_email"
+                   Text="{Binding Email}" />
+            <Label Text="Veuillez spécifier un e-mail valide"
+                   IsVisible="{Binding IsEmailErrorVisible}"
+                   TextColor="#FF5A39" />
 
             <Label Text="Choisissez un mot de passe"
+                   Margin="0,20,0,0"
                    FontSize="16"
                    TextColor="#333333" />
-            <Entry AutomationId="tb_password" />
+            <Entry AutomationId="tb_password"
+                   Text="{Binding Password}" />
+            <Label Text="Veuillez spécifier un mot de passe valide"
+                   IsVisible="{Binding IsPasswordErrorVisible}"
+                   TextColor="#FF5A39" />
 
             <Label Text="J'ai déjà un compte →"
                    TextDecorations="Underline"
@@ -44,6 +64,7 @@
                    TextColor="#9A9A9A" />
 
             <Button Text="Commencer"
+                    Command="{Binding SubmitCommand}"
                     x:Name="bt_start"
                     Margin="0,70,0,0"
                     BackgroundColor="#5A28D6"
@@ -53,7 +74,6 @@
                     TextColor="White"
                     Visual="Material"
                     WidthRequest="180" />
-
         </StackLayout>
 
         <StackLayout VerticalOptions="EndAndExpand"
