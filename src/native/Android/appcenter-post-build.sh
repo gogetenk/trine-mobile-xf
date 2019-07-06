@@ -10,6 +10,7 @@ echo "**************************************************************************
 
 echo "list files in APPCENTER_SOURCE_DIRECTORY"
 ls $APPCENTER_OUTPUT_DIRECTORY
+ls $APPCENTER_SOURCE_DIRECTORY
 
 ##################################################
 # Start UI Tests
