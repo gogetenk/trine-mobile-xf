@@ -65,6 +65,7 @@
 
             <Button Text="Commencer"
                     Command="{Binding SubmitCommand}"
+                    AutomationId="bt_start"
                     x:Name="bt_start"
                     Margin="0,70,0,0"
                     BackgroundColor="#5A28D6"

@@ -1,11 +1,14 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
+using AutoMapper;
 using Prism.Commands;
-using Prism.Mvvm;
+using Prism.Logging;
+using Prism.Navigation;
+using Trine.Mobile.Components.ViewModels;
 
 namespace Modules.Authentication.ViewModels
 {
-    public class SignupViewModel : BindableBase
+    public class SignupViewModel : ViewModelBase
     {
         #region Bindings 
 
@@ -25,8 +28,7 @@ namespace Modules.Authentication.ViewModels
 
         #endregion
 
-
-        public SignupViewModel()
+        public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger) : base(navigationService, mapper, logger)
         {
             SubmitCommand = new DelegateCommand(async () => await OnSubmit(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible);
         }

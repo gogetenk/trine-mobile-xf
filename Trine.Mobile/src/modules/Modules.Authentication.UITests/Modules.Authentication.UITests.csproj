@@ -38,6 +38,7 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\SignupPage.cs" />
     <Compile Include="SignupTests.cs" />
     <Compile Include="AppInitializer.cs" />
   </ItemGroup>

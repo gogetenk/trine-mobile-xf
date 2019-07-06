@@ -1,8 +1,13 @@
-﻿using Modules.Authentication;
+﻿using AutoMapper;
+using Modules.Authentication;
 using Prism;
 using Prism.Ioc;
+using Prism.Logging;
+using Prism.Logging.AppCenter;
 using Prism.Modularity;
 using Prism.Unity;
+using Trine.Mobile.Bootstrapper.Builders;
+using Trine.Mobile.Components.Logging;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -33,7 +38,8 @@ namespace Trine.Mobile.Bootstrapper
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>();
+            RegisterNavigation(containerRegistry);
+            RegisterLogger(containerRegistry);
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -42,5 +48,33 @@ namespace Trine.Mobile.Bootstrapper
 
             moduleCatalog.AddModule<AuthenticationModule>(InitializationMode.WhenAvailable);
         }
+
+        #region Registrations
+
+        private void RegisterLogger(IContainerRegistry containerRegistry)
+        {
+#if DEBUG
+            containerRegistry.RegisterSingleton<ILoggerFacade, DebugLogger>();
+#endif
+            containerRegistry.RegisterSingleton<Microsoft.Extensions.Logging.ILogger, PrismLoggerWrapper>();
+
+            var logger = new AppCenterLogger();
+            containerRegistry.RegisterInstance<ILogger>(logger);
+            containerRegistry.RegisterInstance<IAnalyticsService>(logger);
+            containerRegistry.RegisterInstance<ICrashesService>(logger);
+        }
+
+        private void RegisterNavigation(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+        }
+
+        private void RegisterMapper(IContainerRegistry containerRegistry)
+        {
+            var mapper = new MapperBuilder().CreateMapper();
+            containerRegistry.RegisterInstance<IMapper>(mapper);
+        }
+
+        #endregion
     }
 }
