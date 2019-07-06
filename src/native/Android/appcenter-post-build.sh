@@ -9,7 +9,7 @@ echo "Post Build Script"
 echo "**************************************************************************************************"
 
 echo "list files in APPCENTER_SOURCE_DIRECTORY"
-ls /Users/vsts/
+nuget locals all -list
 
 ##################################################
 # Start UI Tests
