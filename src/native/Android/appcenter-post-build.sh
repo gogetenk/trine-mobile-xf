@@ -9,7 +9,6 @@ echo "Post Build Script"
 echo "**************************************************************************************************"
 
 echo "list files in APPCENTER_SOURCE_DIRECTORY"
-ls $APPCENTER_OUTPUT_DIRECTORY
 
 ##################################################
 # Start UI Tests
