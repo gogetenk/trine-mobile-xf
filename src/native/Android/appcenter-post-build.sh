@@ -30,7 +30,7 @@ echo ""
 
 echo "> Run UI test command"
 # Note: must put a space after each parameter/value pair 
-appcenter test run uitest --app $appName --devices $deviceSetName --app-path $APPCENTER_OUTPUT_DIRECTORY/io.trine.trineapp-Signed.apk --test-series $testSeriesName --locale "fr_FR" --build-dir $APPCENTER_SOURCE_DIRECTORY/src/modules/Modules.Authentication.UITests/bin/Release --uitest-tools-dir /Users/vsts/packages/Xamarin.UITest.*/tools --token $appCenterLoginApiToken 
+appcenter test run uitest --app $appName --devices $deviceSetName --app-path $APPCENTER_OUTPUT_DIRECTORY/io.trine.trineapp-Signed.apk --test-series $testSeriesName --locale "fr_FR" --build-dir $APPCENTER_SOURCE_DIRECTORY/src/modules/Modules.Authentication.UITests/bin/Release --uitest-tools-dir ./packages/Xamarin.UITest.*/tools --token $appCenterLoginApiToken 
 
 echo ""
 echo "**************************************************************************************************"
