@@ -39,7 +39,7 @@ namespace Modules.Authentication.ViewModels
 
         private async Task OnForgotPassword()
         {
-            await NavigationService.NavigateAsync("../ForgotPasswordView");
+            await NavigationService.NavigateAsync("ForgotPasswordView");
         }
 
         private async Task OnSignup()
