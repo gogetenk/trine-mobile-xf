@@ -37,7 +37,7 @@ namespace Modules.Authentication.ViewModels
 
         private async Task OnLogin()
         {
-            await NavigationService.NavigateAsync("LoginView");
+            await NavigationService.NavigateAsync("../LoginView");
         }
 
         private async Task OnSubmit()

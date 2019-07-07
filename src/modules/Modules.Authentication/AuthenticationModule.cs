@@ -16,6 +16,7 @@ namespace Modules.Authentication
         {
             containerRegistry.RegisterForNavigation<SignupView, SignupViewModel>();
             containerRegistry.RegisterForNavigation<LoginView, LoginViewModel>();
+            containerRegistry.RegisterForNavigation<ForgotPasswordView, ForgotPasswordViewModel>();
         }
     }
 }
