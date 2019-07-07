@@ -1,9 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
+using Prism.Services;
+using Sogetrel.Sinapse.Framework.Exceptions;
+using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.ViewModels;
 
 namespace Modules.Authentication.ViewModels
@@ -29,8 +34,14 @@ namespace Modules.Authentication.ViewModels
 
         #endregion
 
-        public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger) : base(navigationService, mapper, logger)
+        private readonly IAccountService _accountService;
+        private readonly IPageDialogService _dialogService;
+
+        public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger)
         {
+            _accountService = accountService;
+            _dialogService = dialogService;
+
             SubmitCommand = new DelegateCommand(async () => await OnSubmit(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible);
             LoginCommand = new DelegateCommand(async () => await OnLogin());
         }
@@ -48,6 +59,19 @@ namespace Modules.Authentication.ViewModels
             if (IsEmailErrorVisible || IsPasswordErrorVisible)
                 return;
 
+            try
+            {
+                var userId = await _accountService.Login(Email, Password);
+            }
+            catch (BusinessException bExc)
+            {
+                Logger.Log(bExc.Message);
+                await _dialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+            }
+            catch (Exception exc)
+            {
+                Logger.Log(exc.Message);
+            }
         }
     }
 }

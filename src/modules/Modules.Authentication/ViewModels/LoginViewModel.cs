@@ -4,6 +4,8 @@ using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
+using Prism.Services;
+using Trine.Mobile.Bll;
 using Trine.Mobile.Components.ViewModels;
 
 namespace Modules.Authentication.ViewModels
@@ -22,6 +24,8 @@ namespace Modules.Authentication.ViewModels
         public string Email { get => _email; set { _email = value; RaisePropertyChanged(); } }
 
         public string _password;
+
+
         public string Password { get => _password; set { _password = value; RaisePropertyChanged(); } }
 
         public ICommand SignupCommand { get; set; }
@@ -30,8 +34,14 @@ namespace Modules.Authentication.ViewModels
 
         #endregion
 
-        public LoginViewModel(INavigationService navigationService, IMapper mapper, ILogger logger) : base(navigationService, mapper, logger)
+        private readonly IAccountService _accountService;
+        private readonly IPageDialogService _dialogService;
+
+        public LoginViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger)
         {
+            _accountService = accountService;
+            _dialogService = dialogService;
+
             LoginCommand = new DelegateCommand(async () => await OnLogin(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible);
             ForgotPasswordCommand = new DelegateCommand(async () => await OnForgotPassword());
             SignupCommand = new DelegateCommand(async () => await OnSignup());
@@ -55,7 +65,6 @@ namespace Modules.Authentication.ViewModels
             if (IsEmailErrorVisible || IsPasswordErrorVisible)
                 return;
 
-            await NavigationService.NavigateAsync("../");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Net.Http;
+using AutoMapper;
 using Modules.Authentication;
 using Prism;
 using Prism.Ioc;
@@ -6,8 +7,10 @@ using Prism.Logging;
 using Prism.Logging.AppCenter;
 using Prism.Modularity;
 using Prism.Unity;
+using Sogetrel.Sinapse.Framework.Mobile.Extensions;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Services;
+using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Bootstrapper.Builders;
 using Trine.Mobile.Components.Logging;
 using Trine.Mobile.Dal.Swagger;
@@ -74,6 +77,11 @@ namespace Trine.Mobile.Bootstrapper
             containerRegistry.RegisterForNavigation<NavigationPage>();
         }
 
+        private void RegisterExtensions(IContainerRegistry containerRegistry)
+        {
+            //HttpExtensions.AddResilientHttpClient(containerRegistry);
+        }
+
         private void RegisterMapper(IContainerRegistry containerRegistry)
         {
             var mapper = new MapperBuilder().CreateMapper();
@@ -82,7 +90,7 @@ namespace Trine.Mobile.Bootstrapper
 
         private void RegisterServices(IContainerRegistry containerRegistry)
         {
-            containerRegistry.Register<IGatewayRepository, GatewayRepository>();
+            containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository(AppSettings.GatewayApi, new HttpClient()));
             containerRegistry.Register<IAccountService, AccountService>();
         }
 

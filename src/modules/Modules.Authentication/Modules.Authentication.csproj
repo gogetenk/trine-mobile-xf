@@ -13,11 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Sogetrel.Sinapse.Framework.Exceptions" Version="1.0.13" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.555618" />
     <PackageReference Include="Prism.Forms" Version="7.1.0.431" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll.Impl\Bll.Impl.csproj" />
+    <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll\Bll.csproj" />
     <ProjectReference Include="..\..\Components\Trine.Mobile.Components.csproj" />
   </ItemGroup>
 
@@ -35,6 +38,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Signup2View.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

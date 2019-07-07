@@ -26,3 +26,5 @@
 /src/Dal/Trine.Mobile.Entities/obj
 /src/Model/Trine.Mobile.Model/obj
 /src/Model/Trine.Mobile.Model/bin/Debug/netstandard2.0
+/src/native/UWP/bin/x86/Debug
+/Trine.Mobile/Trine.Mobile.Bootstrapper/Trine.Mobile.Bootstrapper.Android/Trine.Mobile.Android.csproj.user
