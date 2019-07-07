@@ -25,12 +25,19 @@ namespace Modules.Authentication.ViewModels
         public string Password { get => _password; set { _password = value; RaisePropertyChanged(); } }
 
         public ICommand SubmitCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
 
         #endregion
 
         public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger) : base(navigationService, mapper, logger)
         {
             SubmitCommand = new DelegateCommand(async () => await OnSubmit(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible);
+            LoginCommand = new DelegateCommand(async () => await OnLogin());
+        }
+
+        private async Task OnLogin()
+        {
+            await NavigationService.NavigateAsync("LoginView");
         }
 
         private async Task OnSubmit()
