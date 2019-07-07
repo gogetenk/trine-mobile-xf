@@ -15,6 +15,8 @@ namespace Modules.Authentication
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<SignupView, SignupViewModel>();
+            containerRegistry.RegisterForNavigation<Signup2View, Signup2ViewModel>();
+            containerRegistry.RegisterForNavigation<Signup3View, Signup3ViewModel>();
             containerRegistry.RegisterForNavigation<LoginView, LoginViewModel>();
             containerRegistry.RegisterForNavigation<ForgotPasswordView, ForgotPasswordViewModel>();
             containerRegistry.RegisterForNavigation<ForgotPasswordConfirmationView, ForgotPasswordConfirmationViewModel>();

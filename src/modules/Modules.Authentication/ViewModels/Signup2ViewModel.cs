@@ -35,8 +35,8 @@ namespace Modules.Authentication.ViewModels
 
         public Signup2ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger) : base(navigationService, mapper, logger)
         {
-            NextCommand = new DelegateCommand(async () => await OnLogin());
-            LoginCommand = new DelegateCommand(async () => await OnSubmit());
+            LoginCommand = new DelegateCommand(async () => await OnLogin());
+            NextCommand = new DelegateCommand(async () => await OnSubmit());
         }
 
         private async Task OnLogin()

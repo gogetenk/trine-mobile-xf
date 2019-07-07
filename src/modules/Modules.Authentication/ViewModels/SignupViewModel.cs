@@ -59,19 +59,20 @@ namespace Modules.Authentication.ViewModels
             if (IsEmailErrorVisible || IsPasswordErrorVisible)
                 return;
 
-            try
-            {
-                var userId = await _accountService.Login(Email, Password);
-            }
-            catch (BusinessException bExc)
-            {
-                Logger.Log(bExc.Message);
-                await _dialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
-            }
-            catch (Exception exc)
-            {
-                Logger.Log(exc.Message);
-            }
+            //try
+            //{
+                //var userId = await _accountService.Login(Email, Password);
+                await NavigationService.NavigateAsync("Signup2View");
+            //}
+            //catch (BusinessException bExc)
+            //{
+            //    Logger.Log(bExc.Message);
+            //    await _dialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+            //}
+            //catch (Exception exc)
+            //{
+            //    Logger.Log(exc.Message);
+            //}
         }
     }
 }
