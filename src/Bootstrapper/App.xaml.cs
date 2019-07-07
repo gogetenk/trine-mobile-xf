@@ -6,8 +6,11 @@ using Prism.Logging;
 using Prism.Logging.AppCenter;
 using Prism.Modularity;
 using Prism.Unity;
+using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Services;
 using Trine.Mobile.Bootstrapper.Builders;
 using Trine.Mobile.Components.Logging;
+using Trine.Mobile.Dal.Swagger;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -41,6 +44,7 @@ namespace Trine.Mobile.Bootstrapper
             RegisterNavigation(containerRegistry);
             RegisterLogger(containerRegistry);
             RegisterMapper(containerRegistry);
+            RegisterServices(containerRegistry);
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -74,6 +78,12 @@ namespace Trine.Mobile.Bootstrapper
         {
             var mapper = new MapperBuilder().CreateMapper();
             containerRegistry.RegisterInstance<IMapper>(mapper);
+        }
+
+        private void RegisterServices(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.Register<IGatewayRepository, GatewayRepository>();
+            containerRegistry.Register<IAccountService, AccountService>();
         }
 
         #endregion

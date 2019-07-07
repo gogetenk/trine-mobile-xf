@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Trine.Mobile.Bll.Impl</AssemblyName>
+    <RootNamespace>Trine.Mobile.Bll.Impl</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.1.1" />
+    <PackageReference Include="Prism.Plugin.Logging.Abstractions" Version="1.3.0.305" />
+    <PackageReference Include="Sogetrel.Sinapse.Framework.Exceptions" Version="1.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Dal\Trine.Mobile.Dal.Swagger\Dal.Swagger.csproj" />
+    <ProjectReference Include="..\..\Dal\Trine.Mobile.Dal\Dal.csproj" />
+    <ProjectReference Include="..\..\Model\Trine.Mobile.Model\Model.csproj" />
+    <ProjectReference Include="..\Trine.Mobile.Bll\Bll.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Trine.Mobile.Dal</AssemblyName>
+    <RootNamespace>Trine.Mobile.Dal</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Model\Trine.Mobile.Model\Model.csproj" />
+  </ItemGroup>
+
+</Project>

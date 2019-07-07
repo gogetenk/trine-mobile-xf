@@ -15,3 +15,14 @@
 /src/native/Android/obj
 /src/native/iOS/obj
 /src/native/UWP/obj
+/src/Bll/Trine.Mobile.Bll/bin/Debug/netstandard2.0
+/src/Bll/Trine.Mobile.Bll/obj
+/src/Bll/Trine.Mobile.Bll.Impl/bin/Debug/netstandard2.0
+/src/Bll/Trine.Mobile.Bll.Impl/obj
+/src/Dal/Trine.Mobile.Dal/bin/Debug/netstandard2.0
+/src/Dal/Trine.Mobile.Dal/obj
+/src/Dal/Trine.Mobile.Dal.Swagger/bin/Debug/netstandard2.0
+/src/Dal/Trine.Mobile.Dal.Swagger/obj
+/src/Dal/Trine.Mobile.Entities/obj
+/src/Model/Trine.Mobile.Model/obj
+/src/Model/Trine.Mobile.Model/bin/Debug/netstandard2.0

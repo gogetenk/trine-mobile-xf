@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Trine.Mobile.Model</AssemblyName>
+    <RootNamespace>Trine.Mobile.Model</RootNamespace>
+  </PropertyGroup>
+
+</Project>

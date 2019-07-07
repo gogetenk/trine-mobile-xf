@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Trine.Mobile.Dal.Swagger</AssemblyName>
+    <RootNamespace>Trine.Mobile.Dal.Swagger</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Trine.Mobile.Dal\Dal.csproj" />
+  </ItemGroup>
+
+</Project>
