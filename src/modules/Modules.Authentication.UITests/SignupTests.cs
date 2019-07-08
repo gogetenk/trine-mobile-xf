@@ -26,6 +26,7 @@ namespace Modules.Authentication.UITests
             _signupPage = new SignupPage(app);
         }
 
+
         [Test]
         public void WelcomeTextIsDisplayed()
         {

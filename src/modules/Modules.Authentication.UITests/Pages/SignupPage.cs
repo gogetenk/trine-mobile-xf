@@ -36,5 +36,7 @@ namespace Modules.Authentication.UITests.Pages
         {
             _app.Tap(_alreadyAnAccountLabel);
         }
+
+       
     }
 }

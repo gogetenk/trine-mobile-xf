@@ -19,18 +19,18 @@ namespace Trine.Mobile.Components.ViewModels
             Logger = logger;
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters)
+        public virtual void OnNavigatedFrom(INavigationParameters parameters)
         {
         }
 
-        public void OnNavigatedTo(INavigationParameters parameters)
+        public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add("UserId", null);
             Logger.TrackEvent("[" + base.GetType().Name + "] Navigated To", dictionary);
         }
 
-        public void OnNavigatingTo(INavigationParameters parameters)
+        public virtual void OnNavigatingTo(INavigationParameters parameters)
         {
         }
     }

@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup3View">
     <ScrollView>
         <StackLayout Padding="40">
@@ -19,11 +21,11 @@
                        TextColor="#333333" />
             </StackLayout>
 
-            <StackLayout VerticalOptions="Start">
-                <Label Text="Qui êtes-vous ?"
+            <StackLayout VerticalOptions="Start" Margin="0,0,0,60">
+                <Label Text="Votre rôle"
                        FontSize="24"
                        TextColor="Black" />
-                <Label Text="Nous voudrions mieux vous connaître."
+                <Label Text="Pour mieux répondre à vos besoins."
                        FontSize="18"
                        TextColor="#5A28D6" />
                 <BoxView BackgroundColor="#5A28D6"
@@ -33,51 +35,83 @@
                          Margin="0,15" />
             </StackLayout>
 
-            <StackLayout VerticalOptions="Start"
-                         Margin="0,60">
-                <Label Text="Quel est votre nom ?"
+            <StackLayout>
+                <Label Text="Dites nous en un peu plus sur votre rôle..."
                        FontSize="16"
                        TextColor="#333333" />
-                <Entry AutomationId="tb_lastname"
-                       Placeholder="ex : John"
-                       Text="{Binding Lastname}" />
-                <Label Text="Veuillez spécifier un nom valide."
-                       IsVisible="{Binding IsEmailErrorVisible}"
-                       TextColor="#FF5A39" />
 
-                <Label Text="Et votre prénom ?"
-                       Margin="0,20,0,0"
-                       FontSize="16"
-                       TextColor="#333333" />
-                <Entry AutomationId="tb_firstname"
-                       IsPassword="True"
-                       Placeholder="ex : Doe"
-                       Text="{Binding Firstname}" />
-                <Label Text="Veuillez spécifier un prénom valide."
-                       IsVisible="{Binding IsPasswordErrorVisible}"
-                       TextColor="#FF5A39" />
+                <Grid Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="33*" />
+                        <ColumnDefinition Width="33*" />
+                        <ColumnDefinition Width="33*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Frame Padding="15"
+                           Grid.Column="0"
+                           Visual="Material"
+                           BorderColor="#DCDEE6">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CommercialCommand}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="X"
+                                   HorizontalOptions="Center"
+                                   FontSize="20"
+                                   TextColor="#000000" />
+                            <Label Text="Commercial"
+                                   TextColor="#000000" FontSize="13" />
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="15"
+                           Grid.Column="1"
+                           Visual="Material"
+                           BorderColor="#DCDEE6">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ConsultantCommand}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="X"
+                                   HorizontalOptions="Center"
+                                   FontSize="20"
+                                   TextColor="#000000" />
+                            <Label Text="Consultant"
+                                   TextColor="#000000"
+                                   FontSize="13" />
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="15"
+                           Grid.Column="2"
+                           Visual="Material"
+                           BorderColor="#DCDEE6">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CustomerCommand}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="X"
+                                   HorizontalOptions="Center"
+                                   FontSize="20"
+                                   TextColor="#000000" />
+                            <Label Text="Client"
+                                   TextColor="#000000"
+                                   FontSize="13" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
 
                 <Label Text="J'ai déjà un compte →"
                        AutomationId="lb_alreadyAccount"
                        TextDecorations="Underline"
                        FontSize="13"
+                       Margin="0,10,0,0"
                        TextColor="#9A9A9A">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding LoginCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
-
-                <Button Text="Suivant"
-                        Command="{Binding NextCommand}"
-                        AutomationId="bt_next"
-                        Margin="0,70,0,0"
-                        BackgroundColor="#5A28D6"
-                        HorizontalOptions="Center"
-                        CornerRadius="5"
-                        HeightRequest="40"
-                        TextColor="White"
-                        Visual="Material"
-                        WidthRequest="180" />
+                
             </StackLayout>
 
         </StackLayout>

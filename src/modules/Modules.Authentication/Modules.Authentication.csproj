@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll.Impl\Bll.Impl.csproj" />
     <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll\Bll.csproj" />
     <ProjectReference Include="..\..\Components\Trine.Mobile.Components.csproj" />
+    <ProjectReference Include="..\..\Trine.Mobile.Dto\Trine.Mobile.Dto.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +45,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Signup3View.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Signup4View.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

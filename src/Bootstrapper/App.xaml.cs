@@ -1,5 +1,8 @@
 ﻿using System.Net.Http;
 using AutoMapper;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Modules.Authentication;
 using Prism;
 using Prism.Ioc;
@@ -40,6 +43,16 @@ namespace Trine.Mobile.Bootstrapper
 #endif
 
             await NavigationService.NavigateAsync("NavigationPage/SignupView");
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            AppCenter.Start("android=9cfc99dc-15cc-4652-b794-44df21413075;" +
+                  "uwp={Your UWP App secret here};" +
+                  "ios={Your iOS App secret here}",
+                  typeof(Analytics), typeof(Crashes));
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup2View">
     <ScrollView>
         <StackLayout Padding="40">
@@ -42,7 +44,7 @@
                        Placeholder="ex : John"
                        Text="{Binding Lastname}" />
                 <Label Text="Veuillez spécifier un nom valide."
-                       IsVisible="{Binding IsEmailErrorVisible}"
+                       IsVisible="{Binding IsLastnameErrorVisible}"
                        TextColor="#FF5A39" />
 
                 <Label Text="Et votre prénom ?"
@@ -50,11 +52,10 @@
                        FontSize="16"
                        TextColor="#333333" />
                 <Entry AutomationId="tb_firstname"
-                       IsPassword="True"
                        Placeholder="ex : Doe"
                        Text="{Binding Firstname}" />
                 <Label Text="Veuillez spécifier un prénom valide."
-                       IsVisible="{Binding IsPasswordErrorVisible}"
+                       IsVisible="{Binding IsFirstnameErrorVisible}"
                        TextColor="#FF5A39" />
 
                 <Label Text="J'ai déjà un compte →"

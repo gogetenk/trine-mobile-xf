@@ -1,11 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using Sogetrel.Sinapse.Framework.Exceptions;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.ViewModels;
 
 namespace Modules.Authentication.ViewModels
@@ -65,6 +68,20 @@ namespace Modules.Authentication.ViewModels
             if (IsEmailErrorVisible || IsPasswordErrorVisible)
                 return;
 
+            try
+            {
+                var userId = await _accountService.Login(Email, Password);
+                //await NavigationService.NavigateAsync("Signup2View");
+            }
+            catch (BusinessException bExc)
+            {
+                Logger.Log(bExc.Message);
+                await _dialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+            }
+            catch (Exception exc)
+            {
+                Logger.Log(exc.Message);
+            }
         }
     }
 }
