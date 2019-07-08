@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             x:Class="Modules.Organization.Views.JoinOrganizationView">
+    <ScrollView>
+        <StackLayout Padding="40">
+
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="Start"
+                         Margin="0,0,0,50">
+                <Image x:Name="img"
+                       VerticalOptions="Center"
+                       Margin="0,0,10,0"
+                       HeightRequest="26"
+                       WidthRequest="28" />
+                <Label Text="Trine"
+                       VerticalOptions="Center"
+                       FontSize="26"
+                       TextColor="#333333" />
+            </StackLayout>
+
+            <StackLayout VerticalOptions="Start"
+                         Margin="0,0,0,60">
+                <Label Text="Rejoindre une organisation"
+                       FontSize="24"
+                       TextColor="Black" />
+                <Label Text="Demandez un code d'invitation à vos collègues."
+                       FontSize="18"
+                       TextColor="#5A28D6" />
+                <BoxView BackgroundColor="#5A28D6"
+                         WidthRequest="45"
+                         HeightRequest="4"
+                         HorizontalOptions="Start"
+                         Margin="0,15" />
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Quel est votre code d'invitation ?"
+                       FontSize="16"
+                       TextColor="#333333" />
+
+                <Entry Placeholder="Code d'invitation" />
+
+            </StackLayout>
+
+            <Button Text="Rejoindre"
+                    VerticalOptions="EndAndExpand"
+                    Command="{Binding LoginCommand}"
+                    AutomationId="bt_start"
+                    x:Name="bt_start"
+                    Margin="0,70,0,0"
+                    BackgroundColor="#5A28D6"
+                    HorizontalOptions="Center"
+                    CornerRadius="5"
+                    HeightRequest="45"
+                    TextColor="White"
+                    Visual="Material"
+                    WidthRequest="250" />
+
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>

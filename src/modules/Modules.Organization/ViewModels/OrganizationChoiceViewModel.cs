@@ -1,14 +1,12 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
-using Modules.Authentication.Navigation;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Trine.Mobile.Components.ViewModels;
-using Trine.Mobile.Dto;
 
-namespace Modules.Authentication.ViewModels
+namespace Modules.Organization.ViewModels
 {
     public class OrganizationChoiceViewModel : ViewModelBase
     {
@@ -29,7 +27,7 @@ namespace Modules.Authentication.ViewModels
 
         private async Task OnJoinOrga()
         {
-            await NavigationService.NavigateAsync("CreateOrganizationView");
+            await NavigationService.NavigateAsync("JoinOrganizationView");
         }
     }
 }

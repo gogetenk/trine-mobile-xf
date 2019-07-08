@@ -26,9 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\OrganizationChoiceView.xaml.cs">
-      <DependentUpon>OrganizationChoiceView.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\SignupView.xaml.cs">
       <DependentUpon>SignupView.xaml</DependentUpon>
     </Compile>
@@ -48,9 +45,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Signup3View.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\OrganizationChoiceView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

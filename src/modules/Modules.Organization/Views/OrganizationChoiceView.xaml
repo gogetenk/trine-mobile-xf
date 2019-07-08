@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
-             x:Class="Modules.Authentication.Views.OrganizationChoiceView">
+             x:Class="Modules.Organization.Views.OrganizationChoiceView">
     <ScrollView>
         <StackLayout Padding="40">
 
@@ -60,6 +60,7 @@
                                    FontSize="20"
                                    TextColor="#000000" />
                             <Label Text="Créer une organisation"
+                                   HorizontalTextAlignment="Center"
                                    TextColor="#000000"
                                    FontSize="13" />
                         </StackLayout>

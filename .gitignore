@@ -30,3 +30,6 @@
 /Trine.Mobile/Trine.Mobile.Bootstrapper/Trine.Mobile.Bootstrapper.Android/Trine.Mobile.Android.csproj.user
 /src/Trine.Mobile.Dto/bin/Debug/netstandard2.0
 /src/Trine.Mobile.Dto/obj
+/src/modules/Modules.Organization/obj
+/src/modules/Modules.Organization/bin/Debug/netstandard2.0
+/test/Modules.Authentication.UnitTests/obj

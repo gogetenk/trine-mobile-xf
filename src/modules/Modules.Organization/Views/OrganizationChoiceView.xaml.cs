@@ -1,7 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Modules.Authentication.Views
+namespace Modules.Organization.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrganizationChoiceView : ContentPage

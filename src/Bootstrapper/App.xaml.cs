@@ -3,6 +3,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Modules.Authentication;
+using Modules.Organization;
 using Prism;
 using Prism.Ioc;
 using Prism.Logging;
@@ -67,6 +68,7 @@ namespace Trine.Mobile.Bootstrapper
             base.ConfigureModuleCatalog(moduleCatalog);
 
             moduleCatalog.AddModule<AuthenticationModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<OrganizationModule>(InitializationMode.WhenAvailable);
         }
 
         #region Registrations
