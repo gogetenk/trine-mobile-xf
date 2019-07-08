@@ -5,11 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Sogetrel.Sinapse.Framework.Exceptions" Version="1.2.0-beta-006493" />
+    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.555618" />
     <PackageReference Include="Prism.Forms" Version="7.1.0.431" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll.Impl\Bll.Impl.csproj" />
+    <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll\Bll.csproj" />
     <ProjectReference Include="..\..\Components\Trine.Mobile.Components.csproj" />
   </ItemGroup>
 

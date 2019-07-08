@@ -36,17 +36,45 @@
                          Margin="0,15" />
             </StackLayout>
 
+            <Frame  HeightRequest="150"
+                    Margin="0,20,0,50"
+                    WidthRequest="150"
+                    CornerRadius="120"
+                    Padding="0"
+                    HasShadow="False"
+                    BackgroundColor="#ecf0f1"
+                    HorizontalOptions="Center">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Frame.GestureRecognizers>
+                <Grid>
+                    <Label Text="+"
+                           TextColor="White"
+                           FontSize="40"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+                    <Image x:Name="img_pick"
+                           Source="{Binding IconUrl, Mode=TwoWay}"
+                           Aspect="AspectFill"
+                           VerticalOptions="Fill"
+                           HorizontalOptions="Fill" />
+                </Grid>
+            </Frame>
+
             <StackLayout>
                 <Label Text="Quel est le nom de votre organisation ?"
                        FontSize="16"
                        Margin="0,30,0,0"
                        TextColor="#333333" />
-                <Entry Placeholder="ex : Mon organisation" Text="{Binding OrganizationName}" />
+                <Entry Placeholder="ex : Mon organisation" Text="{Binding Name}" />
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   Margin="40" />
             </StackLayout>
+            
 
             <Button Text="Créer l'organisation"
                     VerticalOptions="EndAndExpand"
-                    Command="{Binding LoginCommand}"
+                    Command="{Binding CreateOrganizationCommand}"
                     AutomationId="bt_start"
                     x:Name="bt_start"
                     Margin="0,70,0,0"

@@ -50,6 +50,13 @@ namespace Modules.Authentication.ViewModels
             _userToCreate = parameters.GetValue<RegisterUserDto>(NavigationParameterKeys._User);
         }
 
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            base.OnNavigatedFrom(parameters);
+
+            parameters.Add(NavigationParameterKeys._User, _userToCreate);
+        }
+
         private async Task OnCommercialPicked()
         {
             await Submit(RegisterUserDto.GlobalRoleEnum.Admin);

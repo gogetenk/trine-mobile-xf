@@ -41,8 +41,10 @@
                        FontSize="16"
                        TextColor="#333333" />
 
-                <Entry Placeholder="Code d'invitation" />
-
+                <Entry Placeholder="Code d'invitation"
+                       Text="{Binding InvitationCode}" />
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   Margin="40" />
             </StackLayout>
 
             <Button Text="Rejoindre"

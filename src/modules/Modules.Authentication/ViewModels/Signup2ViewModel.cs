@@ -47,6 +47,9 @@ namespace Modules.Authentication.ViewModels
 
         private async Task OnSubmit()
         {
+            if (_userToCreate is null)
+                await NavigationService.GoBackAsync();
+
             var navParams = new NavigationParameters();
             _userToCreate.LastName = Lastname;
             _userToCreate.FirstName = Firstname;
@@ -60,6 +63,13 @@ namespace Modules.Authentication.ViewModels
             base.OnNavigatedTo(parameters);
 
             _userToCreate = parameters.GetValue<RegisterUserDto>(NavigationParameterKeys._User);
+        }
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            base.OnNavigatedFrom(parameters);
+
+            parameters.Add(NavigationParameterKeys._User, _userToCreate);
         }
     }
 }
