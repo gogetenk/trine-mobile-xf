@@ -68,10 +68,13 @@
                     </Label.GestureRecognizers>
                 </Label>
 
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   Margin="40" />
+
                 <Button Text="Suivant"
                         Command="{Binding NextCommand}"
                         AutomationId="bt_next"
-                        Margin="0,70,0,0"
+                        Margin="0,40,0,0"
                         BackgroundColor="#5A28D6"
                         HorizontalOptions="Center"
                         CornerRadius="5"

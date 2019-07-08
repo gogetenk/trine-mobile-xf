@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Plugin.CurrentActivity;
 using Prism;
 using Prism.Ioc;
 using Trine.Mobile.Bootstrapper;
@@ -22,6 +23,7 @@ namespace Trine.Mobile.Android
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
             FormsMaterial.Init(this, bundle);
+            CrossCurrentActivity.Current.Init(this, bundle);
         }
     }
 

@@ -68,7 +68,7 @@
                        TextColor="#333333" />
                 <Entry Placeholder="ex : Mon organisation" Text="{Binding Name}" />
                 <ActivityIndicator IsRunning="{Binding IsLoading}"
-                                   Margin="40" />
+                                   Margin="30" />
             </StackLayout>
             
 
@@ -77,7 +77,6 @@
                     Command="{Binding CreateOrganizationCommand}"
                     AutomationId="bt_start"
                     x:Name="bt_start"
-                    Margin="0,70,0,0"
                     BackgroundColor="#5A28D6"
                     HorizontalOptions="Center"
                     CornerRadius="5"

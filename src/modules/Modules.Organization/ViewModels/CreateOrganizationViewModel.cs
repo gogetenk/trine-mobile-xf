@@ -44,9 +44,6 @@ namespace Modules.Organization.ViewModels
 
         private async Task OnCreateOrganization()
         {
-            if (string.IsNullOrEmpty(Name))
-                throw new BusinessException("Name cannot be null");
-
             IsLoading = true;
 
             try
@@ -55,6 +52,7 @@ namespace Modules.Organization.ViewModels
                     return;
 
                 var id = await _organizationService.CreateOrganization(Name, IconUrl);
+                await _dialogService.DisplayAlertAsync("Vous avez créé votre organisation !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
                 //NavigateAbsoluteCommandExecute($"/BurgerMenuView/NavigationPage/OrganizationDashboardView?OrganizationId={id}");
             }
             catch (BusinessException bExc)

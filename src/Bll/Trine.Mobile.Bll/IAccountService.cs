@@ -8,6 +8,7 @@ namespace Trine.Mobile.Bll
         Task<string> Login(string email, string password);
         Task<string> RegisterCompany(RegisterCompanyModel model);
         Task<string> RegisterUser(RegisterUserModel model);
+        Task<bool> DoesUserExist(RegisterUserModel model);
         Task RecoverPasswordAsync(PasswordUpdateModel model);
     }
 }

@@ -54,6 +54,23 @@ namespace Trine.Mobile.Bll.Impl.Services
             }
         }
 
+        public async Task<bool> DoesUserExist(RegisterUserModel model)
+        {
+            try
+            {
+                // Verifying if user exists
+                var result = await _gatewayRepository.ApiAccountsUsersExistsGetAsync(model.Email);
+                if (result != null)
+                    throw new BusinessException(ErrorMessages.userAlreadyExists);
+
+                return false;
+            }
+            catch // Il est normal d'avoir une exception ici (code 404 comme quoi l'user n'existe pas)
+            {
+                return false;
+            }
+        }
+
         public async Task<string> RegisterUser(RegisterUserModel model)
         {
             Token token = null;

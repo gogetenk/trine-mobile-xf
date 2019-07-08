@@ -47,40 +47,40 @@ namespace Trine.Mobile.Bll.Impl.Factory
             //});
         }
 
-        private static IEnumerable<Policy> CreatePolicies()
-        {
-            var waitAndRetryPolicy = Policy.Handle<HttpRequestException>()
-                .WaitAndRetryAsync(
-                    50,
-                    retryAttempt => TimeSpan.FromSeconds(1),
-                    (exception, timeSpan, retryCount, context) =>
-                    {
+        //private static IEnumerable<Policy> CreatePolicies()
+        //{
+        //    var waitAndRetryPolicy = Policy.Handle<HttpRequestException>()
+        //        .WaitAndRetryAsync(
+        //            50,
+        //            retryAttempt => TimeSpan.FromSeconds(1),
+        //            (exception, timeSpan, retryCount, context) =>
+        //            {
 
-                    });
+        //            });
 
-            var circuitBreakerPolicy = Policy.Handle<HttpRequestException>()
-                .CircuitBreakerAsync(
-                    // number of exceptions before breaking circuit
-                    5,
-                    // time circuit opened before retry
-                    TimeSpan.FromMinutes(1),
-                    (exception, duration) =>
-                    {
-                        // on circuit opened
-                        //_logger.LogTrace("Circuit breaker opened");
-                    },
-                    () =>
-                    {
-                        // on circuit closed
-                        //_logger.LogTrace("Circuit breaker reset");
-                    });
+        //    var circuitBreakerPolicy = Policy.Handle<HttpRequestException>()
+        //        .CircuitBreakerAsync(
+        //            // number of exceptions before breaking circuit
+        //            5,
+        //            // time circuit opened before retry
+        //            TimeSpan.FromMinutes(1),
+        //            (exception, duration) =>
+        //            {
+        //                // on circuit opened
+        //                //_logger.LogTrace("Circuit breaker opened");
+        //            },
+        //            () =>
+        //            {
+        //                // on circuit closed
+        //                //_logger.LogTrace("Circuit breaker reset");
+        //            });
 
-            return new List<Policy>
-            {
-                waitAndRetryPolicy,
-                circuitBreakerPolicy
-            };
-        }
+        //    return new List<Policy>
+        //    {
+        //        waitAndRetryPolicy,
+        //        circuitBreakerPolicy
+        //    };
+        //}
 
         private static string NormalizeOrigin(string origin)
         {

@@ -50,6 +50,7 @@ namespace Modules.Organization.ViewModels
                     throw new BusinessException("Le format du code d'invitation est incorrect. Veuillez vérifier le code entré.");
 
                 var orgaId = await _organizationService.JoinOrganization(codeGuid);
+                await _dialogService.DisplayAlertAsync("Vous avez rejoint une organisation !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
                 //NavigateAbsoluteCommandExecute($"/BurgerMenuView/NavigationPage/OrganizationDashboardView?OrganizationId={orgaId}");
             }
             catch (BusinessException bExc)

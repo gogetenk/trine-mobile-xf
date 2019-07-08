@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Assistance.Client.Dto;
 using AutoMapper;
 using Trine.Mobile.Dal.Swagger;
@@ -46,11 +44,17 @@ namespace Trine.Mobile.Bootstrapper.Builders
                     .ForMember(x => x.TranscodedStatus, opts => opts.MapFrom(x => GetStatusTranscription(x.Status)))
                     .ForMember(x => x.DaysNb, opts => opts.MapFrom(x => CalculateWorkedDays(x.Days)));
 
+                cfg.CreateMap<OrganizationModel, Organization>();
+                cfg.CreateMap<OrganizationMemberModel, OrganizationMember>();
+                cfg.CreateMap<Organization, OrganizationModel>();
+                cfg.CreateMap<OrganizationDto, OrganizationModel>();
+                cfg.CreateMap<OrganizationModel, OrganizationDto>();
                 cfg.CreateMap<PartialOrganizationModel, PartialOrganizationDto>()
                     .ForMember(x => x.Initials, opts => opts.MapFrom(x => $"{x.Name[0].ToString().ToUpper()}{x.Name[1].ToString().ToUpper()}"));
 
                 cfg.CreateMap<Token, TokenModel>();
 
+                cfg.CreateMissingTypeMaps = true;
                 cfg.AllowNullCollections = true;
             });
 
