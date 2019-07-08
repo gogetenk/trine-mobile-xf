@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
+using Microsoft.AppCenter;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
@@ -16,6 +17,10 @@ namespace Modules.Authentication.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         #region Bindings
+
+        private bool _isLoading = false;
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+
 
         public bool _isPasswordErrorVisible = false;
         public bool IsPasswordErrorVisible { get => _isPasswordErrorVisible; set { _isPasswordErrorVisible = value; RaisePropertyChanged(); } }
@@ -70,8 +75,17 @@ namespace Modules.Authentication.ViewModels
 
             try
             {
+                IsLoading = true;
                 var userId = await _accountService.Login(Email, Password);
-                //await NavigationService.NavigateAsync("Signup2View");
+
+                if (string.IsNullOrEmpty(userId))
+                    return;
+
+                // Setting the user id to app center
+                //AppCenter.SetUserId(userId);
+
+                await NavigationService.NavigateAsync("../DashboardView");
+
             }
             catch (BusinessException bExc)
             {
@@ -81,6 +95,10 @@ namespace Modules.Authentication.ViewModels
             catch (Exception exc)
             {
                 Logger.Log(exc.Message);
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
     }

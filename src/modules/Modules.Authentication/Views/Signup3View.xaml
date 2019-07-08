@@ -111,7 +111,8 @@
                         <TapGestureRecognizer Command="{Binding LoginCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
-                
+
+                <ActivityIndicator IsRunning="{Binding IsLoading}" Margin="40" />
             </StackLayout>
 
         </StackLayout>

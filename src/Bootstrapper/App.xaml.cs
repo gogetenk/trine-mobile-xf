@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -10,8 +9,8 @@ using Prism.Logging;
 using Prism.Logging.AppCenter;
 using Prism.Modularity;
 using Prism.Unity;
-using Sogetrel.Sinapse.Framework.Mobile.Extensions;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Factory;
 using Trine.Mobile.Bll.Impl.Services;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Bootstrapper.Builders;
@@ -103,7 +102,8 @@ namespace Trine.Mobile.Bootstrapper
 
         private void RegisterServices(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository(AppSettings.GatewayApi, new HttpClient()));
+            //containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository(AppSettings.GatewayApi, new HttpClient()));
+            containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository(AppSettings.ApiUrls[AppSettings.GatewayApi], HttpClientFactory.GetClient()));
             containerRegistry.Register<IAccountService, AccountService>();
         }
 

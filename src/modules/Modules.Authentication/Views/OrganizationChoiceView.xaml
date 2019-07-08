@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
-             x:Class="Modules.Authentication.Views.Signup4View">
+             x:Class="Modules.Authentication.Views.OrganizationChoiceView">
     <ScrollView>
         <StackLayout Padding="40">
 
@@ -47,7 +47,7 @@
                         <ColumnDefinition Width="50*" />
                     </Grid.ColumnDefinitions>
 
-                    <Frame Padding="15"
+                    <Frame Padding="25"
                            Grid.Column="0"
                            Visual="Material"
                            BorderColor="#DCDEE6">
@@ -65,7 +65,7 @@
                         </StackLayout>
                     </Frame>
 
-                    <Frame Padding="15"
+                    <Frame Padding="25"
                            Grid.Column="1"
                            Visual="Material"
                            BorderColor="#DCDEE6">
@@ -78,6 +78,8 @@
                                    FontSize="20"
                                    TextColor="#000000" />
                             <Label Text="Rejoindre une organisation"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="Center"
                                    TextColor="#000000"
                                    FontSize="13" />
                         </StackLayout>
