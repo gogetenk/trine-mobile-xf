@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
+set -e # Exit immediately if a command exits with a non-zero status (failure)
+
     echo "Post Build Script Started"
+
+	echo "APPCENTER_XAMARIN_CONFIGURATION = " + $APPCENTER_XAMARIN_CONFIGURATION 
 
     SolutionFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name Trine.Mobile.sln`
     SolutionFileFolder=`dirname $SolutionFile`

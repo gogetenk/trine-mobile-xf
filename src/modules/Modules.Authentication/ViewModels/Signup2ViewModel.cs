@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
 using Modules.Authentication.Navigation;
@@ -7,12 +6,9 @@ using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
-using Sogetrel.Sinapse.Framework.Exceptions;
 using Trine.Mobile.Bll;
-using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
-using Trine.Mobile.Model;
 
 namespace Modules.Authentication.ViewModels
 {
@@ -64,32 +60,12 @@ namespace Modules.Authentication.ViewModels
             if (_userToCreate is null)
                 await NavigationService.GoBackAsync();
 
-            try
-            {
-                IsLoading = true;
+            var navParams = new NavigationParameters();
+            _userToCreate.LastName = Lastname;
+            _userToCreate.FirstName = Firstname;
+            navParams.Add(NavigationParameterKeys._User, _userToCreate);
 
-                await _accountService.DoesUserExist(Mapper.Map<RegisterUserModel>(_userToCreate));
-
-                var navParams = new NavigationParameters();
-                _userToCreate.LastName = Lastname;
-                _userToCreate.FirstName = Firstname;
-                navParams.Add(NavigationParameterKeys._User, _userToCreate);
-
-                await NavigationService.NavigateAsync("Signup3View", navParams);
-            }
-            catch (BusinessException bExc)
-            {
-                Logger.Log(bExc.Message);
-                await _dialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
-            }
-            catch (Exception exc)
-            {
-                Logger.Log(exc.Message);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
+            await NavigationService.NavigateAsync("Signup3View", navParams);
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)

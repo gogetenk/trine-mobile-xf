@@ -68,8 +68,7 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <ActivityIndicator IsRunning="{Binding IsLoading}"
-                                   Margin="40" />
+                
 
                 <Button Text="Suivant"
                         Command="{Binding NextCommand}"

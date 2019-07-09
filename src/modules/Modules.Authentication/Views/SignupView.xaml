@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              x:Class="Modules.Authentication.Views.SignupView"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
@@ -43,18 +44,32 @@
                        FontSize="16"
                        TextColor="#333333" />
                 <Entry AutomationId="tb_email"
-                       Placeholder="ex : toto@titi.com"
-                       Text="{Binding Email}" />
+                       Placeholder="ex : john@doe.com"
+                       Text="{Binding Email}">
+                    <Entry.Behaviors>
+                        <b:EventToCommandBehavior EventName="Unfocused"
+                                                  Command="{Binding EmailUnfocusedCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
                 <Label Text="Veuillez spécifier un e-mail valide"
                        IsVisible="{Binding IsEmailErrorVisible}"
                        TextColor="#FF5A39" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Pssst... On se connaît non ? 😉"
+                           IsVisible="{Binding IsUserExistTextVisible}"
+                           TextColor="#333333" />
+                    <Label Text="Connectez-vous ici."
+                           IsVisible="{Binding IsUserExistTextVisible}"
+                           TextDecorations="Underline"
+                           TextColor="#5A28D6" />
+                </StackLayout>
 
                 <Label Text="Choisissez un mot de passe"
                        Margin="0,20,0,0"
                        FontSize="16"
                        TextColor="#333333" />
                 <Entry AutomationId="tb_password"
-IsPassword="True"
+                       IsPassword="True"
                        Text="{Binding Password}" />
                 <Label Text="Veuillez spécifier un mot de passe valide"
                        IsVisible="{Binding IsPasswordErrorVisible}"
@@ -70,11 +85,14 @@ IsPassword="True"
                     </Label.GestureRecognizers>
                 </Label>
 
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   Margin="40" />
+
                 <Button Text="Commencer"
                         Command="{Binding SubmitCommand}"
                         AutomationId="bt_start"
                         x:Name="bt_start"
-                        Margin="0,70,0,0"
+                        Margin="0,30,0,0"
                         BackgroundColor="#5A28D6"
                         HorizontalOptions="Center"
                         CornerRadius="5"

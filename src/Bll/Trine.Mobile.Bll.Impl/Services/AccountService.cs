@@ -60,10 +60,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             {
                 // Verifying if user exists
                 var result = await _gatewayRepository.ApiAccountsUsersExistsGetAsync(model.Email);
-                if (result != null)
-                    throw new BusinessException(ErrorMessages.userAlreadyExists);
-
-                return false;
+                return (result != null);
             }
             catch // Il est normal d'avoir une exception ici (code 404 comme quoi l'user n'existe pas)
             {
