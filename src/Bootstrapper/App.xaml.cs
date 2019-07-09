@@ -14,7 +14,7 @@ using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Factory;
 using Trine.Mobile.Bll.Impl.Services;
 using Trine.Mobile.Bll.Impl.Settings;
-using Trine.Mobile.Bootstrapper.Builders;
+using Trine.Mobile.Components.Builders;
 using Trine.Mobile.Components.Logging;
 using Trine.Mobile.Dal.Swagger;
 using Xamarin.Forms;

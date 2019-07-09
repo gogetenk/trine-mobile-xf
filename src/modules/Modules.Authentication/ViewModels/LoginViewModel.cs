@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
-using Microsoft.AppCenter;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
@@ -95,7 +94,7 @@ namespace Modules.Authentication.ViewModels
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.Message);
+                Logger.Report(exc, null);
             }
             finally
             {

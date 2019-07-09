@@ -1,4 +1,4 @@
-﻿namespace Assistance.Client.Dto
+﻿namespace Trine.Mobile.Model
 {
     public class DashboardCustomerModel
     {

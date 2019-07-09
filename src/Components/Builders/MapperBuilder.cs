@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assistance.Client.Dto;
 using AutoMapper;
 using Trine.Mobile.Dal.Swagger;
 using Trine.Mobile.Dto;
@@ -8,9 +7,9 @@ using Trine.Mobile.Model;
 using Xamarin.Forms;
 using static Trine.Mobile.Model.MissionModel;
 
-namespace Trine.Mobile.Bootstrapper.Builders
+namespace Trine.Mobile.Components.Builders
 {
-    internal class MapperBuilder
+    public class MapperBuilder
     {
         public MapperBuilder()
         {

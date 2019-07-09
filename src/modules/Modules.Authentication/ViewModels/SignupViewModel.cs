@@ -79,11 +79,10 @@ namespace Modules.Authentication.ViewModels
             catch (BusinessException bExc)
             {
                 Logger.Log(bExc.Message);
-                await _dialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.Message);
+                Logger.Report(exc, null);
             }
             finally
             {
@@ -127,7 +126,7 @@ namespace Modules.Authentication.ViewModels
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.Message);
+                Logger.Report(exc, null);
             }
             finally
             {
