@@ -23,6 +23,9 @@ namespace Modules.Organization.Views
                 throw new BusinessException("Votre téléphone ne supporte pas l'upload de photos, ou vous avez refusé que nous accédions à votre gallerie.");
 
             photo = await CrossMedia.Current.PickPhotoAsync();
+            if (photo is null)
+                return;
+
             img_pick.Source = photo.Path;
         }
     }

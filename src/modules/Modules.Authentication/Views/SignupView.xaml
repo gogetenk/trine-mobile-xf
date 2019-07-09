@@ -2,27 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              x:Class="Modules.Authentication.Views.SignupView"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              Title="Sign In">
 
     <ScrollView>
-        <StackLayout Padding="40">
+        <StackLayout Padding="40,40,40,5">
 
-            <StackLayout Orientation="Horizontal"
-                         VerticalOptions="Start"
-                         Margin="0,0,0,50">
-                <Image x:Name="img"
-                       VerticalOptions="Center"
-                       Margin="0,0,10,0"
-                       HeightRequest="26"
-                       WidthRequest="28" />
-                <Label Text="Trine"
-                       VerticalOptions="Center"
-                       FontSize="26"
-                       TextColor="#333333" />
-            </StackLayout>
+            <components:TrineLogoHeaderView Margin="0,0,0,50" />
 
             <StackLayout VerticalOptions="Start">
                 <Label Text="Bienvenue"
