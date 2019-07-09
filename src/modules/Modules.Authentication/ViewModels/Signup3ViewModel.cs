@@ -96,7 +96,7 @@ namespace Modules.Authentication.ViewModels
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.Message);
+                Logger.Report(exc, null);
             }
             finally
             {
