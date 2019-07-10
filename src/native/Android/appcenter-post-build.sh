@@ -5,7 +5,7 @@ set -e # Exit immediately if a command exits with a non-zero status (failure)
     echo "Post Build Script Started"
 
 	    echo "**** Unit Tests ****"
-			 "Found Unit Test projects:"
+			echo "Found Unit Test projects:"
 			find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec echo {} \;
 			echo
 			echo "Run Unit Test projects"
