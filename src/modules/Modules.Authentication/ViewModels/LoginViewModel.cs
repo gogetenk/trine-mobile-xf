@@ -42,12 +42,10 @@ namespace Modules.Authentication.ViewModels
         #endregion
 
         private readonly IAccountService _accountService;
-        private readonly IPageDialogService _dialogService;
 
-        public LoginViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger)
+        public LoginViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
-            _dialogService = dialogService;
 
             LoginCommand = new DelegateCommand(async () => await OnLogin(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible);
             ForgotPasswordCommand = new DelegateCommand(async () => await OnForgotPassword());
@@ -85,16 +83,15 @@ namespace Modules.Authentication.ViewModels
 
                 await NavigationService.NavigateAsync("../DashboardView");
                 //TODO à enlever quand on aura le dashboard
-                await _dialogService.DisplayAlertAsync("Vous êtes connecté à Trine !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
+                await DialogService.DisplayAlertAsync("Vous êtes connecté à Trine !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
             }
             catch (BusinessException bExc)
             {
-                Logger.Log(bExc.Message);
-                await _dialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+                await LogAndShowBusinessError(bExc);
             }
             catch (Exception exc)
             {
-                Logger.Report(exc, null);
+                LogTechnicalError(exc);
             }
             finally
             {

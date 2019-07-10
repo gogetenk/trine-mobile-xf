@@ -31,13 +31,11 @@ namespace Modules.Organization.ViewModels
         #endregion
 
         private readonly IOrganizationService _organizationService;
-        private readonly IPageDialogService _dialogService;
 
 
-        public CreateOrganizationViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IOrganizationService organizationService, IPageDialogService dialogService) : base(navigationService, mapper, logger)
+        public CreateOrganizationViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IOrganizationService organizationService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
             _organizationService = organizationService;
-            _dialogService = dialogService;
 
             CreateOrganizationCommand = new DelegateCommand(async () => await OnCreateOrganization(), () => !IsLoading);
         }
@@ -52,17 +50,16 @@ namespace Modules.Organization.ViewModels
                     return;
 
                 var id = await _organizationService.CreateOrganization(Name, IconUrl);
-                await _dialogService.DisplayAlertAsync("Vous avez créé votre organisation !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
+                await DialogService.DisplayAlertAsync("Vous avez créé votre organisation !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
                 //NavigateAbsoluteCommandExecute($"/BurgerMenuView/NavigationPage/OrganizationDashboardView?OrganizationId={id}");
             }
             catch (BusinessException bExc)
             {
-                Logger.Log(bExc.Message);
-                await _dialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+                await LogAndShowBusinessError(bExc);
             }
             catch (Exception exc)
             {
-                Logger.Log(exc.Message);
+                LogTechnicalError(exc);
             }
             finally
             {

@@ -39,12 +39,10 @@ namespace Modules.Authentication.ViewModels
         private RegisterUserDto _userToCreate;
 
         private readonly IAccountService _accountService;
-        private readonly IPageDialogService _dialogService;
 
-        public Signup2ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger)
+        public Signup2ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
-            _dialogService = dialogService;
 
             LoginCommand = new DelegateCommand(async () => await OnLogin());
             NextCommand = new DelegateCommand(async () => await OnSubmit());

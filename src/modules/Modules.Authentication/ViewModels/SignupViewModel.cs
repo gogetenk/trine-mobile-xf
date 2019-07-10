@@ -47,7 +47,7 @@ namespace Modules.Authentication.ViewModels
         private readonly IAccountService _accountService;
         private readonly IPageDialogService _dialogService;
 
-        public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger)
+        public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
             _dialogService = dialogService;
@@ -121,12 +121,11 @@ namespace Modules.Authentication.ViewModels
             }
             catch (BusinessException bExc)
             {
-                Logger.Log(bExc.Message);
-                await _dialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+                await LogAndShowBusinessError(bExc);
             }
             catch (Exception exc)
             {
-                Logger.Report(exc, null);
+                LogTechnicalError(exc);
             }
             finally
             {

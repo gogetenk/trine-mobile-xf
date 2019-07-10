@@ -5,13 +5,22 @@ using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
+using Prism.Services;
+using Sogetrel.Sinapse.Framework.Exceptions;
+using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.ViewModels;
+using Trine.Mobile.Dto;
+using Trine.Mobile.Model;
 
 namespace Modules.Authentication.ViewModels
 {
     public class ForgotPasswordViewModel : ViewModelBase
     {
         #region Bindings
+
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+        private bool _isLoading = false;
 
         public bool _isPasswordErrorVisible = false;
         public bool IsPasswordErrorVisible { get => _isPasswordErrorVisible; set { _isPasswordErrorVisible = value; RaisePropertyChanged(); } }
@@ -35,8 +44,14 @@ namespace Modules.Authentication.ViewModels
 
         #endregion
 
-        public ForgotPasswordViewModel(INavigationService navigationService, IMapper mapper, ILogger logger) : base(navigationService, mapper, logger)
+        private readonly IAccountService _accountService;
+        private readonly IPageDialogService _dialogService;
+
+        public ForgotPasswordViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
+            _accountService = accountService;
+            _dialogService = dialogService;
+
             SubmitCommand = new DelegateCommand(async () => await OnSubmit());
         }
 
@@ -49,7 +64,30 @@ namespace Modules.Authentication.ViewModels
             if (IsEmailErrorVisible || IsPasswordErrorVisible || IsNotSamePassword)
                 return;
 
-            await NavigationService.NavigateAsync("ForgotPasswordConfirmationView");
+            try
+            {
+                IsLoading = true;
+
+                var passwordUpdate = new PasswordUpdateDto();
+                passwordUpdate.Email = Email;
+                passwordUpdate.NewPassword = Password;
+                await _accountService.RecoverPasswordAsync(Mapper.Map<PasswordUpdateModel>(passwordUpdate));
+                await NavigationService.NavigateAsync("ForgotPasswordConfirmationView");
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
+
+        
     }
 }

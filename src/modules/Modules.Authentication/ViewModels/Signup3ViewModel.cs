@@ -13,6 +13,7 @@ using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
+using Xamarin.Forms;
 
 namespace Modules.Authentication.ViewModels
 {
@@ -29,14 +30,12 @@ namespace Modules.Authentication.ViewModels
 
         #endregion 
 
-        private RegisterUserDto _userToCreate;
+        private static RegisterUserDto _userToCreate;
         private readonly IAccountService _accountService;
-        private readonly IPageDialogService _dialogService;
 
-        public Signup3ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger)
+        public Signup3ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
-            _dialogService = dialogService;
 
             ConsultantCommand = new DelegateCommand(async () => await OnConsultantPicked());
             CommercialCommand = new DelegateCommand(async () => await OnCommercialPicked());
@@ -91,12 +90,11 @@ namespace Modules.Authentication.ViewModels
             }
             catch (BusinessException bExc)
             {
-                Logger.Log(bExc.Message);
-                await _dialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+                await LogAndShowBusinessError(bExc);
             }
             catch (Exception exc)
             {
-                Logger.Report(exc, null);
+                LogTechnicalError(exc);
             }
             finally
             {

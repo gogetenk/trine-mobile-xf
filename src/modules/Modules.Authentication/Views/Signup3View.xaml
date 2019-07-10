@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup3View">
@@ -10,7 +11,8 @@
 
             <components:TrineLogoHeaderView Margin="0,0,0,60" />
 
-            <StackLayout VerticalOptions="Start" Margin="0,0,0,60">
+            <StackLayout VerticalOptions="Start"
+                         Margin="0,0,0,60">
                 <Label Text="Votre rôle"
                        FontSize="24"
                        TextColor="Black" />
@@ -35,13 +37,14 @@
                         <ColumnDefinition Width="33*" />
                         <ColumnDefinition Width="33*" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <Frame Padding="15"
                            Grid.Column="0"
+                           BackgroundColor="White"
                            Visual="Material"
                            BorderColor="#DCDEE6">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CommercialCommand}" />
+                            <TapGestureRecognizer Command="{Binding CommercialCommand}" Tapped="TapGestureRecognizer_Tapped"/>
                         </Frame.GestureRecognizers>
                         <StackLayout HorizontalOptions="Center">
                             <Label Text="X"
@@ -49,16 +52,19 @@
                                    FontSize="20"
                                    TextColor="#000000" />
                             <Label Text="Commercial"
-                                   TextColor="#000000" FontSize="13" />
+                                   TextColor="#000000"
+                                   FontSize="13" />
                         </StackLayout>
                     </Frame>
 
                     <Frame Padding="15"
                            Grid.Column="1"
                            Visual="Material"
+                           BackgroundColor="White"
                            BorderColor="#DCDEE6">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ConsultantCommand}" />
+                            <TapGestureRecognizer Command="{Binding ConsultantCommand}"
+                                                  Tapped="TapGestureRecognizer_Tapped" />
                         </Frame.GestureRecognizers>
                         <StackLayout HorizontalOptions="Center">
                             <Label Text="X"
@@ -74,9 +80,11 @@
                     <Frame Padding="15"
                            Grid.Column="2"
                            Visual="Material"
+                           BackgroundColor="White"
                            BorderColor="#DCDEE6">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CustomerCommand}" />
+                            <TapGestureRecognizer Command="{Binding CustomerCommand}"
+                                                  Tapped="TapGestureRecognizer_Tapped" />
                         </Frame.GestureRecognizers>
                         <StackLayout HorizontalOptions="Center">
                             <Label Text="X"
@@ -101,7 +109,8 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <ActivityIndicator IsRunning="{Binding IsLoading}" Margin="40" />
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   Margin="40" />
             </StackLayout>
 
         </StackLayout>

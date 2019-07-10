@@ -110,7 +110,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             {
                 throw new TechnicalException(ErrorMessages.serverErrorText + httpExc.Message);
             }
-            catch (Exception exc)
+            catch
             {
                 throw;
             }
@@ -144,7 +144,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             {
                 throw new TechnicalException(ErrorMessages.serverErrorText + apiExc.StatusCode);
             }
-            catch (Exception exc)
+            catch 
             {
                 throw;
             }
@@ -160,7 +160,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             {
                 throw new TechnicalException(ErrorMessages.serverErrorText + apiExc.StatusCode);
             }
-            catch (Exception exc)
+            catch
             {
                 throw;
             }
