@@ -4,6 +4,15 @@ set -e # Exit immediately if a command exits with a non-zero status (failure)
 
     echo "Post Build Script Started"
 
+	    echo "**** Unit Tests ****"
+			 "Found Unit Test projects:"
+			find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec echo {} \;
+			echo
+			echo "Run Unit Test projects"
+			find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' | xargs dotnet test;
+
+
+	echo "**** UI Tests ****"
 	echo "APPCENTER_XAMARIN_CONFIGURATION = " + $APPCENTER_XAMARIN_CONFIGURATION 
 
     SolutionFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name Trine.Mobile.sln`
