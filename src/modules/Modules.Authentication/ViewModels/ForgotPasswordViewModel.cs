@@ -8,7 +8,6 @@ using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using Trine.Mobile.Bll;
-using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
@@ -40,7 +39,13 @@ namespace Modules.Authentication.ViewModels
         public string _password2;
         public string Password2 { get => _password2; set { _password2 = value; RaisePropertyChanged(); } }
 
+        public bool _isUnknownUserTextVisible = false;
+        public bool IsUnknownUserTextVisible { get => _isUnknownUserTextVisible; set { _isUnknownUserTextVisible = value; RaisePropertyChanged(); } }
+
+
         public ICommand SubmitCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
+        public ICommand EmailUnfocusedCommand { get; set; }
 
         #endregion
 
@@ -53,6 +58,46 @@ namespace Modules.Authentication.ViewModels
             _dialogService = dialogService;
 
             SubmitCommand = new DelegateCommand(async () => await OnSubmit());
+            LoginCommand = new DelegateCommand(async () => await OnLogin());
+            EmailUnfocusedCommand = new DelegateCommand(async () => await OnEmailEntered());
+        }
+
+        private async Task OnLogin()
+        {
+            await NavigationService.NavigateAsync("LoginView");
+        }
+
+        private async Task OnEmailEntered()
+        {
+            if (string.IsNullOrEmpty(Email))
+            {
+                IsUnknownUserTextVisible = false;
+                return;
+            }
+
+            try
+            {
+                IsLoading = true;
+
+                var userToComplete = new RegisterUserDto()
+                {
+                    Email = Email
+                };
+                var exists = await _accountService.DoesUserExist(Mapper.Map<RegisterUserModel>(userToComplete));
+                IsUnknownUserTextVisible = !exists;
+            }
+            catch (BusinessException bExc)
+            {
+                Logger.Log(bExc.Message);
+            }
+            catch (Exception exc)
+            {
+                Logger.Report(exc, null);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         private async Task OnSubmit()
@@ -61,7 +106,7 @@ namespace Modules.Authentication.ViewModels
             IsPasswordErrorVisible = string.IsNullOrEmpty(Password);
             IsNotSamePassword = Password != Password2;
 
-            if (IsEmailErrorVisible || IsPasswordErrorVisible || IsNotSamePassword)
+            if (IsEmailErrorVisible || IsPasswordErrorVisible || IsNotSamePassword || IsUnknownUserTextVisible)
                 return;
 
             try
@@ -88,6 +133,5 @@ namespace Modules.Authentication.ViewModels
             }
         }
 
-        
     }
 }

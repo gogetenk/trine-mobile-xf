@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
 using Newtonsoft.Json;
@@ -144,7 +143,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             {
                 throw new TechnicalException(ErrorMessages.serverErrorText + apiExc.StatusCode);
             }
-            catch 
+            catch
             {
                 throw;
             }
@@ -158,7 +157,10 @@ namespace Trine.Mobile.Bll.Impl.Services
             }
             catch (ApiException apiExc)
             {
-                throw new TechnicalException(ErrorMessages.serverErrorText + apiExc.StatusCode);
+                if (apiExc.StatusCode == 404)
+                    throw new BusinessException(ErrorMessages.uknownUserHeaderText);
+                else
+                    throw new TechnicalException(ErrorMessages.serverErrorText + apiExc.StatusCode);
             }
             catch
             {

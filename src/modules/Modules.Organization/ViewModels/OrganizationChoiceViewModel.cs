@@ -16,6 +16,8 @@ namespace Modules.Organization.ViewModels
         public ICommand JoinOrgaCommand { get; set; }
 
         private RegisterUserDto _userToCreate;
+        // Only for the subscribe workflow so it can get the user back if navigating back
+        private INavigationParameters _lastPageParams;
 
         public OrganizationChoiceViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
@@ -31,6 +33,22 @@ namespace Modules.Organization.ViewModels
         private async Task OnJoinOrga()
         {
             await NavigationService.NavigateAsync("JoinOrganizationView");
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            // Only for the subscribe workflow so it can get the user back if navigating back
+            _lastPageParams = parameters;
+        }
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            base.OnNavigatedFrom(parameters);
+
+        // Only for the subscribe workflow so it can get the user back if navigating back
+            parameters = _lastPageParams;
         }
     }
 }

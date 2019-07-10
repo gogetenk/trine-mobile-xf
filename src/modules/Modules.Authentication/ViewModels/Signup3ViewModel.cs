@@ -30,7 +30,7 @@ namespace Modules.Authentication.ViewModels
 
         #endregion 
 
-        private static RegisterUserDto _userToCreate;
+        private RegisterUserDto _userToCreate;
         private readonly IAccountService _accountService;
 
         public Signup3ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
@@ -42,11 +42,13 @@ namespace Modules.Authentication.ViewModels
             CustomerCommand = new DelegateCommand(async () => await OnCustomerPicked());
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public async override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 
             _userToCreate = parameters.GetValue<RegisterUserDto>(NavigationParameterKeys._User);
+            if (_userToCreate is null)
+                await NavigationService.NavigateAsync("LoginView");
         }
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
