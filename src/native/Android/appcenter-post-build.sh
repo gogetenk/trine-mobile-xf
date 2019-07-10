@@ -8,8 +8,8 @@ set -e # Exit immediately if a command exits with a non-zero status (failure)
 			echo "Found Unit Test projects:"
 			find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec echo {} \;
 			echo
-			echo "Run Unit Test projects"
-			find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' | xargs dotnet test;
+			echo "Run Unit Test projects for Authentication Module"
+			find $APPCENTER_SOURCE_DIRECTORY -regex '.*Authentication.UnitTests.*\.csproj' | xargs dotnet test;
 
 
 	echo "**** UI Tests ****"
