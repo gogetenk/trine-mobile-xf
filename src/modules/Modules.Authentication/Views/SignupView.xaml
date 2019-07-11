@@ -22,10 +22,10 @@
         <StackLayout VerticalOptions="Start"
                      Grid.Row="1">
             <Label Text="Bienvenue"
-                   FontSize="24"
+                   FontSize="Title"
                    TextColor="Black" />
             <Label Text="Nous allons vous aider à gérer vos missions."
-                   FontSize="18"
+                   FontSize="Medium"
                    TextColor="#5A28D6" />
             <BoxView BackgroundColor="#5A28D6"
                      WidthRequest="45"
@@ -38,9 +38,10 @@
                      Grid.Row="2"
                      Margin="0,60">
             <Label Text="Pour commencer, quel est votre email ?"
-                   FontSize="16"
+                   FontSize="Body"
                    TextColor="#333333" />
             <Entry AutomationId="tb_email"
+                   FontSize="Body"
                    Placeholder="ex : john@doe.com"
                    Text="{Binding Email}">
                 <Entry.Behaviors>
@@ -50,32 +51,37 @@
             </Entry>
             <Label Text="Veuillez spécifier un e-mail valide"
                    IsVisible="{Binding IsEmailErrorVisible}"
+                   FontSize="Small"
                    TextColor="#FF5A39" />
             <StackLayout Orientation="Horizontal">
                 <Label Text="Pssst... On se connaît non ? 😉"
                        IsVisible="{Binding IsUserExistTextVisible}"
+                       FontSize="Small"
                        TextColor="#333333" />
                 <Label Text="Connectez-vous ici."
                        IsVisible="{Binding IsUserExistTextVisible}"
+                       FontSize="Small"
                        TextDecorations="Underline"
                        TextColor="#5A28D6" />
             </StackLayout>
 
             <Label Text="Choisissez un mot de passe"
                    Margin="0,20,0,0"
-                   FontSize="16"
+                   FontSize="Body"
                    TextColor="#333333" />
             <Entry AutomationId="tb_password"
+                   FontSize="Body"
                    IsPassword="True"
                    Text="{Binding Password}" />
             <Label Text="Veuillez spécifier un mot de passe valide"
+                   FontSize="Small"
                    IsVisible="{Binding IsPasswordErrorVisible}"
                    TextColor="#FF5A39" />
 
             <Label Text="J'ai déjà un compte →"
                    AutomationId="lb_alreadyAccount"
                    TextDecorations="Underline"
-                   FontSize="13"
+                   FontSize="Small"
                    TextColor="#9A9A9A">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LoginCommand}" />
@@ -103,13 +109,13 @@
                      Orientation="Horizontal"
                      Grid.Row="4">
             <Label Text="Tarifs"
-                   FontSize="14"
+                   FontSize="Small"
                    TextColor="#707070"
                    TextDecorations="Underline"
                    HorizontalOptions="Start" />
 
             <Label Text="Aide"
-                   FontSize="14"
+                   FontSize="Small"
                    TextColor="#707070"
                    TextDecorations="Underline"
                    HorizontalOptions="EndAndExpand" />

@@ -9,7 +9,6 @@ using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using Trine.Mobile.Bll;
-using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
@@ -67,8 +66,6 @@ namespace Modules.Authentication.ViewModels
 
             try
             {
-                IsLoading = true;
-
                 var userToComplete = new RegisterUserDto()
                 {
                     Email = Email
@@ -83,10 +80,6 @@ namespace Modules.Authentication.ViewModels
             catch (Exception exc)
             {
                 Logger.Report(exc, null);
-            }
-            finally
-            {
-                IsLoading = false;
             }
         }
 
