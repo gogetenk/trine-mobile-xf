@@ -1,11 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
-             x:Class="Trine.Mobile.Bootstrapper.App">
-	<Application.Resources>
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+                        x:Class="Trine.Mobile.Bootstrapper.App">
+    <Application.Resources>
 
-		<!-- Application resource dictionary -->
+        <!-- Application resource dictionary -->
+        <Color x:Key="PageBackgroundColor">White</Color>
+        <Color x:Key="AccentColor">#5A28D6</Color>
+        <Color x:Key="HeadingTextColor">Black</Color>
+        <Color x:Key="NormalTextColor">#333333</Color>
+        <Color x:Key="SecondaryTextColor">#707070</Color>
+        <Color x:Key="TertiaryTextColor">#9A9A9A</Color>
+        <Color x:Key="ErrorColor">#FF5A39</Color>
+        
+        <Style x:Key="H1"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{StaticResource HeadingTextColor}" />
+            <Setter Property="FontSize"
+                    Value="Title" />
+        </Style>
 
-	</Application.Resources>
+        <Style x:Key="H2"
+               TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="Medium" />
+            <Setter Property="TextColor"
+                    Value="{StaticResource AccentColor}" />
+        </Style>
+
+        <Style x:Key="Paragraph"
+               TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="Body" />
+            <Setter Property="TextColor"
+                    Value="{StaticResource NormalTextColor}" />
+        </Style>
+
+        <Style x:Key="SecondaryText"
+               TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="Small" />
+            <Setter Property="TextDecorations"
+                    Value="Underline" />
+            <Setter Property="TextColor"
+                    Value="{StaticResource SecondaryTextColor}" />
+        </Style>
+
+        <Style x:Key="TertiaryText"
+               TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="Small" />
+            <Setter Property="TextDecorations"
+                    Value="Underline" />
+            <Setter Property="TextColor"
+                    Value="{StaticResource TertiaryTextColor}" />
+        </Style>
+
+        <Style x:Key="ErrorText"
+               TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="Small" />
+            <Setter Property="TextColor"
+                    Value="{StaticResource ErrorColor}" />
+        </Style>
+
+        <Style x:Key="PrimaryButtonStyle"
+               TargetType="Button">
+            <Setter Property="CornerRadius"
+                    Value="5" />
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource AccentColor}" />
+        </Style>
+
+       
+
+    </Application.Resources>
 </prism:PrismApplication>
