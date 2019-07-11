@@ -9,11 +9,9 @@ using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using Trine.Mobile.Bll;
-using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
-using Xamarin.Forms;
 
 namespace Modules.Authentication.ViewModels
 {
@@ -27,6 +25,7 @@ namespace Modules.Authentication.ViewModels
         public ICommand CommercialCommand { get; set; }
         public ICommand CustomerCommand { get; set; }
         public ICommand ConsultantCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
 
         #endregion 
 
@@ -40,9 +39,11 @@ namespace Modules.Authentication.ViewModels
             ConsultantCommand = new DelegateCommand(async () => await OnConsultantPicked());
             CommercialCommand = new DelegateCommand(async () => await OnCommercialPicked());
             CustomerCommand = new DelegateCommand(async () => await OnCustomerPicked());
+            LoginCommand = new DelegateCommand(async () => await OnLogin());
         }
 
-        public async override void OnNavigatedTo(INavigationParameters parameters)
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 
@@ -57,6 +58,12 @@ namespace Modules.Authentication.ViewModels
 
             parameters.Add(NavigationParameterKeys._User, _userToCreate);
         }
+
+        private async Task OnLogin()
+        {
+            await NavigationService.NavigateAsync("LoginView");
+        }
+
 
         private async Task OnCommercialPicked()
         {

@@ -18,8 +18,7 @@ namespace Modules.Authentication.ViewModels
         #region Bindings
 
         private bool _isLoading = false;
-        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
-
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); LoginCommand.RaiseCanExecuteChanged(); } }
 
         public bool _isPasswordErrorVisible = false;
         public bool IsPasswordErrorVisible { get => _isPasswordErrorVisible; set { _isPasswordErrorVisible = value; RaisePropertyChanged(); } }
@@ -31,13 +30,11 @@ namespace Modules.Authentication.ViewModels
         public string Email { get => _email; set { _email = value; RaisePropertyChanged(); } }
 
         public string _password;
-
-
         public string Password { get => _password; set { _password = value; RaisePropertyChanged(); } }
 
-        public ICommand SignupCommand { get; set; }
-        public ICommand LoginCommand { get; set; }
-        public ICommand ForgotPasswordCommand { get; set; }
+        public DelegateCommand SignupCommand { get; set; }
+        public DelegateCommand LoginCommand { get; set; }
+        public DelegateCommand ForgotPasswordCommand { get; set; }
 
         #endregion
 

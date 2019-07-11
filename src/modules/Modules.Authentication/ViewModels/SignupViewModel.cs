@@ -9,7 +9,6 @@ using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using Trine.Mobile.Bll;
-using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
@@ -20,7 +19,7 @@ namespace Modules.Authentication.ViewModels
     {
         #region Bindings 
 
-        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); SubmitCommand.RaiseCanExecuteChanged(); } }
         private bool _isLoading = false;
 
         public bool _isPasswordErrorVisible = false;
@@ -38,9 +37,9 @@ namespace Modules.Authentication.ViewModels
         public string _password;
         public string Password { get => _password; set { _password = value; RaisePropertyChanged(); } }
 
-        public ICommand SubmitCommand { get; set; }
-        public ICommand LoginCommand { get; set; }
-        public ICommand EmailUnfocusedCommand { get; set; }
+        public DelegateCommand SubmitCommand { get; set; }
+        public DelegateCommand LoginCommand { get; set; }
+        public DelegateCommand EmailUnfocusedCommand { get; set; }
 
         #endregion
 
@@ -52,7 +51,7 @@ namespace Modules.Authentication.ViewModels
             _accountService = accountService;
             _dialogService = dialogService;
 
-            SubmitCommand = new DelegateCommand(async () => await OnSubmit(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible);
+            SubmitCommand = new DelegateCommand(async () => await OnSubmit(), () => !IsLoading);
             LoginCommand = new DelegateCommand(async () => await OnLogin());
             EmailUnfocusedCommand = new DelegateCommand(async () => await OnEmailEntered());
         }
@@ -67,8 +66,6 @@ namespace Modules.Authentication.ViewModels
 
             try
             {
-                IsLoading = true;
-
                 var userToComplete = new RegisterUserDto()
                 {
                     Email = Email
@@ -84,10 +81,6 @@ namespace Modules.Authentication.ViewModels
             {
                 Logger.Report(exc, null);
             }
-            finally
-            {
-                IsLoading = false;
-            }
         }
 
         private async Task OnLogin()
@@ -102,6 +95,7 @@ namespace Modules.Authentication.ViewModels
 
             if (IsEmailErrorVisible || IsPasswordErrorVisible)
                 return;
+
 
             var userToComplete = new RegisterUserDto()
             {

@@ -18,7 +18,7 @@ namespace Modules.Organization.ViewModels
 
         public DelegateCommand SendInvitationCode { get; set; }
 
-        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); SendInvitationCode.RaiseCanExecuteChanged(); } }
         private bool _isLoading = false;
 
         public string InvitationCode { get => _invitationCode; set { _invitationCode = value; RaisePropertyChanged(); } }
@@ -36,12 +36,13 @@ namespace Modules.Organization.ViewModels
 
         private async Task OnSendInvitationCode()
         {
+            if (string.IsNullOrEmpty(InvitationCode))
+                return;
+
             try
             {
-                if (string.IsNullOrEmpty(InvitationCode))
-                    return;
-
                 IsLoading = true;
+
                 Guid.TryParse(InvitationCode, out Guid codeGuid);
                 if (codeGuid == default(Guid))
                     throw new BusinessException("Le format du code d'invitation est incorrect. Veuillez vérifier le code entré.");
