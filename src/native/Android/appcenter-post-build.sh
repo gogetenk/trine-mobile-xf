@@ -3,7 +3,6 @@
 set -e # Exit immediately if a command exits with a non-zero status (failure)
 
     echo "Post Build Script Started"
-
 	    echo "**** Unit Tests ****"
 			echo "Found Unit Test projects:"
 				find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec echo {} \;
@@ -11,8 +10,6 @@ set -e # Exit immediately if a command exits with a non-zero status (failure)
 			echo "Run Unit Test projects"
 				find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec dotnet test {} \;
 				
-
-
 
 	echo "**** UI Tests ****"
 	echo "APPCENTER_XAMARIN_CONFIGURATION = " + $APPCENTER_XAMARIN_CONFIGURATION 
