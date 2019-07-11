@@ -15,7 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Solution Items", "00 -
 	ProjectSection(SolutionItems) = preProject
 		appcenter-post-build.sh = appcenter-post-build.sh
 		src\native\Android\appcenter-post-build.sh = src\native\Android\appcenter-post-build.sh
-		src\native\Android\appcenter-post-clone.sh = src\native\Android\appcenter-post-clone.sh
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
