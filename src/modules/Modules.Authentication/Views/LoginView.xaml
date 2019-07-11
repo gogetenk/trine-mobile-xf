@@ -30,10 +30,12 @@
                        FontSize="16"
                        TextColor="#333333" />
                 <Entry AutomationId="tb_email"
+                       HeightRequest="40"
                        Placeholder="ex : toto@titi.com"
                        Text="{Binding Email}" />
                 <Label Text="Veuillez spécifier un e-mail valide"
                        IsVisible="{Binding IsEmailErrorVisible}"
+                       FontSize="14"
                        TextColor="#FF5A39" />
 
                 <Label Text="Mot de passe"
@@ -41,10 +43,12 @@
                        FontSize="16"
                        TextColor="#333333" />
                 <Entry AutomationId="tb_password"
+                       HeightRequest="40"
                        IsPassword="True"
                        Text="{Binding Password}" />
                 <Label Text="Veuillez spécifier un mot de passe valide"
                        IsVisible="{Binding IsPasswordErrorVisible}"
+                       FontSize="14"
                        TextColor="#FF5A39" />
 
                 <Label Text="Je n'ai pas de compte →"
