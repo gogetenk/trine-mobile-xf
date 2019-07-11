@@ -70,11 +70,17 @@
                TargetType="Button">
             <Setter Property="CornerRadius"
                     Value="5" />
+            <Setter Property="Visual"
+                    Value="Material" />
             <Setter Property="BackgroundColor"
                     Value="{StaticResource AccentColor}" />
         </Style>
 
-       
+        <OnPlatform x:TypeArguments="x:String"
+                    x:Key="ProximaRegular">
+            <On Platform="Android"
+                Value="proxima-regular.woff#Proxima Regular" />
+        </OnPlatform>
 
     </Application.Resources>
 </prism:PrismApplication>

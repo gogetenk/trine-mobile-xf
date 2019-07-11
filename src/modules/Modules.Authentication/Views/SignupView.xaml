@@ -21,11 +21,9 @@
         <StackLayout VerticalOptions="Center"
                      Grid.Row="1">
             <Label Text="Bienvenue"
-                   FontSize="Title"
-                   TextColor="Black" />
+                   Style="{StaticResource H1}"/>
             <Label Text="Nous allons vous aider à gérer vos missions."
-                   FontSize="Medium"
-                   TextColor="#5A28D6" />
+                   Style="{StaticResource H2}" />
             <BoxView BackgroundColor="#5A28D6"
                      WidthRequest="45"
                      HeightRequest="4"
@@ -33,11 +31,10 @@
                      Margin="0,15" />
         </StackLayout>
 
-        <StackLayout VerticalOptions="Start"
+        <StackLayout VerticalOptions="Center"
                      Grid.Row="2">
             <Label Text="Pour commencer, quel est votre email ?"
-                   FontSize="Body"
-                   TextColor="#333333" />
+                   Style="{StaticResource Paragraph}" />
             <Entry AutomationId="tb_email"
                    FontSize="Body"
                    Placeholder="ex : john@doe.com"
@@ -49,8 +46,7 @@
             </Entry>
             <Label Text="Veuillez spécifier un e-mail valide"
                    IsVisible="{Binding IsEmailErrorVisible}"
-                   FontSize="Small"
-                   TextColor="#FF5A39" />
+                   Style="{StaticResource ErrorText}" />
             <StackLayout Orientation="Horizontal">
                 <Label Text="Pssst... On se connaît non ? 😉"
                        IsVisible="{Binding IsUserExistTextVisible}"
@@ -65,22 +61,18 @@
 
             <Label Text="Choisissez un mot de passe"
                    Margin="0,20,0,0"
-                   FontSize="Body"
-                   TextColor="#333333" />
+                   Style="{StaticResource Paragraph}" />
             <Entry AutomationId="tb_password"
                    FontSize="Body"
                    IsPassword="True"
                    Text="{Binding Password}" />
             <Label Text="Veuillez spécifier un mot de passe valide"
-                   FontSize="Small"
                    IsVisible="{Binding IsPasswordErrorVisible}"
-                   TextColor="#FF5A39" />
+                   Style="{StaticResource ErrorText}" />
 
             <Label Text="J'ai déjà un compte →"
                    AutomationId="lb_alreadyAccount"
-                   TextDecorations="Underline"
-                   FontSize="Small"
-                   TextColor="#9A9A9A">
+                   Style="{StaticResource TertiaryText}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LoginCommand}" />
                 </Label.GestureRecognizers>
@@ -94,12 +86,9 @@
                     Command="{Binding SubmitCommand}"
                     AutomationId="bt_start"
                     x:Name="bt_start"
-                    BackgroundColor="#5A28D6"
+                    Style="{StaticResource PrimaryButtonStyle}"
                     HorizontalOptions="Center"
-                    CornerRadius="5"
                     HeightRequest="40"
-                    TextColor="White"
-                    Visual="Material"
                     WidthRequest="180" />
         </StackLayout>
 
@@ -107,15 +96,11 @@
                      Orientation="Horizontal"
                      Grid.Row="3">
             <Label Text="Tarifs"
-                   FontSize="Small"
-                   TextColor="#707070"
-                   TextDecorations="Underline"
+                   Style="{StaticResource SecondaryText}"
                    HorizontalOptions="Start" />
 
             <Label Text="Aide"
-                   FontSize="Small"
-                   TextColor="#707070"
-                   TextDecorations="Underline"
+                   Style="{StaticResource SecondaryText}"
                    HorizontalOptions="EndAndExpand" />
         </StackLayout>
 

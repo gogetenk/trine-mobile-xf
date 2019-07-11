@@ -57,6 +57,13 @@ namespace Modules.Authentication.ViewModels
             if (_userToCreate is null)
                 await NavigationService.GoBackAsync();
 
+            IsFirstnameErrorVisible = string.IsNullOrEmpty(Firstname);
+            IsLastnameErrorVisible = string.IsNullOrEmpty(Lastname);
+
+            if (IsFirstnameErrorVisible || IsLastnameErrorVisible)
+                return;
+
+
             var navParams = new NavigationParameters();
             _userToCreate.LastName = Lastname;
             _userToCreate.FirstName = Firstname;

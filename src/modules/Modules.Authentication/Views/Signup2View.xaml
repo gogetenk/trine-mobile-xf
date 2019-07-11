@@ -5,18 +5,24 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup2View">
-    <ScrollView>
-        <StackLayout Padding="40">
+    
+    <Grid Padding="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="30*" />
+        </Grid.RowDefinitions>
 
-            <components:TrineLogoHeaderView Margin="0,0,0,60" />
+        <components:TrineLogoHeaderView Grid.Row="0" />
 
-            <StackLayout VerticalOptions="Start">
-                <Label Text="Qui êtes-vous ?"
-                       FontSize="24"
-                       TextColor="Black" />
+            <StackLayout VerticalOptions="Start"
+            Grid.Row="1">
+            <Label Text="Qui êtes-vous ?"
+                       Style="{StaticResource H1}" />
                 <Label Text="Nous voudrions mieux vous connaître."
-                       FontSize="18"
-                       TextColor="#5A28D6" />
+                       Style="{StaticResource H2}" />
+
                 <BoxView BackgroundColor="#5A28D6"
                          WidthRequest="45"
                          HeightRequest="4"
@@ -24,17 +30,17 @@
                          Margin="0,15" />
             </StackLayout>
 
-            <StackLayout VerticalOptions="Start"
-                         Margin="0,60">
+        <StackLayout VerticalOptions="Center"
+                     Grid.Row="2">
                 <Label Text="Quel est votre nom ?"
-                       FontSize="16"
-                       TextColor="#333333" />
+                       Style="{StaticResource Paragraph}" />
+
                 <Entry AutomationId="tb_lastname"
                        Placeholder="ex : John"
                        Text="{Binding Lastname}" />
                 <Label Text="Veuillez spécifier un nom valide."
                        IsVisible="{Binding IsLastnameErrorVisible}"
-                       TextColor="#FF5A39" />
+                       Style="{StaticResource ErrorText}" />
 
                 <Label Text="Et votre prénom ?"
                        Margin="0,20,0,0"
@@ -45,37 +51,26 @@
                        Text="{Binding Firstname}" />
                 <Label Text="Veuillez spécifier un prénom valide."
                        IsVisible="{Binding IsFirstnameErrorVisible}"
-                       TextColor="#FF5A39" />
+                       Style="{StaticResource ErrorText}" />
 
                 <Label Text="J'ai déjà un compte →"
                        AutomationId="lb_alreadyAccount"
-                       TextDecorations="Underline"
-                       FontSize="13"
-                       TextColor="#9A9A9A">
+                       Style="{StaticResource TertiaryText}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding LoginCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                
-
-                <Button Text="Suivant"
-                        Command="{Binding NextCommand}"
-                        AutomationId="bt_next"
-                        Margin="0,40,0,0"
-                        BackgroundColor="#5A28D6"
-                        HorizontalOptions="Center"
-                        CornerRadius="5"
-                        HeightRequest="40"
-                        TextColor="White"
-                        Visual="Material"
-                        WidthRequest="180" />
-
             </StackLayout>
-            
-
-        </StackLayout>
-
-    </ScrollView>
+        <Button Text="Suivant"
+                Grid.Row="3"
+                Command="{Binding NextCommand}"
+                AutomationId="bt_next"
+                HorizontalOptions="Center"
+                VerticalOptions="StartAndExpand"
+                HeightRequest="40"
+                Style="{StaticResource PrimaryButtonStyle}"
+                WidthRequest="180" />
+    </Grid>
 
 </ContentPage>

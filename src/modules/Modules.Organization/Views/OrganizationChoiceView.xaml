@@ -5,19 +5,22 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Organization.Views.OrganizationChoiceView">
-    <ScrollView>
-        <StackLayout Padding="40">
+    <Grid Padding="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
 
-            <components:TrineLogoHeaderView Margin="0,0,0,50" />
+        <components:TrineLogoHeaderView Grid.Row="0" />
 
-            <StackLayout VerticalOptions="Start"
-                         Margin="0,0,0,60">
+        <StackLayout VerticalOptions="Center"
+                     Grid.Row="1">
                 <Label Text="Votre organisation"
-                       FontSize="24"
-                       TextColor="Black" />
+                       Style="{StaticResource H1}" />
                 <Label Text="Afin de travailler en équipe."
-                       FontSize="18"
-                       TextColor="#5A28D6" />
+                       Style="{StaticResource H2}" />
                 <BoxView BackgroundColor="#5A28D6"
                          WidthRequest="45"
                          HeightRequest="4"
@@ -25,10 +28,10 @@
                          Margin="0,15" />
             </StackLayout>
 
-            <StackLayout>
-                <Label Text="Souhaitez-vous :"
-                       FontSize="16"
-                       TextColor="#333333" />
+            <StackLayout Grid.Row="2">
+
+            <Label Text="Souhaitez-vous :"
+                       Style="{StaticResource Paragraph}" />
 
                 <Grid Margin="0,20,0,0">
                     <Grid.ColumnDefinitions>
@@ -38,7 +41,8 @@
 
                     <Frame Padding="25"
                            Grid.Column="0"
-                           Visual="Material"
+                       HasShadow="False"
+                       Visual="Material"
                            BorderColor="#DCDEE6">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CreateOrgaCommand}" />
@@ -57,6 +61,7 @@
 
                     <Frame Padding="25"
                            Grid.Column="1"
+                           HasShadow="False"
                            Visual="Material"
                            BorderColor="#DCDEE6">
                         <Frame.GestureRecognizers>
@@ -90,8 +95,6 @@
 
             </StackLayout>
 
-        </StackLayout>
-
-    </ScrollView>
+    </Grid>
 
 </ContentPage>
