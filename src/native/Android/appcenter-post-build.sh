@@ -10,10 +10,8 @@ set -e # Exit immediately if a command exits with a non-zero status (failure)
 				UnitTestsProjects = find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec echo {} \;
 			echo
 			echo "Run Unit Test projects"
-				for ligne in $UnitTestsProjects; do
-				 dotnet test $ligne
-				done
-
+				find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec dotnet test {} \;
+				
 
 
 
