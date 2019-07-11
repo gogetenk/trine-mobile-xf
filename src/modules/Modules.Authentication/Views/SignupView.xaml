@@ -12,14 +12,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="20*" />
-            <RowDefinition Height="40*" />
-            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
 
         <components:TrineLogoHeaderView Grid.Row="0" />
 
-        <StackLayout VerticalOptions="Start"
+        <StackLayout VerticalOptions="Center"
                      Grid.Row="1">
             <Label Text="Bienvenue"
                    FontSize="Title"
@@ -35,8 +34,7 @@
         </StackLayout>
 
         <StackLayout VerticalOptions="Start"
-                     Grid.Row="2"
-                     Margin="0,60">
+                     Grid.Row="2">
             <Label Text="Pour commencer, quel est votre email ?"
                    FontSize="Body"
                    TextColor="#333333" />
@@ -107,7 +105,7 @@
 
         <StackLayout VerticalOptions="EndAndExpand"
                      Orientation="Horizontal"
-                     Grid.Row="4">
+                     Grid.Row="3">
             <Label Text="Tarifs"
                    FontSize="Small"
                    TextColor="#707070"
