@@ -6,10 +6,13 @@ set -e # Exit immediately if a command exits with a non-zero status (failure)
 
 	    echo "**** Unit Tests ****"
 			echo "Found Unit Test projects:"
-			find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec echo {} \;
+				find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec echo {} \;
+				UnitTestsProjects = find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec echo {} \;
 			echo
 			echo "Run Unit Test projects"
-			find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec xargs dotnet test;
+				for ligne in $UnitTestsProjects; do
+				 dotnet test $ligne
+				done
 
 
 
