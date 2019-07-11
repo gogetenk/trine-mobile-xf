@@ -17,7 +17,7 @@ namespace Modules.Organization.ViewModels
     {
         #region Bindings
 
-        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); CreateOrganizationCommand.RaiseCanExecuteChanged(); } }
         private bool _isLoading = false;
 
         public string IconUrl { get => _iconUrl; set { _iconUrl = value; RaisePropertyChanged(); } }
@@ -26,7 +26,7 @@ namespace Modules.Organization.ViewModels
         public string Name { get => _name; set { _name = value; RaisePropertyChanged(); } }
         private string _name;
 
-        public ICommand CreateOrganizationCommand { get; set; }
+        public DelegateCommand CreateOrganizationCommand { get; set; }
 
         #endregion
 

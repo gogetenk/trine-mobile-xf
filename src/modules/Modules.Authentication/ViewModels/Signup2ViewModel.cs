@@ -37,7 +37,6 @@ namespace Modules.Authentication.ViewModels
         #endregion
 
         private RegisterUserDto _userToCreate;
-
         private readonly IAccountService _accountService;
 
         public Signup2ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
