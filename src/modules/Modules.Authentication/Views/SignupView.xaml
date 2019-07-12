@@ -95,13 +95,12 @@
         <StackLayout VerticalOptions="EndAndExpand"
                      Orientation="Horizontal"
                      Grid.Row="3">
-            <Label Text="Tarifs"
+            <!--<Label Text="Tarifs"
                    Style="{StaticResource SecondaryText}"
                    HorizontalOptions="Start" />
-
             <Label Text="Aide"
                    Style="{StaticResource SecondaryText}"
-                   HorizontalOptions="EndAndExpand" />
+                   HorizontalOptions="EndAndExpand" />-->
         </StackLayout>
 
     </Grid>
