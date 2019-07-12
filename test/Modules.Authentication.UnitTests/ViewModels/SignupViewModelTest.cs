@@ -33,7 +33,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = credentials.Password;
 
             // Act
-            viewmodel.SubmitCommand.Execute(null);
+            viewmodel.SubmitCommand.Execute();
 
             // Assert
             _navigationService.Verify(x => x.NavigateAsync("Signup2View", It.IsAny<NavigationParameters>()), Times.Once);
@@ -55,7 +55,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = credentials.Password;
 
             // Act
-            viewmodel.SubmitCommand.Execute(null);
+            viewmodel.SubmitCommand.Execute();
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
@@ -78,7 +78,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Email = credentials.Email;
             viewmodel.Password = credentials.Password;
             // Act
-            viewmodel.SubmitCommand.Execute(null);
+            viewmodel.SubmitCommand.Execute();
 
             // Assert
             _logger.Verify(x => x.Log(exception.Message, null), Times.Once);
@@ -99,7 +99,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = password;
 
             // Act
-            viewmodel.SubmitCommand.Execute(null);
+            viewmodel.SubmitCommand.Execute();
 
             // Assert
             viewmodel.IsEmailErrorVisible.Should().BeTrue();
@@ -120,7 +120,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = null;
 
             // Act
-            viewmodel.SubmitCommand.Execute(null);
+            viewmodel.SubmitCommand.Execute();
 
             // Assert
             viewmodel.IsEmailErrorVisible.Should().BeFalse();
@@ -141,7 +141,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = null;
 
             // Act
-            viewmodel.SubmitCommand.Execute(null);
+            viewmodel.SubmitCommand.Execute();
 
             // Assert
             viewmodel.IsEmailErrorVisible.Should().BeTrue();
@@ -162,7 +162,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Email = credentials.Email;
 
             // Act
-            viewmodel.EmailUnfocusedCommand.Execute(null);
+            viewmodel.EmailUnfocusedCommand.Execute();
 
             // Assert
             viewmodel.IsUserExistTextVisible.Should().BeFalse();
@@ -182,7 +182,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Email = credentials.Email;
 
             // Act
-            viewmodel.EmailUnfocusedCommand.Execute(null);
+            viewmodel.EmailUnfocusedCommand.Execute();
 
             // Assert
             viewmodel.IsUserExistTextVisible.Should().BeTrue();
@@ -202,7 +202,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Email = credentials.Email;
 
             // Act
-            viewmodel.EmailUnfocusedCommand.Execute(null);
+            viewmodel.EmailUnfocusedCommand.Execute();
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
@@ -224,7 +224,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Email = credentials.Email;
 
             // Act
-            viewmodel.EmailUnfocusedCommand.Execute(null);
+            viewmodel.EmailUnfocusedCommand.Execute();
 
             // Assert
             _logger.Verify(x => x.Log(It.IsAny<string>(), null), Times.Once);

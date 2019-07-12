@@ -33,7 +33,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = password;
 
             // Act
-            viewmodel.LoginCommand.Execute(null);
+            viewmodel.LoginCommand.Execute();
 
             // Assert
             _navigationService.Verify(x => x.NavigateAsync("../DashboardView"), Times.Once);
@@ -56,7 +56,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = password;
 
             // Act
-            viewmodel.LoginCommand.Execute(null);
+            viewmodel.LoginCommand.Execute();
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
@@ -81,7 +81,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = password;
 
             // Act
-            viewmodel.LoginCommand.Execute(null);
+            viewmodel.LoginCommand.Execute();
 
             // Assert
             _logger.Verify(x => x.Log(exception.Message, null), Times.Once);
@@ -106,7 +106,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = password;
 
             // Act
-            viewmodel.LoginCommand.Execute(null);
+            viewmodel.LoginCommand.Execute();
         }
 
         [Fact]
@@ -126,7 +126,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = password;
 
             // Act
-            viewmodel.LoginCommand.Execute(null);
+            viewmodel.LoginCommand.Execute();
 
             // Assert
             viewmodel.IsEmailErrorVisible.Should().BeTrue();
@@ -150,7 +150,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = null;
 
             // Act
-            viewmodel.LoginCommand.Execute(null);
+            viewmodel.LoginCommand.Execute();
 
             // Assert
             viewmodel.IsEmailErrorVisible.Should().BeFalse();
@@ -174,7 +174,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password = null;
 
             // Act
-            viewmodel.LoginCommand.Execute(null);
+            viewmodel.LoginCommand.Execute();
 
             // Assert
             viewmodel.IsEmailErrorVisible.Should().BeTrue();
