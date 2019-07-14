@@ -57,8 +57,7 @@
                                FontSize="20"
                                TextColor="#000000" />
                         <Label Text="Commercial"
-                               TextColor="#000000"
-                               FontSize="13" />
+                               Style="{StaticResource Paragraph}" />
                     </StackLayout>
                 </Frame>
 
@@ -80,8 +79,7 @@
                                FontSize="20"
                                TextColor="#000000" />
                         <Label Text="Consultant"
-                               TextColor="#000000"
-                               FontSize="13" />
+                               Style="{StaticResource Paragraph}" />
                     </StackLayout>
                 </Frame>
 
