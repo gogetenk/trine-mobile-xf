@@ -5,13 +5,19 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Organization.Views.JoinOrganizationView">
-    <ScrollView>
-        <StackLayout Padding="40">
+    
+    <Grid Padding="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
 
-            <components:TrineLogoHeaderView Margin="0,0,0,50" />
+        <components:TrineLogoHeaderView Grid.Row="0" />
 
-            <StackLayout VerticalOptions="Start"
-                         Margin="0,0,0,60">
+        <StackLayout VerticalOptions="Start"
+                     Grid.Row="1">
                 <Label Text="Rejoindre une organisation"
                        FontSize="24"
                        TextColor="Black" />
@@ -25,33 +31,28 @@
                          Margin="0,15" />
             </StackLayout>
 
-            <StackLayout>
-                <Label Text="Quel est votre code d'invitation ?"
-                       FontSize="16"
-                       TextColor="#333333" />
+            <StackLayout Grid.Row="2" VerticalOptions="Center">
 
-                <Entry Placeholder="Code d'invitation"
+                <Label Text="Quel est votre code d'invitation ?"
+                   Style="{StaticResource Paragraph}" />
+
+            <Entry Placeholder="Code d'invitation"
                        Text="{Binding InvitationCode}" />
                 <ActivityIndicator IsRunning="{Binding IsLoading}"
                                    Margin="40" />
             </StackLayout>
 
             <Button Text="Rejoindre"
+                    Grid.Row="3"
                     VerticalOptions="EndAndExpand"
                     Command="{Binding LoginCommand}"
                     AutomationId="bt_start"
+                    Style="{StaticResource PrimaryButtonStyle}"
                     x:Name="bt_start"
-                    Margin="0,70,0,0"
-                    BackgroundColor="#5A28D6"
                     HorizontalOptions="Center"
-                    CornerRadius="5"
                     HeightRequest="45"
-                    TextColor="White"
-                    Visual="Material"
                     WidthRequest="250" />
 
-        </StackLayout>
-
-    </ScrollView>
+    </Grid>
 
 </ContentPage>

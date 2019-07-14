@@ -31,7 +31,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password2 = passwordUpdate.NewPassword;
 
             // Act
-            viewmodel.SubmitCommand.Execute(null);
+            viewmodel.SubmitCommand.Execute();
 
             // Assert
             _navigationService.Verify(x => x.NavigateAsync("ForgotPasswordConfirmationView"), Times.Once);
@@ -52,7 +52,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password2 = "another password";
 
             // Act
-            viewmodel.SubmitCommand.Execute(null);
+            viewmodel.SubmitCommand.Execute();
 
             // Assert
             viewmodel.IsNotSamePassword.Should().BeTrue();
@@ -74,7 +74,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.Password2 = passwordUpdate.NewPassword;
 
             // Act
-            viewmodel.SubmitCommand.Execute(null);
+            viewmodel.SubmitCommand.Execute();
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);

@@ -5,29 +5,35 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Organization.Views.CreateOrganizationView">
-    <ScrollView>
-        <StackLayout Padding="40">
 
-            <components:TrineLogoHeaderView Margin="0,0,0,50" />
+    <Grid Padding="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
 
-            <StackLayout VerticalOptions="Start"
-                         Margin="0,0,0,60">
-                <Label Text="Votre organisation"
-                       FontSize="24"
-                       TextColor="Black" />
-                <Label Text="Dites nout tout !"
-                       FontSize="18"
-                       TextColor="#5A28D6" />
-                <BoxView BackgroundColor="#5A28D6"
+        <components:TrineLogoHeaderView Grid.Row="0" />
+
+        <StackLayout VerticalOptions="Start"
+                     Grid.Row="1">
+            <Label Text="Votre organisation"
+                   Style="{StaticResource H1}" />
+
+            <Label Text="Dites nout tout !"
+                   Style="{StaticResource H2}" />
+
+            <BoxView BackgroundColor="#5A28D6"
                          WidthRequest="45"
                          HeightRequest="4"
                          HorizontalOptions="Start"
                          Margin="0,15" />
             </StackLayout>
 
-            <Frame  HeightRequest="150"
-                    Margin="0,20,0,50"
-                    WidthRequest="150"
+        <StackLayout Grid.Row="2">
+            <Frame  HeightRequest="100"
+                    WidthRequest="100"
                     CornerRadius="120"
                     Padding="0"
                     HasShadow="False"
@@ -50,31 +56,26 @@
                 </Grid>
             </Frame>
 
-            <StackLayout>
+            <StackLayout Margin="30">
                 <Label Text="Quel est le nom de votre organisation ?"
-                       FontSize="16"
-                       Margin="0,30,0,0"
-                       TextColor="#333333" />
-                <Entry Placeholder="ex : Mon organisation" Text="{Binding Name}" />
+                       Style="{StaticResource Paragraph}" />
+                <Entry Placeholder="ex : Mon organisation"
+                       Text="{Binding Name}" />
                 <ActivityIndicator IsRunning="{Binding IsLoading}"
                                    Margin="30" />
             </StackLayout>
-            
 
             <Button Text="Créer l'organisation"
                     VerticalOptions="EndAndExpand"
                     Command="{Binding CreateOrganizationCommand}"
                     AutomationId="bt_start"
                     x:Name="bt_start"
-                    BackgroundColor="#5A28D6"
+                    Style="{StaticResource PrimaryButtonStyle}"
                     HorizontalOptions="Center"
-                    CornerRadius="5"
                     HeightRequest="45"
-                    TextColor="White"
-                    Visual="Material"
                     WidthRequest="250" />
         </StackLayout>
-
-    </ScrollView>
+          
+    </Grid>
 
 </ContentPage>
