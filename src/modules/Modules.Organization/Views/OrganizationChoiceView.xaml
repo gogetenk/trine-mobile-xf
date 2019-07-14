@@ -17,83 +17,82 @@
 
         <StackLayout VerticalOptions="Center"
                      Grid.Row="1">
-                <Label Text="Votre organisation"
-                       Style="{StaticResource H1}" />
-                <Label Text="Afin de travailler en équipe."
-                       Style="{StaticResource H2}" />
-                <BoxView BackgroundColor="#5A28D6"
-                         WidthRequest="45"
-                         HeightRequest="4"
-                         HorizontalOptions="Start"
-                         Margin="0,15" />
-            </StackLayout>
+            <Label Text="Votre organisation"
+                   Style="{StaticResource H1}" />
+            <Label Text="Afin de travailler en équipe."
+                   Style="{StaticResource H2}" />
+            <BoxView BackgroundColor="#5A28D6"
+                     WidthRequest="45"
+                     HeightRequest="4"
+                     HorizontalOptions="Start"
+                     Margin="0,15" />
+        </StackLayout>
 
-            <StackLayout Grid.Row="2">
+        <StackLayout Grid.Row="2">
 
             <Label Text="Souhaitez-vous :"
-                       Style="{StaticResource Paragraph}" />
+                   Style="{StaticResource Paragraph}" />
 
-                <Grid Margin="0,20,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*" />
-                        <ColumnDefinition Width="50*" />
-                    </Grid.ColumnDefinitions>
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="50*" />
+                </Grid.ColumnDefinitions>
 
-                    <Frame Padding="25"
-                           Grid.Column="0"
+                <Frame Padding="25"
+                       Grid.Column="0"
                        HasShadow="False"
                        Visual="Material"
-                           BorderColor="#DCDEE6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CreateOrgaCommand}" />
-                        </Frame.GestureRecognizers>
-                        <StackLayout HorizontalOptions="Center">
-                            <Label Text="X"
-                                   HorizontalOptions="Center"
-                                   FontSize="20"
-                                   TextColor="#000000" />
-                            <Label Text="Créer une organisation"
-                                   HorizontalTextAlignment="Center"
-                                   TextColor="#000000"
-                                   FontSize="13" />
-                        </StackLayout>
-                    </Frame>
+                       BorderColor="#DCDEE6">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CreateOrgaCommand}" />
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <Label Text="&#xebde;"
+                               FontFamily="{StaticResource IconFont}"
+                               HorizontalOptions="Center"
+                                />
+                        <Label Text="Créer une organisation"
+                               Style="{StaticResource Paragraph}"
+                               HorizontalTextAlignment="Center"
+                                />
+                    </StackLayout>
+                </Frame>
 
-                    <Frame Padding="25"
-                           Grid.Column="1"
-                           HasShadow="False"
-                           Visual="Material"
-                           BorderColor="#DCDEE6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding JoinOrgaCommand}" />
-                        </Frame.GestureRecognizers>
-                        <StackLayout HorizontalOptions="Center">
-                            <Label Text="X"
-                                   HorizontalOptions="Center"
-                                   FontSize="20"
-                                   TextColor="#000000" />
-                            <Label Text="Rejoindre une organisation"
-                                   HorizontalTextAlignment="Center"
-                                   HorizontalOptions="Center"
-                                   TextColor="#000000"
-                                   FontSize="13" />
-                        </StackLayout>
-                    </Frame>
+                <Frame Padding="25"
+                       Grid.Column="1"
+                       HasShadow="False"
+                       Visual="Material"
+                       BorderColor="#DCDEE6">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding JoinOrgaCommand}" />
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <Label Text="&#xebd4;"
+                               FontFamily="{StaticResource IconFont}"
+                               HorizontalOptions="Center"
+                               FontSize="25"
+                               TextColor="#000000" />
+                        <Label Text="Rejoindre une organisation"
+                               HorizontalTextAlignment="Center"
+                               Style="{StaticResource Paragraph}"
+                               HorizontalOptions="Center"
+                                />
+                    </StackLayout>
+                </Frame>
 
-                </Grid>
+            </Grid>
 
-                <Label Text="J'ai déjà un compte →"
-                       AutomationId="lb_alreadyAccount"
-                       TextDecorations="Underline"
-                       FontSize="13"
-                       Margin="0,10,0,0"
-                       TextColor="#9A9A9A">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding LoginCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
+            <Label Text="J'ai déjà un compte →"
+                   AutomationId="lb_alreadyAccount"
+                   Style="{StaticResource TertiaryText}"
+                   Margin="0,10,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LoginCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
 
-            </StackLayout>
+        </StackLayout>
 
     </Grid>
 

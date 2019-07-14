@@ -54,7 +54,7 @@
                         <Label FontFamily="{StaticResource IconFont}"
                                Text="&#xec60;"
                                HorizontalOptions="Center"
-                               FontSize="25"
+                               FontSize="20"
                                TextColor="#000000" />
                         <Label Text="Commercial"
                                TextColor="#000000"
@@ -77,7 +77,7 @@
                                Margin="0"
                                Text="&#xec53;"
                                HorizontalOptions="Center"
-                               FontSize="25"
+                               FontSize="20"
                                TextColor="#000000" />
                         <Label Text="Consultant"
                                TextColor="#000000"
@@ -99,7 +99,7 @@
                         <Label FontFamily="{StaticResource IconFont}"
                                Text="&#xeb52;"
                                HorizontalOptions="Center"
-                               FontSize="25"
+                               FontSize="20"
                                TextColor="#000000" />
                         <Label Text="Client"
                                TextColor="#000000"
