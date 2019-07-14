@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using AutoMapper;
 using Modules.Authentication.Navigation;
 using Prism.Commands;

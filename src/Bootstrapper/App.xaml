@@ -6,6 +6,27 @@
     <Application.Resources>
 
         <!-- Application resource dictionary -->
+
+        <OnPlatform x:TypeArguments="x:String"
+                    x:Key="NormalFont">
+            <On Platform="Android"
+                Value="proxima-regular.ttf#Proxima Nova Alt Rg" />
+            <On Platform="UWP"
+                Value="/Assets/proxima-regular.ttf#Proxima Nova Alt Rg" />
+            <On Platform="iOS"
+                Value="proxima-regular" />
+        </OnPlatform>
+        <OnPlatform x:TypeArguments="x:String"
+                    x:Key="BoldFont">
+            <On Platform="Android"
+                Value="proxima-bold.ttf#Proxima Nova Alt Rg" />
+            <On Platform="UWP"
+                Value="/Assets/proxima-bold.ttf#Proxima Nova Alt Rg" />
+            <On Platform="iOS"
+                Value="proxima-bold" />
+        </OnPlatform>
+        
+        
         <Color x:Key="PageBackgroundColor">White</Color>
         <Color x:Key="AccentColor">#5A28D6</Color>
         <Color x:Key="HeadingTextColor">Black</Color>
@@ -18,6 +39,8 @@
                TargetType="Label">
             <Setter Property="TextColor"
                     Value="{StaticResource HeadingTextColor}" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource BoldFont}" />
             <Setter Property="FontSize"
                     Value="Title" />
         </Style>
@@ -26,6 +49,8 @@
                TargetType="Label">
             <Setter Property="FontSize"
                     Value="Medium" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource NormalFont}" />
             <Setter Property="TextColor"
                     Value="{StaticResource AccentColor}" />
         </Style>
@@ -34,6 +59,8 @@
                TargetType="Label">
             <Setter Property="FontSize"
                     Value="Body" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource NormalFont}" />
             <Setter Property="TextColor"
                     Value="{StaticResource NormalTextColor}" />
         </Style>
@@ -52,6 +79,8 @@
                TargetType="Label">
             <Setter Property="FontSize"
                     Value="Small" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource NormalFont}" />
             <Setter Property="TextDecorations"
                     Value="Underline" />
             <Setter Property="TextColor"
@@ -62,6 +91,8 @@
                TargetType="Label">
             <Setter Property="FontSize"
                     Value="Small" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource NormalFont}" />
             <Setter Property="TextColor"
                     Value="{StaticResource ErrorColor}" />
         </Style>
