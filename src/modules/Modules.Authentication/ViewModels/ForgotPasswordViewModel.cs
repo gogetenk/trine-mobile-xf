@@ -43,6 +43,7 @@ namespace Modules.Authentication.ViewModels
         public bool IsUnknownUserTextVisible { get => _isUnknownUserTextVisible; set { _isUnknownUserTextVisible = value; RaisePropertyChanged(); } }
 
 
+        public DelegateCommand SignUpCommand { get; set; }
         public DelegateCommand SubmitCommand { get; set; }
         public DelegateCommand LoginCommand { get; set; }
         public DelegateCommand EmailUnfocusedCommand { get; set; }
@@ -57,9 +58,15 @@ namespace Modules.Authentication.ViewModels
             _accountService = accountService;
             _dialogService = dialogService;
 
+            SignUpCommand = new DelegateCommand(async () => await OnSignUp());
             SubmitCommand = new DelegateCommand(async () => await OnSubmit());
             LoginCommand = new DelegateCommand(async () => await OnLogin());
             EmailUnfocusedCommand = new DelegateCommand(async () => await OnEmailEntered());
+        }
+
+        private async Task OnSignUp()
+        {
+            await NavigationService.NavigateAsync("SignupView");
         }
 
         private async Task OnLogin()
@@ -111,7 +118,7 @@ namespace Modules.Authentication.ViewModels
                 passwordUpdate.Email = Email;
                 passwordUpdate.NewPassword = Password;
                 await _accountService.RecoverPasswordAsync(Mapper.Map<PasswordUpdateModel>(passwordUpdate));
-                await NavigationService.NavigateAsync("ForgotPasswordConfirmationView");
+                await NavigationService.NavigateAsync("../ForgotPasswordConfirmationView");
             }
             catch (BusinessException bExc)
             {
