@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="True"
+             BackgroundColor="White"
+             Title="{Binding Title}"
+             x:Class="Modules.Organization.Views.MembersView">
+
+    <Grid>
+        <StackLayout>
+            <StackLayout BackgroundColor="{StaticResource AccentColor}"
+                  Margin="0"
+                  Padding="35"
+                  VerticalOptions="Start">
+                <Frame HeightRequest="40"
+                       CornerRadius="5"
+                       BackgroundColor="White"
+                       Padding="2"
+                       HasShadow="True">
+                    <StackLayout Orientation="Horizontal">
+                        <Label FontFamily="{StaticResource MaterialIcons}"
+                               Text="&#xe8b6;"
+                               FontSize="24"
+                               TextColor="#B9B9B9"
+                               VerticalOptions="Center"
+                               Margin="15,0,10,0" />
+                        <Entry HorizontalOptions="FillAndExpand"
+                               Placeholder="Nom ou prénom"
+                               FontSize="Small"
+                               PlaceholderColor="#B9B9B9"
+                               Margin="0,0,15,0" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <ListView
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>mono</x:String>
+                        <x:String>monodroid</x:String>
+                        <x:String>monotouch</x:String>
+                        <x:String>monorail</x:String>
+                        <x:String>monodevelop</x:String>
+                        <x:String>monotone</x:String>
+                        <x:String>monopoly</x:String>
+                        <x:String>monomodal</x:String>
+                        <x:String>mononucleosis</x:String>
+                    </x:Array>
+                </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="100">
+                            <Frame CornerRadius="5"
+                                   BackgroundColor="#F5F5F7"
+                                   Margin="35,5,35,5"
+                                   Padding="15"
+                                   HasShadow="False">
+                                <StackLayout Orientation="Horizontal"
+                                             VerticalOptions="Center">
+                                    <Frame CornerRadius="120"
+                                           Margin="10"
+                                           Padding="0"
+                                           HeightRequest="36"
+                                           WidthRequest="36"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           HasShadow="False">
+                                        <Image HorizontalOptions="Fill"
+                                               VerticalOptions="Fill"
+                                               Source="https://i.imgur.com/d8e5wvg.jpg" />
+                                    </Frame>
+                                    <StackLayout VerticalOptions="Center"
+                                                 Margin="15,0,0,0">
+                                        <Label Text="Yannis Tocreau"
+                                               Style="{StaticResource Paragraph}" />
+                                        <Label Text="Administrateur"
+                                               Style="{StaticResource Paragraph}"
+                                               TextColor="#707070"
+                                               FontSize="Micro" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+
+        <Frame Padding="0"
+               VerticalOptions="EndAndExpand"
+               HasShadow="True"
+               HorizontalOptions="EndAndExpand"
+               HeightRequest="56"
+               WidthRequest="56"
+               CornerRadius="120"
+               Margin="0,0,25,40">
+            <Button BackgroundColor="{StaticResource AccentColor}"
+                    FontFamily="{StaticResource MaterialIcons}"
+                    Text="&#xe7fe;"
+                    FontSize="24"
+                    Padding="0"
+                    TextColor="White"
+                    CornerRadius="120" />
+        </Frame>
+    </Grid>
+</ContentPage>

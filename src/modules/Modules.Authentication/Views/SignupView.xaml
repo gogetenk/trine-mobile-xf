@@ -4,6 +4,7 @@
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              x:Class="Modules.Authentication.Views.SignupView"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              Title="Sign In">
@@ -93,6 +94,9 @@
                     HeightRequest="40"
                     WidthRequest="180" />
         </StackLayout>
+
+        <!--<Button Text="debug"
+                Command="{prism:NavigateTo 'MembersView'}" />-->
 
         <StackLayout VerticalOptions="EndAndExpand"
                      Orientation="Horizontal"

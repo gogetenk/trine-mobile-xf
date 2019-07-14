@@ -34,6 +34,15 @@
             <On Platform="iOS"
                 Value="icomoon" />
         </OnPlatform>
+        <OnPlatform x:TypeArguments="x:String"
+                    x:Key="MaterialIcons">
+            <On Platform="Android"
+                Value="MaterialIcons-Regular.ttf#Material Icons" />
+            <On Platform="UWP"
+                Value="/Assets/MaterialIcons-Regular.ttf#Material Icons" />
+            <On Platform="iOS"
+                Value="MaterialIcons-Regular" />
+        </OnPlatform>
         
         
         <Color x:Key="PageBackgroundColor">White</Color>
