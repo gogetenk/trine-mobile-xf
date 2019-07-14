@@ -6,7 +6,7 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup3View">
-    
+
     <Grid Padding="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
@@ -23,99 +23,104 @@
             <Label Text="Pour mieux répondre à vos besoins."
                    Style="{StaticResource H2}" />
             <BoxView BackgroundColor="#5A28D6"
-                         WidthRequest="45"
-                         HeightRequest="4"
-                         HorizontalOptions="Start"
-                         Margin="0,15" />
-            </StackLayout>
+                     WidthRequest="45"
+                     HeightRequest="4"
+                     HorizontalOptions="Start"
+                     Margin="0,15" />
+        </StackLayout>
 
         <StackLayout Grid.Row="2">
             <Label Text="Dites nous en un peu plus sur votre rôle..."
                    Style="{StaticResource Paragraph}" />
 
             <Grid Margin="0,20,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="33*" />
-                        <ColumnDefinition Width="33*" />
-                        <ColumnDefinition Width="33*" />
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="33*" />
+                    <ColumnDefinition Width="33*" />
+                    <ColumnDefinition Width="33*" />
+                </Grid.ColumnDefinitions>
 
-                    <Frame Padding="15"
-                           HasShadow="False"
-                           Grid.Column="0"
-                           BackgroundColor="White"
-                           Visual="Material"
-                           BorderColor="#DCDEE6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CommercialCommand}" Tapped="TapGestureRecognizer_Tapped"/>
-                        </Frame.GestureRecognizers>
-                        <StackLayout HorizontalOptions="Center">
-                            <Label Text="X"
-                                   HorizontalOptions="Center"
-                                   FontSize="20"
-                                   TextColor="#000000" />
-                            <Label Text="Commercial"
-                                   TextColor="#000000"
-                                   FontSize="13" />
-                        </StackLayout>
-                    </Frame>
+                <Frame Padding="15"
+                       HasShadow="False"
+                       Grid.Column="0"
+                       BackgroundColor="White"
+                       Visual="Material"
+                       BorderColor="#DCDEE6">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CommercialCommand}"
+                                              Tapped="TapGestureRecognizer_Tapped" />
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <Label FontFamily="{StaticResource IconFont}"
+                               Text="&#xec60;"
+                               HorizontalOptions="Center"
+                               FontSize="25"
+                               TextColor="#000000" />
+                        <Label Text="Commercial"
+                               TextColor="#000000"
+                               FontSize="13" />
+                    </StackLayout>
+                </Frame>
 
-                    <Frame Padding="15"
-                           Grid.Column="1"
+                <Frame Padding="15"
+                       Grid.Column="1"
                        HasShadow="False"
                        Visual="Material"
-                           BackgroundColor="White"
-                           BorderColor="#DCDEE6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ConsultantCommand}"
-                                                  Tapped="TapGestureRecognizer_Tapped" />
-                        </Frame.GestureRecognizers>
-                        <StackLayout HorizontalOptions="Center">
-                            <Label Text="X"
-                                   HorizontalOptions="Center"
-                                   FontSize="20"
-                                   TextColor="#000000" />
-                            <Label Text="Consultant"
-                                   TextColor="#000000"
-                                   FontSize="13" />
-                        </StackLayout>
-                    </Frame>
+                       BackgroundColor="White"
+                       BorderColor="#DCDEE6">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ConsultantCommand}"
+                                              Tapped="TapGestureRecognizer_Tapped" />
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <Label FontFamily="{StaticResource IconFont}"
+                               Margin="0"
+                               Text="&#xec53;"
+                               HorizontalOptions="Center"
+                               FontSize="25"
+                               TextColor="#000000" />
+                        <Label Text="Consultant"
+                               TextColor="#000000"
+                               FontSize="13" />
+                    </StackLayout>
+                </Frame>
 
-                    <Frame Padding="15"
-                           Grid.Column="2"
+                <Frame Padding="15"
+                       Grid.Column="2"
                        HasShadow="False"
                        Visual="Material"
-                           BackgroundColor="White"
-                           BorderColor="#DCDEE6">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CustomerCommand}"
-                                                  Tapped="TapGestureRecognizer_Tapped" />
-                        </Frame.GestureRecognizers>
-                        <StackLayout HorizontalOptions="Center">
-                            <Label Text="X"
-                                   HorizontalOptions="Center"
-                                   FontSize="20"
-                                   TextColor="#000000" />
-                            <Label Text="Client"
-                                   TextColor="#000000"
-                                   FontSize="13" />
-                        </StackLayout>
-                    </Frame>
-                </Grid>
+                       BackgroundColor="White"
+                       BorderColor="#DCDEE6">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CustomerCommand}"
+                                              Tapped="TapGestureRecognizer_Tapped" />
+                    </Frame.GestureRecognizers>
+                    <StackLayout HorizontalOptions="Center">
+                        <Label FontFamily="{StaticResource IconFont}"
+                               Text="&#xeb52;"
+                               HorizontalOptions="Center"
+                               FontSize="25"
+                               TextColor="#000000" />
+                        <Label Text="Client"
+                               TextColor="#000000"
+                               FontSize="13" />
+                    </StackLayout>
+                </Frame>
+            </Grid>
 
-                <Label Text="J'ai déjà un compte →"
-                       AutomationId="lb_alreadyAccount"
-                       Margin="0,10,0,0"
-                        Style="{StaticResource TertiaryText}">
+            <Label Text="J'ai déjà un compte →"
+                   AutomationId="lb_alreadyAccount"
+                   Margin="0,10,0,0"
+                   Style="{StaticResource TertiaryText}">
 
                 <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding LoginCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                    <TapGestureRecognizer Command="{Binding LoginCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
 
-                <ActivityIndicator IsRunning="{Binding IsLoading}"
-                                   VerticalOptions="CenterAndExpand" />
-            </StackLayout>
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               VerticalOptions="CenterAndExpand" />
+        </StackLayout>
 
     </Grid>
 

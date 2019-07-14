@@ -25,6 +25,15 @@
             <On Platform="iOS"
                 Value="proxima-bold" />
         </OnPlatform>
+        <OnPlatform x:TypeArguments="x:String"
+                    x:Key="IconFont">
+            <On Platform="Android"
+                Value="icomoon.ttf#icomoon" />
+            <On Platform="UWP"
+                Value="/Assets/icomoon.ttf#icomoon" />
+            <On Platform="iOS"
+                Value="icomoon" />
+        </OnPlatform>
         
         
         <Color x:Key="PageBackgroundColor">White</Color>

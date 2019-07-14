@@ -36,6 +36,7 @@
                        Style="{StaticResource Paragraph}" />
 
                 <Entry AutomationId="tb_lastname"
+                       HeightRequest="40"
                        Placeholder="ex : John"
                        Text="{Binding Lastname}" />
                 <Label Text="Veuillez spécifier un nom valide."
@@ -43,11 +44,11 @@
                        Style="{StaticResource ErrorText}" />
 
                 <Label Text="Et votre prénom ?"
-                       Margin="0,20,0,0"
-                       FontSize="16"
-                       TextColor="#333333" />
+                   Style="{StaticResource Paragraph}"
+                   Margin="0,20,0,0"/>
                 <Entry AutomationId="tb_firstname"
-                       Placeholder="ex : Doe"
+                   HeightRequest="40"
+                   Placeholder="ex : Doe"
                        Text="{Binding Firstname}" />
                 <Label Text="Veuillez spécifier un prénom valide."
                        IsVisible="{Binding IsFirstnameErrorVisible}"

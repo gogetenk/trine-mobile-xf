@@ -92,6 +92,7 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\proxima-regular.ttf" />
     <AndroidAsset Include="Assets\proxima-bold.ttf" />
+    <AndroidAsset Include="Assets\icomoon.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
