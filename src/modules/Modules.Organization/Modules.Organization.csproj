@@ -26,12 +26,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AddMemberView.xaml.cs">
+      <DependentUpon>AddMemberView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\OrganizationChoiceView.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\AddMemberView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\CreateOrganizationView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
