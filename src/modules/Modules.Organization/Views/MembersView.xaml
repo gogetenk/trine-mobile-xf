@@ -7,33 +7,46 @@
              x:Class="Modules.Organization.Views.MembersView">
 
     <Grid>
-        <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="70*" />
+            </Grid.RowDefinitions>
+
             <StackLayout BackgroundColor="{StaticResource AccentColor}"
+                         Grid.Row="0"
+                         Grid.RowSpan="2"
                   Margin="0"
                   Padding="35"
                   VerticalOptions="Start">
-                <Frame HeightRequest="40"
-                       CornerRadius="5"
-                       BackgroundColor="White"
-                       Padding="2"
-                       HasShadow="True">
-                    <StackLayout Orientation="Horizontal">
-                        <Label FontFamily="{StaticResource MaterialIcons}"
-                               Text="&#xe8b6;"
-                               FontSize="24"
-                               TextColor="#B9B9B9"
-                               VerticalOptions="Center"
-                               Margin="15,0,10,0" />
-                        <Entry HorizontalOptions="FillAndExpand"
-                               Placeholder="Nom ou prénom"
-                               FontSize="Small"
-                               PlaceholderColor="#B9B9B9"
-                               Margin="0,0,15,0" />
-                    </StackLayout>
-                </Frame>
+                
             </StackLayout>
 
-            <ListView
+            <Frame HeightRequest="40"
+                   CornerRadius="5"
+                   Grid.Row="2"
+                   Grid.RowSpan="2"
+                   BackgroundColor="White"
+                   Padding="2"
+                   HasShadow="True">
+                <StackLayout Orientation="Horizontal">
+                    <Label FontFamily="{StaticResource MaterialIcons}"
+                           Text="&#xe8b6;"
+                           FontSize="24"
+                           TextColor="#B9B9B9"
+                           VerticalOptions="Center"
+                           Margin="15,0,10,0" />
+                    <Entry HorizontalOptions="FillAndExpand"
+                           Placeholder="Nom ou prénom"
+                           FontSize="Small"
+                           PlaceholderColor="#B9B9B9"
+                           Margin="0,0,15,0" />
+                </StackLayout>
+            </Frame>
+
+            <ListView Grid.Row="3"
                       HasUnevenRows="True"
                       SeparatorVisibility="None">
                 <ListView.ItemsSource>
@@ -87,7 +100,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-        </StackLayout>
+        </Grid>
 
         <Frame Padding="0"
                VerticalOptions="EndAndExpand"
