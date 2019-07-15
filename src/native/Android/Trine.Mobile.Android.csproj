@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\MaterialEntryRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -118,6 +119,10 @@
     <ProjectReference Include="..\..\Bootstrapper\Trine.Mobile.Bootstrapper.csproj">
       <Project>{92f28cbd-cb0d-4f4e-a272-2004811b96ba}</Project>
       <Name>Trine.Mobile.Bootstrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Components\Trine.Mobile.Components.csproj">
+      <Project>{03733502-C617-4953-8CE2-1CE15638A973}</Project>
+      <Name>Trine.Mobile.Components</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

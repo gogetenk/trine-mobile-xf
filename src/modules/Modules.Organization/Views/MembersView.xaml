@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              NavigationPage.HasNavigationBar="True"
              BackgroundColor="White"
              Title="{Binding Title}"
@@ -9,25 +10,21 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="10*" />
-                <RowDefinition Height="10*" />
-                <RowDefinition Height="10*" />
-                <RowDefinition Height="70*" />
+                <RowDefinition Height="12*" />
+                <RowDefinition Height="87*" />
             </Grid.RowDefinitions>
 
             <StackLayout BackgroundColor="{StaticResource AccentColor}"
                          Grid.Row="0"
-                         Grid.RowSpan="2"
-                  Margin="0"
-                  Padding="35"
-                  VerticalOptions="Start">
-                
+                         Margin="0"
+                         VerticalOptions="Fill">
             </StackLayout>
 
             <Frame HeightRequest="40"
                    CornerRadius="5"
-                   Grid.Row="2"
-                   Grid.RowSpan="2"
+                   Grid.Row="0"
+                   VerticalOptions="CenterAndExpand"
+                   Margin="35,0,35,0"
                    BackgroundColor="White"
                    Padding="2"
                    HasShadow="True">
@@ -38,7 +35,7 @@
                            TextColor="#B9B9B9"
                            VerticalOptions="Center"
                            Margin="15,0,10,0" />
-                    <Entry HorizontalOptions="FillAndExpand"
+                    <components:MaterialEntry HorizontalOptions="FillAndExpand"
                            Placeholder="Nom ou prénom"
                            FontSize="Small"
                            PlaceholderColor="#B9B9B9"
@@ -46,7 +43,7 @@
                 </StackLayout>
             </Frame>
 
-            <ListView Grid.Row="3"
+            <ListView Grid.Row="1"
                       HasUnevenRows="True"
                       SeparatorVisibility="None">
                 <ListView.ItemsSource>
