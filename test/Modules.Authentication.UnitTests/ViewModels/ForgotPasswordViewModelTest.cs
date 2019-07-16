@@ -34,7 +34,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.SubmitCommand.Execute();
 
             // Assert
-            _navigationService.Verify(x => x.NavigateAsync("ForgotPasswordConfirmationView"), Times.Once);
+            _navigationService.Verify(x => x.NavigateAsync("../ForgotPasswordConfirmationView"), Times.Once);
         }
 
         [Fact]

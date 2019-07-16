@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+set -e # Exit immediately if a command exits with a non-zero status (failure)
 
     echo "Post Build Script Started"
 	    echo "**** Unit Tests ****"
