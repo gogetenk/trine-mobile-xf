@@ -20,6 +20,7 @@ namespace Trine.Mobile.Android
 
             base.OnCreate(bundle);
 
+            Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
             FormsMaterial.Init(this, bundle);

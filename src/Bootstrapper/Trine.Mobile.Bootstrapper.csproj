@@ -13,7 +13,7 @@
     <PackageReference Include="Sogetrel.Sinapse.Framework.Mobile" Version="1.2.0-beta-006493" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.1.0.581479" />
-    <PackageReference Include="Xamarin.HotReload" Version="1.4.12" />
+    <PackageReference Include="Xamarin.HotReload" Version="1.4.13" />
   </ItemGroup>
 
   <ItemGroup>

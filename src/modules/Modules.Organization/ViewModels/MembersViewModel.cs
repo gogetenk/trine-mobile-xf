@@ -69,7 +69,8 @@ namespace Modules.Organization.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            _organization = parameters.GetValue<PartialOrganizationDto>("Organization");
+            _organization = Mapper.Map<PartialOrganizationDto>(await _organizationService.GetById("5ca5cab077e80c1344dbafec"));// TODO Mocked
+            //_organization = parameters.GetValue<PartialOrganizationDto>("Organization"); // TODO Mocked
             if (_organization is null)
                 return; // TODO : Que faire?
 
@@ -87,9 +88,8 @@ namespace Modules.Organization.ViewModels
             {
                 IsLoading = true;
 
-                var list = Mapper.Map<ObservableCollection<UserDto>>(_organizationService.GetOrganizationMembers(_organization.Id));
-                if (list is null || !list.Any())
-                    throw new BusinessException(ErrorMessages.organizationAtLeastOneMember);
+                var t = await _organizationService.GetOrganizationMembers(_organization.Id);
+                var list = Mapper.Map<ObservableCollection<UserDto>>(t);
 
                 _totalMemberList = list.ToList();
                 Members = list;

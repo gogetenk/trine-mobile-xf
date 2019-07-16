@@ -124,7 +124,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             {
                 var members = _mapper.Map<List<UserModel>>(await _gatewayRepository.ApiOrganizationsByOrganizationIdMembersGetAsync(organizationId));
                 if (members is null)
-                    throw new BusinessException("Une erreur s'est produite lors de la récupération des membres.");
+                    return new List<UserModel>();
 
                 return members;
             }
@@ -220,9 +220,9 @@ namespace Trine.Mobile.Bll.Impl.Services
                 {
                     Id = orga.Id,
                     Icon = orga.Icon,
-                    IsOwner = (AppSettings.CurrentUser.Id == orga.OwnerId),
+                    //IsOwner = (AppSettings.CurrentUser.Id == orga.OwnerId),
                     Name = orga.Name,
-                    UserRole = (RoleEnum)orga.Members.FirstOrDefault(x => x.UserId == AppSettings.CurrentUser.Id)?.Role
+                    //UserRole = (RoleEnum)orga.Members.FirstOrDefault(x => x.UserId == AppSettings.CurrentUser.Id)?.Role
                 };
                 return partialOrga;
             }
