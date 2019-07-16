@@ -7,9 +7,15 @@
              Title="{Binding Title}"
              x:Class="Modules.Organization.Views.MembersView">
     <NavigationPage.TitleView>
-        <StackLayout Margin="0,15,0,0" Spacing="0">
-            <Label Text="{Binding OrganizationName}" TextColor="White" FontSize="14" Opacity=".6" />
-            <Label Text="{Binding PageTitle}" TextColor="White" FontSize="16" />
+        <StackLayout Margin="0,15,0,0"
+                     Spacing="0">
+            <Label Text="{Binding OrganizationName}"
+                   TextColor="White"
+                   FontSize="14"
+                   Opacity=".6" />
+            <Label Text="{Binding PageTitle}"
+                   TextColor="White"
+                   FontSize="16" />
         </StackLayout>
     </NavigationPage.TitleView>
 
@@ -42,29 +48,23 @@
                            VerticalOptions="Center"
                            Margin="15,0,10,0" />
                     <components:MaterialEntry HorizontalOptions="FillAndExpand"
-                           Placeholder="Nom ou prénom"
-                           FontSize="Small"
-                           PlaceholderColor="#B9B9B9"
+                                              Placeholder="Nom ou prénom"
+                                              FontSize="Small"
+                                              Text="{Binding SearchText}"
+                                              PlaceholderColor="#B9B9B9"
                                               Margin="0,3,15,0" />
                 </StackLayout>
             </Frame>
 
             <ListView Grid.Row="1"
+                      ItemsSource="{Binding Members}"
+                      SelectedItem="{Binding SelectedMember}"
+                      IsRefreshing="{Binding IsLoading}"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
                       HasUnevenRows="True"
                       SeparatorVisibility="None">
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>mono</x:String>
-                        <x:String>monodroid</x:String>
-                        <x:String>monotouch</x:String>
-                        <x:String>monorail</x:String>
-                        <x:String>monodevelop</x:String>
-                        <x:String>monotone</x:String>
-                        <x:String>monopoly</x:String>
-                        <x:String>monomodal</x:String>
-                        <x:String>mononucleosis</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Height="100">
@@ -85,13 +85,14 @@
                                            HasShadow="False">
                                         <Image HorizontalOptions="Fill"
                                                VerticalOptions="Fill"
-                                               Source="https://i.imgur.com/d8e5wvg.jpg" />
+                                               Aspect="AspectFill"
+                                               Source="{Binding ProfilePicUrl}" />
                                     </Frame>
                                     <StackLayout VerticalOptions="Center"
                                                  Margin="15,0,0,0">
-                                        <Label Text="Yannis Tocreau"
+                                        <Label Text="{Binding DisplayName}"
                                                Style="{StaticResource Paragraph}" />
-                                        <Label Text="Administrateur"
+                                        <Label Text="{Binding Role}"
                                                Style="{StaticResource Paragraph}"
                                                TextColor="#707070"
                                                FontSize="Micro" />
