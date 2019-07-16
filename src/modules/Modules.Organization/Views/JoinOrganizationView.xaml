@@ -19,11 +19,9 @@
         <StackLayout VerticalOptions="Start"
                      Grid.Row="1">
                 <Label Text="Rejoindre une organisation"
-                       FontSize="24"
-                       TextColor="Black" />
+                   Style="{StaticResource H1}" />
                 <Label Text="Demandez un code d'invitation à vos collègues."
-                       FontSize="18"
-                       TextColor="#5A28D6" />
+                   Style="{StaticResource H2}" />
                 <BoxView BackgroundColor="#5A28D6"
                          WidthRequest="45"
                          HeightRequest="4"

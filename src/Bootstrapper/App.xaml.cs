@@ -108,6 +108,7 @@ namespace Trine.Mobile.Bootstrapper
             containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository(AppSettings.ApiUrls[AppSettings.GatewayApi], HttpClientFactory.GetClient()));
             containerRegistry.Register<IAccountService, AccountService>();
             containerRegistry.Register<IOrganizationService, OrganizationService>();
+            containerRegistry.Register<IUserService, UserService>();
         }
 
         #endregion
