@@ -53,6 +53,9 @@ namespace Trine.Mobile.Components.Builders
 
                 cfg.CreateMap<Token, TokenModel>();
 
+                cfg.CreateMap<CreateInvitationRequestModel, CreateInvitationRequestDto>();
+                cfg.CreateMap<CreateInvitationRequestDto, CreateInvitationRequestModel>();
+
                 cfg.CreateMissingTypeMaps = true;
                 cfg.AllowNullCollections = true;
             });

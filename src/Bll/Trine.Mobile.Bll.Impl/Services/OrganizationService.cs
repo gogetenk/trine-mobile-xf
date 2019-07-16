@@ -235,5 +235,22 @@ namespace Trine.Mobile.Bll.Impl.Services
                 throw;
             }
         }
+
+        public async Task<InviteModel> SendInvitation(CreateInvitationRequestModel request)
+        {
+            try
+            {
+                var invite = await _gatewayRepository.ApiOrganizationsByOrganizationIdInvitesPostAsync("5ca5cab077e80c1344dbafec", _mapper.Map<CreateInvitationRequest>(request));
+                return _mapper.Map<InviteModel>(invite.FirstOrDefault());
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
     }
 }

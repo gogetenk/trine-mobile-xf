@@ -16,5 +16,6 @@ namespace Trine.Mobile.Bll
         Task RemoveMember(string organizationId, string memberId);
         Task DeleteOrganization(string id);
         Task<PartialOrganizationModel> GetById(string id);
+        Task<InviteModel> SendInvitation(CreateInvitationRequestModel request);
     }
 }

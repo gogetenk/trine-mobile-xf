@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
@@ -29,6 +30,9 @@ namespace Modules.Organization.ViewModels
         public float CaptionOpacity { get => _captionOpacity; set { _captionOpacity = value; RaisePropertyChanged(); } }
         private float _captionOpacity = 0;
 
+        private ObservableCollection<InviteDto> _invites;
+        public ObservableCollection<InviteDto> Invites { get => _invites; set { _invites = value; RaisePropertyChanged(); } }
+
         #endregion
 
         public AddMemberViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService, IAccountService accountService) : base(navigationService, mapper, logger, dialogService)
@@ -36,7 +40,7 @@ namespace Modules.Organization.ViewModels
             _organizationService = organizationService;
             _accountService = accountService;
 
-            AddMember = new DelegateCommand(async () => await OnEmailUnfocused());
+            AddMember = new DelegateCommand(async () => await OnInviteMember());
             EmailUnfocusedCommand = new DelegateCommand(async () => await OnEmailUnfocused());
         }
 
@@ -54,7 +58,6 @@ namespace Modules.Organization.ViewModels
             };
             var exists = await _accountService.DoesUserExist(Mapper.Map<RegisterUserModel>(userToComplete));
 
-            //var results = await _userService.SearchUsers(Email);
             if (!exists)
             {
                 CaptionOpacity = 1f;
@@ -65,8 +68,15 @@ namespace Modules.Organization.ViewModels
         }
 
 
-        private void OnInviteMember()
+        private async Task OnInviteMember()
         {
+            var request = new CreateInvitationRequestDto()
+            {
+                InviterId = "5ca5ca8f26482d1254b85dc1", // TODO mocked
+                Mail = Email
+            };
+            var invite = await _organizationService.SendInvitation(Mapper.Map<CreateInvitationRequestModel>(request));
+            Invites.Add(Mapper.Map<InviteDto>(invite));
         }
     }
 }
