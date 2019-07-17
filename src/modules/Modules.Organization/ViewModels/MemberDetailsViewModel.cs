@@ -113,6 +113,10 @@ namespace Modules.Organization.ViewModels
         {
             try
             {
+                var isConfirmed = await DialogService.DisplayAlertAsync("Êtes-vous sûr ?", "Cette supression est définitive.", "Supprimer", "Annuler");
+                if (!isConfirmed)
+                    return;
+
                 IsLoading = true;
                 await _organizationService.RemoveMember(_organizationId, Member.UserId);
             }
