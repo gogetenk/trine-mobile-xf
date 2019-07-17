@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
@@ -12,6 +14,7 @@ using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
+using static Trine.Mobile.Dto.OrganizationMemberDto;
 
 namespace Modules.Organization.ViewModels
 {
@@ -27,6 +30,9 @@ namespace Modules.Organization.ViewModels
 
         private OrganizationMemberDto _member;
         public OrganizationMemberDto Member { get => _member; set { _member = value; RaisePropertyChanged(); } }
+
+        public List<string> Roles { get => _roles; set { _roles = value; RaisePropertyChanged(); } }
+        private List<string> _roles;
 
         #endregion
 
@@ -45,7 +51,7 @@ namespace Modules.Organization.ViewModels
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-
+            
             _organizationId = parameters.GetValue<string>(NavigationParameterKeys._OrganizationId);
             var user = parameters.GetValue<UserDto>(NavigationParameterKeys._User);
             await LoadData(user.Id);
@@ -57,6 +63,16 @@ namespace Modules.Organization.ViewModels
             {
                 IsLoading = true;
                 Member = Mapper.Map<OrganizationMemberDto>(await _organizationService.GetMember(_organizationId, userId));
+                Roles = new List<string>();
+                foreach (var role in Enum.GetValues(typeof(RoleEnum)))
+                {
+                    if (role is null)
+                        break;
+
+                    Roles.Add(role.ToString());
+                }
+
+                Roles = Roles;
             }
             catch (BusinessException bExc)
             {
