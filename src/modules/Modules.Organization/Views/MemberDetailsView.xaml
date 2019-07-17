@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="Red"
+             x:Class="Modules.Organization.Views.MemberDetailsView">
+    <NavigationPage.TitleView>
+        <StackLayout Margin="0,15,0,0"
+                     Spacing="0">
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="45*" />
+        </Grid.RowDefinitions>
+
+        <Grid BackgroundColor="{StaticResource AccentColor}"
+              Grid.Row="0" />
+        <Grid BackgroundColor="{StaticResource AccentColor}"
+              Grid.Row="1" />
+        <Grid BackgroundColor="White"
+              Grid.Row="2" />
+        <Grid BackgroundColor="White"
+              Grid.Row="3" />
+
+        <Frame CornerRadius="70"
+               Padding="0"
+               HeightRequest="140"
+               WidthRequest="140"
+               Visual="Material"
+               BorderColor="White"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand" HasShadow="False" Grid.Row="0">
+            <Image Source="https://i.imgur.com/d8e5wvg.jpg" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </Frame>
+        
+        <Frame HasShadow="True"
+               Grid.Row="1"
+               Margin="40,0,40,0"
+               Padding="25"
+               CornerRadius="5"
+               Grid.RowSpan="2">
+            <StackLayout>
+                <Label Text="Yannis TOCREAU"
+                       Style="{StaticResource H2}"
+                       FontSize="Title" />
+                <Label Text="Membre depuis le 14/03/2019"
+                       TextColor="{StaticResource SecondaryTextColor}"
+                       FontSize="Small"/>
+
+                <Label Text="Rôle"
+                       FontSize="Small"
+                       Margin="0,25,0,0"
+                       TextColor="{StaticResource NormalTextColor}"/>
+                <Picker>
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>mono</x:String>
+                            <x:String>monodroid</x:String>
+                            <x:String>monotouch</x:String>
+                            <x:String>monorail</x:String>
+                            <x:String>monodevelop</x:String>
+                            <x:String>monotone</x:String>
+                            <x:String>monopoly</x:String>
+                            <x:String>monomodal</x:String>
+                            <x:String>mononucleosis</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
+        </Frame>
+
+        <StackLayout Grid.Row="3" VerticalOptions="EndAndExpand">
+            <Button Text="Sauvegarder"
+                    Command="{Binding SaveCommand}"
+                    AutomationId="bt_start"
+                    x:Name="bt_start"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="40,2,40,2"
+                    HeightRequest="50"
+                    Style="{StaticResource PrimaryButtonStyle}" />
+            <Button Text="Supprimer de l'organisation"
+                    Command="{Binding DeleteCommand}"
+                    AutomationId="bt_start"
+                    x:Name="bt_delete"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="40,2,40,30"
+                    HeightRequest="50"
+                    BorderColor="Red"
+                    CornerRadius="5"
+                    BorderWidth="1"
+                    BackgroundColor="White"
+                    TextColor="Red"/>
+        </StackLayout>
+       
+    </Grid>
+</ContentPage>

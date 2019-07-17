@@ -12,7 +12,7 @@ using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Extensions;
-using Trine.Mobile.Bll.Impl.Messages;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 
@@ -20,8 +20,6 @@ namespace Modules.Organization.ViewModels
 {
     public class MembersViewModel : ViewModelBase
     {
-        
-
         #region Properties 
 
         // Liste filtrée par le picker
@@ -58,6 +56,7 @@ namespace Modules.Organization.ViewModels
         private PartialOrganizationDto _organization;
         // Liste non filtrée
         private List<UserDto> _totalMemberList;
+        private bool _isUserPickerMode;
 
         public MembersViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService) : base(navigationService, mapper, logger, dialogService)
         {
@@ -69,6 +68,7 @@ namespace Modules.Organization.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
+            _isUserPickerMode = parameters.GetValue<bool>(NavigationParameterKeys._IsUserPickerModeEnabled);
             _organization = Mapper.Map<PartialOrganizationDto>(await _organizationService.GetById("5ca5cab077e80c1344dbafec"));// TODO Mocked
             //_organization = parameters.GetValue<PartialOrganizationDto>("Organization"); // TODO Mocked
             if (_organization is null)
@@ -141,9 +141,19 @@ namespace Modules.Organization.ViewModels
                 return;
 
             var parameters = new NavigationParameters();
-            parameters.Add("User", user);
-            parameters.Add("Organization", _organization);
-            NavigationService.NavigateAsync("MemberDetailsView", parameters);
+
+            // If we are in picker mode, we come back to the origin page
+            if (_isUserPickerMode)
+            {
+                parameters.Add(NavigationParameterKeys._User, user);
+                NavigationService.NavigateAsync("CreateMission", parameters); // TODO: mettre la bonne uri
+            }
+            else // else we navigate to the member details
+            {
+                parameters.Add(NavigationParameterKeys._User, user);
+                parameters.Add(NavigationParameterKeys._Organization, _organization);
+                NavigationService.NavigateAsync("MemberDetailsView", parameters);
+            }
         }
     }
 }

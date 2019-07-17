@@ -48,6 +48,7 @@ namespace Modules.Organization.ViewModels
 
         #endregion
 
+
         public AddMemberViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService, IAccountService accountService) : base(navigationService, mapper, logger, dialogService)
         {
             _organizationService = organizationService;
@@ -121,7 +122,6 @@ namespace Modules.Organization.ViewModels
                 LogTechnicalError(exc);
             }
         }
-
 
         private async Task OnInviteMember()
         {

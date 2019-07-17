@@ -19,6 +19,7 @@ namespace Modules.Organization
             containerRegistry.RegisterForNavigation<JoinOrganizationView, JoinOrganizationViewModel>();
             containerRegistry.RegisterForNavigation<MembersView, MembersViewModel>();
             containerRegistry.RegisterForNavigation<AddMemberView, AddMemberViewModel>();
+            containerRegistry.RegisterForNavigation<MemberDetailsView, MemberDetailsViewModel>();
         }
     }
 }
