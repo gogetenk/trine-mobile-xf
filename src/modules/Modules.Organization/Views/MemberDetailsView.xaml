@@ -44,6 +44,7 @@
 
         <Frame HasShadow="True"
                Grid.Row="1"
+               BackgroundColor="White"
                Margin="40,0,40,0"
                Padding="25"
                CornerRadius="5"
