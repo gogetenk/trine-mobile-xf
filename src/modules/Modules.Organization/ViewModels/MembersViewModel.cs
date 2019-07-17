@@ -151,7 +151,7 @@ namespace Modules.Organization.ViewModels
             else // else we navigate to the member details
             {
                 parameters.Add(NavigationParameterKeys._User, user);
-                parameters.Add(NavigationParameterKeys._Organization, _organization);
+                parameters.Add(NavigationParameterKeys._OrganizationId, _organization.Id);
                 NavigationService.NavigateAsync("MemberDetailsView", parameters);
             }
         }

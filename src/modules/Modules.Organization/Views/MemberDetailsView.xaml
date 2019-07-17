@@ -44,10 +44,10 @@
                CornerRadius="5"
                Grid.RowSpan="2">
             <StackLayout>
-                <Label Text="Yannis TOCREAU"
+                <Label Text="{Binding Member.DisplayName}"
                        Style="{StaticResource H2}"
                        FontSize="Title" />
-                <Label Text="Membre depuis le 14/03/2019"
+                <Label Text="{Binding Member.JoinedAt, StringFormat='Membre depuis le {0:}'}"
                        TextColor="{StaticResource SecondaryTextColor}"
                        FontSize="Small"/>
 
@@ -55,25 +55,14 @@
                        FontSize="Small"
                        Margin="0,25,0,0"
                        TextColor="{StaticResource NormalTextColor}"/>
-                <Picker>
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>mono</x:String>
-                            <x:String>monodroid</x:String>
-                            <x:String>monotouch</x:String>
-                            <x:String>monorail</x:String>
-                            <x:String>monodevelop</x:String>
-                            <x:String>monotone</x:String>
-                            <x:String>monopoly</x:String>
-                            <x:String>monomodal</x:String>
-                            <x:String>mononucleosis</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                <Picker SelectedItem="{Binding Member.Role}" />
             </StackLayout>
         </Frame>
+        
 
         <StackLayout Grid.Row="3" VerticalOptions="EndAndExpand">
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               Margin="40" />
             <Button Text="Sauvegarder"
                     Command="{Binding SaveCommand}"
                     AutomationId="bt_start"
