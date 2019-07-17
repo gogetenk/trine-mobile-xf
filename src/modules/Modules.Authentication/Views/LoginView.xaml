@@ -5,80 +5,84 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.LoginView">
-    <ScrollView>
-        <StackLayout Padding="40">
+    <Grid Padding="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
+        </Grid.RowDefinitions>
 
-            <components:TrineLogoHeaderView Margin="0,0,0,60" />
+        <components:TrineLogoHeaderView Grid.Row="0" />
 
-            <StackLayout VerticalOptions="Start">
-                <Label Text="Ravi de vous revoir !"
-                       Style="{StaticResource H1}"/>
-                <Label Text="Gagnons du temps ensemble."
-                       Style="{StaticResource H2}"/>
-                <BoxView BackgroundColor="#5A28D6"
-                         WidthRequest="45"
-                         HeightRequest="4"
-                         HorizontalOptions="Start"
-                         Margin="0,15" />
-            </StackLayout>
-
-            <StackLayout VerticalOptions="Start"
-                         Margin="0,60">
-                <Label Text="E-mail"
-                       Style="{StaticResource Paragraph}" />
-                <Entry AutomationId="tb_email"
-                       FontSize="Body"
-                       HeightRequest="40"
-                       Placeholder="ex : toto@titi.com"
-                       Text="{Binding Email}" />
-                <Label Text="Veuillez spécifier un e-mail valide"
-                       IsVisible="{Binding IsEmailErrorVisible}"
-                       FontSize="14"
-                       TextColor="#FF5A39" />
-
-                <Label Text="Mot de passe"
-                       Margin="0,20,0,0"
-                       Style="{StaticResource Paragraph}" />
-                <Entry AutomationId="tb_password"
-                       FontSize="Body"
-                       HeightRequest="40"
-                       IsPassword="True"
-                       Text="{Binding Password}" />
-                <Label Text="Veuillez spécifier un mot de passe valide"
-                       IsVisible="{Binding IsPasswordErrorVisible}" />
-
-                <Label Text="Je n'ai pas de compte →"
-                       AutomationId="lb_alreadyAccount"
-                       Style="{StaticResource TertiaryText}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SignupCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-
-                <Button Text="Se connecter"
-                        Command="{Binding LoginCommand}"
-                        AutomationId="bt_start"
-                        x:Name="bt_start"
-                        Margin="0,70,0,0"
-                        HorizontalOptions="Center"
-                        HeightRequest="40"
-                        Style="{StaticResource PrimaryButtonStyle}"
-                        WidthRequest="180" />
-                <Label Text="Mot de passe oublié"
-                       AutomationId="lb_alreadyAccount"
-                       Margin="0,10,0,0"
-                       HorizontalOptions="Center"
-                       TextDecorations="Underline"
-                       Style="{StaticResource TertiaryText}"
-                       FontSize="13"
-                       TextColor="#9A9A9A">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-            </StackLayout>
-            
+        <StackLayout VerticalOptions="Start"
+                     Grid.Row="1">
+            <Label Text="Ravi de vous revoir !"
+                   Style="{StaticResource H1}" />
+            <Label Text="Gagnons du temps ensemble."
+                   Style="{StaticResource H2}" />
+            <BoxView BackgroundColor="#5A28D6"
+                     WidthRequest="45"
+                     HeightRequest="4"
+                     HorizontalOptions="Start"
+                     Margin="0,15" />
         </StackLayout>
 
-    </ScrollView>
+        <StackLayout VerticalOptions="Center"
+                     Grid.Row="2">
+            <Label Text="E-mail"
+                   Style="{StaticResource Paragraph}" />
+            <Entry AutomationId="tb_email"
+                   FontSize="Body"
+                   HeightRequest="40"
+                   Placeholder="ex : toto@titi.com"
+                   Text="{Binding Email}" />
+            <Label Text="Veuillez spécifier un e-mail valide"
+                   IsVisible="{Binding IsEmailErrorVisible}"
+                   Style="{StaticResource ErrorText}" />
+
+            <Label Text="Mot de passe"
+                   Margin="0,20,0,0"
+                   Style="{StaticResource Paragraph}" />
+            <Entry AutomationId="tb_password"
+                   FontSize="Body"
+                   HeightRequest="40"
+                   IsPassword="True"
+                   Text="{Binding Password}" />
+            <Label Text="Veuillez spécifier un mot de passe valide"
+                   IsVisible="{Binding IsPasswordErrorVisible}"
+                   Style="{StaticResource ErrorText}" />
+
+            <Label Text="Je n'ai pas de compte →"
+                   AutomationId="lb_alreadyAccount"
+                   Style="{StaticResource TertiaryText}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SignupCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               Margin="40" />
+
+            <Button Text="Se connecter"
+                    Command="{Binding LoginCommand}"
+                    AutomationId="bt_start"
+                    x:Name="bt_start"
+                    HorizontalOptions="Center"
+                    HeightRequest="40"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    WidthRequest="180" />
+            <Label Text="Mot de passe oublié"
+                   AutomationId="lb_alreadyAccount"
+                   Margin="0,10,0,0"
+                   HorizontalOptions="Center"
+                   TextDecorations="Underline"
+                   Style="{StaticResource TertiaryText}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+
+    </Grid>
+
 </ContentPage>
