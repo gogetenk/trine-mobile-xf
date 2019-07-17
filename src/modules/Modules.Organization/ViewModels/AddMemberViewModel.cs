@@ -125,10 +125,12 @@ namespace Modules.Organization.ViewModels
 
         private async Task OnInviteMember()
         {
-            IsAddMemberLoading = true;
-
             try
             {
+                if (string.IsNullOrEmpty(Email))
+                    return;
+
+                IsAddMemberLoading = true;
                 var request = new CreateInvitationRequestDto()
                 {
                     InviterId = "5ca5ca8f26482d1254b85dc1", // TODO mocked
@@ -137,6 +139,7 @@ namespace Modules.Organization.ViewModels
 
                 var invite = await _organizationService.SendInvitation("5ca5cab077e80c1344dbafec", Mapper.Map<CreateInvitationRequestModel>(request));
                 Invites.Insert(0, Mapper.Map<InviteDto>(invite));
+                Email = string.Empty;
             }
             catch (BusinessException bExc)
             {
