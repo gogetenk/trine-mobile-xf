@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
@@ -7,10 +7,12 @@ using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using Sogetrel.Sinapse.Framework.Exceptions;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
+using Xamarin.Essentials;
 
 namespace Modules.Organization.ViewModels
 {
@@ -21,17 +23,28 @@ namespace Modules.Organization.ViewModels
 
         #region Bindings 
 
-        public ICommand AddMember { get; set; }
+        public DelegateCommand AddMemberCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
         public ICommand EmailUnfocusedCommand { get; set; }
+        public ICommand ItemSelectedCommand { get; set; }
 
         public string Email { get => _email; set { _email = value; RaisePropertyChanged(); } }
         private string _email;
+
+        private bool _isLoading = false;
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+
+        private bool _isAddMemberLoading = false;
+        public bool IsAddMemberLoading { get => _isAddMemberLoading; set { _isAddMemberLoading = value; RaisePropertyChanged(); AddMemberCommand.RaiseCanExecuteChanged(); } }
 
         public float CaptionOpacity { get => _captionOpacity; set { _captionOpacity = value; RaisePropertyChanged(); } }
         private float _captionOpacity = 0;
 
         private ObservableCollection<InviteDto> _invites;
         public ObservableCollection<InviteDto> Invites { get => _invites; set { _invites = value; RaisePropertyChanged(); } }
+
+        private InviteDto _selectedInvite;
+        public InviteDto SelectedInvite { get => _selectedInvite; set { _selectedInvite = value; RaisePropertyChanged(); } }
 
         #endregion
 
@@ -40,43 +53,103 @@ namespace Modules.Organization.ViewModels
             _organizationService = organizationService;
             _accountService = accountService;
 
-            AddMember = new DelegateCommand(async () => await OnInviteMember());
+            AddMemberCommand = new DelegateCommand(async () => await OnInviteMember(), () => !IsAddMemberLoading);
             EmailUnfocusedCommand = new DelegateCommand(async () => await OnEmailUnfocused());
+            ItemSelectedCommand = new DelegateCommand(async () => await OnItemSelected());
+            RefreshCommand = new DelegateCommand(async () => await LoadData());
+        }
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            await LoadData();
+        }
+
+        private async Task LoadData()
+        {
+            try
+            {
+                IsLoading = true;
+                Invites = Mapper.Map<ObservableCollection<InviteDto>>(await _organizationService.GetInvites("5ca5cab077e80c1344dbafec")); // TODO Mocked
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        private async Task OnItemSelected()
+        {
+            await Clipboard.SetTextAsync(SelectedInvite.Code.ToString());
         }
 
         private async Task OnEmailUnfocused()
         {
-            if (string.IsNullOrEmpty(Email))
+            try
             {
+                if (string.IsNullOrEmpty(Email))
+                {
+                    CaptionOpacity = 0f;
+                    return;
+                }
+
+                var userToComplete = new RegisterUserDto()
+                {
+                    Email = Email
+                };
+                var exists = await _accountService.DoesUserExist(Mapper.Map<RegisterUserModel>(userToComplete));
+
+                if (!exists)
+                {
+                    CaptionOpacity = 1f;
+                    return;
+                }
+
                 CaptionOpacity = 0f;
-                return;
             }
-
-            var userToComplete = new RegisterUserDto()
+            catch (Exception exc)
             {
-                Email = Email
-            };
-            var exists = await _accountService.DoesUserExist(Mapper.Map<RegisterUserModel>(userToComplete));
-
-            if (!exists)
-            {
-                CaptionOpacity = 1f;
-                return;
+                LogTechnicalError(exc);
             }
-
-            CaptionOpacity = 0f;
         }
 
 
         private async Task OnInviteMember()
         {
-            var request = new CreateInvitationRequestDto()
+            IsAddMemberLoading = true;
+
+            try
             {
-                InviterId = "5ca5ca8f26482d1254b85dc1", // TODO mocked
-                Mail = Email
-            };
-            var invite = await _organizationService.SendInvitation(Mapper.Map<CreateInvitationRequestModel>(request));
-            Invites.Add(Mapper.Map<InviteDto>(invite));
+                var request = new CreateInvitationRequestDto()
+                {
+                    InviterId = "5ca5ca8f26482d1254b85dc1", // TODO mocked
+                    Mail = Email
+                };
+
+                var invite = await _organizationService.SendInvitation("5ca5cab077e80c1344dbafec", Mapper.Map<CreateInvitationRequestModel>(request));
+                Invites.Insert(0, Mapper.Map<InviteDto>(invite));
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsAddMemberLoading = false;
+            }
         }
     }
 }

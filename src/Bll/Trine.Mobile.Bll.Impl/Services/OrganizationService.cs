@@ -9,7 +9,6 @@ using Trine.Mobile.Bll.Impl.Services.Base;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Dal.Swagger;
 using Trine.Mobile.Model;
-using static Trine.Mobile.Model.OrganizationMemberModel;
 
 namespace Trine.Mobile.Bll.Impl.Services
 {
@@ -236,12 +235,29 @@ namespace Trine.Mobile.Bll.Impl.Services
             }
         }
 
-        public async Task<InviteModel> SendInvitation(CreateInvitationRequestModel request)
+        public async Task<InviteModel> SendInvitation(string orgaId, CreateInvitationRequestModel request)
         {
             try
             {
-                var invite = await _gatewayRepository.ApiOrganizationsByOrganizationIdInvitesPostAsync("5ca5cab077e80c1344dbafec", _mapper.Map<CreateInvitationRequest>(request));
+                var invite = await _gatewayRepository.ApiOrganizationsByOrganizationIdInvitesPostAsync(orgaId, _mapper.Map<CreateInvitationRequest>(request));
                 return _mapper.Map<InviteModel>(invite.FirstOrDefault());
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<InviteModel>> GetInvites(string id)
+        {
+            try
+            {
+                var invite = await _gatewayRepository.ApiOrganizationsByOrganizationIdInvitesGetAsync(id);
+                return _mapper.Map<List<InviteModel>>(invite).OrderByDescending(x => x.Created).ToList();
             }
             catch (ApiException dalExc)
             {

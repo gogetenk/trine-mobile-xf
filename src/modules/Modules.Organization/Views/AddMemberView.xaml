@@ -90,7 +90,7 @@
                     </components:MaterialEntry>
                     <Button CornerRadius="5"
                             Visual="Material"
-                            Command="{Binding AddMember}"
+                            Command="{Binding AddMemberCommand}"
                             Padding="0"
                             WidthRequest="60"
                             HorizontalOptions="EndAndExpand"
@@ -117,32 +117,39 @@
                       IsRefreshing="{Binding IsLoading}"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding RefreshCommand}">
-               
+
+                <ListView.Behaviors>
+                    <b:EventToCommandBehavior EventName="ItemSelected"
+                                              Command="{Binding ItemSelectedCommand}" />
+                </ListView.Behaviors>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="60">
+                        <ViewCell Height="80">
                             <Frame CornerRadius="5"
                                    BackgroundColor="#F5F5F7"
-                                   Margin="35,5,35,5"
-                                   Padding="2"
+                                   Margin="35,7,35,7"
+                                   Padding="10"
                                    HasShadow="False">
                                 <StackLayout Orientation="Horizontal"
                                              VerticalOptions="Center">
-                                    <Frame CornerRadius="120"
-                                           Margin="10"
-                                           Padding="0"
-                                           HeightRequest="24"
-                                           WidthRequest="24"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center"
-                                           HasShadow="False">
-                                        <Image HorizontalOptions="Fill"
-                                               VerticalOptions="Fill"
-                                               Source="https://i.imgur.com/d8e5wvg.jpg" />
-                                    </Frame>
-                                    <StackLayout VerticalOptions="Center"
+                                    
+                                    <StackLayout VerticalOptions="Start"
+                                                 Orientation="Vertical"
                                                  Margin="10,0,0,0">
-                                        <Label Text="gogetenk@hotmail.com" />
+                                        <Label Text="{Binding GuestEmail}" Style="{StaticResource Paragraph}" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding IsRevoked}"
+                                                   FontSize="Caption"
+                                                   TextColor="{StaticResource SecondaryTextColor}" />
+                                            <Label Text="⚬"
+                                                   Margin="5,0,5,0"
+                                                   FontSize="Caption"
+                                                   TextColor="{StaticResource SecondaryTextColor}" />
+                                            <Label Text="{Binding Created}"
+                                                   FontSize="Caption"
+                                                   TextColor="{StaticResource SecondaryTextColor}" />
+                                        </StackLayout>
                                     </StackLayout>
                                     <Label FontFamily="{StaticResource MaterialIcons}"
                                            Text="&#xe14d;"

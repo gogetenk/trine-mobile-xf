@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Trine.Mobile.Model;
 
@@ -16,6 +17,7 @@ namespace Trine.Mobile.Bll
         Task RemoveMember(string organizationId, string memberId);
         Task DeleteOrganization(string id);
         Task<PartialOrganizationModel> GetById(string id);
-        Task<InviteModel> SendInvitation(CreateInvitationRequestModel request);
+        Task<InviteModel> SendInvitation(string id, CreateInvitationRequestModel request);
+        Task<List<InviteModel>> GetInvites(string v);
     }
 }
