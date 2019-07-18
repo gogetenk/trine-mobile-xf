@@ -9,7 +9,7 @@
              BackgroundColor="White"
              Title="Sign In">
 
-    <Grid Padding="30">
+    <Grid Margin="0, 20, 0, 0" Padding="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="20*" />
@@ -39,7 +39,7 @@
             <Entry AutomationId="tb_email"
                    FontSize="Body"
                    HeightRequest="40"
-                   Placeholder="ex : john@doe.com"
+                   Placeholder="exemple@hellotrine.com"
                    Text="{Binding Email}">
                 <Entry.Behaviors>
                     <b:EventToCommandBehavior EventName="Unfocused"

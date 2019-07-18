@@ -11,7 +11,8 @@
                WidthRequest="28" />
         <Label Text="Trine"
                VerticalOptions="Center"
-               FontSize="26"
+               FontSize="30"
+               FontAttributes="Bold"
                TextColor="#333333" />
     </StackLayout>
 </ContentView>

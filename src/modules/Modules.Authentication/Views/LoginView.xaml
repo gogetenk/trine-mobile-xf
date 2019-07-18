@@ -29,7 +29,7 @@
                 <Entry AutomationId="tb_email"
                        FontSize="Body"
                        HeightRequest="40"
-                       Placeholder="ex : toto@titi.com"
+                       Placeholder="exemple@hellotrine.com"
                        Text="{Binding Email}" />
                 <Label Text="Veuillez spécifier un e-mail valide"
                        IsVisible="{Binding IsEmailErrorVisible}"
