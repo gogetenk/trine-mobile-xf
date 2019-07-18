@@ -110,8 +110,8 @@
                VerticalOptions="EndAndExpand"
                HasShadow="True"
                HorizontalOptions="EndAndExpand"
-               HeightRequest="56"
-               WidthRequest="56"
+               HeightRequest="66"
+               WidthRequest="66"
                CornerRadius="120"
                Margin="0,0,25,40">
             <Button BackgroundColor="{StaticResource AccentColor}"
