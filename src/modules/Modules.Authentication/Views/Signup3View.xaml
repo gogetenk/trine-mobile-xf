@@ -7,7 +7,7 @@
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup3View">
 
-    <Grid Padding="30">
+    <Grid Margin="0, 20, 0, 0" Padding="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="20*" />
@@ -20,7 +20,7 @@
                      Grid.Row="1">
             <Label Text="Votre rôle"
                    Style="{StaticResource H1}" />
-            <Label Text="Pour mieux répondre à vos besoins."
+            <Label Text="Dites nous en un peu plus."
                    Style="{StaticResource H2}" />
             <BoxView BackgroundColor="#5A28D6"
                      WidthRequest="45"
@@ -30,81 +30,96 @@
         </StackLayout>
 
         <StackLayout Grid.Row="2">
-            <Label Text="Dites nous en un peu plus sur votre rôle..."
-                   Style="{StaticResource Paragraph}" />
-
-            <Grid Margin="0,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="33*" />
-                    <ColumnDefinition Width="33*" />
-                    <ColumnDefinition Width="33*" />
-                </Grid.ColumnDefinitions>
-
-                <Frame Padding="15"
-                       HasShadow="False"
-                       Grid.Column="0"
-                       BackgroundColor="White"
-                       Visual="Material"
-                       BorderColor="#DCDEE6">
+   
+            <StackLayout>
+           
+                <Frame
+                    VerticalOptions="Center"
+                    HasShadow="False"
+                    BackgroundColor="White"
+                    BorderColor="#DCDEE6">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding CommercialCommand}"
                                               Tapped="TapGestureRecognizer_Tapped" />
                     </Frame.GestureRecognizers>
-                    <StackLayout HorizontalOptions="Center">
-                        <Label FontFamily="{StaticResource IconFont}"
+                    <Grid>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="80*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="0" FontFamily="{StaticResource IconFont}"
                                Text="&#xec60;"
-                               HorizontalOptions="Center"
+                               HorizontalOptions="Start"
                                FontSize="20"
                                TextColor="#000000" />
-                        <Label Text="Commercial"
+                        <Label Grid.Column="1" XAlign="End" Text="Commercial"
                                Style="{StaticResource Paragraph}" />
-                    </StackLayout>
+                    </Grid>
                 </Frame>
 
-                <Frame Padding="15"
-                       Grid.Column="1"
-                       HasShadow="False"
-                       Visual="Material"
-                       BackgroundColor="White"
-                       BorderColor="#DCDEE6">
+                <Frame
+                    VerticalOptions="Center"
+                    HasShadow="False"
+                    BackgroundColor="White"
+                    BorderColor="#DCDEE6">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ConsultantCommand}"
                                               Tapped="TapGestureRecognizer_Tapped" />
                     </Frame.GestureRecognizers>
-                    <StackLayout HorizontalOptions="Center">
-                        <Label FontFamily="{StaticResource IconFont}"
-                               Margin="0"
-                               Text="&#xec53;"
-                               HorizontalOptions="Center"
-                               FontSize="20"
-                               TextColor="#000000" />
-                        <Label Text="Consultant"
-                               Style="{StaticResource Paragraph}" />
-                    </StackLayout>
+                    
+                    <Grid>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="80*" />
+                        </Grid.ColumnDefinitions>
+                        
+                         <Label 
+                            Grid.Column="0"
+                            FontFamily="{StaticResource IconFont}"
+                            Text="&#xec53;"
+                            HorizontalOptions="Start"
+                            FontSize="20"
+                            TextColor="#000000"
+                        />
+                        <Label Grid.Column="1" XAlign="End" Text="Consultant" Style="{StaticResource Paragraph}" />
+                        
+                        
+                    </Grid>
+                  
                 </Frame>
 
-                <Frame Padding="15"
-                       Grid.Column="2"
-                       HasShadow="False"
-                       Visual="Material"
-                       BackgroundColor="White"
-                       BorderColor="#DCDEE6">
+                <Frame
+                    VerticalOptions="Center"
+                    HasShadow="False"
+                    BackgroundColor="White"
+                    BorderColor="#DCDEE6">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding CustomerCommand}"
                                               Tapped="TapGestureRecognizer_Tapped" />
                     </Frame.GestureRecognizers>
-                    <StackLayout HorizontalOptions="Center">
-                        <Label FontFamily="{StaticResource IconFont}"
-                               Text="&#xeb52;"
-                               HorizontalOptions="Center"
-                               FontSize="20"
-                               TextColor="#000000" />
-                        <Label Text="Client"
-                               TextColor="#000000"
-                               FontSize="13" />
-                    </StackLayout>
+         
+                    <Grid>
+                     
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="80*" />
+                        </Grid.ColumnDefinitions>
+                    
+                        <Label
+                            Grid.Column="0"
+                            FontFamily="{StaticResource IconFont}"
+                            Text="&#xeb52;"
+                            HorizontalOptions="Start"
+                            FontSize="20"
+                            TextColor="#000000"
+                        />
+                        <Label XAlign="End" Grid.Column="1" Text="Client" TextColor="#000000" Style="{StaticResource Paragraph}" />
+                    </Grid>
                 </Frame>
-            </Grid>
+            </StackLayout>
 
             <Label Text="J'ai déjà un compte →"
                    AutomationId="lb_alreadyAccount"
