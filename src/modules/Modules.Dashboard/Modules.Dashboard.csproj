@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
+    <PackageReference Include="Prism.Forms" Version="7.1.0.431" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Components\Trine.Mobile.Components.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\DashboardDetailView.xaml.cs">
+      <DependentUpon>DashboardDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\DashboardMasterView.xaml.cs">
+      <DependentUpon>DashboardMasterView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\DashboardView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DashboardDetailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DashboardMasterView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

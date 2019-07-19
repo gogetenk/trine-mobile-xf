@@ -31,8 +31,8 @@ namespace Modules.Organization.ViewModels
         private OrganizationMemberDto _member;
         public OrganizationMemberDto Member { get => _member; set { _member = value; RaisePropertyChanged(); } }
 
-        public List<string> Roles { get => _roles; set { _roles = value; RaisePropertyChanged(); } }
         private List<string> _roles = Enum.GetNames(typeof(RoleEnum)).ToList();
+        public List<string> Roles { get => _roles; set { _roles = value; RaisePropertyChanged(); } }
 
         #endregion
 

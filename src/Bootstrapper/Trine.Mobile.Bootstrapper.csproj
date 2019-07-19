@@ -22,6 +22,7 @@
     <ProjectReference Include="..\Bll\Trine.Mobile.Bll\Bll.csproj" />
     <ProjectReference Include="..\Dal\Trine.Mobile.Dal.Swagger\Dal.Swagger.csproj" />
     <ProjectReference Include="..\modules\Modules.Authentication\Modules.Authentication.csproj" />
+    <ProjectReference Include="..\modules\Modules.Dashboard\Modules.Dashboard.csproj" />
     <ProjectReference Include="..\modules\Modules.Organization\Modules.Organization.csproj" />
   </ItemGroup>
 
