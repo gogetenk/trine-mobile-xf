@@ -64,7 +64,6 @@
                        TextColor="{StaticResource NormalTextColor}" />
                 <Picker SelectedIndex="{Binding Member.Role, Mode=TwoWay, Converter={StaticResource IntEnum}}"
                         ItemsSource="{Binding Roles}" />
-
             </StackLayout>
         </Frame>
 
