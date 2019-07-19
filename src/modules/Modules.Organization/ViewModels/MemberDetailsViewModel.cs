@@ -83,7 +83,7 @@ namespace Modules.Organization.ViewModels
             try
             {
                 IsLoading = true;
-                await _organizationService.UpdateMember(_organizationId, Mapper.Map<OrganizationMemberModel>(Member));
+                Member = Mapper.Map<OrganizationMemberDto>(await _organizationService.UpdateMember(_organizationId, Mapper.Map<OrganizationMemberModel>(Member)));
             }
             catch (BusinessException bExc)
             {
@@ -109,6 +109,7 @@ namespace Modules.Organization.ViewModels
 
                 IsLoading = true;
                 await _organizationService.RemoveMember(_organizationId, Member.UserId);
+                await NavigationService.GoBackAsync();
             }
             catch (BusinessException bExc)
             {
