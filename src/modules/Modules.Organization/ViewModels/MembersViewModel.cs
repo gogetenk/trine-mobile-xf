@@ -61,7 +61,9 @@ namespace Modules.Organization.ViewModels
         public MembersViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService) : base(navigationService, mapper, logger, dialogService)
         {
             _organizationService = organizationService;
+
             AddMemberCommand = new DelegateCommand(async () => await OnAddMember());
+            RefreshCommand = new DelegateCommand(async () => await LoadData());
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)

@@ -54,6 +54,7 @@ namespace Trine.Mobile.Bootstrapper.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Xamarin.Forms.Forms.Init(e);
+                ImageCircleRenderer.Init();
 
                 ImageCircleRenderer.Init();
 

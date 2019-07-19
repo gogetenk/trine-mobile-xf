@@ -29,6 +29,7 @@ namespace Trine.Mobile.Android
 
             ImageCircleRenderer.Init();
             LoadApplication(new App(new AndroidInitializer()));
+            ImageCircleRenderer.Init();
             FormsMaterial.Init(this, bundle);
             CrossCurrentActivity.Current.Init(this, bundle);
         }
