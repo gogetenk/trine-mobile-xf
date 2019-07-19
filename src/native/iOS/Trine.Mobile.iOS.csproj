@@ -110,7 +110,9 @@
     <ImageAsset Include="Assets.xcassets\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\app%403x.png" />
+    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\app%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -138,19 +140,45 @@
     <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\Icon-Small-50x50%402x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\notification.png" />
-    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\notification%403x.png" />
-    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\spotlight%402x.png" />
-    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\spotlight%403x.png" />
-    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\spotlight-next%402x.png" />
-    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\spotlight-next%403x.png" />
-    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\spotlight-next%403x-1.png" />
-    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\app%403x-1.png" />
-    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\app%402x.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\launchscreen-1.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\launchscreen%402x.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\launchscreen%403x.png" />
+    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\notification.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\notification%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\spotlight%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\spotlight%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\spotlight-next%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\spotlight-next%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\spotlight-next%403x-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\app%403x-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\TrineIcons.appiconset\app%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\launchscreen-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\launchscreen%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchScreenImage.imageset\launchscreen%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
