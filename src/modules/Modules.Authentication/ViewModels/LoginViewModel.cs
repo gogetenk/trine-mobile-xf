@@ -79,7 +79,6 @@ namespace Modules.Authentication.ViewModels
                 //AppCenter.SetUserId(userId);
 
                 await NavigationService.NavigateAsync("../DashboardView");
-                //TODO à enlever quand on aura le dashboard
                 await DialogService.DisplayAlertAsync("Vous êtes connecté à Trine !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
             }
             catch (BusinessException bExc)

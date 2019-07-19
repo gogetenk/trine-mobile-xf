@@ -9,7 +9,6 @@ using Trine.Mobile.Bll.Impl.Services.Base;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Dal.Swagger;
 using Trine.Mobile.Model;
-using static Trine.Mobile.Model.OrganizationMemberModel;
 
 namespace Trine.Mobile.Bll.Impl.Services
 {
@@ -124,7 +123,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             {
                 var members = _mapper.Map<List<UserModel>>(await _gatewayRepository.ApiOrganizationsByOrganizationIdMembersGetAsync(organizationId));
                 if (members is null)
-                    throw new BusinessException("Une erreur s'est produite lors de la récupération des membres.");
+                    return new List<UserModel>();
 
                 return members;
             }
@@ -220,9 +219,9 @@ namespace Trine.Mobile.Bll.Impl.Services
                 {
                     Id = orga.Id,
                     Icon = orga.Icon,
-                    IsOwner = (AppSettings.CurrentUser.Id == orga.OwnerId),
+                    //IsOwner = (AppSettings.CurrentUser.Id == orga.OwnerId),
                     Name = orga.Name,
-                    UserRole = (RoleEnum)orga.Members.FirstOrDefault(x => x.UserId == AppSettings.CurrentUser.Id)?.Role
+                    //UserRole = (RoleEnum)orga.Members.FirstOrDefault(x => x.UserId == AppSettings.CurrentUser.Id)?.Role
                 };
                 return partialOrga;
             }
@@ -231,6 +230,40 @@ namespace Trine.Mobile.Bll.Impl.Services
                 throw dalExc;
             }
             catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<InviteModel> SendInvitation(string orgaId, CreateInvitationRequestModel request)
+        {
+            try
+            {
+                var invite = await _gatewayRepository.ApiOrganizationsByOrganizationIdInvitesPostAsync(orgaId, _mapper.Map<CreateInvitationRequest>(request));
+                return _mapper.Map<InviteModel>(invite.FirstOrDefault());
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<InviteModel>> GetInvites(string id)
+        {
+            try
+            {
+                var invite = await _gatewayRepository.ApiOrganizationsByOrganizationIdInvitesGetAsync(id);
+                return _mapper.Map<List<InviteModel>>(invite).OrderByDescending(x => x.Created).ToList();
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
             {
                 throw;
             }

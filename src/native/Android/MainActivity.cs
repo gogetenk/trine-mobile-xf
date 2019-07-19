@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
+using ImageCircle.Forms.Plugin.Droid;
 using Plugin.CurrentActivity;
 using Prism;
 using Prism.Ioc;
@@ -20,12 +22,26 @@ namespace Trine.Mobile.Android
 
             base.OnCreate(bundle);
 
+            Forms.SetFlags("CollectionView_Experimental");
+            Xamarin.Essentials.Platform.Init(this, bundle);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            ImageCircleRenderer.Init();
             LoadApplication(new App(new AndroidInitializer()));
+            ImageCircleRenderer.Init();
             FormsMaterial.Init(this, bundle);
             CrossCurrentActivity.Current.Init(this, bundle);
         }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
+
 
     public class AndroidInitializer : IPlatformInitializer
     {

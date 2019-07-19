@@ -94,8 +94,7 @@ namespace Modules.Authentication.ViewModels
 
             if (IsEmailErrorVisible || IsPasswordErrorVisible)
                 return;
-
-
+            
             var userToComplete = new RegisterUserDto()
             {
                 Email = Email,

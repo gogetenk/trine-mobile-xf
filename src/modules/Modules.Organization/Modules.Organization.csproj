@@ -15,6 +15,8 @@
   <ItemGroup>
     <PackageReference Include="Sogetrel.Sinapse.Framework.Exceptions" Version="1.2.0-beta-006493" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
     <PackageReference Include="Prism.Forms" Version="7.1.0.431" />
   </ItemGroup>
@@ -26,16 +28,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AddMemberView.xaml.cs">
+      <DependentUpon>AddMemberView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\OrganizationChoiceView.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\AddMemberView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\CreateOrganizationView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\JoinOrganizationView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MemberDetailsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MembersView.xaml">

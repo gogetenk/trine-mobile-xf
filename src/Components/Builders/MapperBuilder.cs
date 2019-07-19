@@ -45,6 +45,10 @@ namespace Trine.Mobile.Components.Builders
 
                 cfg.CreateMap<OrganizationModel, Organization>();
                 cfg.CreateMap<OrganizationMemberModel, OrganizationMember>();
+                cfg.CreateMap<OrganizationMemberModel, OrganizationMemberDto>()
+                    .ForMember(x => x.DisplayName, opts => opts.MapFrom(x => $"{x.Firstname} {x.Lastname.ToUpperInvariant()}"));
+                cfg.CreateMap<OrganizationMemberDto, OrganizationMemberModel>();
+
                 cfg.CreateMap<Organization, OrganizationModel>();
                 cfg.CreateMap<OrganizationDto, OrganizationModel>();
                 cfg.CreateMap<OrganizationModel, OrganizationDto>();
@@ -52,6 +56,9 @@ namespace Trine.Mobile.Components.Builders
                     .ForMember(x => x.Initials, opts => opts.MapFrom(x => $"{x.Name[0].ToString().ToUpper()}{x.Name[1].ToString().ToUpper()}"));
 
                 cfg.CreateMap<Token, TokenModel>();
+
+                cfg.CreateMap<CreateInvitationRequestModel, CreateInvitationRequestDto>();
+                cfg.CreateMap<CreateInvitationRequestDto, CreateInvitationRequestModel>();
 
                 cfg.CreateMissingTypeMaps = true;
                 cfg.AllowNullCollections = true;

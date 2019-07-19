@@ -7765,6 +7765,9 @@ namespace Trine.Mobile.Dal.Swagger
         [Newtonsoft.Json.JsonProperty("lastname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Lastname { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("icon", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Icon { get; set; }
+
         [Newtonsoft.Json.JsonProperty("role", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public OrganizationMemberRole? Role { get; set; }
 
@@ -7858,11 +7861,11 @@ namespace Trine.Mobile.Dal.Swagger
         [Newtonsoft.Json.JsonProperty("expires", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTime? Expires { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isRevoked", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsRevoked { get; set; }
-
         [Newtonsoft.Json.JsonProperty("guestEmail", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string GuestEmail { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("currentStatus", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public InviteResponseCurrentStatus? CurrentStatus { get; set; }
 
         public string ToJson()
         {
@@ -7927,11 +7930,11 @@ namespace Trine.Mobile.Dal.Swagger
         [Newtonsoft.Json.JsonProperty("expires", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTime? Expires { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("isRevoked", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? IsRevoked { get; set; }
-
         [Newtonsoft.Json.JsonProperty("guestEmail", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string GuestEmail { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("currentStatus", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public InviteCurrentStatus? CurrentStatus { get; set; }
 
         public string ToJson()
         {
@@ -8197,6 +8200,32 @@ namespace Trine.Mobile.Dal.Swagger
         _4 = 4,
 
         _5 = 5,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.12.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public enum InviteResponseCurrentStatus
+    {
+        _0 = 0,
+
+        _1 = 1,
+
+        _2 = 2,
+
+        _3 = 3,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.12.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public enum InviteCurrentStatus
+    {
+        _0 = 0,
+
+        _1 = 1,
+
+        _2 = 2,
+
+        _3 = 3,
 
     }
 

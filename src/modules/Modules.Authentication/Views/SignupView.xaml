@@ -95,12 +95,12 @@
                     WidthRequest="180" />
         </StackLayout>
 
-        <!--<Button Text="debug"
-                Command="{prism:NavigateTo 'MembersView'}" />-->
+        <Button Text="debug" 
+                Command="{prism:NavigateTo 'MembersView'}" />
 
         <StackLayout VerticalOptions="EndAndExpand"
                      Orientation="Horizontal"
-                     Grid.Row="3">
+                     Grid.Row="3"> 
             <!--<Label Text="Tarifs"
                    Style="{StaticResource SecondaryText}"
                    HorizontalOptions="Start" />
