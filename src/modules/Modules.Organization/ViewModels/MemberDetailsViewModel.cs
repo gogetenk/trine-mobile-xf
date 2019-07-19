@@ -32,7 +32,7 @@ namespace Modules.Organization.ViewModels
         public OrganizationMemberDto Member { get => _member; set { _member = value; RaisePropertyChanged(); } }
 
         public List<string> Roles { get => _roles; set { _roles = value; RaisePropertyChanged(); } }
-        private List<string> _roles;
+        private List<string> _roles = Enum.GetNames(typeof(RoleEnum)).ToList();
 
         #endregion
 
@@ -63,16 +63,16 @@ namespace Modules.Organization.ViewModels
             {
                 IsLoading = true;
                 Member = Mapper.Map<OrganizationMemberDto>(await _organizationService.GetMember(_organizationId, userId));
-                Roles = new List<string>();
-                foreach (var role in Enum.GetValues(typeof(RoleEnum)))
-                {
-                    if (role is null)
-                        break;
+                //Roles = new List<string>();
+                //foreach (var role in Enum.GetValues(typeof(RoleEnum)))
+                //{
+                //    if (role is null)
+                //        break;
 
-                    Roles.Add(role.ToString());
-                }
+                //    Roles.Add(role.ToString());
+                //}
 
-                Roles = Roles;
+                //Roles = Roles;
             }
             catch (BusinessException bExc)
             {

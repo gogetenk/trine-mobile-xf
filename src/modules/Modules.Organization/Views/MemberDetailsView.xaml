@@ -1,8 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:Trine.Mobile.Components.Converters;assembly=Trine.Mobile.Components"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              BackgroundColor="Red"
              x:Class="Modules.Organization.Views.MemberDetailsView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <components:IntEnumConverter x:Key="IntEnum" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <NavigationPage.TitleView>
         <StackLayout Margin="0,15,0,0"
                      Spacing="0">
@@ -26,21 +33,15 @@
         <Grid BackgroundColor="White"
               Grid.Row="3" />
 
-        <Frame CornerRadius="70"
-               Padding="0"
-               HeightRequest="140"
-               WidthRequest="140"
-               Visual="Material"
-               BorderColor="White"
-               HorizontalOptions="CenterAndExpand"
-               VerticalOptions="CenterAndExpand"
-               HasShadow="False"
-               Grid.Row="0">
-            <Image Source="https://i.imgur.com/d8e5wvg.jpg"
-                   Aspect="AspectFill"
-                   HorizontalOptions="FillAndExpand"
-                   VerticalOptions="FillAndExpand" />
-        </Frame>
+        <abstractions:CircleImage HeightRequest="140"
+                                  WidthRequest="140"
+                                  BorderColor="White"
+                                  BorderThickness="2"
+                                  Grid.Row="0"
+                                  HorizontalOptions="CenterAndExpand"
+                                  VerticalOptions="CenterAndExpand"
+                                  Aspect="AspectFill"
+                                  Source="{Binding Member.Icon}" />
 
         <Frame HasShadow="True"
                Grid.Row="1"
@@ -61,8 +62,9 @@
                        FontSize="Small"
                        Margin="0,25,0,0"
                        TextColor="{StaticResource NormalTextColor}" />
-                <Picker SelectedItem="{Binding Member.Role}"
+                <Picker SelectedIndex="{Binding Member.Role, Mode=TwoWay, Converter={StaticResource IntEnum}}"
                         ItemsSource="{Binding Roles}" />
+
             </StackLayout>
         </Frame>
 

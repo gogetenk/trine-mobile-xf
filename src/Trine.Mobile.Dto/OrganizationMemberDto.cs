@@ -8,6 +8,7 @@ namespace Trine.Mobile.Dto
         public string Firstname { get; set; } // On stocke le nom et prenom pour éviter d'avoir à requêter l'API users pour avoir ce genre d'info qui ne change jamais 
         public string Lastname { get; set; }
         public string DisplayName { get; set; }
+        public string Icon { get; set; }
         public RoleEnum Role { get; set; }
         public DateTime JoinedAt { get; set; }
 

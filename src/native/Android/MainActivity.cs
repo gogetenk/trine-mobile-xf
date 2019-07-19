@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using ImageCircle.Forms.Plugin.Droid;
 using Plugin.CurrentActivity;
 using Prism;
 using Prism.Ioc;
@@ -26,6 +27,7 @@ namespace Trine.Mobile.Android
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            ImageCircleRenderer.Init();
             LoadApplication(new App(new AndroidInitializer()));
             FormsMaterial.Init(this, bundle);
             CrossCurrentActivity.Current.Init(this, bundle);

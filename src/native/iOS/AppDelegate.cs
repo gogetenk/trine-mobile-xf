@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using Prism;
 using Prism.Ioc;
 using Trine.Mobile.Bootstrapper;
@@ -24,6 +25,7 @@ namespace Trine.Mobile.iOS
         {
             Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
+            ImageCircleRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
             FormsMaterial.Init();
 
