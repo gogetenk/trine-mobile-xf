@@ -63,16 +63,6 @@ namespace Modules.Organization.ViewModels
             {
                 IsLoading = true;
                 Member = Mapper.Map<OrganizationMemberDto>(await _organizationService.GetMember(_organizationId, userId));
-                //Roles = new List<string>();
-                //foreach (var role in Enum.GetValues(typeof(RoleEnum)))
-                //{
-                //    if (role is null)
-                //        break;
-
-                //    Roles.Add(role.ToString());
-                //}
-
-                //Roles = Roles;
             }
             catch (BusinessException bExc)
             {
