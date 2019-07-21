@@ -24,6 +24,7 @@
     <ProjectReference Include="..\modules\Modules.Authentication\Modules.Authentication.csproj" />
     <ProjectReference Include="..\modules\Modules.Dashboard\Modules.Dashboard.csproj" />
     <ProjectReference Include="..\modules\Modules.Menu\Modules.Menu.csproj" />
+    <ProjectReference Include="..\modules\Modules.Mission\Modules.Mission.csproj" />
     <ProjectReference Include="..\modules\Modules.Organization\Modules.Organization.csproj" />
   </ItemGroup>
 

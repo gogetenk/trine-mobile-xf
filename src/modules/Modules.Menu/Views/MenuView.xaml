@@ -47,12 +47,16 @@
                            TextColor="White"
                            VerticalOptions="Center"
                            Opacity="0.8" />
-                    <Label Text="+"
-                           HorizontalOptions="EndAndExpand"
-                           FontSize="20"
-                           VerticalOptions="Center"
-                           TextColor="White"
-                           Opacity="0.8" />
+                    <Button Text="+"
+                            CornerRadius="120"
+                            Padding="0"
+                            WidthRequest="50"
+                            BackgroundColor="#322E3F"
+                            HorizontalOptions="EndAndExpand"
+                            FontSize="20"
+                            VerticalOptions="Center"
+                            Command="{Binding CreateMissionCommand}"
+                            TextColor="White" />
                 </StackLayout>
 
                 <StackLayout Spacing="10">
@@ -97,12 +101,16 @@
                            TextColor="White"
                            VerticalOptions="Center"
                            Opacity="0.8" />
-                    <Label Text="+"
-                           HorizontalOptions="EndAndExpand"
-                           FontSize="20"
-                           VerticalOptions="Center"
-                           TextColor="White"
-                           Opacity="0.8" />
+                    <Button Text="+"
+                            CornerRadius="120"
+                            Padding="0"
+                            WidthRequest="50"
+                            BackgroundColor="#322E3F"
+                            HorizontalOptions="EndAndExpand"
+                            FontSize="20"
+                            VerticalOptions="Center"
+                            Command="{Binding CreateOrganizationCommand}"
+                            TextColor="White" />
                 </StackLayout>
 
                 <StackLayout Spacing="10">
@@ -119,10 +127,13 @@
                     </StackLayout>
                 </StackLayout>
 
-                <Label FontFamily="{StaticResource MaterialIcons}"
+                <Button FontFamily="{StaticResource MaterialIcons}"
                        Text="&#xe8b8;"
+                        WidthRequest="50"
+                        CornerRadius="120"
                        HorizontalOptions="Start"
-                       VerticalOptions="EndAndExpand"
+                        BackgroundColor="#322E3F"
+                        VerticalOptions="EndAndExpand"
                        FontSize="20"
                        TextColor="White" />
             </StackLayout>

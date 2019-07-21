@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Modules.Mission.Views.CreateMissionStartView">
+    <StackLayout Padding="50">
+        <Frame CornerRadius="5"
+               Visual="Material"
+               HasShadow="False"
+               HeightRequest="8"
+               Padding="0"
+               VerticalOptions="Start"
+               BackgroundColor="#D9E2EC" />
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="C'est parti !"
+                   Style="{StaticResource H1}" />
+            <Label Text="Nous allons créer votre mission en quelques étapes."
+                   Style="{StaticResource H2}" />
+        </StackLayout>
+
+        <Button Text="Commencer"
+                Command="{Binding LoginCommand}"
+                AutomationId="bt_start"
+                x:Name="bt_start"
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                HeightRequest="40" 
+                Style="{StaticResource PrimaryButtonStyle}"
+                WidthRequest="180" />
+
+    </StackLayout>
+</ContentPage>
