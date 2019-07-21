@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace Modules.Dashboard.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DashboardView : MasterDetailPage
+    public partial class DashboardView : ContentPage
     {
         public DashboardView()
         {

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Modules.Dashboard.Views
+namespace Modules.Mission.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DashboardDetailView : ContentPage
+    public partial class CreateMissionStartView : ContentPage
     {
-        public DashboardDetailView()
+        public CreateMissionStartView()
         {
             InitializeComponent();
         }
