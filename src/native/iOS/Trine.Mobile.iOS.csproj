@@ -99,12 +99,12 @@
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <ITunesArtwork Include="iTunesArtwork@1x.png" />
-    <ITunesArtwork Include="iTunesArtwork@2x.png" />
     <BundleResource Include="Resources\proxima-regular.ttf" />
     <BundleResource Include="Resources\proxima-bold.ttf" />
     <BundleResource Include="Resources\icomoon.ttf" />
     <BundleResource Include="Resources\MaterialIcons-Regular.ttf" />
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json">
