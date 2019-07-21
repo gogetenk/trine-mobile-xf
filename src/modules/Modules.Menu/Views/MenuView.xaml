@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
+             x:Class="Modules.Menu.Views.MenuView"
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="#322E3F"
+             Title="Menu">
+    <StackLayout Padding="30">
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="Start"
+                     Margin="0,0,0,25">
+            <Image x:Name="img"
+                   VerticalOptions="Center"
+                   Margin="0,0,10,0"
+                   HeightRequest="26"
+                   WidthRequest="28" />
+            <Label Text="Trine"
+                   VerticalOptions="Center"
+                   FontSize="Title"
+                   FontAttributes="None"
+                   TextColor="White" />
+        </StackLayout>
+
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <Frame VerticalOptions="Start"
+                       Visual="Material"
+                       CornerRadius="5"
+                       Padding="10"
+                       BackgroundColor="#6F6C78">
+                    <StackLayout Orientation="Horizontal">
+                        <Label FontFamily="{StaticResource MaterialIcons}"
+                               Text="&#xe88a;"
+                               VerticalOptions="Center"
+                               FontSize="20"
+                               TextColor="White" />
+                        <Label Text="Dashboard"
+                               VerticalOptions="Center"
+                               TextColor="White" />
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout Orientation="Horizontal"
+                             Margin="0,20,0,0">
+                    <Label Text="MISSIONS"
+                           TextColor="White"
+                           VerticalOptions="Center"
+                           Opacity="0.8" />
+                    <Label Text="+"
+                           HorizontalOptions="EndAndExpand"
+                           FontSize="20"
+                           VerticalOptions="Center"
+                           TextColor="White"
+                           Opacity="0.8" />
+                </StackLayout>
+
+                <StackLayout Spacing="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="⬤"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               Margin="0,5,5,0" />
+                        <Label Text="Sogetrel / Yannis T"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               Margin="0,5,0,0"
+                               Opacity="0.8" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="⬤"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               Margin="0,5,5,0" />
+                        <Label Text="Les Echos / Matthieu D"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               Margin="0,5,0,0"
+                               Opacity="0.8" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="⬤"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               Margin="0,5,5,0" />
+                        <Label Text="Les Echos / Marc S"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               Margin="0,5,0,0"
+                               Opacity="0.8" />
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal"
+                             Margin="0,20,0,0">
+                    <Label Text="TEAMS"
+                           TextColor="White"
+                           VerticalOptions="Center"
+                           Opacity="0.8" />
+                    <Label Text="+"
+                           HorizontalOptions="EndAndExpand"
+                           FontSize="20"
+                           VerticalOptions="Center"
+                           TextColor="White"
+                           Opacity="0.8" />
+                </StackLayout>
+
+                <StackLayout Spacing="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="⬤"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               Margin="0,5,5,0" />
+                        <Label Text="Panda Services"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               Margin="0,5,0,0"
+                               Opacity="0.8" />
+                    </StackLayout>
+                </StackLayout>
+
+                <Label FontFamily="{StaticResource MaterialIcons}"
+                       Text="&#xe8b8;"
+                       HorizontalOptions="Start"
+                       VerticalOptions="EndAndExpand"
+                       FontSize="20"
+                       TextColor="White" />
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

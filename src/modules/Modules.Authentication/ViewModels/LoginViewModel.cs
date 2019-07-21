@@ -26,10 +26,10 @@ namespace Modules.Authentication.ViewModels
         public bool _isEmailErrorVisible = false;
         public bool IsEmailErrorVisible { get => _isEmailErrorVisible; set { _isEmailErrorVisible = value; RaisePropertyChanged(); } }
 
-        public string _email;
+        public string _email = "ytocreau@trine.com";
         public string Email { get => _email; set { _email = value; RaisePropertyChanged(); } }
 
-        public string _password;
+        public string _password = "123";
         public string Password { get => _password; set { _password = value; RaisePropertyChanged(); } }
 
         public DelegateCommand SignupCommand { get; set; }
@@ -78,7 +78,7 @@ namespace Modules.Authentication.ViewModels
                 // Setting the user id to app center
                 //AppCenter.SetUserId(userId);
 
-                await NavigationService.NavigateAsync("../DashboardView");
+                await NavigationService.NavigateAsync("MenuRootView/NavigationPage/DashboardView");
                 await DialogService.DisplayAlertAsync("Vous êtes connecté à Trine !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
             }
             catch (BusinessException bExc)
