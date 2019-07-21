@@ -38,22 +38,22 @@
         </Grid>
 
         <!-- MAIN CONTENT -->
-        <Grid Grid.RowSpan="2" Padding="0,25,0,0">
+        <Grid Grid.RowSpan="2" Padding="0,35,0,0">
             <ScrollView>
                 <StackLayout>
-                    <Frame Margin="30"
+                    <Frame Margin="30,10,30,10"
                            HasShadow="True"
                            CornerRadius="5"
                            HeightRequest="320">
                         
                     </Frame>
-                    <Frame Margin="30"
+                    <Frame Margin="30,10,30,10"
                            HasShadow="True"
                            CornerRadius="5"
                            HeightRequest="250">
 
                     </Frame>
-                    <Frame Margin="30"
+                    <Frame Margin="30,10,30,10"
                            HasShadow="True"
                            CornerRadius="5"
                            HeightRequest="250">
@@ -71,9 +71,6 @@
                                VerticalOptions="Center" />
 
         </Grid>
-
-
-
     </Grid>
 
 </ContentPage>
