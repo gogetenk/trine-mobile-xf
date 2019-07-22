@@ -48,7 +48,7 @@ namespace Trine.Mobile.Bootstrapper
             InitializeComponent();
             LoadStyles();
 #if DEBUG
-            HotReloader.Current.Run(this, config);
+            HotReloader.Current.Run(this);
 #endif
             await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
         }
