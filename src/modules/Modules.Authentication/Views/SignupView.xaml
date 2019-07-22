@@ -9,11 +9,11 @@
              BackgroundColor="White"
              Title="Sign In">
 
-    <Grid Margin="0, 30, 0, 0" Padding="30">
+    <Grid Margin="0, 30, 0, 0" Padding="{StaticResource PagePadding}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="15*" />
             <RowDefinition Height="20*" />
-            <RowDefinition Height="60*" />
+            <RowDefinition Height="55*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
 
@@ -32,13 +32,14 @@
                      Margin="0,15" />
         </StackLayout>
 
-        <StackLayout VerticalOptions="Center"
+        <StackLayout VerticalOptions="Center" 
                      Grid.Row="2">
             <Label Text="Pour commencer, quel est votre email ?"
                    Style="{StaticResource Paragraph}" />
             <Entry AutomationId="tb_email"
-                   FontSize="Body"
-                   HeightRequest="40"
+                   Style="{StaticResource EntryStyle}"
+                   IsSpellCheckEnabled="False"
+                   IsTextPredictionEnabled="True"
                    Placeholder="exemple@hellotrine.com"
                    Text="{Binding Email}">
                 <Entry.Behaviors>
@@ -52,22 +53,25 @@
             <StackLayout Orientation="Horizontal">
                 <Label Text="Pssst... On se connaît non ? 😉"
                        IsVisible="{Binding IsUserExistTextVisible}"
-                       FontSize="Small"
-                       TextColor="#333333" />
+                       Style="{StaticResource TertiaryText}" 
+                       TextDecorations="None" />
                 <Label Text="Connectez-vous ici."
+                       HorizontalOptions="EndAndExpand"
                        IsVisible="{Binding IsUserExistTextVisible}"
-                       FontSize="Small"
-                       TextDecorations="Underline"
-                       TextColor="#5A28D6" />
+                       TextColor="#5A28D6"
+                       Style="{StaticResource TertiaryText}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LoginCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
             </StackLayout>
 
             <Label Text="Choisissez un mot de passe"
                    Margin="0,20,0,0"
                    Style="{StaticResource Paragraph}" />
             <Entry AutomationId="tb_password"
-                   FontSize="Body"
+                   Style="{StaticResource EntryStyle}"
                    IsPassword="True"
-                   HeightRequest="40"
                    Text="{Binding Password}" />
             <Label Text="Veuillez spécifier un mot de passe valide"
                    IsVisible="{Binding IsPasswordErrorVisible}"
@@ -82,7 +86,7 @@
             </Label>
 
             <ActivityIndicator IsRunning="{Binding IsLoading}"
-                               Margin="40" />
+                               Margin="20" />
 
             <Button Text="Commencer"
                     VerticalOptions="EndAndExpand"
@@ -91,7 +95,6 @@
                     x:Name="bt_start"
                     Style="{StaticResource PrimaryButtonStyle}"
                     HorizontalOptions="Center"
-                    HeightRequest="40"
                     WidthRequest="180" />
         </StackLayout>
 

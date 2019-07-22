@@ -6,7 +6,7 @@
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup2View">
 
-    <Grid Margin="0, 30, 0, 0" Padding="30">
+    <Grid Margin="0, 30, 0, 0" Padding="{StaticResource PagePadding}">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="20*" />
@@ -36,7 +36,7 @@
                        Style="{StaticResource Paragraph}" />
 
                 <Entry AutomationId="tb_lastname"
-                       HeightRequest="40"
+                     Style="{StaticResource EntryStyle}"
                        Placeholder="ex : John"
                        Text="{Binding Lastname}" />
                 <Label Text="Veuillez spécifier un nom valide."
@@ -47,8 +47,8 @@
                    Style="{StaticResource Paragraph}"
                    Margin="0,20,0,0"/>
                 <Entry AutomationId="tb_firstname"
-                   HeightRequest="40"
-                   Placeholder="ex : Doe"
+                     Style="{StaticResource EntryStyle}"
+                       Placeholder="ex : Doe"
                        Text="{Binding Firstname}" />
                 <Label Text="Veuillez spécifier un prénom valide."
                        IsVisible="{Binding IsFirstnameErrorVisible}"
@@ -61,15 +61,14 @@
                         <TapGestureRecognizer Command="{Binding LoginCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
-
-            </StackLayout>
+        </StackLayout>
+        
         <Button Text="Suivant"
                 Grid.Row="3"
                 Command="{Binding NextCommand}"
                 AutomationId="bt_next"
                 HorizontalOptions="Center"
                 VerticalOptions="StartAndExpand"
-                HeightRequest="40"
                 Style="{StaticResource PrimaryButtonStyle}"
                 WidthRequest="180" />
     </Grid>
