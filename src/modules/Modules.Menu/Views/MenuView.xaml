@@ -4,8 +4,9 @@
              xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              x:Class="Modules.Menu.Views.MenuView"
              NavigationPage.HasBackButton="False"
-             BackgroundColor="#322E3F"
-             Title="Menu">
+             Title="Menu"
+             IconImageSource="menu.png"
+             BackgroundColor="#322E3F">
     <StackLayout Padding="30">
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="Start"

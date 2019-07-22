@@ -29,9 +29,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\TrineNavigationPage.xaml.cs">
+      <DependentUpon>TrineNavigationPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\TrineNavigationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

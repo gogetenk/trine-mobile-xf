@@ -125,6 +125,45 @@
                     Value="{StaticResource AccentColor}" />
         </Style>
 
+        <Style x:Key="ActionButtonStyle"
+               TargetType="Button">
+            <Setter Property="CornerRadius">
+                <Setter.Value>
+                    <OnPlatform x:TypeArguments="x:Double"
+                      iOS="28"
+                      Android="120" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Visual"
+                    Value="Material" />
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource AccentColor}" />
+            <Setter Property="TextColor"
+                    Value="White" />
+            <Setter Property="FontSize"
+                    Value="24" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource MaterialIcons}" />
+        </Style>
+
+        <Style x:Key="FrameButtonStyle"
+               TargetType="Frame">
+            <Setter Property="CornerRadius">
+                <Setter.Value>
+                    <OnPlatform x:TypeArguments="x:Double"
+                      iOS="28"
+                      Android="120" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HasShadow">
+                <Setter.Value>
+                    <OnPlatform x:TypeArguments="x:Boolean"
+                      iOS="False"
+                      Android="True" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <OnPlatform x:TypeArguments="x:String"
                     x:Key="ProximaRegular">
             <On Platform="Android"

@@ -5,7 +5,7 @@
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              NavigationPage.HasNavigationBar="True"
              BackgroundColor="White"
-             Title="Panda Services"
+             Title="Ajouter un membre"
              x:Class="Modules.Organization.Views.AddMemberView">
     <NavigationPage.TitleView>
         <StackLayout Margin="0,15,0,0"
@@ -16,7 +16,13 @@
                    Opacity=".6" />
             <Label Text="Ajouter un membre"
                    TextColor="White"
-                   FontSize="18" />
+                   FontSize="18">
+                <Label.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean"
+                      iOS="False"
+                      Android="True" />
+                </Label.IsVisible>
+            </Label>
         </StackLayout>
     </NavigationPage.TitleView>
 
@@ -40,6 +46,7 @@
 
             <Frame HeightRequest="70"
                    CornerRadius="5"
+                    Visual="Material"
                    x:Name="frame_caption"
                    Margin="35,70,35,0"
                    BackgroundColor="#FFEAB8"
@@ -64,6 +71,7 @@
 
             <Frame HeightRequest="46"
                    CornerRadius="5"
+                    Visual="Material"
                    Grid.Row="0"
                    VerticalOptions="CenterAndExpand"
                    Margin="35,0,35,0"
@@ -79,6 +87,7 @@
                            Margin="15,0,10,0" />
                     <components:MaterialEntry HorizontalOptions="FillAndExpand"
                                               Placeholder="Adresse e-mail"
+                    Visual="Default"
                                               FontSize="Small"
                                               Text="{Binding Email}"
                                               PlaceholderColor="#B9B9B9"
@@ -133,7 +142,7 @@
                                    HasShadow="False">
                                 <StackLayout Orientation="Horizontal"
                                              VerticalOptions="Center">
-                                    
+
                                     <StackLayout VerticalOptions="Start"
                                                  Orientation="Vertical"
                                                  Margin="10,0,0,0">

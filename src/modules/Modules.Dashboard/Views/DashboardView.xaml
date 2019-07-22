@@ -4,17 +4,25 @@
              x:Class="Modules.Dashboard.Views.DashboardView"
              NavigationPage.HasBackButton="False"
              BackgroundColor="White"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:NavigationPage.PrefersLargeTitles="false"
              Title="Accueil">
     <NavigationPage.TitleView>
-        <StackLayout Margin="0,19,0,0"
+        <StackLayout Margin="0,15,0,0"
                      Spacing="0">
-            <Label Text="Bienvenue,"
+            <Label Text="Panda Services"
                    TextColor="White"
                    FontSize="14"
                    Opacity=".6" />
-            <Label Text="Yannis Tocreau"
+            <Label Text="Ajouter un membre"
                    TextColor="White"
-                   FontSize="17" />
+                   FontSize="18">
+                <Label.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean"
+                      iOS="False"
+                      Android="True" />
+                </Label.IsVisible>
+            </Label>
         </StackLayout>
     </NavigationPage.TitleView>
 
@@ -44,17 +52,20 @@
                     <Frame Margin="30,10,30,10"
                            HasShadow="True"
                            CornerRadius="5"
+                           Visual="Material"
                            HeightRequest="320">
                         
                     </Frame>
                     <Frame Margin="30,10,30,10"
                            HasShadow="True"
+                           Visual="Material"
                            CornerRadius="5"
                            HeightRequest="250">
 
                     </Frame>
                     <Frame Margin="30,10,30,10"
                            HasShadow="True"
+                           Visual="Material"
                            CornerRadius="5"
                            HeightRequest="250">
 

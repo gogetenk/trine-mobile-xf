@@ -5,11 +5,12 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.LoginView">
-    <Grid Padding="30">
+    <Grid Margin="0, 30, 0, 0" Padding="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="20*" />
             <RowDefinition Height="60*" />
+            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
 
         <components:TrineLogoHeaderView Grid.Row="0" />

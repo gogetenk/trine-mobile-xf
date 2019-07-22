@@ -225,11 +225,18 @@
       <Project>{92f28cbd-cb0d-4f4e-a272-2004811b96ba}</Project>
       <Name>Trine.Mobile.Bootstrapper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Components\Trine.Mobile.Components.csproj">
+      <Project>{03733502-C617-4953-8CE2-1CE15638A973}</Project>
+      <Name>Trine.Mobile.Components</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets.xcassets\TrineIcons.appiconset\" />
     <Folder Include="Assets.xcassets\LaunchScreenIcon.imageset\" />
     <Folder Include="Assets.xcassets\LaunchScreenImage.imageset\" />
+    <Folder Include="Assets.xcassets\TrineIcons.appiconset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
