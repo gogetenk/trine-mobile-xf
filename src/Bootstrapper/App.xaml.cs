@@ -48,13 +48,8 @@ namespace Trine.Mobile.Bootstrapper
             InitializeComponent();
             LoadStyles();
 #if DEBUG
-            var config = new HotReloader.Configuration
-            {
-                DeviceUrlPort = 8000,
-            };
             HotReloader.Current.Run(this, config);
 #endif
-
             await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
         }
 
