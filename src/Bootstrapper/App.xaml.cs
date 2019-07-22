@@ -17,10 +17,12 @@ using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Factory;
 using Trine.Mobile.Bll.Impl.Services;
 using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Bootstrapper.Resources;
 using Trine.Mobile.Bootstrapper.Views;
 using Trine.Mobile.Components.Builders;
 using Trine.Mobile.Components.Logging;
 using Trine.Mobile.Dal.Swagger;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,6 +31,9 @@ namespace Trine.Mobile.Bootstrapper
 {
     public partial class App : PrismApplication
     {
+        const int smallWightResolution = 768;
+        const int smallHeightResolution = 1280;
+
         /* 
          * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
          * This imposes a limitation in which the App class must have a default constructor. 
@@ -41,11 +46,10 @@ namespace Trine.Mobile.Bootstrapper
         protected override async void OnInitialized()
         {
             InitializeComponent();
-
+            LoadStyles();
 #if DEBUG
             HotReloader.Current.Run(this);
 #endif
-
             await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
         }
 
@@ -76,6 +80,31 @@ namespace Trine.Mobile.Bootstrapper
             moduleCatalog.AddModule<DashboardModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<MenuModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<MissionModule>(InitializationMode.WhenAvailable);
+        }
+
+        public static bool IsASmallDevice()
+        {
+            // Get Metrics
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+
+            // Width (in pixels)
+            var width = mainDisplayInfo.Width;
+
+            // Height (in pixels)
+            var height = mainDisplayInfo.Height;
+            return (width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS;
+        }
+
+        void LoadStyles()
+        {
+            if (IsASmallDevice())
+            {
+                base_dictionary.MergedDictionaries.Add(SmallDevicesStyle.SharedInstance);
+            }
+            else
+            {
+                base_dictionary.MergedDictionaries.Add(GeneralDevicesStyle.SharedInstance);
+            }
         }
 
         #region Registrations

@@ -5,12 +5,11 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.LoginView">
-    <Grid Margin="0, 30, 0, 0" Padding="30">
+    <Grid Margin="0, 30, 0, 0" Padding="{StaticResource PagePadding}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="15*" />
             <RowDefinition Height="20*" />
-            <RowDefinition Height="60*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="65*" />
         </Grid.RowDefinitions>
 
         <components:TrineLogoHeaderView Grid.Row="0" />
@@ -33,8 +32,7 @@
             <Label Text="E-mail"
                    Style="{StaticResource Paragraph}" />
             <Entry AutomationId="tb_email"
-                   FontSize="Body"
-                   HeightRequest="40"
+                   Style="{StaticResource EntryStyle}"
                    Placeholder="ex : toto@titi.com"
                    Text="{Binding Email}" />
             <Label Text="Veuillez spécifier un e-mail valide"
@@ -45,8 +43,7 @@
                    Margin="0,20,0,0"
                    Style="{StaticResource Paragraph}" />
             <Entry AutomationId="tb_password"
-                   FontSize="Body"
-                   HeightRequest="40"
+                   Style="{StaticResource EntryStyle}"
                    IsPassword="True"
                    Text="{Binding Password}" />
             <Label Text="Veuillez spécifier un mot de passe valide"
@@ -62,14 +59,13 @@
             </Label>
 
             <ActivityIndicator IsRunning="{Binding IsLoading}"
-                               Margin="40" />
+                               Margin="15" />
 
             <Button Text="Se connecter"
                     Command="{Binding LoginCommand}"
                     AutomationId="bt_start"
                     x:Name="bt_start"
                     HorizontalOptions="Center"
-                    HeightRequest="40"
                     Style="{StaticResource PrimaryButtonStyle}"
                     WidthRequest="180" />
             <Label Text="Mot de passe oublié"

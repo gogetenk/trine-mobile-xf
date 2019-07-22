@@ -44,7 +44,7 @@ namespace Modules.Authentication.ViewModels
         {
             _accountService = accountService;
 
-            LoginCommand = new DelegateCommand(async () => await OnLogin(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible);
+            LoginCommand = new DelegateCommand(async () => await OnLogin(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible && !IsLoading);
             ForgotPasswordCommand = new DelegateCommand(async () => await OnForgotPassword());
             SignupCommand = new DelegateCommand(async () => await OnSignup());
         }
@@ -79,7 +79,6 @@ namespace Modules.Authentication.ViewModels
                 //AppCenter.SetUserId(userId);
 
                 await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/DashboardView");
-                await DialogService.DisplayAlertAsync("Vous êtes connecté à Trine !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
             }
             catch (BusinessException bExc)
             {

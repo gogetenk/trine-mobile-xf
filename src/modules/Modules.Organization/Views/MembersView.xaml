@@ -25,7 +25,7 @@
             </Label>
         </StackLayout>
     </NavigationPage.TitleView>
-  
+
 
     <Grid>
         <Grid>
@@ -44,7 +44,7 @@
                    CornerRadius="5"
                    Grid.Row="0"
                    VerticalOptions="CenterAndExpand"
-                    Visual="Material"
+                   Visual="Material"
                    Margin="35,0,35,0"
                    BackgroundColor="White"
                    Padding="2"
@@ -57,7 +57,7 @@
                            VerticalOptions="Center"
                            Margin="15,0,10,0" />
                     <components:MaterialEntry HorizontalOptions="FillAndExpand"
-                    Visual="Default"
+                                              Visual="Default"
                                               Placeholder="Nom ou prénom"
                                               FontSize="Small"
                                               Text="{Binding SearchText}"

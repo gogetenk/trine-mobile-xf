@@ -7,7 +7,7 @@
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup3View">
 
-    <Grid Margin="0, 30, 0, 0" Padding="30">
+    <Grid Margin="0, 30, 0, 0" Padding="{StaticResource PagePadding}">
             <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="20*" />
