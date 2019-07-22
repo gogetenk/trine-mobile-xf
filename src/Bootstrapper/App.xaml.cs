@@ -17,6 +17,7 @@ using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Factory;
 using Trine.Mobile.Bll.Impl.Services;
 using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Bootstrapper.Views;
 using Trine.Mobile.Components.Builders;
 using Trine.Mobile.Components.Logging;
 using Trine.Mobile.Dal.Swagger;
@@ -45,7 +46,7 @@ namespace Trine.Mobile.Bootstrapper
             HotReloader.Current.Run(this);
 #endif
 
-            await NavigationService.NavigateAsync("NavigationPage/SignupView");
+            await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
         }
 
         protected override void OnStart()
@@ -94,7 +95,7 @@ namespace Trine.Mobile.Bootstrapper
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<TrineNavigationPage>();
         }
 
         private void RegisterExtensions(IContainerRegistry containerRegistry)

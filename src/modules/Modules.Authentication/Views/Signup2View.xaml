@@ -5,8 +5,8 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup2View">
-    
-    <Grid Padding="30">
+
+    <Grid Margin="0, 30, 0, 0" Padding="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="20*" />

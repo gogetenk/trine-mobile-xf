@@ -78,7 +78,7 @@ namespace Modules.Authentication.ViewModels
                 // Setting the user id to app center
                 //AppCenter.SetUserId(userId);
 
-                await NavigationService.NavigateAsync("MenuRootView/NavigationPage/DashboardView");
+                await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/DashboardView");
                 await DialogService.DisplayAlertAsync("Vous êtes connecté à Trine !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
             }
             catch (BusinessException bExc)

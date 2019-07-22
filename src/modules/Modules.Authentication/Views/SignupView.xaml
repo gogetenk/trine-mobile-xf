@@ -9,7 +9,7 @@
              BackgroundColor="White"
              Title="Sign In">
 
-    <Grid Margin="0, 20, 0, 0" Padding="30">
+    <Grid Margin="0, 30, 0, 0" Padding="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="20*" />

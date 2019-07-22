@@ -5,12 +5,13 @@ using System.Text;
 using CoreAnimation;
 using CoreGraphics;
 using Foundation;
+using Trine.Mobile.Components.Controls;
 using Trine.Mobile.iOS.Renderers;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer (typeof(Entry), typeof(MaterialEntryRenderer))]
+[assembly: ExportRenderer(typeof(MaterialEntry), typeof(MaterialEntryRenderer))]
 namespace Trine.Mobile.iOS.Renderers
 {
     public class MaterialEntryRenderer : EntryRenderer

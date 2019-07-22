@@ -7,8 +7,8 @@
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup3View">
 
-    <Grid Padding="30">
-        <Grid.RowDefinitions>
+    <Grid Margin="0, 30, 0, 0" Padding="30">
+            <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="20*" />
             <RowDefinition Height="70*" />
@@ -29,7 +29,7 @@
                      Margin="0,15" />
         </StackLayout>
 
-        <StackLayout Grid.Row="2">
+        <StackLayout Grid.Row="2" >
             <Label Text="Dites nous en un peu plus sur votre rôle..."
                    Style="{StaticResource Paragraph}" />
 
@@ -55,9 +55,11 @@
                                Text="&#xec60;"
                                HorizontalOptions="Center"
                                FontSize="20"
+                               Margin="10"
                                TextColor="#000000" />
                         <Label Text="Commercial"
-                               Style="{StaticResource Paragraph}" />
+                               Style="{StaticResource Paragraph}"
+                               FontSize="13" />
                     </StackLayout>
                 </Frame>
 
@@ -73,13 +75,14 @@
                     </Frame.GestureRecognizers>
                     <StackLayout HorizontalOptions="Center">
                         <Label FontFamily="{StaticResource IconFont}"
-                               Margin="0"
                                Text="&#xec53;"
                                HorizontalOptions="Center"
+                               Margin="10"
                                FontSize="20"
                                TextColor="#000000" />
                         <Label Text="Consultant"
-                               Style="{StaticResource Paragraph}" />
+                               Style="{StaticResource Paragraph}"
+                               FontSize="13" />
                     </StackLayout>
                 </Frame>
 
@@ -97,10 +100,11 @@
                         <Label FontFamily="{StaticResource IconFont}"
                                Text="&#xeb52;"
                                HorizontalOptions="Center"
+                               Margin="10"
                                FontSize="20"
                                TextColor="#000000" />
                         <Label Text="Client"
-                               TextColor="#000000"
+                               Style="{StaticResource Paragraph}"
                                FontSize="13" />
                     </StackLayout>
                 </Frame>
