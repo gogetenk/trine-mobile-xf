@@ -59,7 +59,7 @@ namespace Trine.Mobile.Bootstrapper
 
             AppCenter.Start("android=9cfc99dc-15cc-4652-b794-44df21413075;" +
                   "uwp={Your UWP App secret here};" +
-                  "ios={Your iOS App secret here}",
+                  "ios=8a841e14-34c8-4774-b034-c8ed5991f943",
                   typeof(Analytics), typeof(Crashes));
         }
 

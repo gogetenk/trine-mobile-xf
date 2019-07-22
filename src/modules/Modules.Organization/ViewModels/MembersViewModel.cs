@@ -57,6 +57,7 @@ namespace Modules.Organization.ViewModels
         // Liste non filtrée
         private List<UserDto> _totalMemberList;
         private bool _isUserPickerMode;
+        private string _navigatedFrom;
 
         public MembersViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService) : base(navigationService, mapper, logger, dialogService)
         {
@@ -71,6 +72,7 @@ namespace Modules.Organization.ViewModels
             base.OnNavigatedTo(parameters);
 
             _isUserPickerMode = parameters.GetValue<bool>(NavigationParameterKeys._IsUserPickerModeEnabled);
+            _navigatedFrom = parameters.GetValue<string>(NavigationParameterKeys._NavigatedFromUri);
 
             if (Members is null || !Members.Any())
                 await LoadData();
@@ -146,10 +148,10 @@ namespace Modules.Organization.ViewModels
             var parameters = new NavigationParameters();
 
             // If we are in picker mode, we come back to the origin page
-            if (_isUserPickerMode)
+            if (_isUserPickerMode && !string.IsNullOrEmpty(_navigatedFrom))
             {
                 parameters.Add(NavigationParameterKeys._User, user);
-                await NavigationService.NavigateAsync("CreateMission", parameters); // TODO: mettre la bonne uri
+                await NavigationService.GoBackAsync(parameters);
             }
             else // else we navigate to the member details
             {
