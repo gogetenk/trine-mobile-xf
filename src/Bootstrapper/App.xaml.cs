@@ -92,7 +92,7 @@ namespace Trine.Mobile.Bootstrapper
 
             // Height (in pixels)
             var height = mainDisplayInfo.Height;
-            return (width <= smallWightResolution && height <= smallHeightResolution);
+            return (width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS;
         }
 
         void LoadStyles()
