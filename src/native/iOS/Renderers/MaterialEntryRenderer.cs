@@ -17,6 +17,11 @@ namespace Trine.Mobile.iOS.Renderers
     {
         private CALayer _line;
 
+
+        public MaterialEntryRenderer() : base()
+        {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
@@ -26,7 +31,9 @@ namespace Trine.Mobile.iOS.Renderers
                 return;
 
             Control.BorderStyle = UITextBorderStyle.None;
-            Control.Layer.AddSublayer(_line);
+
+            // TODO: 
+            // Control.Layer.AddSublayer(_line);
         }
     }
 }
