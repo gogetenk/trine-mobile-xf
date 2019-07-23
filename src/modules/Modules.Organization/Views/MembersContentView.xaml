@@ -34,7 +34,7 @@
                        Margin="15,0,10,0" />
                 <components:MaterialEntry HorizontalOptions="FillAndExpand"
                                           Visual="Default"
-                                          Placeholder="Nom ou prénom"
+                                          Placeholder="Nom, prénom ou e-mail"
                                           FontSize="Small"
                                           Text="{Binding SearchText}"
                                           PlaceholderColor="#B9B9B9"

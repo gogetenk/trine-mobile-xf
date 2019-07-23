@@ -14,16 +14,8 @@ namespace Modules.Organization.ViewModels
 {
     public class MembersViewModel : MembersViewModelBase
     {
-        #region Properties 
-
-        public ICommand AddMemberCommand { get; set; }
-
-        #endregion
-
-
         public MembersViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService) : base(navigationService, mapper, logger, dialogService, organizationService)
         {
-            AddMemberCommand = new DelegateCommand(async () => await OnAddMember());
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -37,30 +29,19 @@ namespace Modules.Organization.ViewModels
                 await LoadData();
         }
 
-
         protected override async Task OnSelectedMember(UserDto user)
         {
             if (user is null)
                 return;
 
             var parameters = new NavigationParameters();
-
-            // If we are in picker mode, we come back to the origin page
-            if (_isUserPickerMode && !string.IsNullOrEmpty(_navigatedFrom))
-            {
-                parameters.Add(NavigationParameterKeys._User, user);
-                await NavigationService.GoBackAsync(parameters);
-            }
-            else // else we navigate to the member details
-            {
-                parameters.Add(NavigationParameterKeys._User, user);
-                parameters.Add(NavigationParameterKeys._OrganizationId, _organization.Id);
-                await NavigationService.NavigateAsync("MemberDetailsView", parameters);
-            }
+            // we navigate to the member details
+            parameters.Add(NavigationParameterKeys._User, user);
+            parameters.Add(NavigationParameterKeys._OrganizationId, _organization.Id);
+            await NavigationService.NavigateAsync("MemberDetailsView", parameters);
         }
 
-
-        private async Task OnAddMember()
+        protected override async Task OnAddMember()
         {
             await NavigationService.NavigateAsync("AddMemberView");
         }

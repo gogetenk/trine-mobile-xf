@@ -46,7 +46,8 @@ namespace Modules.Organization.ViewModels
         public string OrganizationName { get; set; } = "Panda Services"; // TODO mocked
         public string PageTitle { get; set; } = "Membres"; // TODO mocked
 
-        public ICommand RefreshCommand { get; set; }
+        public DelegateCommand RefreshCommand { get; set; }
+        public DelegateCommand AddMemberCommand { get; set; }
 
         #endregion
 
@@ -62,10 +63,12 @@ namespace Modules.Organization.ViewModels
         {
             _organizationService = organizationService;
 
+            AddMemberCommand = new DelegateCommand(async () => await OnAddMember());
             RefreshCommand = new DelegateCommand(async () => await LoadData());
         }
 
         protected abstract Task OnSelectedMember(UserDto user);
+        protected abstract Task OnAddMember();
 
         protected virtual void OnSearchChanged(string role, string searchText)
         {

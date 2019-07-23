@@ -63,7 +63,7 @@ namespace Modules.Mission.ViewModels
             navigationParams.Add(NavigationParameterKeys._IsUserPickerModeEnabled, true);
             navigationParams.Add(NavigationParameterKeys._NavigatedFromUri, "CreateMissionContextView");
 
-            await NavigationService.NavigateAsync("MembersView", navigationParams, useModalNavigation: true);
+            await NavigationService.NavigateAsync("MemberPickerView", navigationParams, useModalNavigation: true);
         }
 
         private void OnRemoveCustomer()
