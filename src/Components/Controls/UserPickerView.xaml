@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Trine.Mobile.Components.Controls.UserPickerView">
+
+    <Grid>
+
+        <Frame x:Name="frame_userPickerEmpty"
+               Visual="Material"
+               BorderColor="{StaticResource AccentColor}"
+               HasShadow="False"
+               Padding="10"
+               CornerRadius="5">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="EmptyFrameTapGestureRecognizer_Tapped" />
+            </Frame.GestureRecognizers>
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                <Label Style="{StaticResource Paragraph}"
+                       FontFamily="{StaticResource MaterialIcons}"
+                       Text="&#xe8a6;"
+                       TextColor="{StaticResource AccentColor}"
+                       FontSize="24"
+                       Margin="0,0,5,0"
+                       VerticalOptions="Center" />
+                <Label Text="Selectionner un client"
+                       Style="{StaticResource Paragraph}"
+                       TextColor="{StaticResource AccentColor}"
+                       TextDecorations="Underline"
+                       VerticalOptions="Center" />
+            </StackLayout>
+        </Frame>
+
+        <Frame x:Name="frame_userPickerFilled"
+               IsVisible="False"
+               Visual="Material"
+               BackgroundColor="#627D99"
+               HasShadow="True"
+               Padding="10"
+               CornerRadius="5">
+           
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand">
+                <abstractions:CircleImage HeightRequest="24"
+                                          WidthRequest="24"
+                                          HorizontalOptions="Start"
+                                          Margin="5,0,20,0"
+                                          VerticalOptions="CenterAndExpand"
+                                          Aspect="AspectFill"
+                                          x:Name="img_user"
+                                          Source="https://i.imgur.com/d8e5wvg.jpg" />
+                <Label Text="Yannis Tocreau"
+                       x:Name="lb_username"
+                       Style="{StaticResource Paragraph}"
+                       TextColor="White"
+                       VerticalOptions="CenterAndExpand" />
+                <Button FontFamily="{StaticResource MaterialIcons}"
+                        Text="&#xe888;"
+                        BackgroundColor="#627D99"
+                        Padding="0"
+                        Visual="Material"
+                        CornerRadius="120"
+                        WidthRequest="60"
+                        x:Name="bt_remove"
+                        TextColor="White"
+                        FontSize="24"
+                        Margin="0,0,5,0"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="Center"
+                        Clicked="Remove_Tapped" />
+            </StackLayout>
+        </Frame>
+       
+    </Grid>
+
+</ContentView>

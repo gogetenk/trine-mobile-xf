@@ -2,20 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              BackgroundColor="White"
              xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             NavigationPage.HasNavigationBar="False"
              x:Class="Modules.Mission.Views.CreateMissionContextView">
 
     <ScrollView>
         <StackLayout Padding="50">
 
             <Frame CornerRadius="5"
-               Visual="Material"
-               HasShadow="False"
+                   Visual="Material"
+                   HasShadow="False"
                    Margin="20,0,20,40"
-               HeightRequest="8"
-               Padding="0"
-               BackgroundColor="#D9E2EC" />
+                   HeightRequest="8"
+                   Padding="0"
+                   BackgroundColor="#D9E2EC" />
 
             <StackLayout VerticalOptions="Start">
                 <Label Text="Créer une mission"
@@ -32,77 +34,44 @@
             <StackLayout VerticalOptions="CenterAndExpand"
                          Margin="0,40">
                 <Label Text="Quel est le nom de la mission ou projet ?"
-                       Style="{StaticResource Paragraph}"/>
+                       Style="{StaticResource Paragraph}" />
                 <Entry AutomationId="tb_title"
-                        Style="{StaticResource EntryStyle}"
+                       Style="{StaticResource EntryStyle}"
                        Placeholder="ex : Projet Trine"
-                       Text="{Binding Email}">
-                    <Entry.Behaviors>
-                        <b:EventToCommandBehavior EventName="Unfocused"
-                                                  Command="{Binding EmailUnfocusedCommand}" />
-                    </Entry.Behaviors>
-                </Entry>
+                       Text="{Binding Title}" />
                 <Label Text="Veuillez spécifier un intitulé pour votre mission."
                        IsVisible="{Binding IsTitleEmptyErrorVisible}"
                        Style="{StaticResource ErrorText}" />
 
                 <Label Text="Qui est le client de la mission ?"
                        Margin="0,20,0,0"
-                       Style="{StaticResource Paragraph}"/>
-                <Frame AutomationId="bt_userPicker"
-                       Visual="Material"
-                       BorderColor="{StaticResource AccentColor}" 
-                       HasShadow="False"
-                       Padding="10"
-                       CornerRadius="5">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding PickClientCommand}" />
-                    </Frame.GestureRecognizers>
-                    
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="CenterAndExpand">
-                        <Label Style="{StaticResource Paragraph}" FontFamily="{StaticResource MaterialIcons}" Text="&#xe8a6;" TextColor="{StaticResource AccentColor}" FontSize="24" Margin="0,0,5,0" VerticalOptions="Center"  />
-                        <Label Text="Selectionner un client" Style="{StaticResource Paragraph}" TextColor="{StaticResource AccentColor}" TextDecorations="Underline" VerticalOptions="Center" />
-                    </StackLayout>
-                </Frame>
-                
-                <Frame AutomationId="bt_userPicker"
-                       Visual="Material"
-                       BackgroundColor="#627D99"
-                       HasShadow="True"
-                       Padding="10"
-                       CornerRadius="5">
-                    <StackLayout Orientation="Horizontal"
-                                 HorizontalOptions="Start">
-                        <abstractions:CircleImage HeightRequest="24"
-                                  WidthRequest="24"
-                                  HorizontalOptions="Start"
-                                  Margin="5,0,20,0"
-                                  VerticalOptions="CenterAndExpand"
-                                  Aspect="AspectFill"
-                                  Source="https://i.imgur.com/d8e5wvg.jpg" />
-                        <Label Text="Yannis Tocreau" Style="{StaticResource Paragraph}" TextColor="White" VerticalOptions="CenterAndExpand" />
-                        <Label Style="{StaticResource Paragraph}" FontFamily="{StaticResource MaterialIcons}" Text="&#xe888;" TextColor="White" FontSize="24" Margin="0,0,5,0" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
-                    </StackLayout>
-                </Frame>
+                       Style="{StaticResource Paragraph}" />
+
+                <components:UserPickerView TappedCommand="{Binding PickCustomerCommand}"
+                                           PickedUser="{Binding PickedUser}"
+                                           RemovedCommand="{Binding RemovedCustomerCommand}" />
+
                 <Label Text="Veuillez spécifier un client."
                        Style="{StaticResource ErrorText}"
                        IsVisible="{Binding IsClientErrorVisible}" />
 
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand">
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="EndAndExpand"
+                         Margin="0,0,0,20"
+                         HorizontalOptions="EndAndExpand">
                 <Label Text="Retour"
-                           VerticalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
                        AutomationId="lb_back"
-                           Margin="0,0,30,0"
+                       Margin="0,0,30,0"
                        Style="{StaticResource TertiaryText}">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding LoginCommand}" />
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
                 <Button Text="Suivant"
-                        Command="{Binding SubmitCommand}" 
+                        Command="{Binding NextCommand}"
                         AutomationId="bt_submit"
                         IsEnabled="{Binding CanGoNext}"
                         BackgroundColor="#5A28D6"
@@ -113,6 +82,5 @@
         </StackLayout>
 
     </ScrollView>
-
 
 </ContentPage>

@@ -7,5 +7,6 @@
         public static string _User = "User";
         public static string _Organization = "Organization";
         public static string _OrganizationId = "OrganizationId";
+        public static string _CreateMissionRequest = "CreateMissionRequest";
     }
 }

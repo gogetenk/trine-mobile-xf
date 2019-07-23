@@ -14,7 +14,7 @@ namespace Modules.Mission.ViewModels
 
         public CreateMissionStartViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
-            StartCommand = new DelegateCommand(async () => await NavigationService.NavigateAsync("CreateMissionContextView"));
+            StartCommand = new DelegateCommand(async () => await NavigationService.NavigateAsync("CreateMissionContextView", useModalNavigation: false));
         }
     }
 }
