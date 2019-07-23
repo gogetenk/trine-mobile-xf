@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:Modules.Organization.Views"
+             x:Class="Modules.Organization.Views.MemberPickerView"
              NavigationPage.HasNavigationBar="True"
              BackgroundColor="White"
-             Title="{Binding PageTitle}"
-             x:Class="Modules.Organization.Views.MembersView">
+             Title="{Binding PageTitle}">
     <NavigationPage.TitleView>
         <StackLayout Margin="0,15,0,0"
                      Spacing="0">
