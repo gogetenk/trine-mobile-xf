@@ -72,7 +72,7 @@ namespace Modules.Organization.ViewModels
 
         protected virtual void OnSearchChanged(string role, string searchText)
         {
-            if (_totalMemberList is null)
+            if (_totalMemberList is null || !_totalMemberList.Any())
                 return;
 
             if (string.IsNullOrEmpty(role))

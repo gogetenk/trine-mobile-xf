@@ -75,7 +75,6 @@ namespace Modules.Organization.ViewModels
                 };
 
                 var invite = await _organizationService.SendInvitation("5ca5cab077e80c1344dbafec", Mapper.Map<CreateInvitationRequestModel>(request));
-                Email = string.Empty;
                 var unknownUser = new UserDto()
                 {
                     DisplayName = Email,
@@ -83,6 +82,7 @@ namespace Modules.Organization.ViewModels
                     ProfilePicUrl = "http://upstarttheater.com/wp-content/uploads/2014/06/profile-pic.jpg"
                 };
                 await OnSelectedMember(unknownUser);
+                Email = string.Empty;
             }
             catch (BusinessException bExc)
             {

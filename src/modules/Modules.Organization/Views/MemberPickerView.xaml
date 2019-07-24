@@ -30,8 +30,6 @@
 
     <Grid>
 
-
-        
         <views:MembersContentView />
 
         <StackLayout VerticalOptions="CenterAndExpand"
@@ -43,8 +41,8 @@
                    Margin="20"
                    Text="Nous ne retrouvons pas cet utilisateur. 
 Indiquez son adresse email pour lui envoyer une invitation." />
+            
             <StackLayout>
-
                 <Frame HeightRequest="46"
                        CornerRadius="5"
                        Visual="Material"

@@ -10,7 +10,7 @@
                Visual="Material"
                BorderColor="{StaticResource AccentColor}"
                HasShadow="False"
-               Padding="10"
+               Padding="15,10,15,10"
                CornerRadius="5">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Tapped="EmptyFrameTapGestureRecognizer_Tapped" />
@@ -62,7 +62,7 @@
                         Padding="0"
                         Visual="Material"
                         CornerRadius="120"
-                        WidthRequest="60"
+                        WidthRequest="55"
                         x:Name="bt_remove"
                         TextColor="White"
                         FontSize="24"
