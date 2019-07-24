@@ -14,6 +14,7 @@ namespace Modules.Mission.ViewModels
 {
     public class CreateMissionContextViewModel : ViewModelBase
     {
+        #region Bindings
 
         public ICommand NextCommand { get; set; }
         public ICommand PickCustomerCommand { get; set; }
@@ -25,11 +26,13 @@ namespace Modules.Mission.ViewModels
         private string _title;
         public string Title { get => _title; set { _title = value; RaisePropertyChanged(); } }
 
-        private bool _canGoNext = false;
+        private bool _canGoNext = true;
         public bool CanGoNext { get => _canGoNext; set { _canGoNext = value; RaisePropertyChanged(); } }
 
         private UserDto _pickedUser;
         public UserDto PickedUser { get => _pickedUser; set { _pickedUser = value; RaisePropertyChanged(); } }
+
+        #endregion
 
         public CreateMissionContextViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
@@ -37,8 +40,6 @@ namespace Modules.Mission.ViewModels
             PickCustomerCommand = new DelegateCommand(async () => await OnPickCustomer());
             RemovedCustomerCommand = new DelegateCommand(() => OnRemoveCustomer());
         }
-
-        
 
         private async Task OnNextStep()
         {

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Akavache;
+using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
@@ -8,8 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Extensions;
 using Trine.Mobile.Components.ViewModels;
@@ -78,6 +79,7 @@ namespace Modules.Organization.ViewModels
             if (string.IsNullOrEmpty(role))
                 RoleSelectedIndex = -1;
 
+
             Members = new ObservableCollection<UserDto>(_totalMemberList);
 
             if (!string.IsNullOrEmpty(role))
@@ -97,8 +99,15 @@ namespace Modules.Organization.ViewModels
                 if (_organization is null)
                     return; // TODO : Que faire?
 
-                var t = await _organizationService.GetOrganizationMembers(_organization.Id);
-                var list = Mapper.Map<ObservableCollection<UserDto>>(t);
+
+                var list = new ObservableCollection<UserDto>();
+                BlobCache.LocalMachine.GetAndFetchLatest("theThinker",
+                    async () => await _organizationService.GetOrganizationMembers(_organization.Id), null, null, true).Subscribe(
+                    members => {
+                        Members = Mapper.Map<ObservableCollection<UserDto>>(members);
+                    });
+
+                //var t = await _organizationService.GetOrganizationMembers(_organization.Id);
 
                 _totalMemberList = list.ToList();
                 Members = list;

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Akavache;
+using AutoMapper;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -50,6 +51,7 @@ namespace Trine.Mobile.Bootstrapper
 #if DEBUG
             HotReloader.Current.Run(this);
 #endif
+            Akavache.Registrations.Start("TrineApp");
             await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
         }
 
@@ -61,6 +63,13 @@ namespace Trine.Mobile.Bootstrapper
                   "uwp={Your UWP App secret here};" +
                   "ios=8a841e14-34c8-4774-b034-c8ed5991f943",
                   typeof(Analytics), typeof(Crashes));
+        }
+
+        protected override void CleanUp()
+        {
+            base.CleanUp();
+
+            BlobCache.Shutdown().Wait();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
