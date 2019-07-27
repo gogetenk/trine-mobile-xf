@@ -8,7 +8,6 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="Modules.Mission.Views.CreateMissionContextView">
 
-    <ScrollView>
         <StackLayout Padding="50">
 
             <Frame CornerRadius="5"
@@ -60,7 +59,7 @@
             <StackLayout Orientation="Horizontal"
                          VerticalOptions="EndAndExpand"
                          Margin="0,0,0,20"
-                         HorizontalOptions="EndAndExpand">
+                         HorizontalOptions="EndAndExpand"> 
                 <Label Text="Retour"
                        VerticalOptions="CenterAndExpand"
                        AutomationId="lb_back"
@@ -80,7 +79,5 @@
                         WidthRequest="110" />
             </StackLayout>
         </StackLayout>
-
-    </ScrollView>
 
 </ContentPage>

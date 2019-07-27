@@ -4,7 +4,6 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="Modules.Mission.Views.CreateMissionDatesView">
 
-    <ScrollView>
         <StackLayout Padding="50">
 
             <Frame CornerRadius="5"
@@ -78,8 +77,6 @@
                         WidthRequest="110" />
             </StackLayout>
         </StackLayout>
-
-    </ScrollView>
 
 
 </ContentPage>

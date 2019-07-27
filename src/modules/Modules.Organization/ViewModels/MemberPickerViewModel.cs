@@ -15,9 +15,7 @@ namespace Modules.Organization.ViewModels
 {
     public class MemberPickerViewModel : MembersViewModelBase
     {
-        public bool IsListEmpty { get => _isListEmpty; set { _isListEmpty = value; RaisePropertyChanged(); } }
-        private bool _isListEmpty;
-
+        
         public string Email { get => _email; set { _email = value; RaisePropertyChanged(); } }
         private string _email;
 
@@ -51,13 +49,6 @@ namespace Modules.Organization.ViewModels
             var parameters = new NavigationParameters();
             parameters.Add(NavigationParameterKeys._User, user);
             await NavigationService.GoBackAsync(parameters);
-        }
-
-        protected override void OnSearchChanged(string role, string searchText)
-        {
-            base.OnSearchChanged(role, searchText);
-
-            IsListEmpty = !Members.Any();
         }
 
         protected override async Task OnAddMember()

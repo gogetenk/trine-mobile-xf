@@ -17,6 +17,7 @@ namespace Modules.Mission
             containerRegistry.RegisterForNavigation<CreateMissionStartView, CreateMissionStartViewModel>();
             containerRegistry.RegisterForNavigation<CreateMissionContextView, CreateMissionContextViewModel>();
             containerRegistry.RegisterForNavigation<CreateMissionDatesView, CreateMissionDatesViewModel>();
+            containerRegistry.RegisterForNavigation<CreateMissionConsultantView, CreateMissionConsultantViewModel>();
         }
     }
 }

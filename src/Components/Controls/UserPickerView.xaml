@@ -11,6 +11,7 @@
                BorderColor="{StaticResource AccentColor}"
                HasShadow="False"
                Padding="15,10,15,10"
+               BackgroundColor="White"
                CornerRadius="5">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Tapped="EmptyFrameTapGestureRecognizer_Tapped" />

@@ -22,6 +22,9 @@ namespace Modules.Organization.ViewModels
     {
         #region Properties 
 
+        public bool IsListEmpty { get => _isListEmpty; set { _isListEmpty = value; RaisePropertyChanged(); } }
+        private bool _isListEmpty;
+
         // Liste filtrée par le picker
         private ObservableCollection<UserDto> _members;
         public ObservableCollection<UserDto> Members { get => _members; set { _members = value; RaisePropertyChanged(); } }
@@ -87,6 +90,8 @@ namespace Modules.Organization.ViewModels
 
             if (!string.IsNullOrEmpty(searchText))
                 Members.RemoveAll(x => !x.DisplayName.ToLower().Contains(searchText.ToLower()));
+
+            IsListEmpty = !Members.Any();
         }
 
         protected virtual async Task LoadData()
@@ -100,22 +105,19 @@ namespace Modules.Organization.ViewModels
                     return; // TODO : Que faire?
 
 
-                var list = new ObservableCollection<UserDto>();
-                BlobCache.LocalMachine.GetAndFetchLatest("theThinker",
-                    async () => await _organizationService.GetOrganizationMembers(_organization.Id), null, null, true).Subscribe(
-                    members => {
+                BlobCache.LocalMachine.GetAndFetchLatest("MemberList",
+                    async () => await _organizationService.GetOrganizationMembers(_organization.Id), null, null, true)
+                    .Subscribe(members =>
+                    {
                         Members = Mapper.Map<ObservableCollection<UserDto>>(members);
+                        IsListEmpty = !Members.Any();
+                        _totalMemberList = Members.ToList();
+                        Roles = Members.Select(x => x.Role).ToList();
+                        // On ajoute le champ vide
+                        Roles.Insert(0, "");
+                        SelectedRole = null;
+                        RoleSelectedIndex = -1;
                     });
-
-                //var t = await _organizationService.GetOrganizationMembers(_organization.Id);
-
-                _totalMemberList = list.ToList();
-                Members = list;
-                Roles = Members.Select(x => x.Role).ToList();
-                // On ajoute le champ vide
-                Roles.Insert(0, "");
-                SelectedRole = null;
-                RoleSelectedIndex = -1;
             }
             catch (BusinessException bExc)
             {

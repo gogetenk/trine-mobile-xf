@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
-using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
@@ -18,6 +18,7 @@ namespace Modules.Mission.ViewModels
         #region Bindings 
 
         public ICommand NextCommand { get; set; }
+        public ICommand BackCommand { get; set; }
 
         private CreateMissionRequestDto _createMissionRequest;
         public CreateMissionRequestDto CreateMissionRequest { get => _createMissionRequest; set { _createMissionRequest = value; RaisePropertyChanged(); } }
@@ -34,12 +35,15 @@ namespace Modules.Mission.ViewModels
         private bool _canGoNext = true;
         public bool CanGoNext { get => _canGoNext; set { _canGoNext = value; RaisePropertyChanged(); } }
 
+        public bool IsUserErrorVisible { get; set; } = false;
+
         #endregion
 
 
         public CreateMissionDatesViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
             NextCommand = new DelegateCommand(async () => await OnNextStep());
+            BackCommand = new DelegateCommand(async () => await NavigationService.GoBackAsync());
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -50,7 +54,7 @@ namespace Modules.Mission.ViewModels
             if (CreateMissionRequest is null)
             {
                 await DialogService.DisplayAlertAsync("Oops...", ErrorMessages.unknownError, "Ok");
-                await NavigationService.NavigateAsync("CreateMissionStartView");
+                await NavigationService.NavigateAsync("CreateMissionCommercialView");
             }
             CreateMissionRequest.StartDate = DateTime.UtcNow;
             CreateMissionRequest.EndDate = CreateMissionRequest.StartDate.AddMonths(3);
@@ -63,7 +67,9 @@ namespace Modules.Mission.ViewModels
             IsStartDateSuperior = CreateMissionRequest.StartDate > CreateMissionRequest.EndDate;
             CanGoNext = !IsStartDateNull && !IsStartDateSuperior && !IsEndDateNull;
             if (!CanGoNext)
+            {
                 return;
+            }
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
