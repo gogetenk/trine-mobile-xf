@@ -66,10 +66,10 @@ Indiquez son adresse email pour lui envoyer une invitation." />
                                                   Text="{Binding Email}"
                                                   PlaceholderColor="#B9B9B9"
                                                   Margin="0,3,15,0">
-                            <Entry.Behaviors>
+                            <!--<Entry.Behaviors>
                                 <b:EventToCommandBehavior EventName="Unfocused"
                                                           Command="{Binding EmailUnfocusedCommand}" />
-                            </Entry.Behaviors>
+                            </Entry.Behaviors>-->
                         </components:MaterialEntry>
                         <Button CornerRadius="5"
                                 Visual="Material"

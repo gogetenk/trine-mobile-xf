@@ -48,8 +48,8 @@ namespace Modules.Mission.ViewModels
 
             PickedUser = parameters.GetValue<UserDto>(NavigationParameterKeys._User);
 
-            // If the page was already populated, we stop here
-            if (CreateMissionRequest != null)
+            // If the page was already populated, or if we are on the first form page, we stop here.
+            if (CreateMissionRequest != null || base.GetType().Name == "CreateMissionContextViewModel")
                 return;
 
             CreateMissionRequest = parameters.GetValue<CreateMissionRequestDto>(NavigationParameterKeys._CreateMissionRequest);

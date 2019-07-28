@@ -8,76 +8,82 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="Modules.Mission.Views.CreateMissionContextView">
 
-        <StackLayout Padding="50">
+    <StackLayout Padding="50">
 
-            <Frame CornerRadius="5"
-                   Visual="Material"
-                   HasShadow="False"
-                   Margin="20,0,20,40"
-                   HeightRequest="8"
-                   Padding="0"
-                   BackgroundColor="#D9E2EC" />
+        <Frame CornerRadius="5"
+               Visual="Material"
+               HasShadow="False"
+               Margin="20,0,20,40"
+               HeightRequest="8"
+               Padding="0"
+               BackgroundColor="#D9E2EC" />
 
-            <StackLayout VerticalOptions="Start">
-                <Label Text="Créer une mission"
-                       Style="{StaticResource H1}" />
-                <Label Text="Parlez nous du contexte."
-                       Style="{StaticResource H2}" />
-                <BoxView BackgroundColor="#5A28D6"
-                         WidthRequest="45"
-                         HeightRequest="4"
-                         HorizontalOptions="Start"
-                         Margin="0,15" />
-            </StackLayout>
-
-            <StackLayout VerticalOptions="CenterAndExpand"
-                         Margin="0,40">
-                <Label Text="Quel est le nom de la mission ou projet ?"
-                       Style="{StaticResource Paragraph}" />
-                <Entry AutomationId="tb_title"
-                       Style="{StaticResource EntryStyle}"
-                       Placeholder="ex : Projet Trine"
-                       Text="{Binding Title}" />
-                <Label Text="Veuillez spécifier un intitulé pour votre mission."
-                       IsVisible="{Binding IsTitleEmptyErrorVisible}"
-                       Style="{StaticResource ErrorText}" />
-
-                <Label Text="Qui est le client de la mission ?"
-                       Margin="0,20,0,0"
-                       Style="{StaticResource Paragraph}" />
-
-                <components:UserPickerView TappedCommand="{Binding PickCustomerCommand}"
-                                           PickedUser="{Binding PickedUser}"
-                                           RemovedCommand="{Binding RemovedCustomerCommand}" />
-
-                <Label Text="Veuillez spécifier un client."
-                       Style="{StaticResource ErrorText}"
-                       IsVisible="{Binding IsClientErrorVisible}" />
-
-            </StackLayout>
-
-            <StackLayout Orientation="Horizontal"
-                         VerticalOptions="EndAndExpand"
-                         Margin="0,0,0,20"
-                         HorizontalOptions="EndAndExpand"> 
-                <Label Text="Retour"
-                       VerticalOptions="CenterAndExpand"
-                       AutomationId="lb_back"
-                       Margin="0,0,30,0"
-                       Style="{StaticResource TertiaryText}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BackCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-                <Button Text="Suivant"
-                        Command="{Binding NextCommand}"
-                        AutomationId="bt_submit"
-                        IsEnabled="{Binding CanGoNext}"
-                        BackgroundColor="#5A28D6"
-                        VerticalOptions="CenterAndExpand"
-                        Style="{StaticResource PrimaryButtonStyle}"
-                        WidthRequest="110" />
-            </StackLayout>
+        <StackLayout VerticalOptions="Start">
+            <Label Text="Créer une mission"
+                   Style="{StaticResource H1}" />
+            <Label Text="Parlez nous du contexte."
+                   Style="{StaticResource H2}" />
+            <BoxView BackgroundColor="#5A28D6"
+                     WidthRequest="45"
+                     HeightRequest="4"
+                     HorizontalOptions="Start"
+                     Margin="0,15" />
         </StackLayout>
+
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     Margin="0,40,0,0">
+            <Label Text="Quel est le nom de la mission ou projet ?"
+                   Style="{StaticResource Paragraph}" />
+            <Entry AutomationId="tb_title"
+                   Style="{StaticResource EntryStyle}"
+                   Placeholder="ex : Projet Trine"
+                   Text="{Binding Title}" />
+            <Label Text="Veuillez spécifier un intitulé pour votre mission."
+                   IsVisible="{Binding IsTitleEmptyErrorVisible}"
+                   Style="{StaticResource ErrorText}" />
+
+            <Label Text="Qui est le client de la mission ?"
+                   Margin="0,20,0,0"
+                   Style="{StaticResource Paragraph}" />
+
+            <components:UserPickerView TappedCommand="{Binding PickUserCommand}"
+                                       PickedUser="{Binding PickedUser}"
+                                       RemovedCommand="{Binding RemovedUserCommand}" />
+
+            <Label Text="Veuillez spécifier un client."
+                   Style="{StaticResource ErrorText}"
+                   IsVisible="{Binding IsUserErrorVisible}" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding IsDirect}" />
+            <Label Text="Je passe en direct et n'ai pas besoin d'un intermédiaire."
+                   Margin="10,0,0,0"
+                   Style="{StaticResource Paragraph}" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="EndAndExpand"
+                     Margin="0,0,0,20"
+                     HorizontalOptions="EndAndExpand">
+            <Label Text="Retour"
+                   VerticalOptions="CenterAndExpand"
+                   AutomationId="lb_back"
+                   Margin="0,0,30,0"
+                   Style="{StaticResource TertiaryText}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Button Text="Suivant"
+                    Command="{Binding NextCommand}"
+                    AutomationId="bt_submit"
+                    IsEnabled="{Binding CanGoNext}"
+                    BackgroundColor="#5A28D6"
+                    VerticalOptions="CenterAndExpand"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    WidthRequest="110" />
+        </StackLayout>
+    </StackLayout>
 
 </ContentPage>

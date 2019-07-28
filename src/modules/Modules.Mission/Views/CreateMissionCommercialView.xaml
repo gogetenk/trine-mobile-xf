@@ -3,7 +3,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
+             NavigationPage.HasNavigationBar="False"
              mc:Ignorable="d"
              x:Class="Modules.Mission.Views.CreateMissionCommercialView">
-    
+
+    <StackLayout Padding="50">
+
+        <Frame CornerRadius="5"
+               Visual="Material"
+               HasShadow="False"
+               Margin="20,0,20,40"
+               HeightRequest="8"
+               Padding="0"
+               BackgroundColor="#D9E2EC" />
+
+        <StackLayout VerticalOptions="Start">
+            <Label Text="Créer une mission"
+                   Style="{StaticResource H1}" />
+            <Label Text="Qui gère la mission au sein de votre équipe ?"
+                   Style="{StaticResource H2}" />
+            <BoxView BackgroundColor="#5A28D6"
+                     WidthRequest="45"
+                     HeightRequest="4"
+                     HorizontalOptions="Start"
+                     Margin="0,15" />
+        </StackLayout>
+
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     Margin="0,40">
+
+            <Label Text="Sélectionnez un commercial / manager de mission"
+                   Margin="0,20,0,0"
+                   Style="{StaticResource Paragraph}" />
+
+            <components:UserPickerView TappedCommand="{Binding PickUserCommand}"
+                                       PickedUser="{Binding PickedUser}"
+                                       RemovedCommand="{Binding RemovedUserCommand}" />
+
+            <Label Text="Veuillez spécifier un commercial."
+                   Style="{StaticResource ErrorText}"
+                   IsVisible="{Binding IsUserErrorVisible}" />
+
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="EndAndExpand"
+                     Margin="0,0,0,20"
+                     HorizontalOptions="EndAndExpand">
+            <Label Text="Retour"
+                   VerticalOptions="CenterAndExpand"
+                   AutomationId="lb_back"
+                   Margin="0,0,30,0"
+                   Style="{StaticResource TertiaryText}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Button Text="Suivant"
+                    Command="{Binding NextCommand}"
+                    AutomationId="bt_submit"
+                    IsEnabled="{Binding CanGoNext}"
+                    BackgroundColor="#5A28D6"
+                    VerticalOptions="CenterAndExpand"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    WidthRequest="110" />
+        </StackLayout>
+    </StackLayout>
+
+
 </ContentPage>

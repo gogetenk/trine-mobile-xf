@@ -42,9 +42,6 @@ namespace Modules.Organization.ViewModels
             if (user is null)
                 return;
 
-            if (string.IsNullOrEmpty(_navigatedFrom))
-                return;
-
             // If we are in picker mode, we come back to the origin page, with the picked user as a param
             var parameters = new NavigationParameters();
             parameters.Add(NavigationParameterKeys._User, user);

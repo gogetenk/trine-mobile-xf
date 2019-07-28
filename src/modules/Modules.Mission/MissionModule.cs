@@ -18,6 +18,8 @@ namespace Modules.Mission
             containerRegistry.RegisterForNavigation<CreateMissionContextView, CreateMissionContextViewModel>();
             containerRegistry.RegisterForNavigation<CreateMissionDatesView, CreateMissionDatesViewModel>();
             containerRegistry.RegisterForNavigation<CreateMissionConsultantView, CreateMissionConsultantViewModel>();
+            containerRegistry.RegisterForNavigation<CreateMissionCommercialView, CreateMissionCommercialViewModel>();
+            containerRegistry.RegisterForNavigation<CreateMissionPriceView, CreateMissionPriceViewModel>();
         }
     }
 }

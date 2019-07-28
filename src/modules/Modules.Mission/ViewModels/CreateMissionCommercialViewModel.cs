@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
+using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
@@ -12,6 +13,7 @@ namespace Modules.Mission.ViewModels
     {
         public CreateMissionCommercialViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
+            NextCommand = new DelegateCommand(async () => await OnNextStep());
         }
 
         protected async Task OnNextStep()

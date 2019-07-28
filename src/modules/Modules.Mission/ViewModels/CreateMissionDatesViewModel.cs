@@ -55,6 +55,7 @@ namespace Modules.Mission.ViewModels
             {
                 await DialogService.DisplayAlertAsync("Oops...", ErrorMessages.unknownError, "Ok");
                 await NavigationService.NavigateAsync("CreateMissionCommercialView");
+                return;
             }
             CreateMissionRequest.StartDate = DateTime.UtcNow;
             CreateMissionRequest.EndDate = CreateMissionRequest.StartDate.AddMonths(3);
@@ -67,9 +68,7 @@ namespace Modules.Mission.ViewModels
             IsStartDateSuperior = CreateMissionRequest.StartDate > CreateMissionRequest.EndDate;
             CanGoNext = !IsStartDateNull && !IsStartDateSuperior && !IsEndDateNull;
             if (!CanGoNext)
-            {
                 return;
-            }
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);

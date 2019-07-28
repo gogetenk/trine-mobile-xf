@@ -1,98 +1,106 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="Trine.Mobile.Bootstrapper.Resources.GeneralDevicesStyle">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="d"
+                    x:Class="Trine.Mobile.Bootstrapper.Resources.GeneralDevicesStyle">
 
-  <OnIdiom  x:TypeArguments="x:Double" Tablet="30" Phone="20" x:Key="PageSpacing" />
-  <OnIdiom  x:TypeArguments="Thickness" Tablet="30" Phone="20" x:Key="PagePadding" />
+    <OnIdiom  x:TypeArguments="x:Double"
+              Tablet="30"
+              Phone="20"
+              Default="80"
+              x:Key="PageSpacing" />
+    <OnIdiom  x:TypeArguments="Thickness"
+              Tablet="30"
+              Phone="20"
+              Default="80"
+              x:Key="PagePadding" />
 
     <Style x:Key="H1"
-               TargetType="Label">
+           TargetType="Label">
         <Setter Property="TextColor"
-                    Value="{StaticResource HeadingTextColor}" />
+                Value="{StaticResource HeadingTextColor}" />
         <Setter Property="FontFamily"
-                    Value="{StaticResource BoldFont}" />
+                Value="{StaticResource BoldFont}" />
         <Setter Property="FontSize"
-                    Value="Title" />
+                Value="Title" />
     </Style>
-    
+
     <Style x:Key="H2"
-               TargetType="Label">
-    <Setter Property="FontSize"
-        Value="Medium" />
-    <Setter Property="FontFamily"
-        Value="{StaticResource NormalFont}" />
-    <Setter Property="TextColor"
-        Value="{StaticResource AccentColor}" />
-  </Style>
+           TargetType="Label">
+        <Setter Property="FontSize"
+                Value="Medium" />
+        <Setter Property="FontFamily"
+                Value="{StaticResource NormalFont}" />
+        <Setter Property="TextColor"
+                Value="{StaticResource AccentColor}" />
+    </Style>
 
-  <Style x:Key="Paragraph"
-     TargetType="Label">
-    <Setter Property="FontSize"
-        Value="Body" />
-    <Setter Property="FontFamily"
-        Value="{StaticResource NormalFont}" />
-    <Setter Property="TextColor"
-        Value="{StaticResource NormalTextColor}" />
-  </Style>
+    <Style x:Key="Paragraph"
+           TargetType="Label">
+        <Setter Property="FontSize"
+                Value="Body" />
+        <Setter Property="FontFamily"
+                Value="{StaticResource NormalFont}" />
+        <Setter Property="TextColor"
+                Value="{StaticResource NormalTextColor}" />
+    </Style>
 
-  <Style x:Key="SecondaryText"
-     TargetType="Label">
-    <Setter Property="FontSize"
-        Value="Small" />
-    <Setter Property="TextDecorations"
-        Value="Underline" />
-    <Setter Property="TextColor"
-        Value="{StaticResource SecondaryTextColor}" />
-  </Style>
+    <Style x:Key="SecondaryText"
+           TargetType="Label">
+        <Setter Property="FontSize"
+                Value="Small" />
+        <Setter Property="TextDecorations"
+                Value="Underline" />
+        <Setter Property="TextColor"
+                Value="{StaticResource SecondaryTextColor}" />
+    </Style>
 
-  <Style x:Key="TertiaryText"
-     TargetType="Label">
-    <Setter Property="FontSize"
-        Value="Small" />
-    <Setter Property="FontFamily"
-        Value="{StaticResource NormalFont}" />
-    <Setter Property="TextDecorations"
-        Value="Underline" />
-    <Setter Property="TextColor"
-        Value="{StaticResource TertiaryTextColor}" />
-  </Style>
+    <Style x:Key="TertiaryText"
+           TargetType="Label">
+        <Setter Property="FontSize"
+                Value="Small" />
+        <Setter Property="FontFamily"
+                Value="{StaticResource NormalFont}" />
+        <Setter Property="TextDecorations"
+                Value="Underline" />
+        <Setter Property="TextColor"
+                Value="{StaticResource TertiaryTextColor}" />
+    </Style>
 
-  <Style x:Key="ErrorText"
-     TargetType="Label">
-    <Setter Property="FontSize"
-        Value="Small" />
-    <Setter Property="FontFamily"
-        Value="{StaticResource NormalFont}" />
-    <Setter Property="TextColor"
-        Value="{StaticResource ErrorColor}" />
-  </Style>
+    <Style x:Key="ErrorText"
+           TargetType="Label">
+        <Setter Property="FontSize"
+                Value="Small" />
+        <Setter Property="FontFamily"
+                Value="{StaticResource NormalFont}" />
+        <Setter Property="TextColor"
+                Value="{StaticResource ErrorColor}" />
+    </Style>
 
     <Style x:Key="EntryStyle"
-               TargetType="Button">
+           TargetType="Button">
         <Setter Property="HeightRequest"
-                    Value="40" />
+                Value="40" />
         <Setter Property="FontSize"
-                    Value="Body" />
+                Value="Body" />
         <Setter Property="FontFamily"
-                    Value="{StaticResource NormalFont}" />
+                Value="{StaticResource NormalFont}" />
         <Setter Property="TextColor"
-                    Value="{StaticResource NormalTextColor}" />
+                Value="{StaticResource NormalTextColor}" />
     </Style>
 
     <Style x:Key="PrimaryButtonStyle"
-               TargetType="Button">
+           TargetType="Button">
         <Setter Property="CornerRadius"
-                    Value="5" />
+                Value="5" />
         <Setter Property="HeightRequest"
-                    Value="40" />
+                Value="40" />
         <Setter Property="Visual"
-                    Value="Material" />
+                Value="Material" />
         <Setter Property="BackgroundColor"
-                    Value="{StaticResource AccentColor}" />
+                Value="{StaticResource AccentColor}" />
     </Style>
 
 </ResourceDictionary>
