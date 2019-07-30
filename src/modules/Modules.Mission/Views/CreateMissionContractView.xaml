@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              NavigationPage.HasNavigationBar="False"
              mc:Ignorable="d"
-             x:Class="Modules.Mission.Views.CreateMissionPriceView">
-    
+             x:Class="Modules.Mission.Views.CreateMissionContractView">
+
     <StackLayout Padding="50">
 
         <Frame CornerRadius="5"
@@ -20,7 +21,7 @@
         <StackLayout VerticalOptions="Start">
             <Label Text="Créer une mission"
                    Style="{StaticResource H1}" />
-            <Label Text="Combien souhaitez vous facturer cette prestation ?"
+            <Label Text="Qui est le consultant avec qui vous travaillez ?"
                    Style="{StaticResource H2}" />
             <BoxView BackgroundColor="#5A28D6"
                      WidthRequest="45"
@@ -32,40 +33,26 @@
         <StackLayout VerticalOptions="CenterAndExpand"
                      Margin="0,40">
 
-            <Label Text="Saisissez un TJM pour votre consultant"
-                       Style="{StaticResource Paragraph}" />
-            <Entry AutomationId="tb_tjm"
-                   Style="{StaticResource EntryStyle}"
-                   Placeholder="ex : 400"
-                   IsSpellCheckEnabled="False"
-                   IsTextPredictionEnabled="False"
-                   Text="{Binding CreateMissionRequest.DailyPrice}"/>
-            <Label Text="Veuillez spécifier un TJM pour votre consultant."
-                   IsVisible="{Binding IsDailyRateErrorVisible}"
-                   Style="{StaticResource ErrorText}" />
-
-            <Label Text="Saisissez votre marge commerciale"
+            <Label Text="Sélectionnez un consultant"
                    Margin="0,20,0,0"
                    Style="{StaticResource Paragraph}" />
-            <Slider ThumbColor="#486581"
-                    Value="{Binding CreateMissionRequest.CommercialFeePercentage}"
-                    x:Name="slider"
-                    ValueChanged="Slider_ValueChanged"
-                    Minimum="0"
-                    Maximum="100"
-                    MinimumTrackColor="{StaticResource AccentColor}"
-                    MaximumTrackColor="#D4DCE4" />
-            <Label Text="15 %"
-                   x:Name="lb_slider"
-                   FontSize="15"
-                   TextColor="#486581"
-                   HorizontalOptions="Center" />
-           
-            <Label Text="Le prix facturé au client sera de "
-                   Margin="0,60,0,0"
-                   Style="{StaticResource H2}" />
-            <Label Text="{Binding CreateMissionRequest.DailyPrice, StringFormat='{0:} € / jour, hors taxes'}"
-                   Style="{StaticResource H1}" />
+
+            <components:UserPickerView TappedCommand="{Binding PickUserCommand}"
+                                       PickedUser="{Binding PickedUser}"
+                                       RemovedCommand="{Binding RemovedUserCommand}" />
+
+            <Label Text="Veuillez spécifier un consultant."
+                   Style="{StaticResource ErrorText}"
+                   IsVisible="{Binding IsUserErrorVisible}" />
+
+            <StackLayout Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding CreateMissionRequest.IsFreelance}" />
+                <Label Text="Ce consultant est freelance"
+                       Margin="10,0,0,0"
+                       VerticalOptions="Center"
+                       Style="{StaticResource Paragraph}" />
+            </StackLayout>
+
         </StackLayout>
 
         <StackLayout Orientation="Horizontal"

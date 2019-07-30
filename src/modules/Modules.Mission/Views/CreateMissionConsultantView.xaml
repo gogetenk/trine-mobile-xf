@@ -6,9 +6,8 @@
              NavigationPage.HasNavigationBar="False"
              xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              mc:Ignorable="d"
-             x:Class="Modules.Mission.Views.CreateMissionConsultantView"
-             >
-    
+             x:Class="Modules.Mission.Views.CreateMissionConsultantView">
+
     <StackLayout Padding="50">
 
         <Frame CornerRadius="5"
@@ -47,7 +46,7 @@
                    IsVisible="{Binding IsUserErrorVisible}" />
 
             <StackLayout Orientation="Horizontal">
-                <CheckBox IsChecked="{Binding IsFreelance}" />
+                <CheckBox IsChecked="{Binding CreateMissionRequest.IsFreelance}" />
                 <Label Text="Ce consultant est freelance"
                        Margin="10,0,0,0"
                        VerticalOptions="Center"

@@ -56,9 +56,10 @@
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
-            <CheckBox IsChecked="{Binding IsDirect}" />
-            <Label Text="Je passe en direct et n'ai pas besoin d'un intermédiaire."
+            <CheckBox IsChecked="{Binding CreateMissionRequest.IsTripartite}" />
+            <Label Text="Cette mission est tripartite."
                    Margin="10,0,0,0"
+                   VerticalOptions="Center"
                    Style="{StaticResource Paragraph}" />
         </StackLayout>
 
