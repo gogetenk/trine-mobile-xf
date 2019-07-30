@@ -20,6 +20,7 @@ namespace Modules.Mission
             containerRegistry.RegisterForNavigation<CreateMissionConsultantView, CreateMissionConsultantViewModel>();
             containerRegistry.RegisterForNavigation<CreateMissionCommercialView, CreateMissionCommercialViewModel>();
             containerRegistry.RegisterForNavigation<CreateMissionPriceView, CreateMissionPriceViewModel>();
+            containerRegistry.RegisterForNavigation<CreateMissionContractView, CreateMissionContractViewModel>();
         }
     }
 }

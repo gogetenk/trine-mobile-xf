@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AutoMapper;
+using Prism.Logging;
+using Prism.Navigation;
+using Prism.Services;
 
 namespace Modules.Mission.ViewModels
 {
-    class CreateMissionContractViewModel
+    public class CreateMissionContractViewModel : CreateMissionViewModelBase
     {
+        public CreateMissionContractViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
+        {
+        }
     }
 }
