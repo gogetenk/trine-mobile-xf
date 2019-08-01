@@ -16,6 +16,8 @@ namespace Modules.Mission.ViewModels
 {
     public class CreateMissionSuccessViewModel : CreateMissionViewModelBase
     {
+        #region Bindings
+
         public ICommand NavigateToMissionDetailsCommand { get; set; }
 
         private bool _isLoading = true;
@@ -26,6 +28,8 @@ namespace Modules.Mission.ViewModels
 
         private readonly IMissionService _missionService;
         private MissionDto createdMission;
+
+        #endregion 
 
         public CreateMissionSuccessViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IMissionService missionService) : base(navigationService, mapper, logger, dialogService)
         {
@@ -46,7 +50,7 @@ namespace Modules.Mission.ViewModels
             {
                 IsLoading = true;
 
-                var createdMission = Mapper.Map<MissionDto>(await _missionService.CreateMission(Mapper.Map<CreateMissionRequestModel>(CreateMissionRequest)));
+                createdMission = Mapper.Map<MissionDto>(await _missionService.CreateMission(Mapper.Map<CreateMissionRequestModel>(CreateMissionRequest)));
                 if (createdMission is null)
                     throw new BusinessException(ErrorMessages.unknownError);
 

@@ -22,6 +22,7 @@ namespace Modules.Mission.ViewModels
             NextCommand = new DelegateCommand(async () => await OnNextStep());
             CreateMissionRequest = new CreateMissionRequestDto();
             CreateMissionRequest.IsTripartite = true; // Default
+            CreateMissionRequest.OrganizationId = "5ca5cab077e80c1344dbafec"; // TODO: Mocked 
         }
 
         private async Task OnNextStep()
@@ -38,6 +39,5 @@ namespace Modules.Mission.ViewModels
             navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
             await NavigationService.NavigateAsync("CreateMissionDatesView", navigationParams, useModalNavigation: false);
         }
-
     }
 }
