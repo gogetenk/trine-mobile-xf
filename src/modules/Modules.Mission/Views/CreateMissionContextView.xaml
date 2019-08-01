@@ -37,7 +37,7 @@
             <Entry AutomationId="tb_title"
                    Style="{StaticResource EntryStyle}"
                    Placeholder="ex : Projet Trine"
-                   Text="{Binding Title}" />
+                   Text="{Binding CreateMissionRequest.ProjectName}" />
             <Label Text="Veuillez spécifier un intitulé pour votre mission."
                    IsVisible="{Binding IsTitleEmptyErrorVisible}"
                    Style="{StaticResource ErrorText}" />
@@ -46,19 +46,23 @@
                    Margin="0,20,0,0"
                    Style="{StaticResource Paragraph}" />
 
-            <components:UserPickerView TappedCommand="{Binding PickUserCommand}"
-                                       PickedUser="{Binding PickedUser}"
-                                       RemovedCommand="{Binding RemovedUserCommand}" />
+            <components:TrinePickerView TappedCommand="{Binding PickUserCommand}"
+                                        Icon="&#xe8a6;"
+                                        Title="Selectionner un membre"
+                                        PickedUser="{Binding PickedUser}"
+                                        RemovedCommand="{Binding RemovedUserCommand}" />
 
             <Label Text="Veuillez spécifier un client."
                    Style="{StaticResource ErrorText}"
                    IsVisible="{Binding IsUserErrorVisible}" />
         </StackLayout>
 
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="Start">
             <CheckBox IsChecked="{Binding CreateMissionRequest.IsTripartite}" />
             <Label Text="Cette mission est tripartite."
                    Margin="10,0,0,0"
+                   HorizontalOptions="Start"
                    VerticalOptions="Center"
                    Style="{StaticResource Paragraph}" />
         </StackLayout>

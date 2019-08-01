@@ -37,14 +37,15 @@
                    Margin="0,20,0,0"
                    Style="{StaticResource Paragraph}" />
 
-            <components:UserPickerView TappedCommand="{Binding PickUserCommand}"
-                                       PickedUser="{Binding PickedUser}"
-                                       RemovedCommand="{Binding RemovedUserCommand}" />
+            <components:TrinePickerView TappedCommand="{Binding PickUserCommand}"
+                                        Icon="&#xe8a6;"
+                                        Title="Selectionner un membre"
+                                        PickedUser="{Binding PickedUser}"
+                                        RemovedCommand="{Binding RemovedUserCommand}" />
 
             <Label Text="Veuillez spécifier un commercial."
                    Style="{StaticResource ErrorText}"
                    IsVisible="{Binding IsUserErrorVisible}" />
-
         </StackLayout>
 
         <StackLayout Orientation="Horizontal"
@@ -70,6 +71,5 @@
                     WidthRequest="110" />
         </StackLayout>
     </StackLayout>
-
 
 </ContentPage>

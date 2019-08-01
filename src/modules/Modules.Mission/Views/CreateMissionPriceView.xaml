@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              NavigationPage.HasNavigationBar="False"
              mc:Ignorable="d"
              x:Class="Modules.Mission.Views.CreateMissionPriceView">
@@ -39,7 +40,12 @@
                    Placeholder="ex : 400"
                    IsSpellCheckEnabled="False"
                    IsTextPredictionEnabled="False"
-                   Text="{Binding CreateMissionRequest.DailyPrice}"/>
+                   Text="{Binding CreateMissionRequest.DailyPrice}">
+                <Entry.Behaviors>
+                    <b:EventToCommandBehavior EventName="TextChanged"
+                                              Command="{Binding PriceChangedCommand}" />
+                </Entry.Behaviors>
+            </Entry>
             <Label Text="Veuillez spécifier un TJM pour votre consultant."
                    IsVisible="{Binding IsDailyRateErrorVisible}"
                    Style="{StaticResource ErrorText}" />
@@ -54,9 +60,13 @@
                     Minimum="0"
                     Maximum="100"
                     MinimumTrackColor="{StaticResource AccentColor}"
-                    MaximumTrackColor="#D4DCE4" />
-            <Label Text="15 %"
-                   x:Name="lb_slider"
+                    MaximumTrackColor="#D4DCE4">
+                <Slider.Behaviors>
+                    <b:EventToCommandBehavior EventName="ValueChanged"
+                                              Command="{Binding PriceChangedCommand}" />
+                </Slider.Behaviors>
+            </Slider>
+            <Label x:Name="lb_slider"
                    FontSize="15"
                    TextColor="#486581"
                    HorizontalOptions="Center" />
@@ -64,7 +74,7 @@
             <Label Text="Le prix facturé au client sera de "
                    Margin="0,60,0,0"
                    Style="{StaticResource H2}" />
-            <Label Text="{Binding CreateMissionRequest.DailyPrice, StringFormat='{0:} € / jour, hors taxes'}"
+            <Label Text="{Binding TotalPrice, StringFormat='{0:F} € / jour, hors taxes'}"
                    Style="{StaticResource H1}" />
         </StackLayout>
 

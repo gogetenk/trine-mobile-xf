@@ -15,6 +15,8 @@ namespace Modules.Mission.Views
         public CreateMissionPriceView()
         {
             InitializeComponent();
+
+            lb_slider.Text = slider.Value.ToString("0.##") + " %";
         }
 
         private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)

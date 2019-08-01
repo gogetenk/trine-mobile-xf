@@ -31,10 +31,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Controls\TrinePickerView.xaml.cs">
+      <DependentUpon>TrinePickerView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Controls\TrineLogoHeaderView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Controls\UserPickerView.xaml">
+    <EmbeddedResource Update="Controls\TrinePickerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -22,11 +22,10 @@ namespace Modules.Mission.ViewModels
             if (IsUserErrorVisible)
                 return;
 
-            var createMissionRequest = new CreateMissionRequestDto();
-            createMissionRequest.Consultant = PickedUser;
+            CreateMissionRequest.Consultant = PickedUser;
 
             var navigationParams = new NavigationParameters();
-            navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, createMissionRequest);
+            navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
             await NavigationService.NavigateAsync("CreateMissionCommercialView", navigationParams, useModalNavigation: false);
         }
     }

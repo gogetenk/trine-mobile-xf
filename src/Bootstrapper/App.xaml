@@ -61,6 +61,8 @@
                     Value="Material" />
                 <Setter Property="BackgroundColor"
                     Value="{StaticResource AccentColor}" />
+                <Setter Property="TextColor"
+                        Value="White" />
             </Style>
 
             <Style x:Key="ActionButtonStyle"

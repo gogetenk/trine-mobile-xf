@@ -7,25 +7,39 @@ using Xamarin.Forms.Xaml;
 namespace Trine.Mobile.Components.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserPickerView : ContentView
+    public partial class TrinePickerView : ContentView
     {
         #region Bindable Properties
 
-        public static readonly BindableProperty TappedCommandProperty = BindableProperty.Create(nameof(TappedCommand), typeof(ICommand), typeof(UserPickerView), null);
+        public static readonly BindableProperty TappedCommandProperty = BindableProperty.Create(nameof(TappedCommand), typeof(ICommand), typeof(TrinePickerView), null);
         public ICommand TappedCommand
         {
             get => (ICommand)GetValue(TappedCommandProperty);
             set => SetValue(TappedCommandProperty, value);
         }
 
-        public static readonly BindableProperty RemovedCommandProperty = BindableProperty.Create(nameof(RemovedCommand), typeof(ICommand), typeof(UserPickerView), null);
+        public static readonly BindableProperty RemovedCommandProperty = BindableProperty.Create(nameof(RemovedCommand), typeof(ICommand), typeof(TrinePickerView), null);
         public ICommand RemovedCommand
         {
             get => (ICommand)GetValue(RemovedCommandProperty);
             set => SetValue(RemovedCommandProperty, value);
         }
 
-        public static readonly BindableProperty PickedUserProperty = BindableProperty.Create(nameof(PickedUser), typeof(UserDto), typeof(UserPickerView), null, propertyChanged: OnPickedUser);
+        //public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(TrinePickerView), null);
+        public string Title
+        {
+            get => lb_title.Text;
+            set => lb_title.Text = value;
+        }
+
+        //public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(string), typeof(TrinePickerView), null);
+        public string Icon
+        {
+            get => lb_icon.Text;
+            set => lb_icon.Text = value;
+        }
+
+        public static readonly BindableProperty PickedUserProperty = BindableProperty.Create(nameof(PickedUser), typeof(UserDto), typeof(TrinePickerView), null, propertyChanged: OnPickedUser);
         public UserDto PickedUser
         {
             get => (UserDto)GetValue(PickedUserProperty);
@@ -34,14 +48,17 @@ namespace Trine.Mobile.Components.Controls
 
         #endregion
 
-        public UserPickerView()
+        public TrinePickerView()
         {
             InitializeComponent();
+
+            //lb_icon.SetBinding(Label.TextProperty, new Binding(nameof(Icon)));
+            //lb_title.SetBinding(Label.TextProperty, new Binding(nameof(Title)));
         }
 
         static void OnPickedUser(BindableObject bindable, object oldValue, object newValue)
         {
-            ((UserPickerView)bindable).FillFrame(newValue as UserDto);
+            ((TrinePickerView)bindable).FillFrame(newValue as UserDto);
         }
 
         // Tapped on the empty frame

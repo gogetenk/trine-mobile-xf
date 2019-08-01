@@ -30,7 +30,8 @@ namespace Modules.Mission.ViewModels
         private UserDto _pickedUser;
         public UserDto PickedUser { get => _pickedUser; set { _pickedUser = value; RaisePropertyChanged(); } }
 
-        public bool IsUserErrorVisible { get; set; } = false;
+        private bool _isUserErrorVisible = false;
+        public bool IsUserErrorVisible { get => _isUserErrorVisible; set { _isUserErrorVisible = value; RaisePropertyChanged(); } }
 
         #endregion
 

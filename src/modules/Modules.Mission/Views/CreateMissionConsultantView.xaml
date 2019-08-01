@@ -37,18 +37,21 @@
                    Margin="0,20,0,0"
                    Style="{StaticResource Paragraph}" />
 
-            <components:UserPickerView TappedCommand="{Binding PickUserCommand}"
-                                       PickedUser="{Binding PickedUser}"
-                                       RemovedCommand="{Binding RemovedUserCommand}" />
+            <components:TrinePickerView TappedCommand="{Binding PickUserCommand}"
+                                        Icon="&#xe8a6;"
+                                        Title="Selectionner un membre"
+                                        PickedUser="{Binding PickedUser}"
+                                        RemovedCommand="{Binding RemovedUserCommand}" />
 
             <Label Text="Veuillez spécifier un consultant."
                    Style="{StaticResource ErrorText}"
-                   IsVisible="{Binding IsUserErrorVisible}" />
+                   IsVisible="{Binding IsUserErrorVisible}" /> 
 
             <StackLayout Orientation="Horizontal">
                 <CheckBox IsChecked="{Binding CreateMissionRequest.IsFreelance}" />
                 <Label Text="Ce consultant est freelance"
                        Margin="10,0,0,0"
+                       HorizontalOptions="Start"
                        VerticalOptions="Center"
                        Style="{StaticResource Paragraph}" />
             </StackLayout>

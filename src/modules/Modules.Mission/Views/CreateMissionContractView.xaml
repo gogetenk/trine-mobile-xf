@@ -21,7 +21,7 @@
         <StackLayout VerticalOptions="Start">
             <Label Text="Créer une mission"
                    Style="{StaticResource H1}" />
-            <Label Text="Qui est le consultant avec qui vous travaillez ?"
+            <Label Text="Sélectionnez le contrat cadre qui vous convient."
                    Style="{StaticResource H2}" />
             <BoxView BackgroundColor="#5A28D6"
                      WidthRequest="45"
@@ -33,50 +33,88 @@
         <StackLayout VerticalOptions="CenterAndExpand"
                      Margin="0,40">
 
-            <Label Text="Sélectionnez un consultant"
-                   Margin="0,20,0,0"
+            <Label Text="Vous pouvez décider d'uploader votre propre contrat."
+                   Margin="0,20,0,5"
                    Style="{StaticResource Paragraph}" />
 
-            <components:UserPickerView TappedCommand="{Binding PickUserCommand}"
-                                       PickedUser="{Binding PickedUser}"
-                                       RemovedCommand="{Binding RemovedUserCommand}" />
+            <components:TrinePickerView TappedCommand="{Binding PickContractCommand}"
+                                        Icon="&#xe2c6;"
+                                        Title="Charger un contrat"
+                                        PickedUser="{Binding PickedUser}" />
 
-            <Label Text="Veuillez spécifier un consultant."
-                   Style="{StaticResource ErrorText}"
-                   IsVisible="{Binding IsUserErrorVisible}" />
+            <Grid Margin="40"
+                  HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="33*" />
+                    <ColumnDefinition Width="33*" />
+                    <ColumnDefinition Width="33*" />
+                </Grid.ColumnDefinitions>
 
-            <StackLayout Orientation="Horizontal">
-                <CheckBox IsChecked="{Binding CreateMissionRequest.IsFreelance}" />
-                <Label Text="Ce consultant est freelance"
-                       Margin="10,0,0,0"
-                       VerticalOptions="Center"
-                       Style="{StaticResource Paragraph}" />
-            </StackLayout>
+                <BoxView HorizontalOptions="FillAndExpand"
+                         HeightRequest="1"
+                         Grid.Column="0"
+                         VerticalOptions="Center"
+                         BackgroundColor="{StaticResource AccentColor}" />
+                <Label Text="ou"
+                       FontSize="Title"
+                       HorizontalOptions="Center"
+                       Grid.Column="1"
+                       Style="{StaticResource H2}" />
+                <BoxView HorizontalOptions="FillAndExpand"
+                         HeightRequest="1"
+                         VerticalOptions="Center"
+                         Grid.Column="2"
+                         BackgroundColor="{StaticResource AccentColor}" />
+            </Grid>
 
-        </StackLayout>
+            <Label Text="Nous pouvons rédiger votre contrat cadre afin que vous vous concentriez sur votre travail."
+                   Margin="0,0,0,5"
+                   Style="{StaticResource Paragraph}" />
 
-        <StackLayout Orientation="Horizontal"
-                     VerticalOptions="EndAndExpand"
-                     Margin="0,0,0,20"
-                     HorizontalOptions="EndAndExpand">
-            <Label Text="Retour"
-                   VerticalOptions="CenterAndExpand"
-                   AutomationId="lb_back"
-                   Margin="0,0,30,0"
-                   Style="{StaticResource TertiaryText}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding BackCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
-            <Button Text="Suivant"
+            <Button Text="Demander un contrat cadre"
                     Command="{Binding NextCommand}"
                     AutomationId="bt_submit"
                     IsEnabled="{Binding CanGoNext}"
                     BackgroundColor="#5A28D6"
                     VerticalOptions="CenterAndExpand"
                     Style="{StaticResource PrimaryButtonStyle}"
+                    HeightRequest="45"
                     WidthRequest="110" />
         </StackLayout>
+
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     VerticalOptions="EndAndExpand"
+                     Margin="0,0,0,15">
+            <Label Text="&#xf28a;"
+                   Margin="0,0,15,0"
+                   FontSize="Title"
+                   VerticalOptions="CenterAndExpand"
+                   FontFamily="{StaticResource IconFont}" />
+            <StackLayout Spacing="-60">
+                <Label Text="Une idée ? Une question ? "
+                       VerticalOptions="CenterAndExpand"
+                       TextDecorations="None"
+                       Style="{StaticResource TertiaryText}" />
+                <Label Text="Nous vous répondons 7j/7 😊"
+                       VerticalOptions="CenterAndExpand"
+                       Style="{StaticResource TertiaryText}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HelpCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+
+        <Label Text="Retour"
+               HorizontalOptions="Center"
+               AutomationId="lb_back"
+               Margin="0,0,30,0"
+               Style="{StaticResource TertiaryText}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
     </StackLayout>
 
 </ContentPage>
