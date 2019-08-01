@@ -16,7 +16,7 @@ namespace Modules.Mission.ViewModels
     {
         #region Bindings 
 
-        public ICommand NextCommand { get; set; }
+        public DelegateCommand NextCommand { get; set; }
         public ICommand BackCommand { get; set; }
         public ICommand PickUserCommand { get; set; }
         public ICommand RemovedUserCommand { get; set; }

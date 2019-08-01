@@ -20,6 +20,7 @@
                      Opacity="0"
                      Margin="0,30,0,0"
                      HorizontalOptions="CenterAndExpand">
+
             <Label Text="Mission créée avec succès ! 🎉"
                    HorizontalTextAlignment="Center"
                    Style="{StaticResource H1}" />
@@ -29,10 +30,18 @@
 
         </StackLayout>
 
-        <StackLayout VerticalOptions="CenterAndExpand">
+        <StackLayout >
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               PropertyChanged="ActivityIndicator_PropertyChanged" />
 
             <Grid x:Name="grid_missionCard"
+                  IsEnabled="{Binding IsGridEnabled}" PropertyChanged="Grid_missionCard_PropertyChanged"
                   Opacity="0">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToMissionDetailsCommand}" />
+                </Grid.GestureRecognizers>
+
                 <Frame CornerRadius="5"
                        Margin="15,20,15,0"
                        Visual="Material"
@@ -52,6 +61,7 @@
                                      Padding="15">
                             <StackLayout Orientation="Horizontal"
                                          Spacing="-20">
+
                                 <abstractions:CircleImage HeightRequest="33"
                                                           WidthRequest="33"
                                                           HorizontalOptions="Start"
@@ -121,10 +131,11 @@
                    Margin="0,5,0,0"
                    TextColor="{StaticResource SecondaryTextColor}"
                    Style="{StaticResource Paragraph}" />
-            
+
         </StackLayout>
 
         <Label Text="Retour à l'accueil"
+               VerticalOptions="EndAndExpand"
                HorizontalOptions="Center"
                AutomationId="lb_back"
                Style="{StaticResource TertiaryText}">
