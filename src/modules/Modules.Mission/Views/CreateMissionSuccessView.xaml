@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              NavigationPage.HasNavigationBar="False"
@@ -15,19 +15,24 @@
                Padding="0"
                BackgroundColor="#D9E2EC" />
 
-        <StackLayout VerticalOptions="Start" Margin="0,30,0,0" HorizontalOptions="CenterAndExpand">
+        <StackLayout VerticalOptions="Start"
+                     x:Name="sl_title"
+                     Opacity="0"
+                     Margin="0,30,0,0"
+                     HorizontalOptions="CenterAndExpand">
             <Label Text="Mission créée avec succès ! 🎉"
                    HorizontalTextAlignment="Center"
                    Style="{StaticResource H1}" />
             <Label Text="Vos collaborateurs vont bientôt recevoir une invitation leur proposant de vous rejoindre."
                    HorizontalTextAlignment="Center"
                    Style="{StaticResource H2}" />
-           
+
         </StackLayout>
 
         <StackLayout VerticalOptions="CenterAndExpand">
 
-            <Grid>
+            <Grid x:Name="grid_missionCard"
+                  Opacity="0">
                 <Frame CornerRadius="5"
                        Margin="15,20,15,0"
                        Visual="Material"
@@ -93,6 +98,8 @@
                     </Grid>
                 </Frame>
                 <Frame CornerRadius="120"
+                       Scale="0"
+                       x:Name="frame_check"
                        BackgroundColor="{StaticResource AccentColor}"
                        HorizontalOptions="EndAndExpand"
                        Padding="0"
@@ -105,19 +112,21 @@
                            HorizontalOptions="Center"
                            FontSize="20" />
                 </Frame>
-                
             </Grid>
+
             <Label Text="Votre mission restera inactive tant que les trois parties n'ont pas accepté votre invitation."
                    HorizontalTextAlignment="Center"
+                   x:Name="lb_caption"
+                   Opacity="0"
                    Margin="0,5,0,0"
                    TextColor="{StaticResource SecondaryTextColor}"
                    Style="{StaticResource Paragraph}" />
+            
         </StackLayout>
 
         <Label Text="Retour à l'accueil"
                HorizontalOptions="Center"
                AutomationId="lb_back"
-               Margin="0,0,30,0"
                Style="{StaticResource TertiaryText}">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding BackCommand}" />
