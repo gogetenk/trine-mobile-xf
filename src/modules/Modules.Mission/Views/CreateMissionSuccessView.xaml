@@ -37,13 +37,13 @@
                                PropertyChanged="ActivityIndicator_PropertyChanged" />
 
             <Grid x:Name="grid_missionCard"
-                  Margin="0,30,0,0"
+                  Margin="0,50,0,0"
                   IsEnabled="{Binding IsGridEnabled}"
                   PropertyChanged="Grid_missionCard_PropertyChanged"
                   Opacity="0">
 
                 <controls:MissionCardView Margin="15,20,15,0"
-                                          Mission="{Binding CreateMissionRequest}"
+                                          Mission="{Binding CreatedMission}"
                                           TappedCommand="{Binding NavigateToMissionDetailsCommand}" />
 
                 <Frame CornerRadius="120"

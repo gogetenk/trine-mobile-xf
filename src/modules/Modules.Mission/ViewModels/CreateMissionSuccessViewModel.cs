@@ -19,15 +19,16 @@ namespace Modules.Mission.ViewModels
         #region Bindings
 
         public ICommand NavigateToMissionDetailsCommand { get; set; }
-
+        private readonly IMissionService _missionService;
+        
         private bool _isLoading = true;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
 
         private bool _isGridEnabled = false;
         public bool IsGridEnabled { get => _isGridEnabled; set { _isGridEnabled = value; RaisePropertyChanged(); } }
 
-        private readonly IMissionService _missionService;
-        private MissionDto createdMission;
+        private MissionDto _createdMission;
+        public MissionDto CreatedMission { get => _createdMission; set { _createdMission = value; RaisePropertyChanged(); } }
 
         #endregion 
 
@@ -50,8 +51,8 @@ namespace Modules.Mission.ViewModels
             {
                 IsLoading = true;
 
-                createdMission = Mapper.Map<MissionDto>(await _missionService.CreateMission(Mapper.Map<CreateMissionRequestModel>(CreateMissionRequest)));
-                if (createdMission is null)
+                CreatedMission = Mapper.Map<MissionDto>(await _missionService.CreateMission(Mapper.Map<CreateMissionRequestModel>(CreateMissionRequest)));
+                if (CreatedMission is null)
                     throw new BusinessException(ErrorMessages.unknownError);
 
                 IsGridEnabled = true;
@@ -72,7 +73,7 @@ namespace Modules.Mission.ViewModels
 
         private async Task NavigateToMissionDetails()
         {
-            await NavigationService.NavigateAsync($"MenuRootView/TrineNavigationPage/DashboardView?MissionId={createdMission.Id}", useModalNavigation: false);
+            await NavigationService.NavigateAsync($"MenuRootView/TrineNavigationPage/DashboardView?MissionId={CreatedMission.Id}", useModalNavigation: false);
         }
     }
 }
