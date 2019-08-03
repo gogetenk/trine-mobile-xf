@@ -22,7 +22,6 @@ namespace Modules.Mission.ViewModels
         private bool _isStartDateSuperior = false;
         public bool IsStartDateSuperior { get => _isStartDateSuperior; set { _isStartDateSuperior = value; RaisePropertyChanged(); } }
 
-
         #endregion
 
 
