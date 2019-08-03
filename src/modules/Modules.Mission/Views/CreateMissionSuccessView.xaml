@@ -17,6 +17,7 @@
                BackgroundColor="#D9E2EC" />
 
         <StackLayout VerticalOptions="Start"
+                     IsVisible="False"
                      x:Name="sl_title"
                      Opacity="0"
                      Margin="0,30,0,0"
@@ -26,6 +27,20 @@
                    HorizontalTextAlignment="Center"
                    Style="{StaticResource H1}" />
             <Label Text="Vos collaborateurs vont bientôt recevoir une invitation leur proposant de vous rejoindre."
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource H2}" />
+
+        </StackLayout>
+
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     IsVisible="{Binding IsErrorShown}"
+                     Margin="0,30,0,0"
+                     HorizontalOptions="CenterAndExpand">
+
+            <Label Text="Une erreur s'est produite 😟"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource H1}" />
+            <Label Text="Nous sommes désolé pour le dérangement. Nous travaillons activement à la résolution de ce problème."
                    HorizontalTextAlignment="Center"
                    Style="{StaticResource H2}" />
 
@@ -72,6 +87,16 @@
                    Style="{StaticResource Paragraph}" />
 
         </StackLayout>
+
+        <Button Text="Rééssayer"
+                BackgroundColor="#3EBD93"
+                IsVisible="{Binding IsErrorShown}"
+                Command="{Binding RetryCommand}"
+                x:Name="bt_start"
+                HorizontalOptions="Center"
+                VerticalOptions="EndAndExpand"
+                Style="{StaticResource PrimaryButtonStyle}"
+                WidthRequest="180" />
 
         <Label Text="Retour à l'accueil"
                VerticalOptions="EndAndExpand"
