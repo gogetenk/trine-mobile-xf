@@ -21,7 +21,7 @@ namespace Modules.Mission.ViewModels
         public ICommand PickUserCommand { get; set; }
         public ICommand RemovedUserCommand { get; set; }
 
-        private CreateMissionRequestDto _createMissionRequest;
+        private static CreateMissionRequestDto _createMissionRequest;
         public CreateMissionRequestDto CreateMissionRequest { get => _createMissionRequest; set { _createMissionRequest = value; RaisePropertyChanged(); } }
 
         private bool _canGoNext = true;
@@ -40,14 +40,24 @@ namespace Modules.Mission.ViewModels
         {
             PickUserCommand = new DelegateCommand(async () => await OnPickUser());
             RemovedUserCommand = new DelegateCommand(() => OnRemoveUser());
-            BackCommand = new DelegateCommand(async () => await NavigationService.GoBackAsync());
+
+            var parameters = new NavigationParameters();
+            parameters.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
+            BackCommand = new DelegateCommand(async () => await NavigationService.GoBackAsync(parameters));
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 
-            PickedUser = parameters.GetValue<UserDto>(NavigationParameterKeys._User);
+            // If the current Picked user is null, we reset the UI of the picker
+            if (PickedUser is null)
+                OnRemoveUser();
+
+            // We get the user from navigation (from picker) only if it was null or if he has not the same id
+            var pickedUser = parameters.GetValue<UserDto>(NavigationParameterKeys._User);
+            if (pickedUser != null)
+                PickedUser = pickedUser;
 
             // If the page was already populated, or if we are on the first form page, we stop here.
             if (CreateMissionRequest != null || base.GetType().Name == "CreateMissionContextViewModel")

@@ -9,7 +9,7 @@ using Trine.Mobile.Dto;
 
 namespace Modules.Mission.ViewModels
 {
-    public abstract class CreateMissionContextViewModel : CreateMissionViewModelBase
+    public class CreateMissionContextViewModel : CreateMissionViewModelBase
     {
         #region Bindings
 
@@ -29,7 +29,6 @@ namespace Modules.Mission.ViewModels
         {
             IsUserErrorVisible = PickedUser is null;
             IsTitleEmptyErrorVisible = string.IsNullOrEmpty(CreateMissionRequest.ProjectName);
-            CanGoNext = IsUserErrorVisible || IsTitleEmptyErrorVisible;
             if (IsUserErrorVisible || IsTitleEmptyErrorVisible)
                 return;
 
