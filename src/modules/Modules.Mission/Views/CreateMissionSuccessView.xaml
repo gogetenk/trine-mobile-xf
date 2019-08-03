@@ -59,7 +59,11 @@
 
                 <controls:MissionCardView Margin="10,20,10,0"
                                           Mission="{Binding CreatedMission}"
-                                          TappedCommand="{Binding NavigateToMissionDetailsCommand}" />
+                                          TappedCommand="{Binding NavigateToMissionDetailsCommand}">
+                    <controls:MissionCardView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToMissionDetailsCommand}" />
+                    </controls:MissionCardView.GestureRecognizers>
+                </controls:MissionCardView>
 
                 <Frame CornerRadius="120"
                        Scale="0"
