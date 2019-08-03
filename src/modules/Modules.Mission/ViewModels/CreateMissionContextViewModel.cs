@@ -13,7 +13,8 @@ namespace Modules.Mission.ViewModels
     {
         #region Bindings
 
-        public bool IsTitleEmptyErrorVisible { get; set; } = false;
+        private bool _isTitleEmptyErrorVisible = false;
+        public bool IsTitleEmptyErrorVisible { get => _isTitleEmptyErrorVisible; set { _isTitleEmptyErrorVisible = value; RaisePropertyChanged(); } }
 
         #endregion
 
