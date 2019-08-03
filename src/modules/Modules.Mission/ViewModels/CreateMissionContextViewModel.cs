@@ -9,7 +9,7 @@ using Trine.Mobile.Dto;
 
 namespace Modules.Mission.ViewModels
 {
-    public class CreateMissionContextViewModel : CreateMissionViewModelBase
+    public abstract class CreateMissionContextViewModel : CreateMissionViewModelBase
     {
         #region Bindings
 
