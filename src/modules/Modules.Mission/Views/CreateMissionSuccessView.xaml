@@ -57,7 +57,7 @@
                   PropertyChanged="Grid_missionCard_PropertyChanged"
                   Opacity="0">
 
-                <controls:MissionCardView Margin="15,20,15,0"
+                <controls:MissionCardView Margin="10,20,10,0"
                                           Mission="{Binding CreatedMission}"
                                           TappedCommand="{Binding NavigateToMissionDetailsCommand}" />
 
