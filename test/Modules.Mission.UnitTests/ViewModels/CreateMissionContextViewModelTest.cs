@@ -1,32 +1,75 @@
-﻿using Trine.Mobile.Components.Tests;
+﻿using AutoFixture;
+using FluentAssertions;
+using Modules.Mission.ViewModels;
+using Moq;
+using Prism.Navigation;
+using Trine.Mobile.Components.Navigation;
+using Trine.Mobile.Components.Tests;
+using Trine.Mobile.Dto;
+using Xunit;
 
 namespace Modules.Mission.UnitTests.ViewModels
 {
     public class CreateMissionContextViewModelTest : UnitTestBase
     {
-        //[Fact]
-        //public void OnNavigatedTo_NominalCase_ExpectMemberList()
-        //{
-        //    // Arrange
-        //    var orga = new Fixture().Create<PartialOrganizationModel>();
-        //    var members = new Fixture().CreateMany<UserModel>().ToList();
-        //    var organizationServiceMock = new Mock<IOrganizationService>();
-        //    organizationServiceMock
-        //        .Setup(x => x.GetById(It.IsAny<string>()))
-        //        .ReturnsAsync(orga);
-        //    organizationServiceMock
-        //        .Setup(x => x.GetOrganizationMembers(orga.Id))
-        //        .ReturnsAsync(members);
+        [Fact]
+        public void OnNextStep_NominalCase_ExpectNavigated()
+        {
+            // Arrange
+            var pickedUser = new Fixture().Create<UserDto>();
+            var request = new Fixture().Create<CreateMissionRequestDto>();
+            var viewmodel = new CreateMissionContextViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object);
+            var navParams = new NavigationParameters();
+            navParams.Add(NavigationParameterKeys._User, pickedUser);
+            navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
-        //    var viewmodel = new DummyCreateMissionViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object);
-        //    var navParams = new NavigationParameters();
-        //    navParams.Add(NavigationParameterKeys._IsUserPickerModeEnabled, false);
+            // Act
+            viewmodel.OnNavigatedTo(navParams);
+            viewmodel.CreateMissionRequest.ProjectName = "toto";
+            viewmodel.NextCommand.Execute();
 
-        //    // Act
-        //    viewmodel.OnNavigatedTo(navParams);
+            // Assert
+            viewmodel.CreateMissionRequest.Should().NotBeNull();
+            viewmodel.CreateMissionRequest.Customer.Should().BeEquivalentTo(pickedUser);
+            _navigationService.Verify(x => x.NavigateAsync("CreateMissionDatesView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._CreateMissionRequest] == viewmodel.CreateMissionRequest)));
+        }
 
-        //    // Assert
-        //    viewmodel.PickedUser.Should().NotBeNull();
-        //}
+        [Fact]
+        public void OnNextStep_WhenNoPickedUser_ExpectErrorMessageVisible()
+        {
+            // Arrange
+            var request = new Fixture().Create<CreateMissionRequestDto>();
+            var viewmodel = new CreateMissionContextViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object);
+            var navParams = new NavigationParameters();
+            navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
+
+            // Act
+            viewmodel.OnNavigatedTo(navParams);
+            viewmodel.CreateMissionRequest.ProjectName = "toto";
+            viewmodel.NextCommand.Execute();
+
+            // Assert
+            viewmodel.IsUserErrorVisible.Should().BeTrue();
+            _navigationService.Verify(x => x.NavigateAsync("CreateMissionDatesView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._CreateMissionRequest] == viewmodel.CreateMissionRequest)), Times.Never);
+        }
+
+        [Fact]
+        public void OnNextStep_WhenTitleEmpty_ExpectErrorMessageVisible()
+        {
+            // Arrange
+            var request = new Fixture().Create<CreateMissionRequestDto>();
+            var viewmodel = new CreateMissionContextViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object);
+            var navParams = new NavigationParameters();
+            navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
+
+            // Act
+            viewmodel.OnNavigatedTo(navParams);
+            viewmodel.CreateMissionRequest.ProjectName = "";
+            viewmodel.NextCommand.Execute();
+
+            // Assert
+            viewmodel.IsTitleEmptyErrorVisible.Should().BeTrue();
+            _navigationService.Verify(x => x.NavigateAsync("CreateMissionDatesView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._CreateMissionRequest] == viewmodel.CreateMissionRequest)), Times.Never);
+        }
     }
 }

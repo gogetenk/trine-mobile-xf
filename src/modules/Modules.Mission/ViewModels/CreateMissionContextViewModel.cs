@@ -37,7 +37,7 @@ namespace Modules.Mission.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
-            await NavigationService.NavigateAsync("CreateMissionDatesView", navigationParams, useModalNavigation: false);
+            await NavigationService.NavigateAsync("CreateMissionDatesView", navigationParams);
         }
     }
 }

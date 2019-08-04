@@ -5,7 +5,6 @@ using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using Trine.Mobile.Components.Navigation;
-using Trine.Mobile.Dto;
 
 namespace Modules.Mission.ViewModels
 {
@@ -26,7 +25,7 @@ namespace Modules.Mission.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
-            await NavigationService.NavigateAsync("CreateMissionCommercialView", navigationParams, useModalNavigation: false);
+            await NavigationService.NavigateAsync("CreateMissionCommercialView", navigationParams);
         }
     }
 }

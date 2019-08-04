@@ -94,7 +94,7 @@ namespace Modules.Mission.ViewModels
 
         private async Task NavigateToMissionDetails()
         {
-            await NavigationService.NavigateAsync($"MenuRootView/TrineNavigationPage/DashboardView?MissionId={CreatedMission.Id}", useModalNavigation: false);
+            await NavigationService.NavigateAsync($"MenuRootView/TrineNavigationPage/DashboardView?MissionId={CreatedMission.Id}");
         }
     }
 }

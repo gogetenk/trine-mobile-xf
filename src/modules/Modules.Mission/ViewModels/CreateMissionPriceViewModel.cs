@@ -1,10 +1,10 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
+using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Trine.Mobile.Components.Navigation;
 
 namespace Modules.Mission.ViewModels
@@ -47,7 +47,7 @@ namespace Modules.Mission.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
-            await NavigationService.NavigateAsync("CreateMissionContractView", navigationParams, useModalNavigation: false);
+            await NavigationService.NavigateAsync("CreateMissionContractView", navigationParams);
         }
 
         // Called every time the user changes the price
