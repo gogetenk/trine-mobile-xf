@@ -50,7 +50,11 @@
                                         Icon="&#xe8a6;"
                                         Title="Selectionner un membre"
                                         PickedUser="{Binding PickedUser}"
-                                        RemovedCommand="{Binding RemovedUserCommand}" />
+                                        RemovedCommand="{Binding RemovedUserCommand}">
+                <components:TrinePickerView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PickUserCommand}" />
+                </components:TrinePickerView.GestureRecognizers>
+            </components:TrinePickerView>
 
             <Label Text="Veuillez spécifier un client."
                    Style="{StaticResource ErrorText}"

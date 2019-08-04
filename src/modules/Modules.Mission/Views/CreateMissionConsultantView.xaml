@@ -41,20 +41,24 @@
                                         Icon="&#xe8a6;"
                                         Title="Selectionner un membre"
                                         PickedUser="{Binding PickedUser}"
-                                        RemovedCommand="{Binding RemovedUserCommand}" />
+                                        RemovedCommand="{Binding RemovedUserCommand}">
+                <components:TrinePickerView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PickUserCommand}" />
+                </components:TrinePickerView.GestureRecognizers>
+            </components:TrinePickerView>
 
             <Label Text="Veuillez spécifier un consultant."
-                   Style="{StaticResource ErrorText}"
-                   IsVisible="{Binding IsUserErrorVisible}" /> 
+                       Style="{StaticResource ErrorText}"
+                       IsVisible="{Binding IsUserErrorVisible}" />
 
-            <StackLayout Orientation="Horizontal">
-                <CheckBox IsChecked="{Binding CreateMissionRequest.IsFreelance}" />
-                <Label Text="Ce consultant est freelance"
-                       Margin="10,0,0,0"
-                       HorizontalOptions="Start"
-                       VerticalOptions="Center"
-                       Style="{StaticResource Paragraph}" />
-            </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding CreateMissionRequest.IsFreelance}" />
+                    <Label Text="Ce consultant est freelance"
+                           Margin="10,0,0,0"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"
+                           Style="{StaticResource Paragraph}" />
+                </StackLayout>
 
         </StackLayout>
 
