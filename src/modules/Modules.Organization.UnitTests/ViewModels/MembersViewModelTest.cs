@@ -1,17 +1,17 @@
-﻿using AutoFixture;
+﻿using System;
+using System.Linq;
+using Akavache;
+using AutoFixture;
+using FluentAssertions;
 using Modules.Organization.ViewModels;
 using Moq;
 using Prism.Navigation;
 using Trine.Mobile.Bll;
-using System.Collections.Generic;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
+using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
 using Xunit;
-using System.Linq;
-using FluentAssertions;
-using System;
-using Trine.Mobile.Dto;
 
 namespace Modules.Organization.UnitTests.ViewModels
 {
@@ -19,6 +19,7 @@ namespace Modules.Organization.UnitTests.ViewModels
     {
         public MembersViewModelTest()
         {
+            BlobCache.ApplicationName = "TrineUnitTests";
         }
 
         [Fact]
@@ -28,12 +29,18 @@ namespace Modules.Organization.UnitTests.ViewModels
             var orga = new Fixture().Create<PartialOrganizationModel>();
             var members = new Fixture().CreateMany<UserModel>().ToList();
             var organizationServiceMock = new Mock<IOrganizationService>();
+            var cacheMock = new Mock<IBlobCache>();
+            cacheMock.SetupAllProperties();
+            //cacheMock.Object.Insert("MemberList", members);
             organizationServiceMock
                 .Setup(x => x.GetById(It.IsAny<string>()))
                 .ReturnsAsync(orga);
             organizationServiceMock
                 .Setup(x => x.GetOrganizationMembers(orga.Id))
                 .ReturnsAsync(members);
+
+
+            BlobCache.LocalMachine = cacheMock.Object;
 
             var viewmodel = new MembersViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, organizationServiceMock.Object);
             var navParams = new NavigationParameters();

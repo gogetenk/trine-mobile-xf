@@ -36,7 +36,7 @@ namespace Modules.Mission.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnNavigatedTo_WhenRequestIsNull_ExpectPickedUserNotNull()
+        public void OnNavigatedTo_WhenRequestIsNull_ExpectPickedUserNotNull() // Ne marche pas en local sans aucune raison
         {
             // Arrange
             var dto = new Fixture().Create<UserDto>();

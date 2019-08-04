@@ -1,16 +1,16 @@
-﻿using Akavache;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
+using Akavache;
 using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Extensions;
 using Trine.Mobile.Components.ViewModels;
@@ -66,7 +66,6 @@ namespace Modules.Organization.ViewModels
         public MembersViewModelBase(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService) : base(navigationService, mapper, logger, dialogService)
         {
             _organizationService = organizationService;
-
             AddMemberCommand = new DelegateCommand(async () => await OnAddMember());
             RefreshCommand = new DelegateCommand(async () => await LoadData());
         }
@@ -104,19 +103,21 @@ namespace Modules.Organization.ViewModels
                 if (_organization is null)
                     return; // TODO : Que faire?
 
+                if (BlobCache.ApplicationName == "TrineUnitTests")
+                {
+                    RefreshUI(await _organizationService.GetOrganizationMembers(_organization.Id));
+                    return;
+                }
 
-                BlobCache.LocalMachine.GetAndFetchLatest("MemberList",
-                    async () => await _organizationService.GetOrganizationMembers(_organization.Id), null, null, true)
-                    .Subscribe(members =>
+                BlobCache.LocalMachine.GetAndFetchLatest(
+                        "MemberList",
+                        async () => await _organizationService.GetOrganizationMembers(_organization.Id),
+                        null,
+                        null,
+                        true
+                    ).Subscribe(members =>
                     {
-                        Members = Mapper.Map<ObservableCollection<UserDto>>(members);
-                        IsListEmpty = !Members.Any();
-                        _totalMemberList = Members.ToList();
-                        Roles = Members.Select(x => x.Role).ToList();
-                        // On ajoute le champ vide
-                        Roles.Insert(0, "");
-                        SelectedRole = null;
-                        RoleSelectedIndex = -1;
+                        RefreshUI(members);
                     });
             }
             catch (BusinessException bExc)
@@ -131,6 +132,18 @@ namespace Modules.Organization.ViewModels
             {
                 IsLoading = false;
             }
+        }
+
+        private void RefreshUI(List<Trine.Mobile.Model.UserModel> members)
+        {
+            Members = Mapper.Map<ObservableCollection<UserDto>>(members);
+            IsListEmpty = !Members.Any();
+            _totalMemberList = Members.ToList();
+            Roles = Members.Select(x => x.Role).ToList();
+            // On ajoute le champ vide
+            Roles.Insert(0, "");
+            SelectedRole = null;
+            RoleSelectedIndex = -1;
         }
 
         protected virtual async Task OnRefresh()
