@@ -32,8 +32,8 @@ namespace Trine.Mobile.Bootstrapper
 {
     public partial class App : PrismApplication
     {
-        const int smallWightResolution = 768;
-        const int smallHeightResolution = 1280;
+        private const int smallWightResolution = 768;
+        private const int smallHeightResolution = 1280;
 
         /* 
          * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
@@ -104,7 +104,7 @@ namespace Trine.Mobile.Bootstrapper
             return (width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS;
         }
 
-        void LoadStyles()
+        private void LoadStyles()
         {
             if (IsASmallDevice())
             {
