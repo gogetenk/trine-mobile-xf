@@ -48,24 +48,44 @@
             </components:TrinePickerView>
 
             <Label Text="Veuillez spécifier un consultant."
-                       Style="{StaticResource ErrorText}"
-                       IsVisible="{Binding IsUserErrorVisible}" />
+                   Style="{StaticResource ErrorText}"
+                   IsVisible="{Binding IsUserErrorVisible}" />
 
-                <StackLayout Orientation="Horizontal">
-                    <CheckBox IsChecked="{Binding CreateMissionRequest.IsFreelance}" />
-                    <Label Text="Ce consultant est freelance"
-                           Margin="10,0,0,0"
-                           HorizontalOptions="Start"
-                           VerticalOptions="Center"
-                           Style="{StaticResource Paragraph}" />
-                </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding CreateMissionRequest.IsFreelance}" />
+                <Label Text="Ce consultant est freelance"
+                       Margin="10,0,0,0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       Style="{StaticResource Paragraph}" />
+            </StackLayout>
 
         </StackLayout>
+
+        <Frame VerticalOptions="EndAndExpand"
+               BackgroundColor="{StaticResource WarningColorLight}"
+               CornerRadius="5" 
+               HasShadow="False"
+               Padding="15">
+            <StackLayout Orientation="Horizontal">
+                <Label FontFamily="{StaticResource MaterialIcons}"
+                       Text="&#xe88f;"
+                       VerticalOptions="Center"
+                       FontSize="24" WidthRequest="30"
+                       TextColor="{StaticResource WarningColorDark}" 
+                       Margin="0,0,10,0" />
+                <Label Style="{StaticResource SecondaryText}"
+                       Text="Cet utilisateur n'est pas inscrit sur Trine et sera invité par la même occasion."
+                       TextDecorations="None"
+                       TextColor="{StaticResource WarningColorDark}"
+                       Margin="0,0,15,0" />
+            </StackLayout>
+        </Frame>
 
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"
                      Margin="0,0,0,20"
-                     HorizontalOptions="EndAndExpand">
+                     HorizontalOptions="EndAndExpand"> 
             <Label Text="Retour"
                    VerticalOptions="CenterAndExpand"
                    AutomationId="lb_back"

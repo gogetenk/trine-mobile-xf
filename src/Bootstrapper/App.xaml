@@ -52,6 +52,8 @@
             <Color x:Key="SecondaryTextColor">#707070</Color>
             <Color x:Key="TertiaryTextColor">#9A9A9A</Color>
             <Color x:Key="ErrorColor">#FF5A39</Color>
+            <Color x:Key="WarningColorDark">#FFB400</Color>
+            <Color x:Key="WarningColorLight">#FFEAB8</Color>
 
             <Style x:Key="PrimaryButtonStyle"
                TargetType="Button">
