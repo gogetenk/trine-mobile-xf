@@ -51,8 +51,6 @@ namespace Modules.Mission.UnitTests.ViewModels
 
             // Assert
             viewmodel.PickedUser.Should().NotBeNull();
-            _pageDialogService.Verify(x => x.DisplayAlertAsync("Oops...", ErrorMessages.unknownError, "Ok"), Times.Once);
-            _navigationService.Verify(x => x.NavigateAsync("CreateMissionStartView"), Times.Once);
         }
 
         [Fact]
