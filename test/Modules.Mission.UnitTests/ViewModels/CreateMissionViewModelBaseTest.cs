@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Modules.Mission.UnitTests.ViewModels
 {
-    public class DummyCreateMissionViewModelBaseTest : UnitTestBase
+    public class CreateMissionViewModelBaseTest : UnitTestBase
     {
         [Fact]
         public void OnNavigatedTo_NominalCase_ExpectPickedUserNotNull()
@@ -32,11 +32,36 @@ namespace Modules.Mission.UnitTests.ViewModels
 
             // Assert
             viewmodel.PickedUser.Should().NotBeNull();
+            viewmodel.IsInvitedUser.Should().BeFalse();
             viewmodel.CreateMissionRequest.Should().NotBeNull();
         }
 
         [Fact]
-        public void OnNavigatedTo_WhenRequestIsNull_ExpectPickedUserNotNull() // Ne marche pas en local sans aucune raison
+        public void OnNavigatedTo_WhenUserIsNotInvitedYet_ExpectInformationBubble()
+        {
+            // Arrange
+            var createMission = new Fixture().Create<CreateMissionRequestDto>();
+            var pageDialogServiceMock = new Mock<IPageDialogService>();
+            var dto = new Fixture().Create<UserDto>();
+            dto.Id = null;
+            var request = new Fixture().Create<CreateMissionRequestDto>();
+
+            var viewmodel = new DummyCreateMissionViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object);
+            var navParams = new NavigationParameters();
+            navParams.Add(NavigationParameterKeys._User, dto);
+            navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
+
+            // Act
+            viewmodel.OnNavigatedTo(navParams);
+
+            // Assert
+            viewmodel.PickedUser.Should().NotBeNull();
+            viewmodel.IsInvitedUser.Should().BeTrue();
+            viewmodel.CreateMissionRequest.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void OnNavigatedTo_WhenRequestIsNull_ExpectPickedUserNotNull()
         {
             // Arrange
             var dto = new Fixture().Create<UserDto>();
