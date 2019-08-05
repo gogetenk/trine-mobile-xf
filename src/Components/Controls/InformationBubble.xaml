@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Trine.Mobile.Components.Controls.InformationBubble">
+    <Frame BackgroundColor="{StaticResource WarningColorLight}"
+           CornerRadius="5"
+           HasShadow="False"
+           Padding="15">
+        <StackLayout Orientation="Horizontal">
+            <Label FontFamily="{StaticResource MaterialIcons}"
+                   Text="&#xe88f;"
+                   VerticalOptions="Center"
+                   FontSize="24"
+                   WidthRequest="30"
+                   TextColor="{StaticResource WarningColorDark}"
+                   Margin="0,0,10,0" />
+            <Label Style="{StaticResource SecondaryText}"
+                   x:Name="lb_text"
+                   Text="Cet utilisateur n'est pas inscrit sur Trine et sera invité par la même occasion."
+                   TextDecorations="None"
+                   TextColor="{StaticResource WarningColorDark}"
+                   Margin="0,0,15,0" />
+        </StackLayout>
+    </Frame>
+</ContentView>

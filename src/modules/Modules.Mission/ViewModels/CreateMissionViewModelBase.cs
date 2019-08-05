@@ -33,6 +33,9 @@ namespace Modules.Mission.ViewModels
         private bool _isUserErrorVisible = false;
         public bool IsUserErrorVisible { get => _isUserErrorVisible; set { _isUserErrorVisible = value; RaisePropertyChanged(); } }
 
+        private bool _isInvitedUser = false;
+        public bool IsInvitedUser { get => _isInvitedUser; set { _isInvitedUser = value; RaisePropertyChanged(); } }
+
         #endregion
 
 
@@ -57,7 +60,10 @@ namespace Modules.Mission.ViewModels
             // We get the user from navigation (from picker) only if it was null or if he has not the same id
             var pickedUser = parameters.GetValue<UserDto>(NavigationParameterKeys._User);
             if (pickedUser != null)
+            {
+                IsInvitedUser = pickedUser.Id == null; // So we can show the information bubble 
                 PickedUser = pickedUser;
+            }
 
             // If the page was already populated, or if we are on the first form page, we stop here.
             if (CreateMissionRequest != null || base.GetType().Name == "CreateMissionContextViewModel")

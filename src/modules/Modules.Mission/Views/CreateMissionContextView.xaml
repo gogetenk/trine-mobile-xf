@@ -71,6 +71,9 @@
                    Style="{StaticResource Paragraph}" />
         </StackLayout>
 
+        <components:InformationBubble IsVisible="{Binding IsInvitedUser}"
+                                      VerticalOptions="EndAndExpand" />
+        
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"
                      Margin="0,0,0,20"

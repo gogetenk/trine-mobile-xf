@@ -62,25 +62,8 @@
 
         </StackLayout>
 
-        <Frame VerticalOptions="EndAndExpand"
-               BackgroundColor="{StaticResource WarningColorLight}"
-               CornerRadius="5" 
-               HasShadow="False"
-               Padding="15">
-            <StackLayout Orientation="Horizontal">
-                <Label FontFamily="{StaticResource MaterialIcons}"
-                       Text="&#xe88f;"
-                       VerticalOptions="Center"
-                       FontSize="24" WidthRequest="30"
-                       TextColor="{StaticResource WarningColorDark}" 
-                       Margin="0,0,10,0" />
-                <Label Style="{StaticResource SecondaryText}"
-                       Text="Cet utilisateur n'est pas inscrit sur Trine et sera invité par la même occasion."
-                       TextDecorations="None"
-                       TextColor="{StaticResource WarningColorDark}"
-                       Margin="0,0,15,0" />
-            </StackLayout>
-        </Frame>
+        <components:InformationBubble IsVisible="{Binding IsInvitedUser}"
+                                      VerticalOptions="EndAndExpand"/>
 
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"

@@ -25,14 +25,12 @@ namespace Trine.Mobile.Components.Controls
             set => SetValue(RemovedCommandProperty, value);
         }
 
-        //public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(TrinePickerView), null);
         public string Title
         {
             get => lb_title.Text;
             set => lb_title.Text = value;
         }
 
-        //public static readonly BindableProperty IconProperty = BindableProperty.Create(nameof(Icon), typeof(string), typeof(TrinePickerView), null);
         public string Icon
         {
             get => lb_icon.Text;
@@ -56,7 +54,7 @@ namespace Trine.Mobile.Components.Controls
             //lb_title.SetBinding(Label.TextProperty, new Binding(nameof(Title)));
         }
 
-        static void OnPickedUser(BindableObject bindable, object oldValue, object newValue)
+        private static void OnPickedUser(BindableObject bindable, object oldValue, object newValue)
         {
             ((TrinePickerView)bindable).FillFrame(newValue as UserDto);
         }
