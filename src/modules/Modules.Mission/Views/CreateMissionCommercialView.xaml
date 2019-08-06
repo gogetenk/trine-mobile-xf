@@ -8,9 +8,9 @@
              mc:Ignorable="d"
              x:Class="Modules.Mission.Views.CreateMissionCommercialView">
 
-    <StackLayout Padding="50">
+    <StackLayout Padding="{StaticResource PagePadding}">
 
-        <Frame CornerRadius="5"
+            <Frame CornerRadius="5"
                Visual="Material"
                HasShadow="False"
                Margin="20,0,20,40"

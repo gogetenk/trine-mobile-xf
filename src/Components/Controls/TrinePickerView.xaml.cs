@@ -98,5 +98,9 @@ namespace Trine.Mobile.Components.Controls
             img_user.Source = string.Empty;
         }
 
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

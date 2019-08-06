@@ -12,8 +12,8 @@
               Default="80"
               x:Key="PageSpacing" />
     <OnIdiom  x:TypeArguments="Thickness"
-              Tablet="30"
-              Phone="20"
+              Tablet="50"
+              Phone="{OnPlatform Android=50, iOS=20}"
               Default="80"
               x:Key="PagePadding" />
 

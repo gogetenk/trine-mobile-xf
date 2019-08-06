@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              x:Class="Modules.Mission.Views.CreateMissionConsultantView">
 
-    <StackLayout Padding="50">
+    <StackLayout Padding="{StaticResource PagePadding}">
 
         <Frame CornerRadius="5"
                Visual="Material"

@@ -4,7 +4,7 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="Modules.Mission.Views.CreateMissionDatesView">
 
-        <StackLayout Padding="50">
+    <StackLayout Padding="{StaticResource PagePadding}">
 
             <Frame CornerRadius="5"
                    Visual="Material"

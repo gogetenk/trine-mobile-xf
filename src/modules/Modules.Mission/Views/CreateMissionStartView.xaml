@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Modules.Mission.Views.CreateMissionStartView"
              NavigationPage.HasNavigationBar="False">
-    <StackLayout Padding="40">
+    <StackLayout Padding="{StaticResource PagePadding}">
         <Frame CornerRadius="5"
                Visual="Material"
                HasShadow="False"

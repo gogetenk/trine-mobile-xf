@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Dto;
@@ -22,6 +22,7 @@ namespace Modules.Mission.ViewModels
 
         public ICommand NavigateToMissionDetailsCommand { get; set; }
         public ICommand RetryCommand { get; set; }
+        public ICommand QuitCommand { get; set; }
 
         private bool _isLoading = true;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
@@ -44,9 +45,12 @@ namespace Modules.Mission.ViewModels
         {
             NavigateToMissionDetailsCommand = new DelegateCommand(async () => await NavigateToMissionDetails());
             RetryCommand = new DelegateCommand(async () => await OnRetry());
+            QuitCommand = new DelegateCommand(async () => await OnQuit());
 
             _missionService = missionService;
         }
+
+
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
@@ -95,6 +99,11 @@ namespace Modules.Mission.ViewModels
         private async Task NavigateToMissionDetails()
         {
             await NavigationService.NavigateAsync($"MenuRootView/TrineNavigationPage/DashboardView?MissionId={CreatedMission.Id}");
+        }
+
+        private async Task OnQuit()
+        {
+            await NavigationService.GoBackToRootAsync();
         }
     }
 }

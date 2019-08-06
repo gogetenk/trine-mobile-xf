@@ -30,6 +30,7 @@
                      Margin="0,15" />
         </StackLayout>
 
+        
         <StackLayout VerticalOptions="CenterAndExpand"
                      Margin="0,40,0,0">
             <Label Text="Quel est le nom de la mission ou projet ?"

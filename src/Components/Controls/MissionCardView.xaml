@@ -59,17 +59,21 @@
                 </StackLayout>
                 <StackLayout Margin="20,0,0,0"
                              Spacing="-6"
+                             VerticalOptions="Center"
                              HorizontalOptions="EndAndExpand"> 
                     <Label Text="-"
                            FontSize="Small"
+                           VerticalOptions="Start"
                            x:Name="lb_startDate"
                            TextColor="#818182" />
                     <Label Text="-"
                            FontSize="Small"
+                           VerticalOptions="Center"
                            HorizontalOptions="Center"
                            TextColor="#818182" />
                     <Label Text="-"
                            FontSize="Small"
+                           VerticalOptions="EndAndExpand"
                            x:Name="lb_endDate"
                            TextColor="#818182" />
                 </StackLayout>

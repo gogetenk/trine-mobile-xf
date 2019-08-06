@@ -6,7 +6,7 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="Modules.Mission.Views.CreateMissionSuccessView">
 
-    <StackLayout Padding="50">
+    <StackLayout Padding="{StaticResource PagePadding}">
 
         <Frame CornerRadius="5"
                Visual="Material"
@@ -17,7 +17,7 @@
                BackgroundColor="#D9E2EC" />
 
         <StackLayout VerticalOptions="Start"
-                     IsVisible="False"
+                     IsVisible="{Binding IsSuccessShown}"
                      x:Name="sl_title"
                      Opacity="0"
                      Margin="0,30,0,0"
@@ -108,7 +108,7 @@
                AutomationId="lb_back"
                Style="{StaticResource TertiaryText}">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding BackCommand}" />
+                <TapGestureRecognizer Command="{Binding QuitCommand}" />
             </Label.GestureRecognizers>
         </Label>
     </StackLayout>

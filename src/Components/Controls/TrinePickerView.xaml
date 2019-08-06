@@ -6,8 +6,21 @@
 
     <Grid>
 
+        <!--<Button Visual="Material"
+                Text="Selectionner un membre"
+                HeightRequest="45"
+                Padding="15,10,15,10"
+                CornerRadius="5"
+                BackgroundColor="White"
+                Clicked="Button_Clicked"
+                BorderColor="{StaticResource AccentColor}"
+                BorderWidth="1"
+                TextColor="{StaticResource AccentColor}">
+            
+        </Button>-->
+
         <Frame x:Name="frame_userPickerEmpty"
-               Visual="Material"
+               Visual="{OnPlatform iOS=Default, Android=Material, UWP=Material}"
                BorderColor="{StaticResource AccentColor}"
                HasShadow="False"
                Padding="15,10,15,10"
@@ -62,7 +75,7 @@
                         BackgroundColor="#627D99"
                         Padding="0"
                         Visual="Material"
-                        CornerRadius="120"
+                        CornerRadius="{OnPlatform iOS=20, Android=120, UWP=120}"
                         WidthRequest="55"
                         x:Name="bt_remove"
                         TextColor="White"
