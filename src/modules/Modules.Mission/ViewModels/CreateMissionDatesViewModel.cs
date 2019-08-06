@@ -1,10 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Components.Navigation;
 
 namespace Modules.Mission.ViewModels
@@ -34,8 +34,11 @@ namespace Modules.Mission.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            CreateMissionRequest.StartDate = DateTime.UtcNow;
-            CreateMissionRequest.EndDate = CreateMissionRequest.StartDate.AddMonths(3);
+            if (CreateMissionRequest.StartDate == default(DateTime))
+                CreateMissionRequest.StartDate = DateTime.UtcNow;
+
+            if (CreateMissionRequest.EndDate == default(DateTime))
+                CreateMissionRequest.EndDate = CreateMissionRequest.StartDate.AddMonths(3);
         }
 
         private async Task OnNextStep()

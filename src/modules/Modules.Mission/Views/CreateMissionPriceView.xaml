@@ -40,7 +40,7 @@
                    Placeholder="ex : 400"
                    IsSpellCheckEnabled="False"
                    IsTextPredictionEnabled="False"
-                   Text="{Binding CreateMissionRequest.DailyPrice}">
+                   Text="{Binding CreateMissionRequest.DailyPrice, Mode=TwoWay}">
                 <Entry.Behaviors>
                     <b:EventToCommandBehavior EventName="TextChanged"
                                               Command="{Binding PriceChangedCommand}" />
@@ -54,7 +54,7 @@
                    Margin="0,20,0,0"
                    Style="{StaticResource Paragraph}" />
             <Slider ThumbColor="#486581"
-                    Value="{Binding CreateMissionRequest.CommercialFeePercentage}"
+                    Value="{Binding CreateMissionRequest.CommercialFeePercentage, Mode=TwoWay}"
                     x:Name="slider"
                     ValueChanged="Slider_ValueChanged"
                     Minimum="0"
@@ -74,7 +74,7 @@
             <Label Text="Le prix facturé au client sera de "
                    Margin="0,60,0,0"
                    Style="{StaticResource H2}" />
-            <Label Text="{Binding TotalPrice, StringFormat='{0:F} € / jour, hors taxes'}"
+            <Label Text="{Binding TotalPrice, StringFormat='{0:F} € / jour, hors taxes', Mode=TwoWay}"
                    Style="{StaticResource H1}" />
         </StackLayout>
 
