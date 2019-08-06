@@ -48,7 +48,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             request.DailyPrice = 10f;
             request.CommercialFeePercentage = 10f;
             viewmodel.PriceChangedCommand.Execute(null);
-            viewmodel.TotalPrice.Should().Be(11);
+            viewmodel.TotalPrice.Should().Be(viewmodel.CreateMissionRequest.DailyPrice + (viewmodel.CreateMissionRequest.DailyPrice * viewmodel.CreateMissionRequest.CommercialFeePercentage * .01f));
             viewmodel.NextCommand.Execute();
 
             // Assert
@@ -67,10 +67,11 @@ namespace Modules.Mission.UnitTests.ViewModels
 
             // Act
             viewmodel.OnNavigatedTo(navParams);
+            viewmodel.CreateMissionRequest.DailyPrice = 0;
             viewmodel.NextCommand.Execute();
 
             // Assert
-            viewmodel.IsUserErrorVisible.Should().BeTrue();
+            viewmodel.IsDailyRateErrorVisible.Should().BeTrue();
             _navigationService.Verify(x => x.NavigateAsync("CreateMissionContractView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._CreateMissionRequest] == viewmodel.CreateMissionRequest)), Times.Never);
         }
     }

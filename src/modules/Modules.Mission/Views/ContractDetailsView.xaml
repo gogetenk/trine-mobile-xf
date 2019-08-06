@@ -6,9 +6,9 @@
              NavigationPage.HasNavigationBar="False"
              mc:Ignorable="d"
              x:Class="Modules.Mission.Views.ContractDetailsView">
-    
+
     <StackLayout Padding="{StaticResource PagePadding}">
-            <Editor Text="{Binding Contract.Content}"
+        <Editor Text="{Binding Contract.Content}"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand" />
         <Label Text="Retour"
@@ -20,5 +20,5 @@
             </Label.GestureRecognizers>
         </Label>
     </StackLayout>
-    
+
 </ContentPage>

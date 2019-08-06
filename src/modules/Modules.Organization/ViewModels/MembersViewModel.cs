@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Dto;
