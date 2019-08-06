@@ -36,7 +36,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.LoginCommand.Execute();
 
             // Assert
-            _navigationService.Verify(x => x.NavigateAsync("../DashboardView"), Times.Once);
+            _navigationService.Verify(x => x.NavigateAsync("MenuRootView/TrineNavigationPage/DashboardView"), Times.Once);
         }
 
         [Fact]

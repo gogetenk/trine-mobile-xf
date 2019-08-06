@@ -20,7 +20,7 @@ namespace Modules.Menu.ViewModels
 
         private async Task OnCreateMission()
         {
-            await NavigationService.NavigateAsync("CreateMissionStartView", useModalNavigation: true);
+            await NavigationService.NavigateAsync("TrineNavigationPage/CreateMissionStartView", useModalNavigation: true);
         }
     }
 }

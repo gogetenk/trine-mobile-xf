@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Akavache;
+using AutoMapper;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -31,8 +32,8 @@ namespace Trine.Mobile.Bootstrapper
 {
     public partial class App : PrismApplication
     {
-        const int smallWightResolution = 768;
-        const int smallHeightResolution = 1280;
+        private const int smallWightResolution = 768;
+        private const int smallHeightResolution = 1280;
 
         /* 
          * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
@@ -50,6 +51,7 @@ namespace Trine.Mobile.Bootstrapper
 #if DEBUG
             HotReloader.Current.Run(this);
 #endif
+            Akavache.Registrations.Start("TrineApp");
             await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
         }
 
@@ -59,8 +61,15 @@ namespace Trine.Mobile.Bootstrapper
 
             AppCenter.Start("android=9cfc99dc-15cc-4652-b794-44df21413075;" +
                   "uwp={Your UWP App secret here};" +
-                  "ios={Your iOS App secret here}",
+                  "ios=8a841e14-34c8-4774-b034-c8ed5991f943",
                   typeof(Analytics), typeof(Crashes));
+        }
+
+        protected override void CleanUp()
+        {
+            base.CleanUp();
+
+            BlobCache.Shutdown().Wait();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -95,7 +104,7 @@ namespace Trine.Mobile.Bootstrapper
             return (width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS;
         }
 
-        void LoadStyles()
+        private void LoadStyles()
         {
             if (IsASmallDevice())
             {
@@ -140,11 +149,11 @@ namespace Trine.Mobile.Bootstrapper
 
         private void RegisterServices(IContainerRegistry containerRegistry)
         {
-            //containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository(AppSettings.GatewayApi, new HttpClient()));
             containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository(AppSettings.ApiUrls[AppSettings.GatewayApi], HttpClientFactory.GetClient()));
             containerRegistry.Register<IAccountService, AccountService>();
             containerRegistry.Register<IOrganizationService, OrganizationService>();
             containerRegistry.Register<IUserService, UserService>();
+            containerRegistry.Register<IMissionService, MissionService>();
         }
 
         #endregion

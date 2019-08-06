@@ -10,7 +10,11 @@ namespace Modules.Mission.ViewModels
 {
     public class CreateMissionStartViewModel : ViewModelBase
     {
+        #region Bindings 
+
         public ICommand StartCommand { get; set; }
+
+        #endregion
 
         public CreateMissionStartViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {

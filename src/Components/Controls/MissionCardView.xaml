@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Trine.Mobile.Components.Controls.MissionCardView">
+    <Frame CornerRadius="5"
+           Visual="Material"
+           BackgroundColor="#F5F5F7"
+           HasShadow="True"
+           Padding="0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <BoxView Color="#F0B429"
+                     x:Name="bv_status"
+                     Grid.Column="0" />
+            <StackLayout Orientation="Horizontal"
+                         Grid.Column="1"
+                         Padding="15">
+                <StackLayout Orientation="Horizontal"
+                             Spacing="-20">
+
+                    <abstractions:CircleImage HeightRequest="33"
+                                              WidthRequest="33"
+                                              x:Name="img_user1"
+                                              HorizontalOptions="Start"
+                                              BorderColor="White"
+                                              BorderThickness="1"
+                                              VerticalOptions="CenterAndExpand"
+                                              Aspect="AspectFill" />
+                    <abstractions:CircleImage HeightRequest="33"
+                                              WidthRequest="33"
+                                              x:Name="img_user2"
+                                              HorizontalOptions="Start"
+                                              BorderColor="White"
+                                              BorderThickness="1"
+                                              VerticalOptions="CenterAndExpand"
+                                              Aspect="AspectFill" />
+                    <abstractions:CircleImage HeightRequest="33"
+                                              WidthRequest="33"
+                                              x:Name="img_user3"
+                                              HorizontalOptions="Start"
+                                              BorderColor="White"
+                                              BorderThickness="1"
+                                              VerticalOptions="CenterAndExpand"
+                                              Aspect="AspectFill" />
+                </StackLayout>
+                <StackLayout Margin="20,0,0,0">
+                    <Label Text="-"
+                           x:Name="lb_title"
+                           Style="{StaticResource Paragraph}" />
+                    <Label Text="-"
+                           FontSize="Small"
+                           x:Name="lb_consultantName"
+                           TextColor="#818182" />
+                </StackLayout>
+                <StackLayout Margin="20,0,0,0"
+                             Spacing="-6"
+                             VerticalOptions="Center"
+                             HorizontalOptions="EndAndExpand"> 
+                    <Label Text="-"
+                           FontSize="Small"
+                           VerticalOptions="Start"
+                           x:Name="lb_startDate"
+                           TextColor="#818182" />
+                    <Label Text="-"
+                           FontSize="Small"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           TextColor="#818182" />
+                    <Label Text="-"
+                           FontSize="Small"
+                           VerticalOptions="EndAndExpand"
+                           x:Name="lb_endDate"
+                           TextColor="#818182" />
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </Frame>
+</ContentView>

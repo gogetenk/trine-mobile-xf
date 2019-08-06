@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Modules.Mission.Views.CreateMissionSuccessView">
+
+    <StackLayout Padding="{StaticResource PagePadding}">
+
+        <Frame CornerRadius="5"
+               Visual="Material"
+               HasShadow="False"
+               Margin="20,0,20,40"
+               HeightRequest="8"
+               Padding="0"
+               BackgroundColor="#D9E2EC" />
+
+        <StackLayout VerticalOptions="Start"
+                     IsVisible="{Binding IsSuccessShown}"
+                     x:Name="sl_title"
+                     Opacity="0"
+                     Margin="0,30,0,0"
+                     HorizontalOptions="CenterAndExpand">
+
+            <Label Text="Mission créée avec succès ! 🎉"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource H1}" />
+            <Label Text="Vos collaborateurs vont bientôt recevoir une invitation leur proposant de vous rejoindre."
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource H2}" />
+
+        </StackLayout>
+
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     IsVisible="{Binding IsErrorShown}"
+                     Margin="0,30,0,0"
+                     HorizontalOptions="CenterAndExpand">
+
+            <Label Text="Une erreur s'est produite 😟"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource H1}" />
+            <Label Text="Nous sommes désolé pour le dérangement. Nous travaillons activement à la résolution de ce problème."
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource H2}" />
+
+        </StackLayout>
+
+        <StackLayout>
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               PropertyChanged="ActivityIndicator_PropertyChanged" />
+
+            <Grid x:Name="grid_missionCard"
+                  Margin="0,50,0,0"
+                  IsEnabled="{Binding IsGridEnabled}"
+                  PropertyChanged="Grid_missionCard_PropertyChanged"
+                  Opacity="0">
+
+                <controls:MissionCardView Margin="10,20,10,0"
+                                          Mission="{Binding CreatedMission}"
+                                          TappedCommand="{Binding NavigateToMissionDetailsCommand}">
+                    <controls:MissionCardView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NavigateToMissionDetailsCommand}" />
+                    </controls:MissionCardView.GestureRecognizers>
+                </controls:MissionCardView>
+
+                <Frame CornerRadius="120"
+                       Scale="0"
+                       x:Name="frame_check"
+                       BackgroundColor="{StaticResource AccentColor}"
+                       HorizontalOptions="EndAndExpand"
+                       Padding="0"
+                       HeightRequest="40"
+                       WidthRequest="40"
+                       VerticalOptions="Start">
+                    <Label Text="✔"
+                           TextColor="White"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontSize="20" />
+                </Frame>
+            </Grid>
+
+            <Label Text="Votre mission restera inactive tant que les trois parties n'ont pas accepté votre invitation."
+                   HorizontalTextAlignment="Center"
+                   x:Name="lb_caption"
+                   Opacity="0"
+                   Margin="0,5,0,0"
+                   TextColor="{StaticResource SecondaryTextColor}"
+                   Style="{StaticResource Paragraph}" />
+
+        </StackLayout>
+
+        <Button Text="Rééssayer"
+                BackgroundColor="#3EBD93"
+                IsVisible="{Binding IsErrorShown}"
+                Command="{Binding RetryCommand}"
+                x:Name="bt_start"
+                HorizontalOptions="Center"
+                VerticalOptions="EndAndExpand"
+                Style="{StaticResource PrimaryButtonStyle}"
+                WidthRequest="180" />
+
+        <Label Text="Retour à l'accueil"
+               VerticalOptions="EndAndExpand"
+               HorizontalOptions="Center"
+               AutomationId="lb_back"
+               Style="{StaticResource TertiaryText}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding QuitCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+
+</ContentPage>

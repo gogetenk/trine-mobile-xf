@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#ANDROID ONLY
 
 set -e # Exit immediately if a command exits with a non-zero status (failure)
 
@@ -8,5 +9,4 @@ set -e # Exit immediately if a command exits with a non-zero status (failure)
 				find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec echo {} \;
 			echo
 			echo "Run Unit Test projects"
-				find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec dotnet test {} \;
-				
+				find $APPCENTER_SOURCE_DIRECTORY -regex '.*UnitTests.*\.csproj' -exec dotnet test {} \; 

@@ -16,53 +16,53 @@
 
         <components:TrineLogoHeaderView Grid.Row="0" />
 
-            <StackLayout VerticalOptions="Start"
+        <StackLayout VerticalOptions="Start"
             Grid.Row="1">
             <Label Text="Qui êtes-vous ?"
                        Style="{StaticResource H1}" />
-                <Label Text="Nous voudrions mieux vous connaître."
+            <Label Text="Nous voudrions mieux vous connaître."
                        Style="{StaticResource H2}" />
 
-                <BoxView BackgroundColor="#5A28D6"
+            <BoxView BackgroundColor="#5A28D6"
                          WidthRequest="45"
                          HeightRequest="4"
                          HorizontalOptions="Start"
                          Margin="0,15" />
-            </StackLayout>
+        </StackLayout>
 
         <StackLayout VerticalOptions="Center"
                      Grid.Row="2">
-                <Label Text="Quel est votre nom ?"
+            <Label Text="Quel est votre nom ?"
                        Style="{StaticResource Paragraph}" />
 
-                <Entry AutomationId="tb_lastname"
+            <Entry AutomationId="tb_lastname"
                      Style="{StaticResource EntryStyle}"
                        Placeholder="ex : John"
                        Text="{Binding Lastname}" />
-                <Label Text="Veuillez spécifier un nom valide."
+            <Label Text="Veuillez spécifier un nom valide."
                        IsVisible="{Binding IsLastnameErrorVisible}"
                        Style="{StaticResource ErrorText}" />
 
-                <Label Text="Et votre prénom ?"
+            <Label Text="Et votre prénom ?"
                    Style="{StaticResource Paragraph}"
                    Margin="0,20,0,0"/>
-                <Entry AutomationId="tb_firstname"
+            <Entry AutomationId="tb_firstname"
                      Style="{StaticResource EntryStyle}"
                        Placeholder="ex : Doe"
                        Text="{Binding Firstname}" />
-                <Label Text="Veuillez spécifier un prénom valide."
+            <Label Text="Veuillez spécifier un prénom valide."
                        IsVisible="{Binding IsFirstnameErrorVisible}"
                        Style="{StaticResource ErrorText}" />
 
-                <Label Text="J'ai déjà un compte →"
+            <Label Text="J'ai déjà un compte →"
                        AutomationId="lb_alreadyAccount"
                        Style="{StaticResource TertiaryText}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding LoginCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LoginCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
-        
+
         <Button Text="Suivant"
                 Grid.Row="3"
                 Command="{Binding NextCommand}"

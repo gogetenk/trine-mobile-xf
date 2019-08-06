@@ -1,7 +1,7 @@
-﻿using Prism.Ioc;
-using Prism.Modularity;
+﻿using Modules.Mission.ViewModels;
 using Modules.Mission.Views;
-using Modules.Mission.ViewModels;
+using Prism.Ioc;
+using Prism.Modularity;
 
 namespace Modules.Mission
 {
@@ -16,6 +16,13 @@ namespace Modules.Mission
         {
             containerRegistry.RegisterForNavigation<CreateMissionStartView, CreateMissionStartViewModel>();
             containerRegistry.RegisterForNavigation<CreateMissionContextView, CreateMissionContextViewModel>();
+            containerRegistry.RegisterForNavigation<CreateMissionDatesView, CreateMissionDatesViewModel>();
+            containerRegistry.RegisterForNavigation<CreateMissionConsultantView, CreateMissionConsultantViewModel>();
+            containerRegistry.RegisterForNavigation<CreateMissionCommercialView, CreateMissionCommercialViewModel>();
+            containerRegistry.RegisterForNavigation<CreateMissionPriceView, CreateMissionPriceViewModel>();
+            containerRegistry.RegisterForNavigation<CreateMissionContractView, CreateMissionContractViewModel>();
+            containerRegistry.RegisterForNavigation<CreateMissionSuccessView, CreateMissionSuccessViewModel>();
+            containerRegistry.RegisterForNavigation<ContractDetailsView, ContractDetailsViewModel>();
         }
     }
 }

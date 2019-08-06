@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
+             mc:Ignorable="d"
+             x:Class="Modules.Mission.Views.CreateMissionConsultantView">
+
+    <StackLayout Padding="{StaticResource PagePadding}">
+
+        <Frame CornerRadius="5"
+               Visual="Material"
+               HasShadow="False"
+               Margin="20,0,20,40"
+               HeightRequest="8"
+               Padding="0"
+               BackgroundColor="#D9E2EC" />
+
+        <StackLayout VerticalOptions="Start">
+            <Label Text="Créer une mission"
+                   Style="{StaticResource H1}" />
+            <Label Text="Qui est le consultant avec qui vous travaillez ?"
+                   Style="{StaticResource H2}" />
+            <BoxView BackgroundColor="#5A28D6"
+                     WidthRequest="45"
+                     HeightRequest="4"
+                     HorizontalOptions="Start"
+                     Margin="0,15" />
+        </StackLayout>
+
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     Margin="0,40">
+
+            <Label Text="Sélectionnez un consultant"
+                   Margin="0,20,0,0"
+                   Style="{StaticResource Paragraph}" />
+
+            <components:TrinePickerView TappedCommand="{Binding PickUserCommand}"
+                                        Icon="&#xe8a6;"
+                                        Title="Selectionner un membre"
+                                        PickedUser="{Binding PickedUser}"
+                                        RemovedCommand="{Binding RemovedUserCommand}">
+                <components:TrinePickerView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PickUserCommand}" />
+                </components:TrinePickerView.GestureRecognizers>
+            </components:TrinePickerView>
+
+            <Label Text="Veuillez spécifier un consultant."
+                   Style="{StaticResource ErrorText}"
+                   IsVisible="{Binding IsUserErrorVisible}" />
+
+            <StackLayout Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding CreateMissionRequest.IsFreelance}" />
+                <Label Text="Ce consultant est freelance"
+                       Margin="10,0,0,0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       Style="{StaticResource Paragraph}" />
+            </StackLayout>
+
+        </StackLayout>
+
+        <components:InformationBubble IsVisible="{Binding IsInvitedUser}"
+                                      VerticalOptions="EndAndExpand"/>
+
+        <StackLayout Orientation="Horizontal"
+                     VerticalOptions="EndAndExpand"
+                     Margin="0,0,0,20"
+                     HorizontalOptions="EndAndExpand"> 
+            <Label Text="Retour"
+                   VerticalOptions="CenterAndExpand"
+                   AutomationId="lb_back"
+                   Margin="0,0,30,0"
+                   Style="{StaticResource TertiaryText}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Button Text="Suivant"
+                    Command="{Binding NextCommand}"
+                    AutomationId="bt_submit"
+                    IsEnabled="{Binding CanGoNext}"
+                    BackgroundColor="#5A28D6"
+                    VerticalOptions="CenterAndExpand"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    WidthRequest="110" />
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

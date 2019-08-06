@@ -63,7 +63,6 @@ namespace Modules.Authentication.ViewModels
             if (IsFirstnameErrorVisible || IsLastnameErrorVisible)
                 return;
 
-
             var navParams = new NavigationParameters();
             _userToCreate.LastName = Lastname;
             _userToCreate.FirstName = Firstname;

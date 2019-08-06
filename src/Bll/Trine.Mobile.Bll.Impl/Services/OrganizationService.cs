@@ -100,8 +100,8 @@ namespace Trine.Mobile.Bll.Impl.Services
 
                 if (invite is null)
                     throw new BusinessException("Une erreur s'est produite lors de la création de cette invitation.");
-                if (invite.IsRevoked)
-                    throw new BusinessException("Cette invitation est révoquée et ne peut plus être utilisée.");
+                //if (invite.IsRevoked)
+                //    throw new BusinessException("Cette invitation est révoquée et ne peut plus être utilisée.");
                 if (invite.Expires <= DateTime.UtcNow)
                     throw new BusinessException("Cette invitation est expirée et ne peut plus être utilisée.");
 

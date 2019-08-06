@@ -8,9 +8,9 @@
 		     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              ios:NavigationPage.IsNavigationBarTranslucent="False"
              ios:NavigationPage.HideNavigationBarSeparator="True"
-                ios:NavigationPage.PrefersLargeTitles="true"
-                BackgroundColor="{StaticResource AccentColor}"
-                BarBackgroundColor="{StaticResource AccentColor}"
-                BarTextColor="White">
+             ios:NavigationPage.PrefersLargeTitles="true"
+             BackgroundColor="White"
+             BarBackgroundColor="{StaticResource AccentColor}"
+             BarTextColor="White">
 
 </NavigationPage>

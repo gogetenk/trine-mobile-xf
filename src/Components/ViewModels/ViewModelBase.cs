@@ -26,15 +26,15 @@ namespace Trine.Mobile.Components.ViewModels
             DialogService = dialogService;
         }
 
-        public virtual void OnNavigatedFrom(INavigationParameters parameters)
-        {
-        }
-
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add("UserId", null);
             Logger.TrackEvent("[" + base.GetType().Name + "] Navigated To", dictionary);
+        }
+
+        public virtual void OnNavigatedFrom(INavigationParameters parameters)
+        {
         }
 
         public virtual void OnNavigatingTo(INavigationParameters parameters)

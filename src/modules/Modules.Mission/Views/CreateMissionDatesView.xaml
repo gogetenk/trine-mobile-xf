@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Modules.Mission.Views.CreateMissionDatesView">
+
+    <StackLayout Padding="{StaticResource PagePadding}">
+
+            <Frame CornerRadius="5"
+                   Visual="Material"
+                   HasShadow="False"
+                   Margin="20,0,20,40"
+                   HeightRequest="8"
+                   Padding="0"
+                   BackgroundColor="#D9E2EC" />
+
+            <StackLayout VerticalOptions="Start">
+                <Label Text="Créer une mission"
+                       Style="{StaticResource H1}" />
+                <Label Text="Pour gérer vos calendriers, il nous faut vos dates."
+                       Style="{StaticResource H2}" />
+                <BoxView BackgroundColor="#5A28D6"
+                         WidthRequest="45"
+                         HeightRequest="4"
+                         HorizontalOptions="Start"
+                         Margin="0,15" />
+            </StackLayout>
+
+            <StackLayout VerticalOptions="CenterAndExpand"
+                         Margin="0,40">
+                <Label Text="Date de début de la mission"
+                       Style="{StaticResource Paragraph}" />
+                <DatePicker Style="{StaticResource EntryStyle}"
+                            x:Name="startDatePicker"
+                            Format="dd/MM/yyyy"
+                            MinimumDate="01/01/2000"
+                            Date="{Binding CreateMissionRequest.StartDate, StringFormat='{0:dd/MM/yyyy}'}" />
+                <Label Text="Vous devez spécifier une date de début."
+                       IsVisible="{Binding IsStartDateNull}"
+                       Style="{StaticResource ErrorText}" />
+                <Label Text="La date de début ne peux pas être supérieure à la date de fin."
+                       IsVisible="{Binding IsStartDateSuperior}"
+                       Style="{StaticResource ErrorText}" />
+
+                <Label Text="Date de fin de la mission"
+                       Margin="0,20,0,0"
+                       Style="{StaticResource Paragraph}" />
+                <DatePicker Style="{StaticResource EntryStyle}"
+                            MinimumDate="{Binding Source={x:Reference startDatePicker}, Path=Date}"
+                            Format="dd/MM/yyyy"
+                            Date="{Binding CreateMissionRequest.EndDate, StringFormat='{0:dd/MM/yyyy}'}" />
+                <Label Text="Vous devez spécifier une date de fin."
+                       Style="{StaticResource ErrorText}"
+                       IsVisible="{Binding IsEndDateNull}" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="EndAndExpand"
+                         Margin="0,0,0,20"
+                         HorizontalOptions="EndAndExpand">
+                <Label Text="Retour"
+                       VerticalOptions="CenterAndExpand"
+                       AutomationId="lb_back"
+                       Margin="0,0,30,0"
+                       Style="{StaticResource TertiaryText}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Button Text="Suivant"
+                        Command="{Binding NextCommand}"
+                        AutomationId="bt_submit"
+                        IsEnabled="{Binding CanGoNext}"
+                        BackgroundColor="#5A28D6"
+                        VerticalOptions="CenterAndExpand"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        WidthRequest="110" />
+            </StackLayout>
+        </StackLayout>
+
+
+</ContentPage>

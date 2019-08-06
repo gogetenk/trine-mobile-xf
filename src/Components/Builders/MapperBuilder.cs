@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using Trine.Mobile.Dal.Swagger;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
@@ -23,6 +23,14 @@ namespace Trine.Mobile.Components.Builders
                 cfg.CreateMap<FrameContract, FrameContractModel>()
                     .ForPath(x => x.Id, opts => opts.Ignore())
                     .ForPath(x => x.FileUri, opts => opts.Ignore());
+                cfg.CreateMap<FrameContractDto, FrameContractModel>()
+                    .ForPath(x => x.Id, opts => opts.Ignore())
+                    .ForPath(x => x.SubContracts, opts => opts.Ignore())
+                    .ForPath(x => x.FileUri, opts => opts.Ignore());
+                cfg.CreateMap<FrameContractModel, FrameContractDto>()
+                   .ForPath(x => x.Id, opts => opts.Ignore())
+                   .ForPath(x => x.SubContracts, opts => opts.Ignore())
+                   .ForPath(x => x.FileUri, opts => opts.Ignore());
                 cfg.CreateMap<Invoice, InvoiceModel>();
                 cfg.CreateMap<InvoiceModel, InvoiceDto>()
                     .ForMember(x => x.PinColor, opts => opts.MapFrom(x => GetPinColorFromInvoiceStatus(x.State)));
@@ -76,7 +84,6 @@ namespace Trine.Mobile.Components.Builders
                     .ForMember(x => x.BadgeIconText, opts => opts.MapFrom(x => GetMissionStatusIcon(x.Status)));
             cfg.CreateMap<MissionDto, MissionModel>();
             cfg.CreateMap<MissionModel, Mission>();
-
         }
 
 

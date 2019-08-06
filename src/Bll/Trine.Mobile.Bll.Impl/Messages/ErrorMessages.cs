@@ -20,7 +20,7 @@
 
         // Technical
         public static readonly string serverErrorText = "An error occured while requesting the server. Check your connectivity, or retry later. Error code : ";
-        public static readonly string unknownError = "Une erreur inconnue s'est produite";
+        public static readonly string unknownError = "Une erreur inconnue s'est produite.";
         public static readonly string errorOccuredGettingCardComponent = "An error occured while getting the card component";
         public static readonly string RandomNetworkErrorMessage = "Une erreur technique vient de se produire, vérifiez votre connectivité et recommencez. Si le problème subsiste, soyez sûrs que nous sommes déjà en train de travailler à le résoudre !";
         public static readonly string GetInviteError = "Une erreur s'est produite lors de la récupération d'une invitation. Veuillez rééssayer plus tard.";
