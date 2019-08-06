@@ -70,7 +70,7 @@
                        Style="{StaticResource Paragraph}"
                        TextColor="White"
                        VerticalOptions="CenterAndExpand" />
-                <Button FontFamily="{StaticResource MaterialIcons}"
+                <!--<Button FontFamily="{StaticResource MaterialIcons}"
                         Text="&#xe888;"
                         BackgroundColor="#627D99"
                         Padding="0"
@@ -83,7 +83,7 @@
                         Margin="0,0,5,0"
                         HorizontalOptions="EndAndExpand"
                         VerticalOptions="Center"
-                        Clicked="Remove_Tapped" />
+                        Clicked="Remove_Tapped" />-->
             </StackLayout>
         </Frame>
 

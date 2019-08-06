@@ -56,6 +56,9 @@ namespace Trine.Mobile.Components.Controls
 
         private static void OnPickedUser(BindableObject bindable, object oldValue, object newValue)
         {
+            if (newValue is null)
+                return;
+
             ((TrinePickerView)bindable).FillFrame(newValue as UserDto);
         }
 
@@ -83,7 +86,7 @@ namespace Trine.Mobile.Components.Controls
             if (user is null)
                 return;
 
-            bt_remove.IsVisible = true;
+            //bt_remove.IsVisible = true;
             frame_userPickerFilled.IsVisible = true;
             lb_username.Text = user.DisplayName;
             img_user.Source = user.ProfilePicUrl;
@@ -92,7 +95,7 @@ namespace Trine.Mobile.Components.Controls
         private void EmptyFrame()
         {
             PickedUser = null;
-            bt_remove.IsVisible = false;
+            //bt_remove.IsVisible = false;
             frame_userPickerFilled.IsVisible = false;
             lb_username.Text = string.Empty;
             img_user.Source = string.Empty;
