@@ -1,9 +1,9 @@
-﻿using System;
-using AutoFixture;
+﻿using AutoFixture;
 using FluentAssertions;
 using Modules.Mission.ViewModels;
 using Moq;
 using Prism.Navigation;
+using System;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
 using Trine.Mobile.Dto;
@@ -14,11 +14,13 @@ namespace Modules.Mission.UnitTests.ViewModels
     public class CreateMissionDatesViewModelTest : UnitTestBase
     {
         [Fact]
-        public void OnNextStep_NominalCase_ExpectNavigated()
+        public void OnNextStep_NominalCase_ExpectNavigated() // Marche pas alors que ça passe en pas-à-pas
         {
             // Arrange
             var pickedUser = new Fixture().Create<UserDto>();
             var request = new Fixture().Create<CreateMissionRequestDto>();
+            request.StartDate = DateTime.UtcNow;
+            request.EndDate = DateTime.UtcNow.AddMonths(3);
             var viewmodel = new CreateMissionDatesViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object);
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._User, pickedUser);
