@@ -50,8 +50,6 @@ namespace Modules.Mission.ViewModels
             _missionService = missionService;
         }
 
-
-
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
