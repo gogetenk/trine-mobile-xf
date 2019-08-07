@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             mc:Ignorable="d"
+             x:Class="Modules.Organization.Views.OrganizationHomeView">
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+        </Grid.RowDefinitions>
+
+        <Grid BackgroundColor="{StaticResource AccentColor}"
+              Grid.Row="0" />
+        <Grid BackgroundColor="{StaticResource AccentColor}"
+              Grid.Row="1" />
+        <Grid BackgroundColor="White"
+              Grid.Row="2" />
+        <Grid BackgroundColor="White"
+              Grid.Row="3" />
+
+        <abstractions:CircleImage HeightRequest="140"
+                                  WidthRequest="140"
+                                  BorderColor="White"
+                                  BorderThickness="2"
+                                  Grid.Row="0"
+                                  HorizontalOptions="CenterAndExpand"
+                                  VerticalOptions="CenterAndExpand"
+                                  Aspect="AspectFill"
+                                  Source="http://static8.viadeo-static.com/77FxtLv0A0dtrPHwEbVH1XwdJgA=/300x300/member/0021c2asszyj3s6y%3Fts%3D1488881872000" />
+
+        <Frame HasShadow="True"
+               Grid.Row="1"
+               Visual="Material"
+               BackgroundColor="White"
+               Margin="40,0,40,0"
+               Padding="25"
+               CornerRadius="5"
+               Grid.RowSpan="2">
+            <StackLayout>
+                <Label Text="Panda Services"
+                       Style="{StaticResource H2}"
+                       FontSize="Title" />
+                <Label Text="Organisation créée le 14/03/2012"
+                       Style="{StaticResource Paragraph}"
+                       TextColor="{StaticResource SecondaryTextColor}"
+                       FontSize="Small" />
+                <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
+                    <Label Text="&#xe55f;"
+                           VerticalOptions="Center"
+                           FontSize="Small"
+                           TextColor="{StaticResource SecondaryTextColor}" 
+                           FontFamily="{StaticResource MaterialIcons}"
+                           Margin="0,0,10,0" />
+                    <Label Text="Montpellier, France"
+                           VerticalOptions="Center"
+                           TextColor="{StaticResource SecondaryTextColor}"
+                           FontSize="Small"
+                           Style="{StaticResource Paragraph}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             Margin="0,5,0,0">
+                    <Label Text="&#xe8d3;"
+                           VerticalOptions="Center"
+                           FontSize="Small"
+                           TextColor="{StaticResource SecondaryTextColor}"
+                           FontFamily="{StaticResource MaterialIcons}"
+                           Margin="0,0,10,0" />
+                    <Label Text="17 membres"
+                           VerticalOptions="Center"
+                           TextColor="{StaticResource SecondaryTextColor}"
+                           FontSize="Small"
+                           Style="{StaticResource Paragraph}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             Margin="0,5,0,0">
+                    <Label Text="&#xe157;"
+                           VerticalOptions="Center"
+                           FontSize="Small"
+                           TextColor="{StaticResource SecondaryTextColor}"
+                           FontFamily="{StaticResource MaterialIcons}"
+                           Margin="0,0,10,0" />
+                    <Label Text="pandaservices.fr"
+                           VerticalOptions="Center"
+                           TextDecorations="Underline"
+                           TextColor="{StaticResource SecondaryTextColor}"
+                           FontSize="Small"
+                           Style="{StaticResource Paragraph}" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+
+    </Grid>
+
+</ContentPage>

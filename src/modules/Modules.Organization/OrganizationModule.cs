@@ -1,7 +1,7 @@
-﻿using Prism.Ioc;
-using Prism.Modularity;
+﻿using Modules.Organization.ViewModels;
 using Modules.Organization.Views;
-using Modules.Organization.ViewModels;
+using Prism.Ioc;
+using Prism.Modularity;
 
 namespace Modules.Organization
 {
@@ -21,6 +21,9 @@ namespace Modules.Organization
             containerRegistry.RegisterForNavigation<MemberPickerView, MemberPickerViewModel>();
             containerRegistry.RegisterForNavigation<AddMemberView, AddMemberViewModel>();
             containerRegistry.RegisterForNavigation<MemberDetailsView, MemberDetailsViewModel>();
+            containerRegistry.RegisterForNavigation<OrganizationDetailsView, OrganizationDetailsViewModel>();
+            containerRegistry.RegisterForNavigation<OrganizationHomeView, OrganizationHomeViewModel>();
+            containerRegistry.RegisterForNavigation<OrganizationMissionsView, OrganizationMissionsViewModel>();
         }
     }
 }
