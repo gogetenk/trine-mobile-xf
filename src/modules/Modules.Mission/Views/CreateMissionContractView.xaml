@@ -37,7 +37,8 @@
                    Margin="0,20,0,5"
                    Style="{StaticResource Paragraph}" />
 
-            <Grid VerticalOptions="FillAndExpand" HeightRequest="400">
+            <Grid VerticalOptions="FillAndExpand"
+                  HeightRequest="400">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="40" />
@@ -89,6 +90,8 @@
             </StackLayout>
         </StackLayout>-->
 
+        <ActivityIndicator IsRunning="{Binding IsLoading}" />
+
         <Button Text="Finaliser"
                 Grid.Row="0"
                 Command="{Binding NextCommand}"
@@ -100,7 +103,7 @@
                 HeightRequest="45"
                 Margin="0,0,0,15"
                 WidthRequest="110" />
-        
+
         <Label Text="Retour"
                HorizontalOptions="Center"
                AutomationId="lb_back"

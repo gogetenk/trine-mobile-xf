@@ -6,7 +6,6 @@ using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Dto;
@@ -19,11 +18,11 @@ namespace Modules.Mission.ViewModels
         #region Bindings 
 
         private bool _isLoading = false;
-        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); ReadCommand.RaiseCanExecuteChanged(); } }
         private FrameContractDto _contract;
         public FrameContractDto Contract { get => _contract; set { _contract = value; RaisePropertyChanged(); } }
 
-        public ICommand ReadCommand { get; set; }
+        public DelegateCommand ReadCommand { get; set; }
 
         #endregion
 
