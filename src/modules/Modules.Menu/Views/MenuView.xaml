@@ -127,9 +127,8 @@
                 </CollectionView>
 
             </StackLayout>
-
-           
         </Grid>
+
         <Button FontFamily="{StaticResource MaterialIcons}"
                 Text="&#xe8b8;"
                 WidthRequest="50"
