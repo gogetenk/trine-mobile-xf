@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 
@@ -102,11 +103,22 @@ namespace Modules.Menu.ViewModels
 
         private async Task OnOrganizationChanged()
         {
+            if (SelectedOrganization is null)
+                return;
+
+            var navParams = new NavigationParameters();
+            navParams.Add(NavigationParameterKeys._Organization, SelectedOrganization);
+            await NavigationService.NavigateAsync("TrineNavigationPage/OrganizationDetailsView", navParams);
         }
 
         private async Task OnMissionChanged()
         {
-        }
+            if (SelectedMission is null)
+                return;
 
+            var navParams = new NavigationParameters();
+            navParams.Add(NavigationParameterKeys._Mission, SelectedMission);
+            await NavigationService.NavigateAsync("TrineNavigationPage/MissionDetailsView", navParams);
+        }
     }
 }

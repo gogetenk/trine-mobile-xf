@@ -7,6 +7,7 @@
         public static readonly string _IsUserPickerModeEnabled = "IsUserPickerModeEnabled";
         public static readonly string _User = "User";
         public static readonly string _Organization = "Organization";
+        public static readonly string _Mission = "Mission";
         public static readonly string _OrganizationId = "OrganizationId";
         public static readonly string _CreateMissionRequest = "CreateMissionRequest";
     }

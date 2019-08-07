@@ -94,7 +94,7 @@ namespace Trine.Mobile.Bll.Impl.Services
         {
             try
             {
-                return _mapper.Map<ObservableCollection<PartialOrganizationModel>>(_gatewayRepository.ApiDashboardsOrganizationsUsersByUserIdGetAsync(userId));
+                return _mapper.Map<ObservableCollection<PartialOrganizationModel>>(await _gatewayRepository.ApiDashboardsOrganizationsUsersByUserIdGetAsync(userId));
             }
             catch (ApiException dalExc)
             {
