@@ -23,8 +23,13 @@
                    TextColor="White" />
         </StackLayout>
 
-        <ScrollView VerticalOptions="FillAndExpand">
-            <StackLayout>
+        <Grid VerticalOptions="Fill">
+            <Grid.RowDefinitions> 
+                <RowDefinition Height="60*" />
+                <RowDefinition Height="30*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0">
                 <Frame VerticalOptions="Start"
                        Visual="Material"
                        CornerRadius="5"
@@ -60,45 +65,32 @@
                             TextColor="White" />
                 </StackLayout>
 
-                <StackLayout Spacing="10">
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="⬤"
-                               VerticalOptions="Center"
-                               TextColor="White"
-                               Margin="0,5,5,0" />
-                        <Label Text="Sogetrel / Yannis T"
-                               VerticalOptions="Center"
-                               TextColor="White"
-                               Margin="0,5,0,0"
-                               Opacity="0.8" />
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="⬤"
-                               VerticalOptions="Center"
-                               TextColor="White"
-                               Margin="0,5,5,0" />
-                        <Label Text="Les Echos / Matthieu D"
-                               VerticalOptions="Center"
-                               TextColor="White"
-                               Margin="0,5,0,0"
-                               Opacity="0.8" />
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="⬤"
-                               VerticalOptions="Center"
-                               TextColor="White"
-                               Margin="0,5,5,0" />
-                        <Label Text="Les Echos / Marc S"
-                               VerticalOptions="Center"
-                               TextColor="White"
-                               Margin="0,5,0,0"
-                               Opacity="0.8" />
-                    </StackLayout>
-                </StackLayout>
+                <CollectionView ItemsSource="{Binding Missions}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedMission}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal"
+                                         Margin="0,5,0,5">
+                                <Label Text="⬤"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       Margin="0,0,5,0" />
+                                <Label Text="{Binding ProjectName}"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       Opacity="0.8" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1">
 
                 <StackLayout Orientation="Horizontal"
                              Margin="0,20,0,0">
-                    <Label Text="TEAMS"
+                    <Label Text="ORGANISATIONS"
                            TextColor="White"
                            VerticalOptions="Center"
                            Opacity="0.8" />
@@ -114,30 +106,38 @@
                             TextColor="White" />
                 </StackLayout>
 
-                <StackLayout Spacing="10">
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="⬤"
-                               VerticalOptions="Center"
-                               TextColor="White"
-                               Margin="0,5,5,0" />
-                        <Label Text="Panda Services"
-                               VerticalOptions="Center"
-                               TextColor="White"
-                               Margin="0,5,0,0"
-                               Opacity="0.8" />
-                    </StackLayout>
-                </StackLayout>
+                <CollectionView ItemsSource="{Binding Organizations}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedOrganization}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal"
+                                         Margin="0,5,0,5">
+                                <Label Text="⬤"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       Margin="0,0,5,0" />
+                                <Label Text="{Binding Name}"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       Opacity="0.8" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-                <Button FontFamily="{StaticResource MaterialIcons}"
-                       Text="&#xe8b8;"
-                        WidthRequest="50"
-                        CornerRadius="120"
-                       HorizontalOptions="Start"
-                        BackgroundColor="#322E3F"
-                        VerticalOptions="EndAndExpand"
-                       FontSize="20"
-                       TextColor="White" />
             </StackLayout>
-        </ScrollView>
+        </Grid>
+
+        <Button FontFamily="{StaticResource MaterialIcons}"
+                Text="&#xe8b8;"
+                WidthRequest="50"
+                Grid.Row="2"
+                CornerRadius="120"
+                HorizontalOptions="Start"
+                BackgroundColor="#322E3F"
+                VerticalOptions="EndAndExpand"
+                FontSize="20"
+                TextColor="White" />
     </StackLayout>
 </ContentPage>

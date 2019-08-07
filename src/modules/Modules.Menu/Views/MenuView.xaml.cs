@@ -11,5 +11,6 @@ namespace Modules.Menu.Views
         {
             InitializeComponent();
         }
+
     }
 }

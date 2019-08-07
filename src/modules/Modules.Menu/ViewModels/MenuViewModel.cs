@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
-using AutoMapper;
-using Prism.Commands;
+﻿using AutoMapper;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
@@ -11,16 +8,14 @@ namespace Modules.Menu.ViewModels
 {
     public class MenuViewModel : ViewModelBase
     {
-        public ICommand CreateMissionCommand { get; set; }
 
         public MenuViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
-            CreateMissionCommand = new DelegateCommand(async () => await OnCreateMission());
         }
 
-        private async Task OnCreateMission()
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            await NavigationService.NavigateAsync("CreateMissionStartView", useModalNavigation: true);
+            base.OnNavigatedTo(parameters);
         }
     }
 }
