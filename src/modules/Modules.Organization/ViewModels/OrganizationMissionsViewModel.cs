@@ -29,19 +29,19 @@ namespace Modules.Organization.ViewModels
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
         private bool _isLoading;
 
-        public ICommand AddMissionCommand { get; set; }
-
-        #endregion
-
-        public event EventHandler IsActiveChanged;
         private bool _isActive;
-        private readonly IMissionService _missionService;
-
         public bool IsActive
         {
             get { return _isActive; }
             set { SetProperty(ref _isActive, value, RaiseIsActiveChanged); }
         }
+
+        public ICommand AddMissionCommand { get; set; }
+
+        #endregion
+
+        public event EventHandler IsActiveChanged;
+        private readonly IMissionService _missionService;
 
         public OrganizationMissionsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IMissionService missionService) : base(navigationService, mapper, logger, dialogService)
         {
@@ -80,6 +80,7 @@ namespace Modules.Organization.ViewModels
             navParams.Add(NavigationParameterKeys._Mission, SelectedMission);
             await NavigationService.NavigateAsync("MissionDetailsView", navParams);
         }
+
         private async Task OnAddMission()
         {
             await NavigationService.NavigateAsync("CreateMissionStartView", useModalNavigation: true);
