@@ -44,5 +44,6 @@
                     CornerRadius="{OnPlatform Default=120, iOS=20}"
                     Padding="0" />
         </Frame>
+        
     </Grid>
 </ContentPage>
