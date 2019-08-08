@@ -9,9 +9,9 @@
 
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="35*" />
-            <RowDefinition Height="15*" />
-            <RowDefinition Height="20*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="30*" />
             <RowDefinition Height="20*" />
         </Grid.RowDefinitions>
 
@@ -24,22 +24,23 @@
         <Grid BackgroundColor="White"
               Grid.Row="3" />
 
-        <abstractions:CircleImage HeightRequest="140"
-                                  WidthRequest="140"
+        <abstractions:CircleImage HeightRequest="120"
+                                  WidthRequest="120"
                                   BorderColor="White"
                                   BorderThickness="2"
                                   Grid.Row="0"
                                   HorizontalOptions="CenterAndExpand"
                                   VerticalOptions="CenterAndExpand"
                                   Aspect="AspectFill"
-                                  Source="http://static8.viadeo-static.com/77FxtLv0A0dtrPHwEbVH1XwdJgA=/300x300/member/0021c2asszyj3s6y%3Fts%3D1488881872000" />
+                                  Source="{Binding Organization.Icon}" />
 
         <Frame HasShadow="True"
                Grid.Row="1"
                Visual="Material"
                BackgroundColor="White"
+               VerticalOptions="Start"
                Margin="40,0,40,0"
-               Padding="25"
+               Padding="30,30,30,40"
                CornerRadius="5"
                Grid.RowSpan="2">
             <StackLayout>
@@ -71,7 +72,21 @@
                            TextColor="{StaticResource SecondaryTextColor}"
                            FontFamily="{StaticResource MaterialIcons}"
                            Margin="0,0,10,0" />
-                    <Label Text="17 membres"
+                    <Label Text="{Binding Organization.MembersNb, StringFormat='{0:} membres'}"
+                           VerticalOptions="Center"
+                           TextColor="{StaticResource SecondaryTextColor}"
+                           FontSize="Small"
+                           Style="{StaticResource Paragraph}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             Margin="0,5,0,0">
+                    <Label Text="&#xe8f9;"
+                           VerticalOptions="Center"
+                           FontSize="Small"
+                           TextColor="{StaticResource SecondaryTextColor}"
+                           FontFamily="{StaticResource MaterialIcons}"
+                           Margin="0,0,10,0" />
+                    <Label Text="{Binding Organization.MissionsNb, StringFormat='{0:} missions'}"
                            VerticalOptions="Center"
                            TextColor="{StaticResource SecondaryTextColor}"
                            FontSize="Small"
