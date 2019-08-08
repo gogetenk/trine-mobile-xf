@@ -4,11 +4,11 @@ using Prism.Navigation;
 using Prism.Services;
 using Trine.Mobile.Components.ViewModels;
 
-namespace Modules.Menu.ViewModels
+namespace Modules.Organization.ViewModels
 {
-    public class MenuViewModel : ViewModelBase
+    public class OrganizationDetailsViewModel : ViewModelBase
     {
-        public MenuViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
+        public OrganizationDetailsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
         }
 

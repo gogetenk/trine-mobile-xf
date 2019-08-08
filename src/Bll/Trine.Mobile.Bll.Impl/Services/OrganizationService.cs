@@ -20,7 +20,7 @@ namespace Trine.Mobile.Bll.Impl.Services
         {
         }
 
-        public async Task<string> CreateOrganization(string organizationName, string iconUrl)
+        public async Task<OrganizationModel> CreateOrganization(string organizationName, string iconUrl)
         {
             var orga = new OrganizationModel()
             {
@@ -43,7 +43,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             if (addedOrga is null)
                 throw new TechnicalException("An error occured while creating this organization");
 
-            return addedOrga.Id;
+            return Mapper.Map<OrganizationModel>(addedOrga);
         }
 
         public async Task<string> JoinOrganization(Guid codeGuid)

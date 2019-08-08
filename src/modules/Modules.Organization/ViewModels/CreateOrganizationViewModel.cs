@@ -9,7 +9,9 @@ using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Messages;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
+using Trine.Mobile.Dto;
 
 namespace Modules.Organization.ViewModels
 {
@@ -49,9 +51,10 @@ namespace Modules.Organization.ViewModels
                 if (string.IsNullOrWhiteSpace(Name))
                     return;
 
-                var id = await _organizationService.CreateOrganization(Name, IconUrl);
-                await DialogService.DisplayAlertAsync("Vous avez créé votre organisation !", "Un peu de patience, le reste arrive bientôt...", "J'ai hâte !");
-                //NavigateAbsoluteCommandExecute($"/BurgerMenuView/NavigationPage/OrganizationDashboardView?OrganizationId={id}");
+                var createdOrga = await _organizationService.CreateOrganization(Name, IconUrl);
+                var navParams = new NavigationParameters();
+                navParams.Add(NavigationParameterKeys._Organization, Mapper.Map<OrganizationDto>(createdOrga));
+                await NavigationService.NavigateAsync("TrineNavigationPage/OrganizationDetailsView", navParams);
             }
             catch (BusinessException bExc)
             {

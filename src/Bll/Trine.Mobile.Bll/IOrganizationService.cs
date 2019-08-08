@@ -9,7 +9,7 @@ namespace Trine.Mobile.Bll
     public interface IOrganizationService
     {
         Task<string> JoinOrganization(Guid codeGuid);
-        Task<string> CreateOrganization(string organizationName, string iconUrl);
+        Task<OrganizationModel> CreateOrganization(string organizationName, string iconUrl);
         Task<InviteModel> GetOrganizationInvite(string organizationId, string missionId);
         Task<List<UserModel>> GetOrganizationMembers(string organizationId);
         Task<OrganizationMemberModel> GetMember(string organizationId, string memberId);
