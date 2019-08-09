@@ -158,6 +158,7 @@
     <Content Include="Assets\proxima-bold.ttf" />
     <Content Include="Assets\icomoon.ttf" />
     <Content Include="Assets\MaterialIcons-Regular.ttf" />
+    <Content Include="Assets\proxima-thin.otf" />
     <None Include="Trine.Mobile.Bootstrapper.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

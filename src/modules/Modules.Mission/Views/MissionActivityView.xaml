@@ -34,11 +34,12 @@
                 </StackLayout>
             </Frame>
 
-            <ListView 
-                      SelectedItem="{Binding SelectedMission}"
+           
+            
+            <ListView SelectedItem="{Binding SelectedActivity}"
                       IsRefreshing="{Binding IsLoading}"
                       IsPullToRefreshEnabled="True"
-                      Margin="0,30,0,0"
+                      Margin="0,20,0,0"
                       RefreshCommand="{Binding RefreshCommand}"
                       HasUnevenRows="True"
                       SeparatorVisibility="None">
@@ -63,25 +64,36 @@
                     <DataTemplate>
                         <ViewCell>
                             <Frame CornerRadius="5"
+                                   HeightRequest="50"
                                    Margin="0,5,0,5"
                                    Visual="Material"
                                    BackgroundColor="#F5F5F7"
-                                   HasShadow="True"
+                                   HasShadow="False"
                                    Padding="0">
-                                
-                                    <StackLayout Orientation="Horizontal"
-                                                 Padding="15">
-                                    <StackLayout Margin="20,0,0,0">
+
+                                <StackLayout Orientation="Horizontal"
+                                             VerticalOptions="Center"
+                                             Padding="15">
+                                    <StackLayout Margin="10,0,0,0"
+                                                 VerticalOptions="Center">
                                         <Label Text="&#xf2d1;"
-                                               FontSize="24"
-                                               FontFamily="{StaticResource IconFont}"/>
+                                               FontSize="Title"
+                                               Margin="0,-37,0,0"
+                                               FontFamily="{StaticResource IconFont}" />
                                     </StackLayout>
-                                    <StackLayout Margin="20,0,0,0">
-                                            <Label Text="Mai 2019"
-                                                   x:Name="lb_title"
-                                                   Style="{StaticResource Paragraph}" />
-                                        </StackLayout>
+                                    <StackLayout Margin="15,0,0,0"
+                                                 VerticalOptions="Center">
+                                        <Label Text="Mai 2019"
+                                               TextColor="{StaticResource SecondaryTextColor}"
+                                               x:Name="lb_title"
+                                               Style="{StaticResource Paragraph}" />
                                     </StackLayout>
+                                    <Label Text="Signé"
+                                           HorizontalOptions="EndAndExpand"
+                                           x:Name="lb_status"
+                                           Style="{StaticResource Paragraph}"
+                                           TextColor="#10C172"/>
+                                </StackLayout>
                             </Frame>
 
                         </ViewCell>
@@ -98,13 +110,13 @@
                HeightRequest="56"
                WidthRequest="56"
                Margin="0,0,25,40">
-
-            <Button Text="&#xe7fe;"
+            <Button Text="+"
+                    FontSize="Title"
                     Style="{StaticResource ActionButtonStyle}"
                     Command="{Binding AddMemberCommand}"
                     CornerRadius="{OnPlatform Default=120, iOS=30}"
                     Padding="0" />
         </Frame>
     </Grid>
-    
+
 </ContentPage>

@@ -3,14 +3,118 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              mc:Ignorable="d"
              Title="Factures"
              x:Class="Modules.Mission.Views.MissionInvoiceView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <Grid>
+
+        <StackLayout Padding="25,25,25,0">
+            <Frame HeightRequest="46"
+                   CornerRadius="5"
+                   VerticalOptions="CenterAndExpand"
+                   Visual="Material"
+                   BackgroundColor="White"
+                   Padding="2"
+                   HasShadow="True">
+                <StackLayout Orientation="Horizontal">
+                    <Label FontFamily="{StaticResource MaterialIcons}"
+                           Text="&#xe8b6;"
+                           FontSize="24"
+                           TextColor="#B9B9B9"
+                           VerticalOptions="Center"
+                           Margin="15,0,10,0" />
+                    <components:MaterialEntry HorizontalOptions="FillAndExpand"
+                                              Visual="Default"
+                                              Placeholder="Rechercher une facture..."
+                                              FontSize="Small"
+                                              Text="{Binding SearchText}"
+                                              PlaceholderColor="#B9B9B9"
+                                              Margin="0,3,15,0" />
+                </StackLayout>
+            </Frame>
+
+            <ListView SelectedItem="{Binding SelectedActivity}"
+                      IsRefreshing="{Binding IsLoading}"
+                      IsPullToRefreshEnabled="True"
+                      Margin="0,20,0,0"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None">
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>mono</x:String>
+                        <x:String>monodroid</x:String>
+                        <x:String>monotouch</x:String>
+                        <x:String>monorail</x:String>
+                        <x:String>monodevelop</x:String>
+                        <x:String>monotone</x:String>
+                        <x:String>monopoly</x:String>
+                        <x:String>monomodal</x:String>
+                        <x:String>monomodal</x:String>
+                        <x:String>monomodal</x:String>
+                        <x:String>monomodal</x:String>
+                        <x:String>monomodal</x:String>
+                        <x:String>mononucleosis</x:String>
+                    </x:Array>
+                </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame CornerRadius="5"
+                                   HeightRequest="50"
+                                   Margin="0,5,0,5"
+                                   Visual="Material"
+                                   BackgroundColor="#F5F5F7"
+                                   HasShadow="False"
+                                   Padding="0">
+
+                                <StackLayout Orientation="Horizontal"
+                                             VerticalOptions="Center"
+                                             Padding="15">
+                                    <StackLayout Margin="10,0,0,0"
+                                                 VerticalOptions="Center">
+                                        <Label Text="&#xea7b;"
+                                               FontSize="Title"
+                                               Margin="0,-37,0,0"
+                                               FontFamily="{StaticResource IconFont}" />
+                                    </StackLayout>
+                                    <StackLayout Margin="15,0,0,0"
+                                                 VerticalOptions="Center">
+                                        <Label Text="Mai 2019"
+                                               TextColor="{StaticResource SecondaryTextColor}"
+                                               x:Name="lb_title"
+                                               Style="{StaticResource Paragraph}" />
+                                    </StackLayout>
+                                    <Label Text="10 154.45 €"
+                                           HorizontalOptions="EndAndExpand"
+                                           x:Name="lb_status"
+                                           Style="{StaticResource Paragraph}"
+                                           TextColor="#10C172" />
+                                </StackLayout>
+                            </Frame>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
-    </ContentPage.Content>
+
+        <Frame Padding="0"
+               VerticalOptions="EndAndExpand"
+               HorizontalOptions="EndAndExpand"
+               Style="{StaticResource FrameButtonStyle}"
+               CornerRadius="{OnPlatform Default=120, iOS=30}"
+               HeightRequest="56"
+               WidthRequest="56"
+               Margin="0,0,25,40">
+            <Button Text="+"
+                    FontSize="Title"
+                    Style="{StaticResource ActionButtonStyle}"
+                    Command="{Binding AddMemberCommand}"
+                    CornerRadius="{OnPlatform Default=120, iOS=30}"
+                    Padding="0" />
+        </Frame>
+    </Grid>
+
 </ContentPage>

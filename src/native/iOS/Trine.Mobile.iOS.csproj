@@ -105,6 +105,8 @@
     <BundleResource Include="Resources\MaterialIcons-Regular.ttf" />
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
+    <None Include="proxima-thin.woff" />
+    <BundleResource Include="Resources\proxima-thin.otf" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json">
