@@ -33,11 +33,13 @@
                                  VerticalOptions="Center">
                         <Label Text="Contrat cadre"
                                TextColor="{StaticResource SecondaryTextColor}"
+                               FontSize="14"
                                x:Name="lb_title"
                                Style="{StaticResource Paragraph}" />
                     </StackLayout>
                     <Label Text="En attente de signature"
                            HorizontalOptions="EndAndExpand"
+                           FontSize="14"
                            x:Name="lb_status"
                            Style="{StaticResource Paragraph}"
                            TextColor="#F0B429" />
@@ -92,10 +94,12 @@
                                         <Label Text="Mai 2019"
                                                TextColor="{StaticResource SecondaryTextColor}"
                                                x:Name="lb_title"
+                                               FontSize="14"
                                                Style="{StaticResource Paragraph}" />
                                     </StackLayout>
                                     <Label Text="Signé"
                                            HorizontalOptions="EndAndExpand"
+                                           FontSize="14"
                                            x:Name="lb_status"
                                            Style="{StaticResource Paragraph}"
                                            TextColor="#10C172" />

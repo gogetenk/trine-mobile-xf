@@ -83,11 +83,13 @@
                                                  VerticalOptions="Center">
                                         <Label Text="Mai 2019"
                                                TextColor="{StaticResource SecondaryTextColor}"
+                                               FontSize="14"
                                                x:Name="lb_title"
                                                Style="{StaticResource Paragraph}" />
                                     </StackLayout>
                                     <Label Text="10 154.45 €"
                                            HorizontalOptions="EndAndExpand"
+                                           FontSize="14"
                                            x:Name="lb_status"
                                            Style="{StaticResource Paragraph}"
                                            TextColor="#10C172" />

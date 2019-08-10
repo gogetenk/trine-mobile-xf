@@ -40,7 +40,7 @@
     <Style x:Key="Paragraph"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="Body" />
+                Value="16" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextColor"
