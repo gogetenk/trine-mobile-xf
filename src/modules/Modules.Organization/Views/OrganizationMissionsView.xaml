@@ -36,7 +36,7 @@
 
         <ListView ItemsSource="{Binding Missions}"
                   SelectedItem="{Binding SelectedMission}"
-                  IsRefreshing="{Binding IsLoading}"
+                  IsRefreshing="{Binding IsLoading, Mode=OneWay}"
                   IsPullToRefreshEnabled="True"
                   Margin="0,30,0,0"
                   RefreshCommand="{Binding RefreshCommand}"

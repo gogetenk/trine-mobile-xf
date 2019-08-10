@@ -37,23 +37,39 @@ namespace Modules.Organization.ViewModels
         }
 
         public ICommand AddMissionCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
 
         #endregion
 
-        public event EventHandler IsActiveChanged;
         private readonly IMissionService _missionService;
+        private bool _hasBeenLoadedOnce;
+        public event EventHandler IsActiveChanged;
 
         public OrganizationMissionsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IMissionService missionService) : base(navigationService, mapper, logger, dialogService)
         {
             _missionService = missionService;
             IsActiveChanged += OrganizationMissionsViewModel_IsActiveChanged;
             AddMissionCommand = new DelegateCommand(async () => await OnAddMission());
+            RefreshCommand = new DelegateCommand(async () => await LoadData());
         }
 
         private async void OrganizationMissionsViewModel_IsActiveChanged(object sender, EventArgs e)
         {
+            // We dont load the data each time we navigate on the tab
+            if (_hasBeenLoadedOnce)
+                return;
+
+            await LoadData();
+            _hasBeenLoadedOnce = true;
+        }
+
+        private async Task LoadData()
+        {
             try
             {
+                if (IsLoading)
+                    return;
+
                 IsLoading = true;
                 Missions = Mapper.Map<List<MissionDto>>(await _missionService.GetFromOrganization("5ca5cab077e80c1344dbafec"));
             }
