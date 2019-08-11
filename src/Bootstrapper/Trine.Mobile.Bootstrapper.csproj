@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.AppCenter.Distribute" Version="2.1.1" />
     <PackageReference Include="Prism.Plugin.Logging.AppCenter" Version="1.3.0.305" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.1.0.431" />
+    <PackageReference Include="Sharpnado.Presentation.Forms" Version="1.2.0" />
     <PackageReference Include="Sogetrel.Sinapse.Framework.Mobile" Version="1.2.0-beta-006493" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />

@@ -22,8 +22,9 @@ namespace Modules.Organization
             containerRegistry.RegisterForNavigation<AddMemberView, AddMemberViewModel>();
             containerRegistry.RegisterForNavigation<MemberDetailsView, MemberDetailsViewModel>();
             containerRegistry.RegisterForNavigation<OrganizationDetailsView, OrganizationDetailsViewModel>();
-            containerRegistry.RegisterForNavigation<OrganizationHomeView, OrganizationHomeViewModel>();
-            containerRegistry.RegisterForNavigation<OrganizationMissionsView, OrganizationMissionsViewModel>();
+            //containerRegistry.RegisterForNavigation<OrganizationHomeView, OrganizationHomeViewModel>();
+            //containerRegistry.RegisterForNavigation<OrganizationMissionsView, OrganizationMissionsViewModel>();
+            containerRegistry.RegisterForNavigation<OrganizationTabbedView, OrganizationTabbedViewModel>();
         }
     }
 }

@@ -108,7 +108,8 @@ namespace Modules.Menu.ViewModels
 
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._Organization, SelectedOrganization);
-            await NavigationService.NavigateAsync("TrineNavigationPage/OrganizationDetailsView", navParams);
+            //await NavigationService.NavigateAsync("TrineNavigationPage/OrganizationDetailsView", navParams);
+            await NavigationService.NavigateAsync("TrineNavigationPage/OrganizationTabbedView", navParams);
         }
 
         private async Task OnMissionChanged()

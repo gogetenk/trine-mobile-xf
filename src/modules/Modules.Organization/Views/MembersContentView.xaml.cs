@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
+using Sharpnado.Presentation.Forms.CustomViews;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Modules.Organization.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MembersContentView : ContentView
-	{
-		public MembersContentView ()
-		{
-			InitializeComponent ();
-		}
-	}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MembersContentView : ContentView, IAnimatableReveal
+    {
+        public MembersContentView()
+        {
+            InitializeComponent();
+        }
+        public bool Animate { get; set; }
+    }
 }

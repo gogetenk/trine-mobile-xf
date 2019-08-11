@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="akavache" Version="6.5.1" />
+    <PackageReference Include="Sharpnado.Presentation.Forms" Version="1.2.0" />
     <PackageReference Include="Sogetrel.Sinapse.Framework.Exceptions" Version="1.2.0-beta-006493" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
@@ -69,6 +70,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\OrganizationDetailsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\OrganizationTabbedView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
