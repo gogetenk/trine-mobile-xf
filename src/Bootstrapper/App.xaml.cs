@@ -155,6 +155,7 @@ namespace Trine.Mobile.Bootstrapper
             containerRegistry.Register<IUserService, UserService>();
             containerRegistry.Register<IMissionService, MissionService>();
             containerRegistry.Register<IDashboardService, DashboardService>();
+            containerRegistry.Register<IActivityService, ActivityService>();
         }
 
         #endregion
