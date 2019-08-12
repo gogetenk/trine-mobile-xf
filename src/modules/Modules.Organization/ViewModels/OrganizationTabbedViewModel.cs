@@ -51,6 +51,7 @@ namespace Modules.Organization.ViewModels
                     break;
                 case 1:
                     MembersViewModel.OnNavigatedTo(new NavigationParameters());
+                    MembersViewModel.IsActionButtonShown = true;
                     break;
             }
         }

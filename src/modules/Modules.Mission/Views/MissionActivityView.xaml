@@ -34,8 +34,6 @@
                 </StackLayout>
             </Frame>
 
-           
-            
             <ListView SelectedItem="{Binding SelectedActivity}"
                       IsRefreshing="{Binding IsLoading}"
                       IsPullToRefreshEnabled="True"
@@ -96,8 +94,8 @@
                                            Style="{StaticResource Paragraph}"
                                            TextColor="#10C172"/>
                                 </StackLayout>
+                                
                             </Frame>
-
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -109,15 +107,15 @@
                HorizontalOptions="EndAndExpand"
                Style="{StaticResource FrameButtonStyle}"
                CornerRadius="{OnPlatform Default=120, iOS=30}"
-               HeightRequest="56"
-               WidthRequest="56"
+               HeightRequest="60"
+               WidthRequest="60"
                Margin="0,0,25,40">
             <Button Text="+"
-                    FontSize="Title"
+                    FontSize="24"
                     Style="{StaticResource ActionButtonStyle}"
                     Command="{Binding AddMemberCommand}"
                     CornerRadius="{OnPlatform Default=120, iOS=30}"
-                    Padding="0" />
+                    Padding="0,-5,0,0" />
         </Frame>
     </Grid>
 

@@ -85,5 +85,23 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <Frame Padding="0"
+               Grid.RowSpan="2"
+               IsVisible="{Binding IsActionButtonShown}"
+               VerticalOptions="EndAndExpand"
+               HorizontalOptions="EndAndExpand"
+               Style="{StaticResource FrameButtonStyle}"
+               CornerRadius="{OnPlatform Default=120, iOS=30}"
+               HeightRequest="60"
+               WidthRequest="60"
+               Margin="0,0,25,40">
+
+            <Button Text="&#xe7fe;"
+                    Style="{StaticResource ActionButtonStyle}"
+                    Command="{Binding AddMemberCommand}"
+                    CornerRadius="{OnPlatform Default=120, iOS=30}"
+                    Padding="0" />
+        </Frame>
+
     </Grid>
 </ContentView>

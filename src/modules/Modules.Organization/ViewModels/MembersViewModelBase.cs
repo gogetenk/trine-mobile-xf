@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
-using Akavache;
+﻿using Akavache;
 using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Extensions;
 using Trine.Mobile.Components.ViewModels;
@@ -46,6 +46,9 @@ namespace Modules.Organization.ViewModels
 
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
         private bool _isLoading;
+
+        public bool IsActionButtonShown { get => _isActionButtonShown; set { _isActionButtonShown = value; RaisePropertyChanged(); } }
+        private bool _isActionButtonShown;
 
         public string OrganizationName { get; set; } = "Panda Services"; // TODO mocked
         public string PageTitle { get; set; } = "Membres"; // TODO mocked

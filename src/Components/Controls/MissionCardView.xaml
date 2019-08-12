@@ -19,7 +19,7 @@
                      Grid.Column="0" />
             <StackLayout Orientation="Horizontal"
                          Grid.Column="1"
-                         Padding="15">
+                         Padding="10">
                 <StackLayout Orientation="Horizontal"
                              Spacing="-20">
 

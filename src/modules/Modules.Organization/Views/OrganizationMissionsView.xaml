@@ -4,7 +4,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
-             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
              x:Class="Modules.Organization.Views.OrganizationMissionsView">
 
@@ -58,16 +57,16 @@
                VerticalOptions="EndAndExpand"
                HorizontalOptions="EndAndExpand"
                Style="{StaticResource FrameButtonStyle}"
-               CornerRadius="{OnPlatform Default=120, iOS=20}"
-               HeightRequest="56"
-               WidthRequest="56"
+               CornerRadius="{OnPlatform Default=120, iOS=30}"
+               HeightRequest="60"
+               WidthRequest="60"
                Margin="0,0,25,40">
-
             <Button Text="+"
-                    CornerRadius="{OnPlatform Default=120, iOS=20}"
+                    FontSize="24"
+                    CornerRadius="{OnPlatform Default=120, iOS=30}"
                     Style="{StaticResource ActionButtonStyle}"
                     Command="{Binding AddMissionCommand}"
-                    Padding="0" />
+                    Padding="0,-5,0,0" />
         </Frame>
     </Grid>
 
