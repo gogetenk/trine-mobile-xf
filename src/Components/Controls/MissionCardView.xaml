@@ -51,9 +51,11 @@
                 <StackLayout Margin="20,0,0,0">
                     <Label Text="-"
                            x:Name="lb_title"
+                           FontFamily="{StaticResource ThinFont}"
                            Style="{StaticResource Paragraph}" />
                     <Label Text="-"
                            FontSize="Small"
+                           FontFamily="{StaticResource ThinFont}"
                            x:Name="lb_consultantName"
                            TextColor="#818182" />
                 </StackLayout>
@@ -62,16 +64,19 @@
                              VerticalOptions="Center"
                              HorizontalOptions="EndAndExpand"> 
                     <Label Text="-"
+                           FontFamily="{StaticResource ThinFont}"
                            FontSize="Small"
                            VerticalOptions="Start"
                            x:Name="lb_startDate"
                            TextColor="#818182" />
                     <Label Text="-"
                            FontSize="Small"
+                           FontFamily="{StaticResource ThinFont}"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"
                            TextColor="#818182" />
                     <Label Text="-"
+                           FontFamily="{StaticResource ThinFont}"
                            FontSize="Small"
                            VerticalOptions="EndAndExpand"
                            x:Name="lb_endDate"

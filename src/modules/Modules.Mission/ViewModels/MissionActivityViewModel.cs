@@ -11,6 +11,9 @@ namespace Modules.Mission.ViewModels
     public class MissionActivityViewModel : ViewModelBase, IActiveAware
     {
         public event EventHandler IsActiveChanged;
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+        private bool _isLoading;
+
         private bool _isActive;
         public bool IsActive
         {

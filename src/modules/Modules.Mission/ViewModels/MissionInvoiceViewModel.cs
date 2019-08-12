@@ -18,6 +18,9 @@ namespace Modules.Mission.ViewModels
             set { SetProperty(ref _isActive, value, RaiseIsActiveChanged); }
         }
 
+        public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+        private bool _isLoading;
+
         public MissionInvoiceViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
         }

@@ -63,7 +63,7 @@
                WidthRequest="56"
                Margin="0,0,25,40">
 
-            <Button Text="&#xe7fe;"
+            <Button Text="+"
                     CornerRadius="{OnPlatform Default=120, iOS=20}"
                     Style="{StaticResource ActionButtonStyle}"
                     Command="{Binding AddMissionCommand}"
