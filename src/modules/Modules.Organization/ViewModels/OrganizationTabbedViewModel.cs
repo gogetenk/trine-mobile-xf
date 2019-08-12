@@ -2,14 +2,66 @@
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using Trine.Mobile.Bll;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
+using Trine.Mobile.Dto;
 
 namespace Modules.Organization.ViewModels
 {
     public class OrganizationTabbedViewModel : ViewModelBase
     {
-        public OrganizationTabbedViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
+        private MembersViewModel _membersViewModel;
+        public MembersViewModel MembersViewModel
         {
+            get => _membersViewModel;
+            set { _membersViewModel = value; RaisePropertyChanged(); }
+        }
+
+        private OrganizationMissionsViewModel _organizationMissionsViewModel;
+        public OrganizationMissionsViewModel OrganizationMissionsViewModel
+        {
+            get => _organizationMissionsViewModel;
+            set { _organizationMissionsViewModel = value; RaisePropertyChanged(); }
+        }
+
+        private int _selectedViewModelIndex = 0;
+        public int SelectedViewModelIndex
+        {
+            get => _selectedViewModelIndex;
+            set { _selectedViewModelIndex = value; RaisePropertyChanged(); TriggerOnNavigatedTo(value); }
+        }
+
+        private PartialOrganizationDto _organization;
+        public PartialOrganizationDto Organization { get => _organization; set { _organization = value; RaisePropertyChanged(); } }
+
+
+        public OrganizationTabbedViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService, IMissionService missionService) : base(navigationService, mapper, logger, dialogService)
+        {
+            MembersViewModel = new MembersViewModel(navigationService, mapper, logger, dialogService, organizationService);
+            OrganizationMissionsViewModel = new OrganizationMissionsViewModel(navigationService, mapper, logger, dialogService, missionService);
+        }
+
+        private void TriggerOnNavigatedTo(int value)
+        {
+            switch (value)
+            {
+                case 0:
+                    OrganizationMissionsViewModel.OnNavigatedTo(new NavigationParameters());
+                    break;
+                case 1:
+                    MembersViewModel.OnNavigatedTo(new NavigationParameters());
+                    break;
+            }
+        }
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            Organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
+            if (Organization is null)
+                await NavigationService.GoBackAsync();
         }
     }
 }

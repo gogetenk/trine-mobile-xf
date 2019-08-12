@@ -51,11 +51,12 @@
                        Style="{StaticResource Paragraph}"
                        TextColor="{StaticResource SecondaryTextColor}"
                        FontSize="Small" />
-                <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
+                <StackLayout Orientation="Horizontal"
+                             Margin="0,30,0,0">
                     <Label Text="&#xe55f;"
                            VerticalOptions="Center"
                            FontSize="Small"
-                           TextColor="{StaticResource SecondaryTextColor}" 
+                           TextColor="{StaticResource SecondaryTextColor}"
                            FontFamily="{StaticResource MaterialIcons}"
                            Margin="0,0,10,0" />
                     <Label Text="Montpellier, France"

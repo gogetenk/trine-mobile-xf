@@ -42,25 +42,34 @@ namespace Modules.Organization.ViewModels
         #endregion
 
         private readonly IMissionService _missionService;
-        private bool _hasBeenLoadedOnce;
         public event EventHandler IsActiveChanged;
+        private bool _hasBeenLoadedOnce;
 
         public OrganizationMissionsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IMissionService missionService) : base(navigationService, mapper, logger, dialogService)
         {
             _missionService = missionService;
-            IsActiveChanged += OrganizationMissionsViewModel_IsActiveChanged;
+
             AddMissionCommand = new DelegateCommand(async () => await OnAddMission());
             RefreshCommand = new DelegateCommand(async () => await LoadData());
+
+            IsActiveChanged += OrganizationMissionsViewModel_IsActiveChanged;
         }
 
-        private async void OrganizationMissionsViewModel_IsActiveChanged(object sender, EventArgs e)
+        public async void OnNavigatedTo(INavigationParameters parameters)
         {
+            base.OnNavigatedTo(parameters);
+
             // We dont load the data each time we navigate on the tab
             if (_hasBeenLoadedOnce)
                 return;
 
             await LoadData();
             _hasBeenLoadedOnce = true;
+        }
+
+        private void OrganizationMissionsViewModel_IsActiveChanged(object sender, EventArgs e)
+        {
+            OnNavigatedTo(new NavigationParameters());
         }
 
         private async Task LoadData()

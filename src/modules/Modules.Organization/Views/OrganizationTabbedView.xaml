@@ -7,6 +7,7 @@
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              xmlns:pages="clr-namespace:Modules.Organization.Views"
              xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             Title="Panda Services"
              x:Class="Modules.Organization.Views.OrganizationTabbedView">
 
     <ContentPage.Resources>
@@ -24,7 +25,7 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <Grid ColumnSpacing="0"
           RowSpacing="0">
         <Grid.RowDefinitions>
@@ -33,9 +34,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid BackgroundColor="{StaticResource AccentColor}" Grid.Row="0">
-            <StackLayout Orientation="Horizontal"  Padding="20">
-                <StackLayout Spacing="0" VerticalOptions="Center">
+        <Grid BackgroundColor="{StaticResource AccentColor}"
+              Grid.Row="0">
+            <StackLayout Orientation="Horizontal"
+                         Padding="20">
+                <StackLayout Spacing="0"
+                             VerticalOptions="Center">
                     <StackLayout Orientation="Horizontal"
                                  Margin="0,0,0,0">
                         <Label Text="&#xe55f;"
@@ -83,7 +87,7 @@
                 <abstractions:CircleImage HeightRequest="100"
                                           WidthRequest="100"
                                           BorderColor="White"
-                                          BorderThickness="2"
+                                          BorderThickness="1"
                                           HorizontalOptions="EndAndExpand"
                                           VerticalOptions="Center"
                                           Aspect="AspectFill"
@@ -104,17 +108,19 @@
                                     Label="Membres" />
         </tabs:TabHostView>
 
-        <ScrollView Grid.Row="2">
-            <tabs:ViewSwitcher x:Name="Switcher"
-                               Animate="True"
-                               SelectedIndex="{Binding SelectedViewModelIndex, 
+        <tabs:ViewSwitcher  Grid.Row="2"
+                            x:Name="Switcher"
+                            Animate="True"
+                            SelectedIndex="{Binding SelectedViewModelIndex, 
                                                    Mode=TwoWay}">
 
-                <pages:OrganizationMissionsView Animate="True" />
-                <pages:MembersContentView Animate="True" />
+            <pages:OrganizationMissionsView Animate="True"
+                                            BindingContext="{Binding OrganizationMissionsViewModel}" />
+            <pages:MembersContentView Animate="True"
+                                      BindingContext="{Binding MembersViewModel}"
+                                      IsColoredHeader="False" />
 
-            </tabs:ViewSwitcher>
-        </ScrollView>
+        </tabs:ViewSwitcher>
     </Grid>
 
 </ContentPage>
