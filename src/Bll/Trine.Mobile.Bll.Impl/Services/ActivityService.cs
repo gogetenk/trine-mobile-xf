@@ -168,7 +168,7 @@ namespace Trine.Mobile.Bll.Impl.Services
         {
             try
             {
-                _mapper.Map<ObservableCollection<ActivityModel>>(await _gatewayRepository.ApiActivitiesMissionsByMissionIdGetAsync(missionId, _activityApiVersion));
+                return _mapper.Map<ObservableCollection<ActivityModel>>(await _gatewayRepository.ApiActivitiesMissionsByMissionIdGetAsync(missionId, _activityApiVersion));
             }
             catch (ApiException dalExc)
             {

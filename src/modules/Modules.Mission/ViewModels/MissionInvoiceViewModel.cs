@@ -40,10 +40,17 @@ namespace Modules.Mission.ViewModels
         private bool _hasBeenLoadedOnce;
 
 
-        public MissionInvoiceViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IInvoiceService invoiceService) : base(navigationService, mapper, logger, dialogService)
+        public MissionInvoiceViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService/*, IInvoiceService invoiceService*/) : base(navigationService, mapper, logger, dialogService)
         {
-            _invoiceService = invoiceService;
+            //_invoiceService = invoiceService;
             RefreshCommand = new DelegateCommand(async () => await LoadData());
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+
         }
 
         // Triggered only on tabbed pages
@@ -67,7 +74,7 @@ namespace Modules.Mission.ViewModels
                     return;
 
                 IsLoading = true;
-                Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _invoiceService.GetFromMissionAsync("5ca5cab077e80c1344dbafec", null)); // TODO MOCKED
+                //Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _invoiceService.GetFromMissionAsync("5ca5cab077e80c1344dbafec", null)); // TODO MOCKED
             }
             catch (BusinessException bExc)
             {

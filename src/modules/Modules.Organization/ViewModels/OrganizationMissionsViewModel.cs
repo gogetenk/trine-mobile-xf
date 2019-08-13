@@ -55,7 +55,7 @@ namespace Modules.Organization.ViewModels
             IsActiveChanged += OrganizationMissionsViewModel_IsActiveChanged;
         }
 
-        public async void OnNavigatedTo(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 

@@ -4,6 +4,7 @@
             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:views="clr-namespace:Modules.Mission.Views"
+            xmlns:behaviors="clr-namespace:Trine.Mobile.Components.Behaviors;assembly=Trine.Mobile.Components"
             NavigationPage.HasNavigationBar="True"
             mc:Ignorable="d"
             x:Class="Modules.Mission.Views.MissionDetailsView">
@@ -25,7 +26,11 @@
             </Label>
         </StackLayout>
     </NavigationPage.TitleView>
-    
+
+    <TabbedPage.Behaviors>
+        <behaviors:TabbedPageNavigationBehavior />
+    </TabbedPage.Behaviors>
+
     <views:MissionActivityView />
     <views:MissionInvoiceView />
     <views:MissionContractView />
