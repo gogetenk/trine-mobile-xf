@@ -63,7 +63,7 @@ namespace Modules.Mission.ViewModels
                     return;
 
                 IsLoading = true;
-                Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _activityService.GetFromMission("5ca5cab077e80c1344dbafec"));
+                Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _activityService.GetFromMission("5ca5cab077e80c1344dbafec")); // TODO MOCKED
             }
             catch (BusinessException bExc)
             {

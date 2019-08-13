@@ -17,21 +17,28 @@ namespace Modules.Mission.ViewModels
 {
     public class MissionInvoiceViewModel : ViewModelBase, IActiveAware
     {
+        #region Bindings
+
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
         private bool _isLoading;
 
         public ObservableCollection<ActivityDto> Activities { get => _activities; set { _activities = value; RaisePropertyChanged(); } }
         private ObservableCollection<ActivityDto> _activities;
 
-        public ICommand RefreshCommand { get; set; }
-        private readonly IInvoiceService _invoiceService;
-        public event EventHandler IsActiveChanged;
         private bool _isActive;
         public bool IsActive
         {
             get { return _isActive; }
             set { SetProperty(ref _isActive, value, RaiseIsActiveChanged); }
         }
+
+        #endregion
+
+        public ICommand RefreshCommand { get; set; }
+        private readonly IInvoiceService _invoiceService;
+        public event EventHandler IsActiveChanged;
+        private bool _hasBeenLoadedOnce;
+
 
         public MissionInvoiceViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IInvoiceService invoiceService) : base(navigationService, mapper, logger, dialogService)
         {
@@ -43,6 +50,13 @@ namespace Modules.Mission.ViewModels
         protected virtual async void RaiseIsActiveChanged()
         {
             IsActiveChanged?.Invoke(this, EventArgs.Empty);
+
+            // We dont load the data each time we navigate on the tab
+            if (_hasBeenLoadedOnce)
+                return;
+
+            await LoadData();
+            _hasBeenLoadedOnce = true;
         }
 
         private async Task LoadData()
@@ -53,7 +67,7 @@ namespace Modules.Mission.ViewModels
                     return;
 
                 IsLoading = true;
-                Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _invoiceService.GetFromMissionAsync("5ca5cab077e80c1344dbafec", null));
+                Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _invoiceService.GetFromMissionAsync("5ca5cab077e80c1344dbafec", null)); // TODO MOCKED
             }
             catch (BusinessException bExc)
             {
