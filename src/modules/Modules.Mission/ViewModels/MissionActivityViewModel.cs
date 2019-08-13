@@ -39,7 +39,6 @@ namespace Modules.Mission.ViewModels
         public MissionActivityViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IActivityService activityService) : base(navigationService, mapper, logger, dialogService)
         {
             _activityService = activityService;
-
             RefreshCommand = new DelegateCommand(async () => await LoadData());
         }
 
@@ -64,7 +63,7 @@ namespace Modules.Mission.ViewModels
                     return;
 
                 IsLoading = true;
-                //Activities = Mapper.Map<List<ActivityDto>>(await _activityService.("5ca5cab077e80c1344dbafec"));
+                Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _activityService.GetFromMission("5ca5cab077e80c1344dbafec"));
             }
             catch (BusinessException bExc)
             {

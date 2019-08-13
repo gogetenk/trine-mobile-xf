@@ -3,6 +3,7 @@ using Prism.Logging;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll.Impl.Services.Base;
 using Trine.Mobile.Bll.Impl.Settings;
@@ -152,6 +153,22 @@ namespace Trine.Mobile.Bll.Impl.Services
             try
             {
                 await _gatewayRepository.ApiActivitiesByIdDeleteAsync(id, _activityApiVersion);
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
+
+        public async Task<ObservableCollection<ActivityModel>> GetFromMission(string missionId)
+        {
+            try
+            {
+                _mapper.Map<ObservableCollection<ActivityModel>>(await _gatewayRepository.ApiActivitiesMissionsByMissionIdGetAsync(missionId, _activityApiVersion));
             }
             catch (ApiException dalExc)
             {

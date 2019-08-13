@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Trine.Mobile.Model;
 
 namespace Trine.Mobile.Bll
@@ -13,5 +14,6 @@ namespace Trine.Mobile.Bll
         Task<ActivityModel> GetById(string activityId);
         Task UpdateActivity(ActivityModel currentActivity);
         Task DeleteActivity(string id);
+        Task<ObservableCollection<ActivityModel>> GetFromMission(string missionId);
     }
 }
