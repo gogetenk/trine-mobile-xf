@@ -128,7 +128,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             try
             {
                 List<EventModel> events = new List<EventModel>();
-                events = Mapper.Map<List<EventModel>>(await _gatewayRepository.ApiDashboardsEventsGetAsync(userId));
+                events = _mapper.Map<List<EventModel>>(await _gatewayRepository.ApiDashboardsEventsGetAsync(userId));
                 return events;
             }
             catch (ApiException dalExc)

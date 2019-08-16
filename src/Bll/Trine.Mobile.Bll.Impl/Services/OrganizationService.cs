@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AutoMapper;
+using Prism.Logging;
+using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using Prism.Logging;
-using Sogetrel.Sinapse.Framework.Exceptions;
 using Trine.Mobile.Bll.Impl.Services.Base;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Dal.Swagger;
@@ -43,7 +43,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             if (addedOrga is null)
                 throw new TechnicalException("An error occured while creating this organization");
 
-            return Mapper.Map<OrganizationModel>(addedOrga);
+            return _mapper.Map<OrganizationModel>(addedOrga);
         }
 
         public async Task<string> JoinOrganization(Guid codeGuid)
