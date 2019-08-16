@@ -4,7 +4,7 @@
              xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Trine.Mobile.Components.Controls.MissionCardView">
     <Frame CornerRadius="5"
-           Visual="Material"
+           Visual="{OnPlatform Default=Material, iOS=Default}"
            BackgroundColor="#F5F5F7"
            HasShadow="False"
            Padding="0">
