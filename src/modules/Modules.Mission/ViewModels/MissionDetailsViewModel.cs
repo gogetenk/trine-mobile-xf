@@ -58,7 +58,7 @@ namespace Modules.Mission.ViewModels
             base.OnNavigatedTo(parameters);
 
             _mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
-            MissionActivityViewModel.OnNavigatedTo(parameters);
+            TriggerOnNavigatedTo(0);
         }
 
         private void TriggerOnNavigatedTo(int value)

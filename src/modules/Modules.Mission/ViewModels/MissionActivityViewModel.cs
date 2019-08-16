@@ -56,6 +56,9 @@ namespace Modules.Mission.ViewModels
                 return;
 
             _mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
+            if (_mission is null)
+                await NavigationService.GoBackAsync();
+
             await LoadData();
             _hasBeenLoadedOnce = true;
         }
@@ -91,7 +94,7 @@ namespace Modules.Mission.ViewModels
                 return;
 
             Activities = new ObservableCollection<ActivityDto>(_totalActivities);
-
+            var t = Activities.Where(x => !x.StartDate.ToString("MMMM YYYY").ToLower().Contains(searchText.ToLower())).ToList();
             if (!string.IsNullOrEmpty(searchText))
                 Activities.RemoveAll(x => !x.StartDate.ToString("MMMM YYYY").ToLower().Contains(searchText.ToLower()));
         }
