@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 
@@ -35,6 +36,8 @@ namespace Modules.Mission.ViewModels
         #endregion
 
         public ICommand RefreshCommand { get; set; }
+        public MissionDto Mission { get; internal set; }
+
         private readonly IInvoiceService _invoiceService;
         public event EventHandler IsActiveChanged;
         private bool _hasBeenLoadedOnce;
@@ -50,7 +53,7 @@ namespace Modules.Mission.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-
+            var mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
         }
 
         // Triggered only on tabbed pages

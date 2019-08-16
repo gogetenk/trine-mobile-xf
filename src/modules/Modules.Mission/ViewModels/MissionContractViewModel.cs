@@ -5,6 +5,7 @@ using Prism.Navigation;
 using Prism.Services;
 using System;
 using Trine.Mobile.Components.ViewModels;
+using Trine.Mobile.Dto;
 
 namespace Modules.Mission.ViewModels
 {
@@ -19,6 +20,9 @@ namespace Modules.Mission.ViewModels
         }
 
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+
+        public MissionDto Mission { get; internal set; }
+
         private bool _isLoading;
 
 

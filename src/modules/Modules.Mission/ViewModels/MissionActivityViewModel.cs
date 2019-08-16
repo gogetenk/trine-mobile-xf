@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 
@@ -35,10 +36,12 @@ namespace Modules.Mission.ViewModels
         private readonly IActivityService _activityService;
         private bool _hasBeenLoadedOnce;
         public event EventHandler IsActiveChanged;
+        private MissionDto _mission;
 
         public MissionActivityViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IActivityService activityService) : base(navigationService, mapper, logger, dialogService)
         {
             _activityService = activityService;
+
             RefreshCommand = new DelegateCommand(async () => await LoadData());
         }
 
@@ -47,10 +50,23 @@ namespace Modules.Mission.ViewModels
         {
             IsActiveChanged?.Invoke(this, EventArgs.Empty);
 
-            // We dont load the data each time we navigate on the tab
-            if (_hasBeenLoadedOnce)
-                return;
+            //// We dont load the data each time we navigate on the tab
+            //if (_hasBeenLoadedOnce)
+            //    return;
 
+            //await LoadData();
+            //_hasBeenLoadedOnce = true;
+        }
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            // We dont load the data each time we navigate on the tab
+            //if (_hasBeenLoadedOnce)
+            //    return;
+
+            _mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
             await LoadData();
             _hasBeenLoadedOnce = true;
         }
@@ -63,7 +79,7 @@ namespace Modules.Mission.ViewModels
                     return;
 
                 IsLoading = true;
-                Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _activityService.GetFromMission("5ca5cab077e80c1344dbafec")); // TODO MOCKED
+                Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _activityService.GetFromMission(_mission.Id));
             }
             catch (BusinessException bExc)
             {

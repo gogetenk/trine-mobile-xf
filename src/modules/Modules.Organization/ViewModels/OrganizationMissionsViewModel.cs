@@ -103,7 +103,7 @@ namespace Modules.Organization.ViewModels
 
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._Mission, SelectedMission);
-            await NavigationService.NavigateAsync("MissionDetailsView", navParams);
+            await NavigationService.NavigateAsync($"MissionDetailsView", navParams);
         }
 
         private async Task OnAddMission()

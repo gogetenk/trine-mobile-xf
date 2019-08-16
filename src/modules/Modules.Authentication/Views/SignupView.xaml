@@ -98,9 +98,6 @@
                     WidthRequest="180" />
         </StackLayout>
 
-        <Button Text="debug" 
-                Command="{prism:NavigateTo 'MembersView'}" />
-
         <StackLayout VerticalOptions="EndAndExpand"
                      Orientation="Horizontal"
                      Grid.Row="3"> 
