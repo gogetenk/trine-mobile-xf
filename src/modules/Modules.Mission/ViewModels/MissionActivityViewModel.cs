@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Prism;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
@@ -19,7 +18,7 @@ using Trine.Mobile.Dto;
 
 namespace Modules.Mission.ViewModels
 {
-    public class MissionActivityViewModel : ViewModelBase, IActiveAware
+    public class MissionActivityViewModel : ViewModelBase
     {
         #region Bindings 
 
@@ -32,23 +31,14 @@ namespace Modules.Mission.ViewModels
         public ObservableCollection<ActivityDto> Activities { get => _activities; set { _activities = value; RaisePropertyChanged(); } }
         private ObservableCollection<ActivityDto> _activities;
 
-        private bool _isActive;
-        public bool IsActive
-        {
-            get { return _isActive; }
-            set { SetProperty(ref _isActive, value, RaiseIsActiveChanged); }
-        }
-
         public ICommand RefreshCommand { get; set; }
 
         #endregion
 
         private readonly IActivityService _activityService;
         private bool _hasBeenLoadedOnce;
-        public event EventHandler IsActiveChanged;
         private MissionDto _mission;
-        // Liste non filtrée
-        protected List<ActivityDto> _totalActivities;
+        private List<ActivityDto> _totalActivities; // Liste non filtrée
 
         public MissionActivityViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IActivityService activityService) : base(navigationService, mapper, logger, dialogService)
         {
@@ -57,26 +47,13 @@ namespace Modules.Mission.ViewModels
             RefreshCommand = new DelegateCommand(async () => await LoadData());
         }
 
-        // Triggered only on tabbed pages
-        protected virtual async void RaiseIsActiveChanged()
-        {
-            IsActiveChanged?.Invoke(this, EventArgs.Empty);
-
-            //// We dont load the data each time we navigate on the tab
-            //if (_hasBeenLoadedOnce)
-            //    return;
-
-            //await LoadData();
-            //_hasBeenLoadedOnce = true;
-        }
-
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 
-            // We dont load the data each time we navigate on the tab
-            //if (_hasBeenLoadedOnce)
-            //    return;
+            // If we already have data, we dont reload each time we navigate on the tab
+            if (_hasBeenLoadedOnce && Activities != null && Activities.Any())
+                return;
 
             _mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
             await LoadData();
