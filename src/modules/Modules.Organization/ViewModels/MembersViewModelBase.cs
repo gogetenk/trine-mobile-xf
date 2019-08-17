@@ -112,9 +112,9 @@ namespace Modules.Organization.ViewModels
             {
                 IsLoading = true;
 
-                _organization = Mapper.Map<PartialOrganizationDto>(await _organizationService.GetById(_organization.Id));// TODO Mocked
-                if (_organization is null)
-                    return; // TODO : Que faire?
+                //_organization = Mapper.Map<PartialOrganizationDto>(await _organizationService.GetById(_organization.Id));// TODO Mocked
+                //if (_organization is null)
+                //    return; // TODO : Que faire?
 
                 if (BlobCache.ApplicationName == "TrineUnitTests")
                 {

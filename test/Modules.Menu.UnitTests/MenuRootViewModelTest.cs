@@ -97,7 +97,7 @@ namespace Modules.Menu.UnitTests
             viewmodel.SelectedOrganization = selectedOrga;
 
             // Assert
-            _navigationService.Verify(x => x.NavigateAsync("TrineNavigationPage/OrganizationDetailsView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._Organization] == selectedOrga)), Times.Once);
+            _navigationService.Verify(x => x.NavigateAsync("TrineNavigationPage/OrganizationTabbedView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._Organization] == selectedOrga)), Times.Once);
         }
 
         [Fact]

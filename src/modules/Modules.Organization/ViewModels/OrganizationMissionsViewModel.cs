@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Prism;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
@@ -16,7 +15,7 @@ using Trine.Mobile.Dto;
 
 namespace Modules.Organization.ViewModels
 {
-    public class OrganizationMissionsViewModel : ViewModelBase, IActiveAware
+    public class OrganizationMissionsViewModel : ViewModelBase
     {
         #region Bindings 
 
@@ -29,20 +28,12 @@ namespace Modules.Organization.ViewModels
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
         private bool _isLoading;
 
-        private bool _isActive;
-        public bool IsActive
-        {
-            get { return _isActive; }
-            set { SetProperty(ref _isActive, value, RaiseIsActiveChanged); }
-        }
-
         public ICommand AddMissionCommand { get; set; }
         public ICommand RefreshCommand { get; set; }
 
         #endregion
 
         private readonly IMissionService _missionService;
-        public event EventHandler IsActiveChanged;
         private bool _hasBeenLoadedOnce;
         private PartialOrganizationDto _organization;
 
@@ -52,8 +43,6 @@ namespace Modules.Organization.ViewModels
 
             AddMissionCommand = new DelegateCommand(async () => await OnAddMission());
             RefreshCommand = new DelegateCommand(async () => await LoadData());
-
-            IsActiveChanged += OrganizationMissionsViewModel_IsActiveChanged;
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -119,10 +108,5 @@ namespace Modules.Organization.ViewModels
             await NavigationService.NavigateAsync("CreateMissionStartView", useModalNavigation: true);
         }
 
-        // Triggered only on tabbed pages
-        protected virtual async void RaiseIsActiveChanged()
-        {
-            IsActiveChanged?.Invoke(this, EventArgs.Empty);
-        }
     }
 }

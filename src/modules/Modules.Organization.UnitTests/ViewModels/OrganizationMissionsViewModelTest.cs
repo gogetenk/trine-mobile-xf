@@ -9,6 +9,7 @@ using System.Linq;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
+using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
 using Xunit;
 
@@ -20,6 +21,7 @@ namespace Modules.Organization.UnitTests.ViewModels
         public void IsActiveChanged_NominalCase_ExpectMissionList()
         {
             // Arrange
+            var orga = new Fixture().Create<PartialOrganizationDto>();
             var missions = new Fixture().Create<List<MissionModel>>();
             var missionService = new Mock<IMissionService>();
             missionService
@@ -27,9 +29,11 @@ namespace Modules.Organization.UnitTests.ViewModels
                 .ReturnsAsync(missions);
 
             var viewmodel = new OrganizationMissionsViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionService.Object);
+            var navparams = new NavigationParameters();
+            navparams.Add(NavigationParameterKeys._Organization, orga);
 
             // Act
-            viewmodel.IsActive = true;
+            viewmodel.OnNavigatedTo(navparams);
 
             // Assert
             viewmodel.Missions.Should().NotBeNull();
@@ -39,6 +43,7 @@ namespace Modules.Organization.UnitTests.ViewModels
         public void IsActiveChanged_WhenServiceThrowsException_ExpectLogged()
         {
             // Arrange
+            var orga = new Fixture().Create<PartialOrganizationDto>();
             var missions = new Fixture().Create<List<MissionModel>>();
             var missionService = new Mock<IMissionService>();
             missionService
@@ -46,9 +51,11 @@ namespace Modules.Organization.UnitTests.ViewModels
                 .ThrowsAsync(It.IsAny<Exception>());
 
             var viewmodel = new OrganizationMissionsViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionService.Object);
+            var navparams = new NavigationParameters();
+            navparams.Add(NavigationParameterKeys._Organization, orga);
 
             // Act
-            viewmodel.IsActive = true;
+            viewmodel.OnNavigatedTo(navparams);
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
@@ -58,6 +65,7 @@ namespace Modules.Organization.UnitTests.ViewModels
         public void OnSelectedMission_NominalCase_ExpectNavigated()
         {
             // Arrange
+            var orga = new Fixture().Create<PartialOrganizationDto>();
             var missions = new Fixture().Create<List<MissionModel>>();
             var missionService = new Mock<IMissionService>();
             missionService
@@ -65,9 +73,11 @@ namespace Modules.Organization.UnitTests.ViewModels
                 .ReturnsAsync(missions);
 
             var viewmodel = new OrganizationMissionsViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionService.Object);
+            var navparams = new NavigationParameters();
+            navparams.Add(NavigationParameterKeys._Organization, orga);
 
             // Act
-            viewmodel.IsActive = true;
+            viewmodel.OnNavigatedTo(navparams);
             viewmodel.SelectedMission = viewmodel.Missions.FirstOrDefault();
 
             // Assert
