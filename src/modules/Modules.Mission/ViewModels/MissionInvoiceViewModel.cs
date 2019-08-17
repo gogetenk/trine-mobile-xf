@@ -53,7 +53,7 @@ namespace Modules.Mission.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            var mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
+            Mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
         }
 
         // Triggered only on tabbed pages

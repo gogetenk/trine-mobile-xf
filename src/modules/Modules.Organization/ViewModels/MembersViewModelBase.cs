@@ -13,6 +13,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Extensions;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 
@@ -69,8 +70,18 @@ namespace Modules.Organization.ViewModels
         public MembersViewModelBase(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService) : base(navigationService, mapper, logger, dialogService)
         {
             _organizationService = organizationService;
+
             AddMemberCommand = new DelegateCommand(async () => await OnAddMember());
             RefreshCommand = new DelegateCommand(async () => await LoadData());
+        }
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            _organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
+            if (_organization is null)
+                await NavigationService.GoBackAsync();
         }
 
         protected abstract Task OnSelectedMember(UserDto user);
@@ -83,7 +94,6 @@ namespace Modules.Organization.ViewModels
 
             if (string.IsNullOrEmpty(role))
                 RoleSelectedIndex = -1;
-
 
             Members = new ObservableCollection<UserDto>(_totalMemberList);
 
@@ -102,7 +112,7 @@ namespace Modules.Organization.ViewModels
             {
                 IsLoading = true;
 
-                _organization = Mapper.Map<PartialOrganizationDto>(await _organizationService.GetById("5ca5cab077e80c1344dbafec"));// TODO Mocked
+                _organization = Mapper.Map<PartialOrganizationDto>(await _organizationService.GetById(_organization.Id));// TODO Mocked
                 if (_organization is null)
                     return; // TODO : Que faire?
 

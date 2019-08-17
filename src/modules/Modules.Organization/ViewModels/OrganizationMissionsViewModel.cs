@@ -44,6 +44,7 @@ namespace Modules.Organization.ViewModels
         private readonly IMissionService _missionService;
         public event EventHandler IsActiveChanged;
         private bool _hasBeenLoadedOnce;
+        private PartialOrganizationDto _organization;
 
         public OrganizationMissionsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IMissionService missionService) : base(navigationService, mapper, logger, dialogService)
         {
@@ -63,6 +64,13 @@ namespace Modules.Organization.ViewModels
             if (_hasBeenLoadedOnce)
                 return;
 
+            _organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
+            if (_organization is null)
+            {
+                await NavigationService.GoBackAsync();
+                return;
+            }
+
             await LoadData();
             _hasBeenLoadedOnce = true;
         }
@@ -80,7 +88,7 @@ namespace Modules.Organization.ViewModels
                     return;
 
                 IsLoading = true;
-                Missions = Mapper.Map<List<MissionDto>>(await _missionService.GetFromOrganization("5ca5cab077e80c1344dbafec")); // TODO MOCKED
+                Missions = Mapper.Map<List<MissionDto>>(await _missionService.GetFromOrganization(_organization.Id));
             }
             catch (BusinessException bExc)
             {

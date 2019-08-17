@@ -2,6 +2,7 @@
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
@@ -42,15 +43,24 @@ namespace Modules.Organization.ViewModels
             OrganizationMissionsViewModel = new OrganizationMissionsViewModel(navigationService, mapper, logger, dialogService, missionService);
         }
 
-        private void TriggerOnNavigatedTo(int value)
+        private async Task TriggerOnNavigatedTo(int value)
         {
+            if (Organization is null)
+            {
+                await NavigationService.GoBackAsync();
+                return;
+            }
+
+            var parameters = new NavigationParameters();
+            parameters.Add(NavigationParameterKeys._Organization, Organization);
+
             switch (value)
             {
                 case 0:
-                    OrganizationMissionsViewModel.OnNavigatedTo(new NavigationParameters());
+                    OrganizationMissionsViewModel.OnNavigatedTo(parameters);
                     break;
                 case 1:
-                    MembersViewModel.OnNavigatedTo(new NavigationParameters());
+                    MembersViewModel.OnNavigatedTo(parameters);
                     MembersViewModel.IsActionButtonShown = true;
                     break;
             }

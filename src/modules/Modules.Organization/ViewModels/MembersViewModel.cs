@@ -59,7 +59,9 @@ namespace Modules.Organization.ViewModels
 
         protected override async Task OnAddMember()
         {
-            await NavigationService.NavigateAsync("AddMemberView");
+            var parameters = new NavigationParameters();
+            parameters.Add(NavigationParameterKeys._Organization, _organization);
+            await NavigationService.NavigateAsync("AddMemberView", parameters);
         }
     }
 }
