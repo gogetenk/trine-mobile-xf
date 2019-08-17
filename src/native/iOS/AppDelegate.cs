@@ -2,6 +2,7 @@
 using ImageCircle.Forms.Plugin.iOS;
 using Prism;
 using Prism.Ioc;
+using System;
 using Trine.Mobile.Bootstrapper;
 using UIKit;
 using Xamarin.Forms;
@@ -25,11 +26,26 @@ namespace Trine.Mobile.iOS
         {
             Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
-            ImageCircleRenderer.Init();
+            InitializeLibs();
+
             LoadApplication(new App(new iOSInitializer()));
-            FormsMaterial.Init();
 
             return base.FinishedLaunching(app, options);
+        }
+
+        private static void InitializeLibs()
+        {
+            try
+            {
+                ImageCircleRenderer.Init();
+                FormsMaterial.Init();
+                //SharpnadoInitializer.Initialize(enableInternalLogger: true);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"Exception while initializing app: {exception.Message}");
+                throw;
+            }
         }
     }
 

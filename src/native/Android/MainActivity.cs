@@ -26,12 +26,11 @@ namespace Trine.Mobile.Android
             Xamarin.Essentials.Platform.Init(this, bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-
-            ImageCircleRenderer.Init();
-            LoadApplication(new App(new AndroidInitializer()));
             ImageCircleRenderer.Init();
             FormsMaterial.Init(this, bundle);
             CrossCurrentActivity.Current.Init(this, bundle);
+
+            LoadApplication(new App(new AndroidInitializer()));
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
