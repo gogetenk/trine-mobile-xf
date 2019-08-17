@@ -72,7 +72,7 @@ namespace Modules.Mission.ViewModels
 
                 IsLoading = true;
                 Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _activityService.GetFromMission(_mission.Id));
-                _totalActivities = Activities.ToList();
+                _totalActivities = Activities?.ToList();
             }
             catch (BusinessException bExc)
             {

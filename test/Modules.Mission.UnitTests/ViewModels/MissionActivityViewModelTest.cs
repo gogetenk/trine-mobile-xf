@@ -127,5 +127,27 @@ namespace Modules.Mission.UnitTests.ViewModels
             viewmodel.Activities.Should().BeEquivalentTo(activities);
         }
 
+        [Fact]
+        public void OnSearchChanged_WhenNoActivities_ExpectNoActivities()
+        {
+            // Arrange
+            var mission = new Fixture().Create<MissionDto>();
+            var activityServiceMock = new Mock<IActivityService>();
+            activityServiceMock
+                .Setup(x => x.GetFromMission(mission.Id))
+                .ReturnsAsync(value: null);
+
+            var viewmodel = new MissionActivityViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, activityServiceMock.Object);
+            var navParams = new NavigationParameters();
+            navParams.Add(NavigationParameterKeys._Mission, mission);
+
+            // Act
+            viewmodel.OnNavigatedTo(navParams);
+            viewmodel.SearchText = "";
+
+            // Assert
+            viewmodel.Activities.Should().BeNull();
+        }
+
     }
 }
