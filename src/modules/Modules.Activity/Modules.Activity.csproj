@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels - Copy\**" />
+    <Compile Remove="Views - Copy\**" />
+    <EmbeddedResource Remove="ViewModels - Copy\**" />
+    <EmbeddedResource Remove="Views - Copy\**" />
+    <None Remove="ViewModels - Copy\**" />
+    <None Remove="Views - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
+    <PackageReference Include="Prism.Forms" Version="7.1.0.431" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll\Bll.csproj" />
+    <ProjectReference Include="..\..\Components\Trine.Mobile.Components.csproj" />
+    <ProjectReference Include="..\..\Trine.Mobile.Dto\Trine.Mobile.Dto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\ActivityDetailsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
