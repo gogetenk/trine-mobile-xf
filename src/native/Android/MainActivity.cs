@@ -26,6 +26,7 @@ namespace Trine.Mobile.Android
             Xamarin.Essentials.Platform.Init(this, bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
             ImageCircleRenderer.Init();
             FormsMaterial.Init(this, bundle);
             CrossCurrentActivity.Current.Init(this, bundle);
