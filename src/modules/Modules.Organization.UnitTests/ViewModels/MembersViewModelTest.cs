@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using Akavache;
+﻿using Akavache;
 using AutoFixture;
 using FluentAssertions;
 using Modules.Organization.ViewModels;
 using Moq;
 using Prism.Navigation;
+using System;
+using System.Linq;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
@@ -31,7 +31,6 @@ namespace Modules.Organization.UnitTests.ViewModels
             var organizationServiceMock = new Mock<IOrganizationService>();
             var cacheMock = new Mock<IBlobCache>();
             cacheMock.SetupAllProperties();
-            //cacheMock.Object.Insert("MemberList", members);
             organizationServiceMock
                 .Setup(x => x.GetById(It.IsAny<string>()))
                 .ReturnsAsync(orga);
@@ -39,12 +38,12 @@ namespace Modules.Organization.UnitTests.ViewModels
                 .Setup(x => x.GetOrganizationMembers(orga.Id))
                 .ReturnsAsync(members);
 
-
             BlobCache.LocalMachine = cacheMock.Object;
 
             var viewmodel = new MembersViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, organizationServiceMock.Object);
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._IsUserPickerModeEnabled, false);
+            navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
             viewmodel.OnNavigatedTo(navParams);
@@ -67,6 +66,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             var viewmodel = new MembersViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, organizationServiceMock.Object);
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._IsUserPickerModeEnabled, false);
+            navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
             viewmodel.OnNavigatedTo(navParams);
@@ -92,6 +92,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             var viewmodel = new MembersViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, organizationServiceMock.Object);
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._IsUserPickerModeEnabled, false);
+            navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
             viewmodel.OnNavigatedTo(navParams);
@@ -117,6 +118,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             var viewmodel = new MembersViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, organizationServiceMock.Object);
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._IsUserPickerModeEnabled, false);
+            navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
             viewmodel.OnNavigatedTo(navParams);

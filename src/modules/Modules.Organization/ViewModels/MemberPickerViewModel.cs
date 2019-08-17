@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
@@ -15,13 +16,17 @@ namespace Modules.Organization.ViewModels
 {
     public class MemberPickerViewModel : MembersViewModelBase
     {
-        
+        #region Bindings 
+
         public string Email { get => _email; set { _email = value; RaisePropertyChanged(); } }
         private string _email;
 
         private bool _isAddMemberLoading = false;
         public bool IsAddMemberLoading { get => _isAddMemberLoading; set { _isAddMemberLoading = value; RaisePropertyChanged(); AddMemberCommand.RaiseCanExecuteChanged(); } }
 
+        #endregion 
+
+        private readonly string _organizationId;
 
         public MemberPickerViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService) : base(navigationService, mapper, logger, dialogService, organizationService)
         {
@@ -58,11 +63,11 @@ namespace Modules.Organization.ViewModels
                 IsAddMemberLoading = true;
                 var request = new CreateInvitationRequestDto()
                 {
-                    InviterId = "5ca5ca8f26482d1254b85dc1", // TODO mocked
+                    InviterId = AppSettings.CurrentUser.Id,
                     Mail = Email
                 };
 
-                var invite = await _organizationService.SendInvitation("5ca5cab077e80c1344dbafec", Mapper.Map<CreateInvitationRequestModel>(request));
+                var invite = await _organizationService.SendInvitation(_organizationId, Mapper.Map<CreateInvitationRequestModel>(request));
                 var unknownUser = new UserDto()
                 {
                     DisplayName = Email,

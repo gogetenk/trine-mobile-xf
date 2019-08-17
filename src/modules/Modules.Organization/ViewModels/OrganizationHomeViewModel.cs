@@ -12,6 +12,8 @@ namespace Modules.Organization.ViewModels
 {
     public class OrganizationHomeViewModel : ViewModelBase, IActiveAware
     {
+        #region Bindings 
+
         public event EventHandler IsActiveChanged;
         private bool _isActive;
         public bool IsActive
@@ -22,6 +24,8 @@ namespace Modules.Organization.ViewModels
 
         private PartialOrganizationDto _organization;
         public PartialOrganizationDto Organization { get => _organization; set { _organization = value; RaisePropertyChanged(); } }
+
+        #endregion 
 
         public OrganizationHomeViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {

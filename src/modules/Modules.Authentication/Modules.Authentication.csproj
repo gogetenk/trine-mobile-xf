@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Sogetrel.Sinapse.Framework.Exceptions" Version="1.2.0-beta-006493" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
     <PackageReference Include="Prism.Forms" Version="7.1.0.431" />
   </ItemGroup>
 
@@ -39,6 +39,27 @@
     <EmbeddedResource Update="Views\Signup3View.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Views\ForgotPasswordConfirmationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ForgotPasswordView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Signup2View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Signup3View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SignupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -1,20 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
+using Sharpnado.Presentation.Forms.CustomViews;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Modules.Organization.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MembersContentView : ContentView
-	{
-		public MembersContentView ()
-		{
-			InitializeComponent ();
-		}
-	}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MembersContentView : ContentView, IAnimatableReveal
+    {
+        public bool Animate { get; set; }
+
+        public bool IsColoredHeader
+        {
+            get => frame_searchbar.BackgroundColor == Color.FromHex("#5A28D6");
+            set
+            {
+                if (value)
+                    frame_searchbar.BackgroundColor = Color.FromHex("#5A28D6");
+                else
+                    frame_searchbar.BackgroundColor = Color.Transparent;
+            }
+        }
+
+        public MembersContentView()
+        {
+            InitializeComponent();
+        }
+    }
 }

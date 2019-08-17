@@ -43,7 +43,15 @@
                 <On Platform="iOS"
                 Value="MaterialIcons-Regular" />
             </OnPlatform>
-
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="ThinFont">
+                <On Platform="Android"
+                    Value="proxima-thin.otf#Proxima Nova Th" />
+                <On Platform="UWP"
+                    Value="/Assets/proxima-thin.otf#Proxima Nova Th" />
+                <On Platform="iOS"
+                    Value="proxima-thin" />
+            </OnPlatform>
 
             <Color x:Key="PageBackgroundColor">White</Color>
             <Color x:Key="AccentColor">#5A28D6</Color>

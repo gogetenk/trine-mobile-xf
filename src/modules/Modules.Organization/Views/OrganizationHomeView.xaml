@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -51,11 +51,12 @@
                        Style="{StaticResource Paragraph}"
                        TextColor="{StaticResource SecondaryTextColor}"
                        FontSize="Small" />
-                <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
+                <StackLayout Orientation="Horizontal"
+                             Margin="0,30,0,0">
                     <Label Text="&#xe55f;"
                            VerticalOptions="Center"
                            FontSize="Small"
-                           TextColor="{StaticResource SecondaryTextColor}" 
+                           TextColor="{StaticResource SecondaryTextColor}"
                            FontFamily="{StaticResource MaterialIcons}"
                            Margin="0,0,10,0" />
                     <Label Text="Montpellier, France"
@@ -112,4 +113,4 @@
 
     </Grid>
 
-</ContentPage>
+</ContentView>

@@ -7,7 +7,7 @@
             Title="Panda Services"
             mc:Ignorable="d"
             x:Class="Modules.Organization.Views.OrganizationDetailsView">
-    <pages:OrganizationHomeView Title="Résumé" />
+    <!--<pages:OrganizationHomeView Title="Résumé" />
     <pages:OrganizationMissionsView Title="Missions" />
-    <pages:MembersView Title="Membres" /> 
+    <pages:MembersView Title="Membres" />--> 
 </TabbedPage> 

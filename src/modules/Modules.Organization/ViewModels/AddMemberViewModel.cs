@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
@@ -44,6 +46,8 @@ namespace Modules.Organization.ViewModels
         public ObservableCollection<InviteDto> Invites { get => _invites; set { _invites = value; RaisePropertyChanged(); } }
 
         private InviteDto _selectedInvite;
+        private OrganizationDto _organization;
+
         public InviteDto SelectedInvite { get => _selectedInvite; set { _selectedInvite = value; RaisePropertyChanged(); } }
 
         #endregion
@@ -64,6 +68,10 @@ namespace Modules.Organization.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
+            _organization = parameters.GetValue<OrganizationDto>(NavigationParameterKeys._Organization);
+            if (_organization is null)
+                await NavigationService.GoBackAsync();
+
             await LoadData();
         }
 
@@ -72,7 +80,7 @@ namespace Modules.Organization.ViewModels
             try
             {
                 IsLoading = true;
-                Invites = Mapper.Map<ObservableCollection<InviteDto>>(await _organizationService.GetInvites("5ca5cab077e80c1344dbafec")); // TODO Mocked
+                Invites = Mapper.Map<ObservableCollection<InviteDto>>(await _organizationService.GetInvites(_organization.Id)); // TODO Mocked
             }
             catch (BusinessException bExc)
             {
@@ -133,7 +141,7 @@ namespace Modules.Organization.ViewModels
                 IsAddMemberLoading = true;
                 var request = new CreateInvitationRequestDto()
                 {
-                    InviterId = "5ca5ca8f26482d1254b85dc1", // TODO mocked
+                    InviterId = AppSettings.CurrentUser.Id,
                     Mail = Email
                 };
 

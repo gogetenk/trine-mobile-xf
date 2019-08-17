@@ -1,75 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
-             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
              x:Class="Modules.Organization.Views.OrganizationMissionsView">
 
     <Grid>
         <StackLayout Padding="25,25,25,0">
-        <Frame HeightRequest="46"
-               CornerRadius="5"
-               VerticalOptions="CenterAndExpand"
-               Visual="Material"
-               BackgroundColor="White"
-               Padding="2"
-               HasShadow="True">
-            <StackLayout Orientation="Horizontal">
-                <Label FontFamily="{StaticResource MaterialIcons}"
-                       Text="&#xe8b6;"
-                       FontSize="24"
-                       TextColor="#B9B9B9"
-                       VerticalOptions="Center"
-                       Margin="15,0,10,0" />
-                <components:MaterialEntry HorizontalOptions="FillAndExpand"
-                                          Visual="Default"
-                                          Placeholder="Rechercher une mission..."
-                                          FontSize="Small"
-                                          Text="{Binding SearchText}"
-                                          PlaceholderColor="#B9B9B9"
-                                          Margin="0,3,15,0" />
-            </StackLayout>
-        </Frame>
+            <Frame HeightRequest="46"
+                   CornerRadius="5"
+                   VerticalOptions="CenterAndExpand"
+                   Visual="Material"
+                   BackgroundColor="White"
+                   Padding="2"
+                   HasShadow="True">
+                <StackLayout Orientation="Horizontal">
+                    <Label FontFamily="{StaticResource MaterialIcons}"
+                           Text="&#xe8b6;"
+                           FontSize="24"
+                           TextColor="#B9B9B9"
+                           VerticalOptions="Center"
+                           Margin="15,0,10,0" />
+                    <components:MaterialEntry HorizontalOptions="FillAndExpand"
+                                              Visual="Default"
+                                              Placeholder="Rechercher une mission..."
+                                              FontSize="Small"
+                                              Text="{Binding SearchText}"
+                                              PlaceholderColor="#B9B9B9"
+                                              Margin="0,3,15,0" />
+                </StackLayout>
+            </Frame>
 
-        <ListView ItemsSource="{Binding Missions}"
-                  SelectedItem="{Binding SelectedMission}"
-                  IsRefreshing="{Binding IsLoading}"
-                  IsPullToRefreshEnabled="True"
-                  Margin="0,30,0,0"
-                  RefreshCommand="{Binding RefreshCommand}"
-                  HasUnevenRows="True"
-                  SeparatorVisibility="None">
+            <ListView ItemsSource="{Binding Missions}"
+                      SelectedItem="{Binding SelectedMission}"
+                      IsRefreshing="{Binding IsLoading, Mode=OneWay}"
+                      IsPullToRefreshEnabled="True"
+                      Margin="0,30,0,0"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None">
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <components:MissionCardView Mission="{Binding .}"
-                                                    Margin="0,5,0,5" />
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <components:MissionCardView Mission="{Binding .}"
+                                                        Margin="0,5,0,5" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
 
         <Frame Padding="0"
                VerticalOptions="EndAndExpand"
                HorizontalOptions="EndAndExpand"
                Style="{StaticResource FrameButtonStyle}"
-               CornerRadius="{OnPlatform Default=120, iOS=20}"
-               HeightRequest="56"
-               WidthRequest="56"
+               CornerRadius="{OnPlatform Default=120, iOS=30}"
+               HeightRequest="60"
+               WidthRequest="60"
                Margin="0,0,25,40">
-
-            <Button Text="&#xe7fe;"
-                    CornerRadius="{OnPlatform Default=120, iOS=20}"
+            <Button Text="+"
+                    FontSize="24"
+                    CornerRadius="{OnPlatform Default=120, iOS=30}"
                     Style="{StaticResource ActionButtonStyle}"
                     Command="{Binding AddMissionCommand}"
-                    Padding="0" />
+                    Padding="0,-5,0,0" />
         </Frame>
     </Grid>
-    
-    
-</ContentPage>
+
+</ContentView>

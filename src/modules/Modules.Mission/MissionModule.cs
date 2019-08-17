@@ -23,6 +23,10 @@ namespace Modules.Mission
             containerRegistry.RegisterForNavigation<CreateMissionContractView, CreateMissionContractViewModel>();
             containerRegistry.RegisterForNavigation<CreateMissionSuccessView, CreateMissionSuccessViewModel>();
             containerRegistry.RegisterForNavigation<ContractDetailsView, ContractDetailsViewModel>();
+            //containerRegistry.RegisterForNavigation<MissionActivityView, MissionActivityViewModel>();
+            //containerRegistry.RegisterForNavigation<MissionContractView, MissionContractViewModel>();
+            containerRegistry.RegisterForNavigation<MissionDetailsView, MissionDetailsViewModel>();
+            //containerRegistry.RegisterForNavigation<MissionInvoiceView, MissionInvoiceViewModel>();
         }
     }
 }

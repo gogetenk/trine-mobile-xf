@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
-using Akavache;
+﻿using Akavache;
 using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Extensions;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 
@@ -47,6 +48,9 @@ namespace Modules.Organization.ViewModels
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
         private bool _isLoading;
 
+        public bool IsActionButtonShown { get => _isActionButtonShown; set { _isActionButtonShown = value; RaisePropertyChanged(); } }
+        private bool _isActionButtonShown;
+
         public string OrganizationName { get; set; } = "Panda Services"; // TODO mocked
         public string PageTitle { get; set; } = "Membres"; // TODO mocked
 
@@ -66,8 +70,18 @@ namespace Modules.Organization.ViewModels
         public MembersViewModelBase(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService) : base(navigationService, mapper, logger, dialogService)
         {
             _organizationService = organizationService;
+
             AddMemberCommand = new DelegateCommand(async () => await OnAddMember());
             RefreshCommand = new DelegateCommand(async () => await LoadData());
+        }
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            _organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
+            if (_organization is null)
+                await NavigationService.GoBackAsync();
         }
 
         protected abstract Task OnSelectedMember(UserDto user);
@@ -80,7 +94,6 @@ namespace Modules.Organization.ViewModels
 
             if (string.IsNullOrEmpty(role))
                 RoleSelectedIndex = -1;
-
 
             Members = new ObservableCollection<UserDto>(_totalMemberList);
 
@@ -99,9 +112,9 @@ namespace Modules.Organization.ViewModels
             {
                 IsLoading = true;
 
-                _organization = Mapper.Map<PartialOrganizationDto>(await _organizationService.GetById("5ca5cab077e80c1344dbafec"));// TODO Mocked
-                if (_organization is null)
-                    return; // TODO : Que faire?
+                //_organization = Mapper.Map<PartialOrganizationDto>(await _organizationService.GetById(_organization.Id));// TODO Mocked
+                //if (_organization is null)
+                //    return; // TODO : Que faire?
 
                 if (BlobCache.ApplicationName == "TrineUnitTests")
                 {
