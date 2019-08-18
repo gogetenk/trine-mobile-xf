@@ -8,6 +8,8 @@
              NavigationPage.HasNavigationBar="True"
              Title="Activité Mars 2019"
              x:Class="Modules.Activity.Views.ActivityDetailsView">
+    <ScrollView>
+        
     <StackLayout VerticalOptions="Fill"
                  HorizontalOptions="Fill">
 
@@ -16,6 +18,53 @@
                VerticalOptions="End"
                TextColor="#F1C40F" />
 
+        <!-- Commentaire -->
+        <Frame Margin="20" Padding="0" Visual="Material" IsClippedToBounds="True" CornerRadius="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <BoxView BackgroundColor="#FF5A39" Grid.Row="0" />
+
+                <StackLayout Grid.Row="1"
+                             Padding="20">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="&#xf2d5;"
+                               Margin="0,-33,10,0"
+                               Grid.Row="1"
+                               FontSize="Large"
+                               TextColor="#FF5A39"
+                               FontFamily="{StaticResource IconFont}" />
+                        <Label Text="Compte rendu d'activité refusé"
+                               TextColor="#FF5A39"
+                               Style="{StaticResource H2}" />
+                    </StackLayout>
+
+                    <Label Text="L'une des parties a refusé le compte rendu d'activité en vous laissant un commentaire."
+                           Grid.Row="1"
+                           Margin="0,-15,0,0"
+                           TextColor="#707070"
+                           Style="{StaticResource TertiaryText}" 
+                           TextDecorations="None"/>
+
+                    <Frame CornerRadius="5"
+                           HasShadow="False"
+                           Margin="0,15,0,0"
+                           BorderColor="#F5F5F7"
+                           Padding="10">
+                        <Label Text="Le lundi était ferié mec !!"
+                               Grid.Row="1"
+                               TextColor="#707070"
+                               Style="{StaticResource Paragraph}"
+                               TextDecorations="None" />
+                    </Frame>
+                </StackLayout>
+               
+            </Grid>
+            
+        </Frame>
+        
         <!-- Calendar -->
         <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
                                         x:Name="calendar"
@@ -132,4 +181,6 @@
         </Grid>
 
     </StackLayout>
+        
+    </ScrollView>
 </ContentPage>
