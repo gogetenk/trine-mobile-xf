@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Modules.Activity;
 using Modules.Authentication;
 using Modules.Dashboard;
 using Modules.Menu;
@@ -89,6 +90,7 @@ namespace Trine.Mobile.Bootstrapper
             moduleCatalog.AddModule<DashboardModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<MenuModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<MissionModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<ActivityModule>(InitializationMode.WhenAvailable);
         }
 
         public static bool IsASmallDevice()

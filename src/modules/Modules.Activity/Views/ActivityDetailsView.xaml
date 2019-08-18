@@ -3,13 +3,133 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="True"
+             Title="Activité Mars 2019"
              x:Class="Modules.Activity.Views.ActivityDetailsView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout VerticalOptions="Fill"
+                 HorizontalOptions="Fill">
+
+        <Label Text="{Binding Activity.TranscodedStatus}"
+               Margin="10,0,10,20"
+               VerticalOptions="End"
+               TextColor="#F1C40F" />
+
+        <!-- Calendar -->
+        <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
+                                        x:Name="calendar"
+                                        IsInputEnabled="True"
+                                        CellBackgroundColor="White"
+                                        CellForegroundColor="#333333"
+                                        RowHeight="50"
+                                        ColumnWidth="50"
+                                        WorkedDays="{Binding WorkedDays, Mode=TwoWay}"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center" />
+
+        <!-- Nombre de jours travaillés -->
+        <Grid Padding="5"
+              Margin="0,25,0,25"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="Start">
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <Label Text="{Binding WorkedDays, StringFormat='{0:G0}'}"
+                       VerticalOptions="Center"
+                       Margin="0,0,10,0"
+                       FontSize="35" />
+                <Label Text="jour(s) travaillé(s)"
+                       VerticalOptions="Center" />
+            </StackLayout>
+        </Grid>
+
+        <!-- Signataires -->
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="50*" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Orientation="Vertical"
+                         Grid.Column="0">
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                    <Label Text="{Binding Activity.Consultant.Firstname}"
+                           Style="{StaticResource Paragraph}"
+                           Margin="0"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding Activity.Consultant.Lastname}"
+                           Style="{StaticResource Paragraph}"
+                           Margin="0"
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+                <Label Text="Client"
+                       TextColor="{DynamicResource DefaultFrameForegroundColor}"
+                       Margin="0"
+                       HorizontalTextAlignment="Center" />
+                <Frame BackgroundColor="{Binding ConsultantSignedTextColor}"
+                       CornerRadius="120"
+                       Margin="0,5,0,0"
+                       HorizontalOptions="Center"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       Padding="0"
+                       HasShadow="False">
+                    <Image Source="{Binding Activity.Consultant.ProfilePicUrl}"
+                           Opacity=".8"
+                           VerticalOptions="Fill"
+                           HorizontalOptions="Fill" />
+                </Frame>
+                <Label Text="{Binding IsSignedByConsultant}"
+                       TextColor="{Binding ConsultantSignedTextColor}"
+                       HorizontalOptions="Center"
+                       FontSize="16" />
+                <Label Text="{Binding CurrentActivity.ConsultantSignatureDate}"
+                       TextColor="{DynamicResource DefaultFrameForegroundColor}"
+                       Margin="0"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical"
+                         Grid.Column="1">
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                    <Label Text="{Binding Activity.Customer.Firstname}"
+                           Margin="0"
+                           Style="{StaticResource Paragraph}"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding Activity.Customer.Lastname}"
+                           Style="{StaticResource Paragraph}"
+                           Margin="0"
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+                <Label Text="Client"
+                       TextColor="{DynamicResource DefaultFrameForegroundColor}"
+                       Margin="0"
+                       HorizontalTextAlignment="Center" />
+                <Frame BackgroundColor="{Binding CustomerSignedTextColor}"
+                       CornerRadius="120"
+                       Margin="0,5,0,0"
+                       HorizontalOptions="Center"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       Padding="0"
+                       HasShadow="False">
+                    <Image Source="{Binding Activity.Customer.ProfilePicUrl}"
+                           Opacity=".8"
+                           VerticalOptions="Fill"
+                           HorizontalOptions="Fill" />
+                </Frame>
+                <Label Text="{Binding IsSignedByCustomer}"
+                       TextColor="{Binding CustomerSignedTextColor}"
+                       HorizontalOptions="Center"
+                       FontSize="16" />
+                <Label Text="{Binding Activity.CustomerSignatureDate}"
+                       TextColor="{DynamicResource DefaultFrameForegroundColor}"
+                       Margin="0"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+        </Grid>
+
+    </StackLayout>
 </ContentPage>

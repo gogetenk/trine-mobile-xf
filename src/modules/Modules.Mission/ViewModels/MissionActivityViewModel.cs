@@ -31,6 +31,9 @@ namespace Modules.Mission.ViewModels
         public ObservableCollection<ActivityDto> Activities { get => _activities; set { _activities = value; RaisePropertyChanged(); } }
         private ObservableCollection<ActivityDto> _activities;
 
+        public ActivityDto SelectedActivity { get => _selectedActivity; set { _selectedActivity = value; RaisePropertyChanged(); OnActivitySelected(); } }
+        private ActivityDto _selectedActivity;
+
         public ICommand RefreshCommand { get; set; }
 
         #endregion
@@ -97,5 +100,16 @@ namespace Modules.Mission.ViewModels
             if (!string.IsNullOrEmpty(searchText))
                 Activities.RemoveAll(x => !x.StartDate.ToString("MMMM yyyy").ToLower().Contains(searchText.ToLower()));
         }
+
+        private async Task OnActivitySelected()
+        {
+            if (SelectedActivity == null)
+                return;
+
+            var navparams = new NavigationParameters();
+            navparams.Add(NavigationParameterKeys._Activity, SelectedActivity);
+            await NavigationService.NavigateAsync("ActivityDetailsView", navparams);
+        }
+
     }
 }

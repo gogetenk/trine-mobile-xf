@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Trine.Mobile.Components.Controls.ActivityCalendarView">
+    <StackLayout>
+        <Grid x:Name="grid_calendar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding ColumnWidth}" />
+                <ColumnDefinition Width="{Binding ColumnWidth}" />
+                <ColumnDefinition Width="{Binding ColumnWidth}" />
+                <ColumnDefinition Width="{Binding ColumnWidth}" />
+                <ColumnDefinition Width="{Binding ColumnWidth}" />
+                <ColumnDefinition Width="{Binding ColumnWidth}" />
+                <ColumnDefinition Width="{Binding ColumnWidth}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="{Binding RowHeight}" />
+                <RowDefinition Height="{Binding RowHeight}" />
+                <RowDefinition Height="{Binding RowHeight}" />
+                <RowDefinition Height="{Binding RowHeight}" />
+                <RowDefinition Height="{Binding RowHeight}" />
+                <RowDefinition Height="{Binding RowHeight}" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Text="MON"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   Text="TUE"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+            <Label Grid.Row="0"
+                   Grid.Column="2"
+                   Text="WED"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+            <Label Grid.Row="0"
+                   Grid.Column="3"
+                   Text="THU"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+            <Label Grid.Row="0"
+                   Grid.Column="4"
+                   Text="FRI"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+            <Label Grid.Row="0"
+                   Grid.Column="5"
+                   Text="SAT"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+            <Label Grid.Row="0"
+                   Grid.Column="6"
+                   Text="SUN"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+        </Grid>
+
+    </StackLayout>
+
+</ContentView>

@@ -7,6 +7,8 @@ namespace Modules.Activity
 {
     public class ActivityModule : IModule
     {
+
+
         public void OnInitialized(IContainerProvider containerProvider)
         {
 

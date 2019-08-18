@@ -10,5 +10,6 @@
         public static readonly string _Mission = "Mission";
         public static readonly string _OrganizationId = "OrganizationId";
         public static readonly string _CreateMissionRequest = "CreateMissionRequest";
+        public static readonly string _Activity = "Activity";
     }
 }
