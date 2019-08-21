@@ -34,7 +34,7 @@
                                      Padding="20">
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="&#xf2d5;"
-                                       Margin="0,-33,10,0"
+                                       Margin="{OnPlatform Android='0,-33,10,0', Default='0,0,10,0'}"
                                        Grid.Row="1"
                                        FontSize="Large"
                                        TextColor="#FF5A39"
