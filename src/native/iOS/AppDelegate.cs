@@ -2,6 +2,7 @@
 using ImageCircle.Forms.Plugin.iOS;
 using Prism;
 using Prism.Ioc;
+using Sharpnado.Presentation.Forms.iOS;
 using System;
 using Trine.Mobile.Bootstrapper;
 using UIKit;
@@ -39,7 +40,7 @@ namespace Trine.Mobile.iOS
             {
                 ImageCircleRenderer.Init();
                 FormsMaterial.Init();
-                //SharpnadoInitializer.Initialize(enableInternalLogger: true);
+                SharpnadoInitializer.Initialize(enableInternalLogger: true);
             }
             catch (Exception exception)
             {
