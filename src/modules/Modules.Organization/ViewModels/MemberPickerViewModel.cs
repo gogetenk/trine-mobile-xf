@@ -26,8 +26,6 @@ namespace Modules.Organization.ViewModels
 
         #endregion 
 
-        private readonly string _organizationId;
-
         public MemberPickerViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IOrganizationService organizationService) : base(navigationService, mapper, logger, dialogService, organizationService)
         {
         }
@@ -67,7 +65,7 @@ namespace Modules.Organization.ViewModels
                     Mail = Email
                 };
 
-                var invite = await _organizationService.SendInvitation(_organizationId, Mapper.Map<CreateInvitationRequestModel>(request));
+                var invite = await _organizationService.SendInvitation(_organization.Id, Mapper.Map<CreateInvitationRequestModel>(request));
                 var unknownUser = new UserDto()
                 {
                     DisplayName = Email,
