@@ -59,7 +59,7 @@
                                                  VerticalOptions="Center">
                                         <Label Text="&#xf2d1;"
                                                FontSize="Title"
-                                               Margin="0,-37,0,0"
+                                               Margin="{OnPlatform Android='0,-37,10,0', Default='0,0,0,0'}"
                                                FontFamily="{StaticResource IconFont}" />
                                     </StackLayout>
                                     <StackLayout Margin="15,0,0,0"
