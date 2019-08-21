@@ -46,7 +46,7 @@ namespace Modules.Organization.ViewModels
         public ObservableCollection<InviteDto> Invites { get => _invites; set { _invites = value; RaisePropertyChanged(); } }
 
         private InviteDto _selectedInvite;
-        private OrganizationDto _organization;
+        private PartialOrganizationDto _organization;
 
         public InviteDto SelectedInvite { get => _selectedInvite; set { _selectedInvite = value; RaisePropertyChanged(); } }
 
@@ -68,7 +68,7 @@ namespace Modules.Organization.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            _organization = parameters.GetValue<OrganizationDto>(NavigationParameterKeys._Organization);
+            _organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
             if (_organization is null)
                 await NavigationService.GoBackAsync();
 

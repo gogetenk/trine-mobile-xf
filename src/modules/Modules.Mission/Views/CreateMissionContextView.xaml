@@ -30,7 +30,7 @@
                      Margin="0,15" />
         </StackLayout>
 
-        
+
         <StackLayout VerticalOptions="CenterAndExpand"
                      Margin="0,40,0,0">
             <Label Text="Quel est le nom de la mission ou projet ?"
@@ -42,6 +42,19 @@
             <Label Text="Veuillez spécifier un intitulé pour votre mission."
                    IsVisible="{Binding IsTitleEmptyErrorVisible}"
                    Style="{StaticResource ErrorText}" />
+
+            <StackLayout IsVisible="{Binding IsOrganizationPickerVisible}"
+                   Margin="0,20,0,0">
+                <Label Text="Quelle est l'organisation ?"
+                   Style="{StaticResource Paragraph}" />
+                <Picker Style="{StaticResource EntryStyle}"
+                        SelectedItem="{Binding SelectedOrganization}"
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Organizations}" />
+                <Label Text="Veuillez spécifier une organisation pour votre mission."
+                   IsVisible="{Binding IsOrganizationErrorVisible}"
+                   Style="{StaticResource ErrorText}" />
+            </StackLayout>
 
             <Label Text="Qui est le client de la mission ?"
                    Margin="0,20,0,0"
@@ -74,7 +87,8 @@
 
         <components:InformationBubble IsVisible="{Binding IsInvitedUser}"
                                       VerticalOptions="EndAndExpand" />
-        
+        <ActivityIndicator IsRunning="{Binding IsLoading}" />
+
         <StackLayout Orientation="Horizontal"
                      VerticalOptions="EndAndExpand"
                      Margin="0,0,0,20"

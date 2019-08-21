@@ -84,6 +84,12 @@ namespace Modules.Organization.ViewModels
                 await NavigationService.GoBackAsync();
         }
 
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            parameters.Add(NavigationParameterKeys._Organization, _organization);
+            base.OnNavigatedFrom(parameters);
+        }
+
         protected abstract Task OnSelectedMember(UserDto user);
         protected abstract Task OnAddMember();
 

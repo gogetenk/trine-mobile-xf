@@ -6,6 +6,7 @@ using Prism.Services;
 using System;
 using System.Threading.Tasks;
 using Trine.Mobile.Components.Navigation;
+using Trine.Mobile.Dto;
 
 namespace Modules.Mission.ViewModels
 {

@@ -36,6 +36,9 @@ namespace Modules.Mission.ViewModels
         private bool _isInvitedUser = false;
         public bool IsInvitedUser { get => _isInvitedUser; set { _isInvitedUser = value; RaisePropertyChanged(); } }
 
+        private PartialOrganizationDto _selectedOrganization;
+        public PartialOrganizationDto SelectedOrganization { get => _selectedOrganization; set { _selectedOrganization = value; RaisePropertyChanged(); } }
+
         #endregion
 
 
@@ -57,6 +60,8 @@ namespace Modules.Mission.ViewModels
             if (PickedUser is null)
                 OnRemoveUser();
 
+            SelectedOrganization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
+
             // We get the user from navigation (from picker) only if it was null or if he has not the same id
             var pickedUser = parameters.GetValue<UserDto>(NavigationParameterKeys._User);
             if (pickedUser != null)
@@ -75,6 +80,14 @@ namespace Modules.Mission.ViewModels
                 await DialogService.DisplayAlertAsync("Oops...", ErrorMessages.unknownError, "Ok");
                 await NavigationService.NavigateAsync("CreateMissionStartView");
             }
+        }
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            // Used for member picker
+            parameters.Add(NavigationParameterKeys._Organization, SelectedOrganization);
+
+            base.OnNavigatedFrom(parameters);
         }
 
         protected virtual async Task OnPickUser()
