@@ -21,7 +21,7 @@
                 <StackLayout Orientation="Horizontal"
                              VerticalOptions="Center"
                              Padding="15">
-                    <StackLayout Margin="10,0,0,0"
+                    <StackLayout Margin="5,0,0,0"
                                  VerticalOptions="Center">
                         <Label Text="&#xea6a;"
                                FontSize="{OnPlatform Default='Title', iOS='Subtitle'}"
@@ -82,7 +82,7 @@
                                 <StackLayout Orientation="Horizontal"
                                              VerticalOptions="Center"
                                              Padding="15">
-                                    <StackLayout Margin="10,0,0,0"
+                                    <StackLayout Margin="5,0,0,0"
                                                  VerticalOptions="Center">
                                         <Label Text="&#xea52;"
                                                FontSize="{OnPlatform Default='Title', iOS='Subtitle'}"

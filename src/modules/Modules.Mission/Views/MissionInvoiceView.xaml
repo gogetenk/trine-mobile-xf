@@ -71,7 +71,7 @@
                                 <StackLayout Orientation="Horizontal"
                                              VerticalOptions="Center"
                                              Padding="15">
-                                    <StackLayout Margin="10,0,0,0"
+                                    <StackLayout Margin="5,0,0,0"
                                                  VerticalOptions="Center">
                                         <Label Text="&#xea7b;"
                                                FontSize="{OnPlatform Default='Title', iOS='Subtitle'}"

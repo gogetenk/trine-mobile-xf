@@ -73,6 +73,8 @@ namespace Modules.Organization.ViewModels
             Organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
             if (Organization is null)
                 await NavigationService.GoBackAsync();
+
+            TriggerOnNavigatedTo(0);
         }
     }
 }
