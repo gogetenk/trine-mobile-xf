@@ -18,12 +18,14 @@ namespace Modules.Mission.UnitTests.ViewModels
         {
             // Arrange
             var pickedUser = new Fixture().Create<UserDto>();
+            var orga = new Fixture().Create<PartialOrganizationDto>();
             var request = new Fixture().Create<CreateMissionRequestDto>();
             var dashboardServiceMock = new Mock<IDashboardService>();
             var viewmodel = new CreateMissionContextViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, dashboardServiceMock.Object);
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._User, pickedUser);
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
+            navParams.Add(NavigationParameterKeys._Organization, orga);
 
             // Act
             viewmodel.OnNavigatedTo(navParams);
