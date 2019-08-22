@@ -37,6 +37,7 @@
                       IsRefreshing="{Binding IsLoading}"
                       ItemsSource="{Binding Activities}"
                       IsPullToRefreshEnabled="True"
+                      VerticalOptions="FillAndExpand"
                       Margin="0,20,0,0"
                       RefreshCommand="{Binding RefreshCommand}"
                       HasUnevenRows="True"

@@ -6,11 +6,13 @@
              xmlns:views="clr-namespace:Modules.Mission.Views"
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              NavigationPage.HasNavigationBar="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:NavigationPage.PrefersLargeTitles="false"
              mc:Ignorable="d"
              x:Class="Modules.Mission.Views.MissionDetailsView">
     
     <NavigationPage.TitleView>
-        <StackLayout Margin="{OnPlatform Default='0,0,0,0', iOS='30,15,0,0'}"
+        <StackLayout Margin="{OnPlatform Default='0,0,0,0', iOS='30,0,0,0'}"
                      Spacing="0">
             <Label Text="Panda Services"
                    TextColor="White"
@@ -46,7 +48,7 @@
     <Grid ColumnSpacing="0"
           RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="{OnPlatform Default=50, iOS=25}" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 

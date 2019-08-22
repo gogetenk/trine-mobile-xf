@@ -15,6 +15,8 @@ namespace Trine.Mobile.Bootstrapper.Views
         public TrineNavigationPage()
         {
             InitializeComponent();
+
+            BarTextColor = Color.White;
         }
     }
 }

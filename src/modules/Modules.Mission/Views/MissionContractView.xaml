@@ -56,6 +56,7 @@
 
             <ListView SelectedItem="{Binding SelectedActivity}"
                       IsRefreshing="{Binding IsLoading}"
+                      VerticalOptions="FillAndExpand"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding RefreshCommand}"
                       HasUnevenRows="True"
