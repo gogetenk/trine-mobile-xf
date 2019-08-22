@@ -70,6 +70,7 @@
 
         <tabs:ViewSwitcher  Grid.Row="1"
                             x:Name="Switcher"
+                            VerticalOptions="FillAndExpand"
                             Animate="True"
                             SelectedIndex="{Binding SelectedViewModelIndex, 
                                                    Mode=TwoWay}">
