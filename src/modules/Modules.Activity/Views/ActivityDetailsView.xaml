@@ -12,7 +12,7 @@
     <Grid>
         <ScrollView>
 
-            <StackLayout VerticalOptions="Fill"
+            <StackLayout VerticalOptions="FillAndExpand"
                          HorizontalOptions="Fill">
 
                 <!-- Commentaire -->

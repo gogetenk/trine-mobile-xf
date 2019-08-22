@@ -12,7 +12,7 @@
              x:Class="Modules.Mission.Views.MissionDetailsView">
     
     <NavigationPage.TitleView>
-        <StackLayout Margin="{OnPlatform Default='0,0,0,0', iOS='30,0,0,0'}"
+        <StackLayout Margin="{OnPlatform Default='0,0,0,0', iOS='30,5,0,0'}"
                      Spacing="0">
             <Label Text="Panda Services"
                    TextColor="White"
@@ -48,13 +48,13 @@
     <Grid ColumnSpacing="0"
           RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="{OnPlatform Default=50, iOS=25}" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <tabs:TabHostView x:Name="TabHost"
                           Grid.Row="0"
-                          Margin="-16,0"
+                          Margin="{OnPlatform Default='-16,0', iOS='-16,-20,-16,0'}"
                           BackgroundColor="White"
                           SelectedIndex="{Binding Source={x:Reference Switcher}, 
                                               Path=SelectedIndex, 
