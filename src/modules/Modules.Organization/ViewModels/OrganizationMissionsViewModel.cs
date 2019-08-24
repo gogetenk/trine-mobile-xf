@@ -105,7 +105,12 @@ namespace Modules.Organization.ViewModels
 
         private async Task OnAddMission()
         {
-            await NavigationService.NavigateAsync("CreateMissionStartView", useModalNavigation: true);
+            if (_organization is null)
+                return;
+
+            var navParams = new NavigationParameters();
+            navParams.Add(NavigationParameterKeys._Organization, _organization);
+            await NavigationService.NavigateAsync("CreateMissionStartView", navParams, true);
         }
 
     }

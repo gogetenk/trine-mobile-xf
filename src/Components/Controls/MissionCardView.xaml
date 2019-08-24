@@ -5,6 +5,7 @@
              x:Class="Trine.Mobile.Components.Controls.MissionCardView">
     <Frame CornerRadius="5"
            Visual="{OnPlatform Default=Material, iOS=Default}"
+           IsClippedToBounds="True"
            BackgroundColor="#F5F5F7"
            HasShadow="False"
            Padding="0">
@@ -17,11 +18,13 @@
             <BoxView Color="#F0B429"
                      x:Name="bv_status"
                      Grid.Column="0" />
+            
             <StackLayout Orientation="Horizontal"
+                         VerticalOptions="Center"
                          Grid.Column="1"
-                         Padding="10">
+                         Padding="20">
                 <StackLayout Orientation="Horizontal"
-                             Spacing="-20">
+                             Spacing="0">
 
                     <abstractions:CircleImage HeightRequest="33"
                                               WidthRequest="33"
@@ -50,8 +53,7 @@
                 </StackLayout>
                 <StackLayout Margin="20,0,0,0">
                     <Label Text="-"
-                           x:Name="lb_title"
-                           FontFamily="{StaticResource ThinFont}"
+                           x:Name="lb_title" 
                            Style="{StaticResource Paragraph}" />
                     <Label Text="-"
                            FontSize="Small"
