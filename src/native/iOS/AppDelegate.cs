@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
+using InstabugLib;
 using Prism;
 using Prism.Ioc;
 using Sharpnado.Presentation.Forms.iOS;
@@ -7,7 +8,6 @@ using System;
 using Trine.Mobile.Bootstrapper;
 using UIKit;
 using Xamarin.Forms;
-
 namespace Trine.Mobile.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -41,6 +41,8 @@ namespace Trine.Mobile.iOS
                 ImageCircleRenderer.Init();
                 FormsMaterial.Init();
                 SharpnadoInitializer.Initialize(enableInternalLogger: true);
+                Instabug.StartWithToken("ee39ba65bc0171ea932b98e05acab1f2", IBGInvocationEvent.Shake | IBGInvocationEvent.TwoFingersSwipeLeft);
+                Instabug.ShouldCaptureViewHierarchy = true;
             }
             catch (Exception exception)
             {

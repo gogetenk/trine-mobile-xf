@@ -1,0 +1,28 @@
+﻿using Android.App;
+using Android.Runtime;
+using Com.Instabug.Library;
+using Com.Instabug.Library.Invocation;
+using System;
+
+namespace Trine.Mobile.Bootstrapper.Droid
+{
+    [Application]
+    public class CustomApplication : Application
+    {
+        protected CustomApplication(IntPtr javaReference, JniHandleOwnership transfer)
+        : base(javaReference, transfer)
+        {
+        }
+
+        public override void OnCreate()
+        {
+            base.OnCreate();
+
+            new Instabug
+                .Builder(this, "ee39ba65bc0171ea932b98e05acab1f2")
+                .SetInvocationEvents(InstabugInvocationEvent.Shake, InstabugInvocationEvent.TwoFingerSwipeLeft)
+                .Build();
+            Instabug.SetViewHierarchyState(Feature.State.Enabled);
+        }
+    }
+}

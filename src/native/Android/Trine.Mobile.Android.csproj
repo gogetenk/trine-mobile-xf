@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="instabug-for-android">
+      <Version>8.5.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
       <Version>2.1.1</Version>
     </PackageReference>
@@ -100,6 +103,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomApplication.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Renderers\MaterialEntryRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
