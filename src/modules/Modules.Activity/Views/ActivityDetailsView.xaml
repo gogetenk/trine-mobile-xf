@@ -72,11 +72,11 @@
                 <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
                                                x:Name="calendar"
                                                IsInputEnabled="True"
-                                               CellBackgroundColor="White"
-                                               CellForegroundColor="#333333"
+                                               CellBackgroundColor="#CCCCCC"
+                                               CellForegroundColor="White"
                                                RowHeight="50"
                                                ColumnWidth="50"
-                                               WorkedDays="{Binding WorkedDays, Mode=TwoWay}"
+                                               WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
                                                HorizontalOptions="Center"
                                                VerticalOptions="Center" />
 
@@ -87,7 +87,7 @@
                       VerticalOptions="Start">
                     <StackLayout Orientation="Horizontal"
                                  HorizontalOptions="Center">
-                        <Label Text="{Binding Activity.DaysNb, StringFormat='{0:G0}'}"
+                        <Label Text="{Binding Activity.DaysNb, StringFormat='{0:G0}', Mode=TwoWay}"
                                VerticalOptions="Center"
                                Margin="0,0,10,0"
                                FontSize="35" />
@@ -97,79 +97,88 @@
                 </Grid>
 
                 <!-- Signataires -->
-                <StackLayout Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*" />
+                        <ColumnDefinition Width="50*" />
+                    </Grid.ColumnDefinitions>
 
-                    <StackLayout Orientation="Vertical">
-                        <StackLayout Orientation="Horizontal"
-                                     HorizontalOptions="Center">
-                            <Label Text="{Binding Activity.Consultant.Firstname}"
-                                   Style="{StaticResource Paragraph}"
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center"
+                                 Grid.Column="0">
+                        <StackLayout Orientation="Vertical">
+                            <abstractions:CircleImage WidthRequest="50"
+                                                      HeightRequest="50"
+                                                      Source="{Binding Activity.Consultant.ProfilePicUrl}"
+                                                      HorizontalOptions="Center"
+                                                      BorderColor="White"
+                                                      BorderThickness="1"
+                                                      VerticalOptions="CenterAndExpand"
+                                                      Aspect="AspectFill" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Activity.Consultant.FirstName}"
+                                       Style="{StaticResource Paragraph}"
+                                       Margin="0"
+                                       HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding Activity.Consultant.LastName}"
+                                       Style="{StaticResource Paragraph}"
+                                       Margin="0"
+                                       HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                            <Label Text="Client"
                                    Margin="0"
                                    HorizontalTextAlignment="Center" />
-                            <Label Text="{Binding Activity.Consultant.Lastname}"
-                                   Style="{StaticResource Paragraph}"
+
+                            <Label Text="{Binding IsSignedByConsultant}"
+                                   TextColor="{Binding ConsultantSignedTextColor}"
+                                   HorizontalOptions="Center"
+                                   FontSize="16" />
+                            <Label Text="{Binding Activity.Consultant.SignatureDate}"
                                    Margin="0"
                                    HorizontalTextAlignment="Center" />
                         </StackLayout>
-                        <Label Text="Client"
-                               TextColor="{DynamicResource DefaultFrameForegroundColor}"
-                               Margin="0"
-                               HorizontalTextAlignment="Center" />
-
-                        <abstractions:CircleImage WidthRequest="50"
-                                                  HeightRequest="50"
-                                                  Source="{Binding Activity.Consultant.ProfilePicUrl}"
-                                                  HorizontalOptions="Start"
-                                                  BorderColor="White"
-                                                  BorderThickness="1"
-                                                  VerticalOptions="CenterAndExpand"
-                                                  Aspect="AspectFill" />
-
-                        <Label Text="{Binding IsSignedByConsultant}"
-                               TextColor="{Binding ConsultantSignedTextColor}"
-                               HorizontalOptions="Center"
-                               FontSize="16" />
-                        <Label Text="{Binding CurrentActivity.ConsultantSignatureDate}"
-                               TextColor="{DynamicResource DefaultFrameForegroundColor}"
-                               Margin="0"
-                               HorizontalTextAlignment="Center" />
                     </StackLayout>
-                    <StackLayout Orientation="Vertical">
+                    
                         <StackLayout Orientation="Horizontal"
-                                     HorizontalOptions="Center">
-                            <Label Text="{Binding Activity.Customer.Firstname}"
-                                   Margin="0"
-                                   Style="{StaticResource Paragraph}"
-                                   HorizontalTextAlignment="Center" />
-                            <Label Text="{Binding Activity.Customer.Lastname}"
-                                   Style="{StaticResource Paragraph}"
-                                   Margin="0"
-                                   HorizontalTextAlignment="Center" />
+                                 HorizontalOptions="Center"
+                                 Grid.Column="1">
+                            <StackLayout Orientation="Vertical">
+                            <abstractions:CircleImage WidthRequest="50"
+                                                      HeightRequest="50"
+                                                      HorizontalOptions="Center"
+                                                      Source="{Binding Activity.Customer.ProfilePicUrl}"
+                                                      BorderColor="White"
+                                                      BorderThickness="1"
+                                                      VerticalOptions="CenterAndExpand"
+                                                      Aspect="AspectFill" />
+                            <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Activity.Customer.FirstName}"
+                                           Margin="0"
+                                           Style="{StaticResource Paragraph}"
+                                           HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding Activity.Customer.LastName}"
+                                           Style="{StaticResource Paragraph}"
+                                           Margin="0"
+                                           HorizontalTextAlignment="Center" />
+                                </StackLayout>
+                                <Label Text="Client"
+                                       Margin="0"
+                                       HorizontalTextAlignment="Center" />
+                              
+                                <Label Text="{Binding IsSignedByCustomer}"
+                                       TextColor="{Binding CustomerSignedTextColor}"
+                                       HorizontalOptions="Center"
+                                       FontSize="16" />
+                                <Label Text="{Binding Activity.Customer.SignatureDate}"
+                                       Margin="0"
+                                       HorizontalTextAlignment="Center" />
+                            </StackLayout>
                         </StackLayout>
-                        <Label Text="Client"
-                               TextColor="{DynamicResource DefaultFrameForegroundColor}"
-                               Margin="0"
-                               HorizontalTextAlignment="Center" />
-                        <abstractions:CircleImage WidthRequest="50"
-                                                  HeightRequest="50"
-                                                  Source="{Binding Activity.Customer.ProfilePicUrl}"
-                                                  HorizontalOptions="Start"
-                                                  BorderColor="White"
-                                                  BorderThickness="1"
-                                                  VerticalOptions="CenterAndExpand"
-                                                  Aspect="AspectFill" />
-                        <Label Text="{Binding IsSignedByCustomer}"
-                               TextColor="{Binding CustomerSignedTextColor}"
-                               HorizontalOptions="Center"
-                               FontSize="16" />
-                        <Label Text="{Binding Activity.CustomerSignatureDate}"
-                               TextColor="{DynamicResource DefaultFrameForegroundColor}"
-                               Margin="0"
-                               HorizontalTextAlignment="Center" />
-                    </StackLayout>
-                </StackLayout>
+
+                </Grid>
 
             </StackLayout>
+
 
         </ScrollView>
 

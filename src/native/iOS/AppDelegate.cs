@@ -45,8 +45,6 @@ namespace Trine.Mobile.iOS
                 Instabug.ShouldCaptureViewHierarchy = true;
                 // Disable the Replies. If disabled, the chats list button is removed from Instabug's prompt, the in-app notifications are disabled, and manually showing the chats list doesn't have an effect. 
                 IBGReplies.Enabled = false;
-                Instabug.SetWelcomeMessageMode(IBGWelcomeMessageMode.WelcomeMessageModeBeta); // For beta testers
-                Instabug.SetWelcomeMessageMode(IBGWelcomeMessageMode.WelcomeMessageModeLive); // For live users
             }
             catch (Exception exception)
             {

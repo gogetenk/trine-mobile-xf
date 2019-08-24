@@ -28,6 +28,9 @@ namespace Modules.Activity.ViewModels
         public bool IsAcceptButtonVisible { get => _isAcceptButtonVisible; set { _isAcceptButtonVisible = value; RaisePropertyChanged(); } }
         private bool _isAcceptButtonVisible;
 
+        public bool IsCommentVisible { get => _isCommentVisible; set { _isCommentVisible = value; RaisePropertyChanged(); } }
+        private bool _isCommentVisible;
+
         public ActivityDto Activity { get => _activity; set { _activity = value; RaisePropertyChanged(); } }
         private ActivityDto _activity;
 
