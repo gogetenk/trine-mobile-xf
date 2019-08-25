@@ -5,10 +5,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:local="clr-namespace:Trine.Mobile.Components.Converters;assembly=Trine.Mobile.Components"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              Title="Activité Mars 2019"
              x:Class="Modules.Activity.Views.ActivityDetailsView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ActivityStatusToColorConverter x:Key="statusToColor" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    
     <Grid>
         <ScrollView>
 
@@ -130,7 +138,7 @@
                                    HorizontalTextAlignment="Center" />
 
                             <Label Text="{Binding IsSignedByConsultant}"
-                                   TextColor="{Binding ConsultantSignedTextColor}"
+                                   TextColor="{Binding Activity.Status, Converter={StaticResource statusToColor}}"
                                    HorizontalOptions="Center"
                                    FontSize="16" />
                             <Label Text="{Binding Activity.Consultant.SignatureDate}"
