@@ -24,6 +24,7 @@ namespace Trine.Mobile.Model
     {
         Generated,
         ConsultantSigned,
-        CustomerSigned
+        ModificationsRequired,
+        CustomerSigned,
     }
 }

@@ -25,6 +25,9 @@ namespace Trine.Mobile.Components.Converters
                 case ActivityStatusEnum.CustomerSigned:
                     color = Color.FromHex("#3EBD93");
                     break;
+                case ActivityStatusEnum.ModificationsRequired:
+                    color = Color.FromHex("#FF5A39");
+                    break;
                 default:
                     color = Color.FromHex("#F0B429");
                     break;

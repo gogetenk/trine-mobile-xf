@@ -30,6 +30,7 @@ namespace Trine.Mobile.Dto
     {
         Generated,
         ConsultantSigned,
+        ModificationsRequired,
         CustomerSigned
     }
 }

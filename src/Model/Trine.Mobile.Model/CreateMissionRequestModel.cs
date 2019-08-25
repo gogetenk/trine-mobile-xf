@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Trine.Mobile.Model
 {
@@ -12,13 +10,12 @@ namespace Trine.Mobile.Model
         public float CommercialFeePercentage { get; set; }
         public bool IsTripartite { get; set; }
         public bool IsFreelance { get; set; }
-
         public FrequencyEnum PaymentFrequency { get; set; }
 
         // FKs
-        public string CommercialId { get; set; }
-        public string ConsultantId { get; set; }
-        public string CustomerId { get; set; }
+        public UserModel Commercial { get; set; }
+        public UserModel Consultant { get; set; }
+        public UserModel Customer { get; set; }
         public string OrganizationId { get; set; }
         public string ProjectName { get; set; }
         public string OwnerId { get; set; }

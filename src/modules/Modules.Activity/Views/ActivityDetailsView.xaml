@@ -115,15 +115,33 @@
                                  HorizontalOptions="Center"
                                  Grid.Column="0">
                         <StackLayout Orientation="Vertical">
-                            <abstractions:CircleImage WidthRequest="50"
-                                                      HeightRequest="50"
-                                                      Source="{Binding Activity.Consultant.ProfilePicUrl}"
-                                                      HorizontalOptions="Center"
-                                                      BorderColor="White"
-                                                      BorderThickness="1"
-                                                      VerticalOptions="CenterAndExpand"
-                                                      Aspect="AspectFill" />
-                            <StackLayout Orientation="Horizontal">
+                            <Grid HorizontalOptions="Center">
+                                <abstractions:CircleImage WidthRequest="60"
+                                                          HeightRequest="60"
+                                                          Source="{Binding Activity.Consultant.ProfilePicUrl}"
+                                                          HorizontalOptions="Center"
+                                                          BorderColor="White"
+                                                          BorderThickness="1"
+                                                          Aspect="AspectFill" />
+                                <Frame CornerRadius="120"
+                                       Padding="0"
+                                       HeightRequest="25"
+                                       WidthRequest="25"
+                                       Margin="40,0,0,0"
+                                       HasShadow="False"
+                                       BackgroundColor="{Binding ConsultantSignedTextColor}"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="Center">
+                                    <Label Text="{Binding ConsultantGlyph}"
+                                           FontFamily="{StaticResource MaterialIcons}"
+                                           TextColor="White"
+                                           HorizontalOptions="Center" 
+                                           VerticalOptions="Center"/>
+                                </Frame>
+                            </Grid>
+                            
+                            <StackLayout Orientation="Horizontal"
+                                         HorizontalOptions="Center">
                                 <Label Text="{Binding Activity.Consultant.FirstName}"
                                        Style="{StaticResource Paragraph}"
                                        Margin="0"
@@ -133,7 +151,7 @@
                                        Margin="0"
                                        HorizontalTextAlignment="Center" />
                             </StackLayout>
-                            <Label Text="Client"
+                            <Label Text="Consultant"
                                    Margin="0"
                                    HorizontalTextAlignment="Center" />
 
@@ -151,14 +169,29 @@
                                  HorizontalOptions="Center"
                                  Grid.Column="1">
                             <StackLayout Orientation="Vertical">
-                            <abstractions:CircleImage WidthRequest="50"
-                                                      HeightRequest="50"
-                                                      HorizontalOptions="Center"
-                                                      Source="{Binding Activity.Customer.ProfilePicUrl}"
-                                                      BorderColor="White"
-                                                      BorderThickness="1"
-                                                      VerticalOptions="CenterAndExpand"
-                                                      Aspect="AspectFill" />
+                            <Grid HorizontalOptions="Center">
+                                <abstractions:CircleImage WidthRequest="60"
+                                                          HeightRequest="60"
+                                                          Source="{Binding Activity.Customer.ProfilePicUrl}"
+                                                          HorizontalOptions="Center"
+                                                          BorderColor="White"
+                                                          BorderThickness="1"
+                                                          Aspect="AspectFill" />
+                                <Frame CornerRadius="120"
+                                       Padding="0"
+                                       HeightRequest="25"
+                                       WidthRequest="25"
+                                       Margin="40,0,0,0"
+                                       HasShadow="False"
+                                       BackgroundColor="#F0B429"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="Center">
+                                    <Label Text="..."
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Frame>
+                            </Grid>
                             <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Activity.Customer.FirstName}"
                                            Margin="0"

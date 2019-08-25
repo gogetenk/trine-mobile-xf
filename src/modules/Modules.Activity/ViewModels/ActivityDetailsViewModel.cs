@@ -12,6 +12,7 @@ using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
+using Xamarin.Forms;
 
 namespace Modules.Activity.ViewModels
 {
@@ -36,6 +37,18 @@ namespace Modules.Activity.ViewModels
 
         public bool IsCommentVisible { get => _isCommentVisible; set { _isCommentVisible = value; RaisePropertyChanged(); } }
         private bool _isCommentVisible;
+
+        public Color CustomerSignedTextColor { get => _customerSignedTextColor; set { _customerSignedTextColor = value; RaisePropertyChanged(); } }
+        private Color _customerSignedTextColor = Color.FromHex("#F0B429");
+
+        public Color ConsultantSignedTextColor { get => _consultantSignedTextColor; set { _consultantSignedTextColor = value; RaisePropertyChanged(); } }
+        private Color _consultantSignedTextColor = Color.FromHex("#F0B429");
+
+        public string ConsultantGlyph { get => _consultantGlyph; set { _consultantGlyph = value; RaisePropertyChanged(); } }
+        private string _consultantGlyph;
+
+        public string CustomerGlyph { get => _customerGlyph; set { _customerGlyph = value; RaisePropertyChanged(); } }
+        private string _customerGlyph;
 
         public ActivityDto Activity { get => _activity; set { _activity = value; RaisePropertyChanged(); } }
         private ActivityDto _activity;
@@ -136,6 +149,29 @@ namespace Modules.Activity.ViewModels
                 SetupCommercialUI();
             else if (Activity.Customer.Id == AppSettings.CurrentUser.Id)
                 SetupCustomerUI();
+
+            //if (Activity.Consultant.SignatureDate == null)
+            //{
+            //    ConsultantSignedTextColor = Color.FromHex("#F0B429");
+            //    CustomerSignedTextColor = Color.FromHex("#F0B429");
+            //    ConsultantGlyph = "\ue619";
+            //    CustomerGlyph = "\ue619";
+            //}
+            //else if (Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned)
+            //{
+            //    ConsultantSignedTextColor = Color.FromHex("#3EBD93");
+            //    CustomerSignedTextColor = Color.FromHex("#F0B429");
+            //    CustomerSignedTextColor = Color.FromHex("#F0B429");
+            //    CustomerGlyph = "\ue619";
+            //}
+            //else
+            //{
+            //    ConsultantSignedTextColor = Color.FromHex("#3EBD93");
+            //    CustomerSignedTextColor = Color.FromHex("#F0B429");
+            //    CustomerSignedTextColor = Color.FromHex("#FF5A39");
+            //    CustomerGlyph = "\ue619";
+            //}
+            //ConsultantSignedTextColor = (Activity.Consultant.SignatureDate == null) ? Color.FromHex("#F0B429") : Color.FromHex("#3EBD93");
         }
 
         private void SetupConsultantUI()
