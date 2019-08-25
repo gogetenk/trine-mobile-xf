@@ -16,7 +16,6 @@ using Prism.Logging;
 using Prism.Logging.AppCenter;
 using Prism.Modularity;
 using Prism.Unity;
-using System.Net;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Factory;
 using Trine.Mobile.Bll.Impl.Services;
@@ -52,13 +51,7 @@ namespace Trine.Mobile.Bootstrapper
             InitializeComponent();
             LoadStyles();
 #if DEBUG
-            HotReloader.Current.Run(this, new HotReloader.Configuration
-            {
-                //optionaly you may specify EXTENSION's IP (ExtensionIpAddress) 
-                //in case your PC/laptop and device are in different subnets
-                //e.g. Laptop - 10.10.102.16 AND Device - 10.10.9.12
-                ExtensionIpAddress = IPAddress.Parse("192.168.1.6") // use your PC/Laptop IP
-            });
+            HotReloader.Current.Run(this);
 #endif
             Akavache.Registrations.Start("TrineApp");
             await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");

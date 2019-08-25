@@ -3,12 +3,15 @@ using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
+using Trine.Mobile.Model;
 
 namespace Modules.Activity.ViewModels
 {
@@ -21,6 +24,9 @@ namespace Modules.Activity.ViewModels
 
         public bool IsSignButtonVisible { get => _isSignButtonVisible; set { _isSignButtonVisible = value; RaisePropertyChanged(); } }
         private bool _isSignButtonVisible;
+
+        public bool IsSaveButtonVisible { get => _isSaveButtonVisible; set { _isSaveButtonVisible = value; RaisePropertyChanged(); } }
+        private bool _isSaveButtonVisible;
 
         public bool IsRefuseButtonVisible { get => _isRefuseButtonVisible; set { _isRefuseButtonVisible = value; RaisePropertyChanged(); } }
         private bool _isRefuseButtonVisible;
@@ -37,6 +43,7 @@ namespace Modules.Activity.ViewModels
         public DelegateCommand AcceptActivityCommand { get; set; }
         public DelegateCommand RefuseActivityCommand { get; set; }
         public DelegateCommand SignActivityCommand { get; set; }
+        public DelegateCommand SaveActivityCommand { get; set; }
 
         #endregion
 
@@ -49,6 +56,7 @@ namespace Modules.Activity.ViewModels
             AcceptActivityCommand = new DelegateCommand(async () => await OnAcceptActivity());
             RefuseActivityCommand = new DelegateCommand(async () => await OnRefuseActivity());
             SignActivityCommand = new DelegateCommand(async () => await OnSignActivity());
+            SaveActivityCommand = new DelegateCommand(async () => await OnSaveActivity());
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)
@@ -64,6 +72,52 @@ namespace Modules.Activity.ViewModels
 
         private async Task OnSignActivity()
         {
+            try
+            {
+                if (IsLoading)
+                    return;
+
+                IsLoading = true;
+                Activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity)));
+                SetupUI();
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        private async Task OnSaveActivity()
+        {
+            try
+            {
+                if (IsLoading)
+                    return;
+
+                IsLoading = true;
+                await _activityService.UpdateActivity(Mapper.Map<ActivityModel>(Activity));
+                SetupUI();
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         private async Task OnRefuseActivity()
@@ -88,13 +142,15 @@ namespace Modules.Activity.ViewModels
         {
             IsAcceptButtonVisible = false;
             IsRefuseButtonVisible = false;
-            IsSignButtonVisible = Activity.Status == ActivityStatusEnum.Generated;
+            IsSignButtonVisible = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.Generated;
+            IsSaveButtonVisible = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.Generated;
         }
         private void SetupCustomerUI()
         {
-            IsAcceptButtonVisible = Activity.Status == ActivityStatusEnum.ConsultantSigned;
+            IsAcceptButtonVisible = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned;
             IsRefuseButtonVisible = true;
             IsSignButtonVisible = false;
+            IsSaveButtonVisible = false;
         }
 
         private void SetupCommercialUI()

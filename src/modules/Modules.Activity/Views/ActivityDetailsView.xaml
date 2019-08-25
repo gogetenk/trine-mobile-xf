@@ -185,9 +185,10 @@
 
                 </Grid>
 
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   Margin="15" />
+
             </StackLayout>
-
-
         </ScrollView>
 
         <StackLayout  VerticalOptions="EndAndExpand"
@@ -211,6 +212,24 @@
                         Padding="0,0,0,0" />
             </Frame>
             <Frame Padding="0"
+                   IsVisible="{Binding IsSignButtonVisible}"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource FrameButtonStyle}"
+                   CornerRadius="{OnPlatform Default=120, iOS=30}"
+                   BackgroundColor="#F5F5F7"
+                   HeightRequest="40"
+                   WidthRequest="40"
+                   Margin="0,0,25,5">
+                <Button Text="&#xe3c9;"
+                        FontFamily="{StaticResource MaterialIcons}"
+                        TextColor="#95989A"
+                        FontSize="24"
+                        BackgroundColor="#F5F5F7"
+                        Command="{Binding SignActivityCommand}"
+                        CornerRadius="{OnPlatform Default=120, iOS=30}"
+                        Padding="0,0,0,0" />
+            </Frame>
+            <Frame Padding="0"
                    IsVisible="{Binding IsAcceptButtonVisible}"
                    Style="{StaticResource FrameButtonStyle}"
                    CornerRadius="{OnPlatform Default=120, iOS=30}"
@@ -226,16 +245,16 @@
                         Padding="0,0,0,0" />
             </Frame>
             <Frame Padding="0"
-                   IsVisible="{Binding IsSignButtonVisible}"
+                   IsVisible="{Binding IsSaveButtonVisible}"
                    Style="{StaticResource FrameButtonStyle}"
                    CornerRadius="{OnPlatform Default=120, iOS=30}"
                    HeightRequest="60"
                    WidthRequest="60"
                    Margin="0,0,25,40">
-                <Button Text="&#xe3c9;"
+                <Button Text="&#xe161;"
                         FontSize="24"
                         Style="{StaticResource ActionButtonStyle}"
-                        Command="{Binding SignActivityCommand}"
+                        Command="{Binding SaveActivityCommand}"
                         CornerRadius="{OnPlatform Default=120, iOS=30}"
                         Padding="0,0,0,0" />
             </Frame>
