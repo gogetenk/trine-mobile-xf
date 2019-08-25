@@ -132,9 +132,9 @@ namespace Modules.Activity.ViewModels
         {
             if (Activity.Consultant.Id == AppSettings.CurrentUser.Id)
                 SetupConsultantUI();
-            if (Activity.Commercial.Id == AppSettings.CurrentUser.Id)
+            else if (Activity.Commercial?.Id == AppSettings.CurrentUser.Id)
                 SetupCommercialUI();
-            if (Activity.Customer.Id == AppSettings.CurrentUser.Id)
+            else if (Activity.Customer.Id == AppSettings.CurrentUser.Id)
                 SetupCustomerUI();
         }
 

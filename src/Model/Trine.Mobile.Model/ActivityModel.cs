@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Trine.Mobile.Model
 {
@@ -18,6 +17,7 @@ namespace Trine.Mobile.Model
         public List<GridDayModel> Days { get; set; }
         public bool CanSign { get; set; }
         public bool CanModify { get; set; }
+        public List<ModificationProposalModel> ModificationProposals { get; set; }
     }
 
     public enum ActivityStatusEnum

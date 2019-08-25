@@ -18,6 +18,7 @@ namespace Trine.Mobile.Dto
         public List<GridDayDto> Days { get; set; }
         public bool CanSign { get; set; }
         public bool CanModify { get; set; }
+        public List<ModificationProposalDto> ModificationProposals { get; set; }
 
         // UI only 
         public Color PinColor { get; set; }
