@@ -16,7 +16,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    
     <Grid>
         <ScrollView>
 
@@ -64,7 +63,7 @@
                                    Margin="0,15,0,0"
                                    BorderColor="#F5F5F7"
                                    Padding="10">
-                                <Label Text="Le lundi était ferié mec !!"
+                                <Label Text="{Binding Activity.ModificationProposals[0].Comment}"
                                        Grid.Row="1"
                                        TextColor="#707070"
                                        Style="{StaticResource Paragraph}"
@@ -135,11 +134,11 @@
                                     <Label Text="{Binding ConsultantGlyph}"
                                            FontFamily="{StaticResource MaterialIcons}"
                                            TextColor="White"
-                                           HorizontalOptions="Center" 
-                                           VerticalOptions="Center"/>
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
                                 </Frame>
                             </Grid>
-                            
+
                             <StackLayout Orientation="Horizontal"
                                          HorizontalOptions="Center">
                                 <Label Text="{Binding Activity.Consultant.FirstName}"
@@ -153,22 +152,21 @@
                             </StackLayout>
                             <Label Text="Consultant"
                                    Margin="0"
+                                   TextColor="{StaticResource SecondaryTextColor}"
+                                   Style="{StaticResource Paragraph}"
                                    HorizontalTextAlignment="Center" />
-
-                            <Label Text="{Binding IsSignedByConsultant}"
+                            <Label Text="{Binding ConsultantSignedStatusText}"
                                    TextColor="{Binding Activity.Status, Converter={StaticResource statusToColor}}"
                                    HorizontalOptions="Center"
-                                   FontSize="16" />
-                            <Label Text="{Binding Activity.Consultant.SignatureDate}"
-                                   Margin="0"
-                                   HorizontalTextAlignment="Center" />
+                                   FontSize="Small"
+                                   Style="{StaticResource Paragraph}" />
                         </StackLayout>
                     </StackLayout>
-                    
-                        <StackLayout Orientation="Horizontal"
+
+                    <StackLayout Orientation="Horizontal"
                                  HorizontalOptions="Center"
                                  Grid.Column="1">
-                            <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Vertical">
                             <Grid HorizontalOptions="Center">
                                 <abstractions:CircleImage WidthRequest="60"
                                                           HeightRequest="60"
@@ -183,38 +181,40 @@
                                        WidthRequest="25"
                                        Margin="40,0,0,0"
                                        HasShadow="False"
-                                       BackgroundColor="#F0B429"
+                                       BackgroundColor="{Binding CustomerSignedTextColor}"
                                        VerticalOptions="End"
                                        HorizontalOptions="Center">
-                                    <Label Text="..."
+                                    <Label Text="{Binding CustomerGlyph}"
+                                           FontFamily="{StaticResource MaterialIcons}"
                                            TextColor="White"
                                            HorizontalOptions="Center"
                                            VerticalOptions="Center" />
                                 </Frame>
                             </Grid>
                             <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Activity.Customer.FirstName}"
-                                           Margin="0"
-                                           Style="{StaticResource Paragraph}"
-                                           HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding Activity.Customer.LastName}"
-                                           Style="{StaticResource Paragraph}"
-                                           Margin="0"
-                                           HorizontalTextAlignment="Center" />
-                                </StackLayout>
-                                <Label Text="Client"
+                                <Label Text="{Binding Activity.Customer.FirstName}"
                                        Margin="0"
+                                       Style="{StaticResource Paragraph}"
                                        HorizontalTextAlignment="Center" />
-                              
-                                <Label Text="{Binding IsSignedByCustomer}"
-                                       TextColor="{Binding CustomerSignedTextColor}"
-                                       HorizontalOptions="Center"
-                                       FontSize="16" />
-                                <Label Text="{Binding Activity.Customer.SignatureDate}"
+                                <Label Text="{Binding Activity.Customer.LastName}"
+                                       Style="{StaticResource Paragraph}"
                                        Margin="0"
                                        HorizontalTextAlignment="Center" />
                             </StackLayout>
+                            <Label Text="Client"
+                                   Margin="0"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="{StaticResource SecondaryTextColor}"
+                                   Style="{StaticResource Paragraph}" />
+
+                            <Label Text="{Binding CustomerSignedStatusText, StringFormat='{}{0:MM/dd/yyyy}'}"
+                                   TextColor="{Binding CustomerSignedTextColor}"
+                                   HorizontalOptions="Center"
+                                   FontSize="Small"
+                                   Style="{StaticResource Paragraph}" />
+
                         </StackLayout>
+                    </StackLayout>
 
                 </Grid>
 

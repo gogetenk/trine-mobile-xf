@@ -44,6 +44,11 @@ namespace Modules.Activity.ViewModels
         public Color ConsultantSignedTextColor { get => _consultantSignedTextColor; set { _consultantSignedTextColor = value; RaisePropertyChanged(); } }
         private Color _consultantSignedTextColor = Color.FromHex("#F0B429");
 
+        public string ConsultantSignedStatusText { get => _consultantSignedStatusText; set { _consultantSignedStatusText = value; RaisePropertyChanged(); } }
+        private string _consultantSignedStatusText;
+        public string CustomerSignedStatusText { get => _customerSignedStatusText; set { _customerSignedStatusText = value; RaisePropertyChanged(); } }
+        private string _customerSignedStatusText;
+
         public string ConsultantGlyph { get => _consultantGlyph; set { _consultantGlyph = value; RaisePropertyChanged(); } }
         private string _consultantGlyph;
 
@@ -135,6 +140,37 @@ namespace Modules.Activity.ViewModels
 
         private async Task OnRefuseActivity()
         {
+            try
+            {
+                if (IsLoading)
+                    return;
+
+                IsLoading = true;
+                Activity.ModificationProposals = new System.Collections.Generic.List<ModificationProposalDto>()
+                {
+                    new ModificationProposalDto()
+                    {
+                        Comment = "T'es pas beau !!"
+                    }
+                };
+                Activity.Consultant.SignatureDate = null;
+                Activity.Customer.SignatureDate = null;
+                Activity.Status = Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired;
+                await _activityService.SaveActivityReport(Mapper.Map<ActivityModel>(Activity));
+                SetupUI();
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         private async Task OnAcceptActivity()
@@ -150,28 +186,46 @@ namespace Modules.Activity.ViewModels
             else if (Activity.Customer.Id == AppSettings.CurrentUser.Id)
                 SetupCustomerUI();
 
-            //if (Activity.Consultant.SignatureDate == null)
-            //{
-            //    ConsultantSignedTextColor = Color.FromHex("#F0B429");
-            //    CustomerSignedTextColor = Color.FromHex("#F0B429");
-            //    ConsultantGlyph = "\ue619";
-            //    CustomerGlyph = "\ue619";
-            //}
-            //else if (Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned)
-            //{
-            //    ConsultantSignedTextColor = Color.FromHex("#3EBD93");
-            //    CustomerSignedTextColor = Color.FromHex("#F0B429");
-            //    CustomerSignedTextColor = Color.FromHex("#F0B429");
-            //    CustomerGlyph = "\ue619";
-            //}
-            //else
-            //{
-            //    ConsultantSignedTextColor = Color.FromHex("#3EBD93");
-            //    CustomerSignedTextColor = Color.FromHex("#F0B429");
-            //    CustomerSignedTextColor = Color.FromHex("#FF5A39");
-            //    CustomerGlyph = "\ue619";
-            //}
-            //ConsultantSignedTextColor = (Activity.Consultant.SignatureDate == null) ? Color.FromHex("#F0B429") : Color.FromHex("#3EBD93");
+            if (Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.Generated)
+            {
+                ConsultantSignedTextColor = Color.FromHex("#F0B429"); // Yellow
+                CustomerSignedTextColor = Color.FromHex("#F0B429");
+                ConsultantSignedStatusText = "En attente de signature";
+                CustomerSignedStatusText = "En attente de signature";
+                ConsultantGlyph = "\ue5d3";
+                CustomerGlyph = "\ue5d3";
+                IsCommentVisible = false;
+            }
+            else if (Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned)
+            {
+                ConsultantSignedTextColor = Color.FromHex("#3EBD93");  // Green
+                CustomerSignedTextColor = Color.FromHex("#F0B429");
+                ConsultantSignedStatusText = $"Signé le {Activity.Consultant.SignatureDate}";
+                CustomerSignedStatusText = "En attente de signature";
+                ConsultantGlyph = "\ue5ca";
+                CustomerGlyph = "\ue5d3";
+                IsCommentVisible = false;
+            }
+            else if (Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired)
+            {
+                ConsultantSignedTextColor = Color.FromHex("#F0B429");
+                CustomerSignedTextColor = Color.FromHex("#FF5A39"); // Red
+                ConsultantSignedStatusText = "En attente de modification";
+                CustomerSignedStatusText = "Refusé";
+                ConsultantGlyph = "\ue5d3";
+                CustomerGlyph = "\ue5cd";
+                IsCommentVisible = true;
+            }
+            else if (Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.CustomerSigned)
+            {
+                ConsultantSignedTextColor = Color.FromHex("#3EBD93");
+                CustomerSignedTextColor = Color.FromHex("#3EBD93");
+                ConsultantSignedStatusText = $"Signé le {Activity.Consultant.SignatureDate}";
+                CustomerSignedStatusText = $"Signé le {Activity.Customer.SignatureDate}";
+                ConsultantGlyph = "\ue5ca";
+                CustomerGlyph = "\ue5ca";
+                IsCommentVisible = false;
+            }
         }
 
         private void SetupConsultantUI()
@@ -184,7 +238,7 @@ namespace Modules.Activity.ViewModels
         private void SetupCustomerUI()
         {
             IsAcceptButtonVisible = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned;
-            IsRefuseButtonVisible = true;
+            IsRefuseButtonVisible = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned;
             IsSignButtonVisible = false;
             IsSaveButtonVisible = false;
         }

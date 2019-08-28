@@ -107,7 +107,7 @@ namespace Modules.Organization.ViewModels
                 Members.RemoveAll(x => x.Role != role);
 
             if (!string.IsNullOrEmpty(searchText))
-                Members.RemoveAll(x => !x.DisplayName.ToLower().Contains(searchText.ToLower()));
+                Members.RemoveAll(x => string.IsNullOrEmpty(x.DisplayName) || !x.DisplayName.ToLower().Contains(searchText.ToLower()));
 
             IsListEmpty = !Members.Any();
         }
@@ -128,16 +128,18 @@ namespace Modules.Organization.ViewModels
                     return;
                 }
 
-                BlobCache.LocalMachine.GetAndFetchLatest(
-                        "MemberList",
-                        async () => await _organizationService.GetOrganizationMembers(_organization.Id),
-                        null,
-                        null,
-                        true
-                    ).Subscribe(members =>
-                    {
-                        RefreshUI(members);
-                    });
+                //BlobCache.LocalMachine.GetAndFetchLatest(
+                //        "MemberList",
+                //        async () => await _organizationService.GetOrganizationMembers(_organization.Id),
+                //        null,
+                //        null,
+                //        true
+                //    ).Subscribe(members =>
+                //    {
+                //        RefreshUI(members);
+                //    });
+
+                RefreshUI(await _organizationService.GetOrganizationMembers(_organization.Id));
             }
             catch (BusinessException bExc)
             {
