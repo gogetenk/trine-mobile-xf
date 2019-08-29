@@ -11,5 +11,6 @@
         public static readonly string _OrganizationId = "OrganizationId";
         public static readonly string _CreateMissionRequest = "CreateMissionRequest";
         public static readonly string _Activity = "Activity";
+        public static readonly string _IsActivitySigned = "IsActivitySigned";
     }
 }

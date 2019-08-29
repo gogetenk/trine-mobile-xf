@@ -3,6 +3,7 @@ using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using Prism.Services.Dialogs;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Threading.Tasks;
@@ -66,11 +67,12 @@ namespace Modules.Activity.ViewModels
         #endregion
 
         private readonly IActivityService _activityService;
+        private readonly IDialogService _dialogService;
 
-        public ActivityDetailsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IActivityService activityService) : base(navigationService, mapper, logger, dialogService)
+        public ActivityDetailsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService pageDialogService, IActivityService activityService, IDialogService dialogService) : base(navigationService, mapper, logger, pageDialogService)
         {
             _activityService = activityService;
-
+            _dialogService = dialogService;
             AcceptActivityCommand = new DelegateCommand(async () => await OnAcceptActivity());
             RefuseActivityCommand = new DelegateCommand(async () => await OnRefuseActivity());
             SignActivityCommand = new DelegateCommand(async () => await OnSignActivity());
@@ -90,14 +92,24 @@ namespace Modules.Activity.ViewModels
 
         private async Task OnSignActivity()
         {
+            _dialogService.ShowDialog("SignActivityDialogView", null, async result => await OnSignDialogClosed(result.Parameters));
+        }
+
+        private async Task OnSignDialogClosed(IDialogParameters result)
+        {
             try
             {
+                if (!result.GetValue<bool>(NavigationParameterKeys._IsActivitySigned))
+                    return;
+
                 if (IsLoading)
                     return;
 
                 IsLoading = true;
+
                 Activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity)));
                 SetupUI();
+
             }
             catch (BusinessException bExc)
             {

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Prism.AppModel;
 using Prism.Logging;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -12,7 +13,7 @@ using Trine.Mobile.Bll.Impl.Settings;
 
 namespace Trine.Mobile.Components.ViewModels
 {
-    public abstract class ViewModelBase : BindableBase, IInitializeAsync, INavigatedAware
+    public abstract class ViewModelBase : BindableBase, IInitializeAsync, INavigatedAware, IAutoInitialize
     {
         public INavigationService NavigationService { get; }
         public IMapper Mapper { get; }

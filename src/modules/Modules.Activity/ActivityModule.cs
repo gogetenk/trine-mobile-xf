@@ -17,6 +17,7 @@ namespace Modules.Activity
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<ActivityDetailsView, ActivityDetailsViewModel>();
+            containerRegistry.RegisterDialog<SignActivityDialogView, SignActivityDialogViewModel>();
         }
     }
 }
