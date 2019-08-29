@@ -4,6 +4,7 @@ using Modules.Mission.ViewModels;
 using Moq;
 using Prism.Navigation;
 using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
 using Trine.Mobile.Dto;
@@ -14,7 +15,7 @@ namespace Modules.Mission.UnitTests.ViewModels
     public class CreateMissionDatesViewModelTest : UnitTestBase
     {
         //[Fact]
-        //public void OnNextStep_NominalCase_ExpectNavigated() // Marche pas alors que ça passe en pas-à-pas
+        //public async Task OnNextStep_NominalCase_ExpectNavigated() // Marche pas alors que ça passe en pas-à-pas
         //{
         //    // Arrange
         //    var pickedUser = new Fixture().Create<UserDto>();
@@ -27,7 +28,7 @@ namespace Modules.Mission.UnitTests.ViewModels
         //    navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
         //    // Act
-        //    viewmodel.OnNavigatedTo(navParams);
+        //    await viewmodel.InitializeAsync(navParams);
         //    viewmodel.NextCommand.Execute();
 
         //    // Assert
@@ -36,7 +37,7 @@ namespace Modules.Mission.UnitTests.ViewModels
         //}
 
         [Fact]
-        public void OnNextStep_WhenEndDateBeforeStartDate_ExpectErrorMessage()
+        public async Task OnNextStep_WhenEndDateBeforeStartDate_ExpectErrorMessage()
         {
             // Arrange
             var pickedUser = new Fixture().Create<UserDto>();
@@ -47,7 +48,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.CreateMissionRequest.EndDate = DateTime.UtcNow;
             viewmodel.CreateMissionRequest.StartDate = DateTime.UtcNow.AddMonths(3);
             viewmodel.NextCommand.Execute();
@@ -58,7 +59,7 @@ namespace Modules.Mission.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnNextStep_WhenDateAreNull_ExpectErrorMessage()
+        public async Task OnNextStep_WhenDateAreNull_ExpectErrorMessage()
         {
             // Arrange
             var pickedUser = new Fixture().Create<UserDto>();
@@ -69,7 +70,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.CreateMissionRequest.EndDate = default(DateTime);
             viewmodel.CreateMissionRequest.StartDate = default(DateTime);
             viewmodel.NextCommand.Execute();

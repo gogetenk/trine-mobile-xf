@@ -55,10 +55,10 @@ namespace Modules.Menu.ViewModels
             _dashboardService = dashboardService;
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
             // Known issue in Xamarin forms where the MasterPage OnAppearing is raised twice
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             await LoadUserMissions();
         }

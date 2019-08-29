@@ -48,9 +48,9 @@ namespace Modules.Mission.ViewModels
             _dashboardService = dashboardService;
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             SelectedOrganization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
             if (SelectedOrganization != null)

@@ -6,6 +6,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
@@ -18,7 +19,7 @@ namespace Modules.Mission.UnitTests.ViewModels
     public class MissionActivityViewModelTest : UnitTestBase
     {
         [Fact]
-        public void OnNavigatedTo_NominalCase_ExpectMissionList()
+        public async Task OnNavigatedTo_NominalCase_ExpectMissionList()
         {
             // Arrange
             var mission = new Fixture().Create<MissionDto>();
@@ -33,14 +34,14 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Mission, mission);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
 
             // Assert
             viewmodel.Activities.Should().NotBeEmpty();
         }
 
         [Fact]
-        public void OnNavigatedTo_WhenMissionIsNull_ExpectGoBackAsync()
+        public async Task OnNavigatedTo_WhenMissionIsNull_ExpectGoBackAsync()
         {
             // Arrange
             var activityServiceMock = new Mock<IActivityService>();
@@ -50,14 +51,14 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Mission, null);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
 
             // Assert
             _navigationService.Verify(x => x.GoBackAsync(), Times.Once);
         }
 
         [Fact]
-        public void OnNavigatedTo_WhenHasAlreadyBeenLoaded_ExpectDoNothing()
+        public async Task OnNavigatedTo_WhenHasAlreadyBeenLoaded_ExpectDoNothing()
         {
             // Arrange
             var mission = new Fixture().Create<MissionDto>();
@@ -72,15 +73,15 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Mission, mission);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
-            viewmodel.OnNavigatedTo(navParams); // Called two times in a row
+            await viewmodel.InitializeAsync(navParams);
+            await viewmodel.InitializeAsync(navParams); // Called two times in a row
 
             // Assert
             activityServiceMock.Verify(x => x.GetFromMission(It.IsAny<string>()), Times.AtMostOnce);
         }
 
         [Fact]
-        public void OnSearchChanged_NominalCase_ExpectSearchedActivities()
+        public async Task OnSearchChanged_NominalCase_ExpectSearchedActivities()
         {
             // Arrange
             var mission = new Fixture().Create<MissionDto>();
@@ -96,7 +97,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Mission, mission);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.SearchText = "1991";
 
             // Assert
@@ -104,7 +105,7 @@ namespace Modules.Mission.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnSearchChanged_WhenSearchTextIsEmpty_ExpectAllActivities()
+        public async Task OnSearchChanged_WhenSearchTextIsEmpty_ExpectAllActivities()
         {
             // Arrange
             var mission = new Fixture().Create<MissionDto>();
@@ -119,7 +120,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Mission, mission);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.SearchText = viewmodel.Activities.FirstOrDefault().StartDate.ToString("MMMM yyyy");
             viewmodel.SearchText = "";
 
@@ -128,7 +129,7 @@ namespace Modules.Mission.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnSearchChanged_WhenNoActivities_ExpectNoActivities()
+        public async Task OnSearchChanged_WhenNoActivities_ExpectNoActivities()
         {
             // Arrange
             var mission = new Fixture().Create<MissionDto>();
@@ -142,7 +143,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Mission, mission);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.SearchText = "";
 
             // Assert

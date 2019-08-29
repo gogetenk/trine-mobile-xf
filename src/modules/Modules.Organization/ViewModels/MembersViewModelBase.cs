@@ -75,9 +75,9 @@ namespace Modules.Organization.ViewModels
             RefreshCommand = new DelegateCommand(async () => await LoadData());
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             _organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
             if (_organization is null)

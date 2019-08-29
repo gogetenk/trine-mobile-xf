@@ -6,6 +6,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.Navigation;
@@ -19,7 +20,7 @@ namespace Modules.Menu.UnitTests
     public class MenuRootViewModelTest : UnitTestBase
     {
         [Fact]
-        public void OnNavigatedTo_NominalCase_ExpectOrgasAndMissions()
+        public async Task OnNavigatedTo_NominalCase_ExpectOrgasAndMissions()
         {
             // Arrange
             AppSettings.CurrentUser = new Fixture().Create<UserModel>();
@@ -37,7 +38,7 @@ namespace Modules.Menu.UnitTests
             var viewmodel = new MenuRootViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionServiceMock.Object, dashboardServiceMock.Object);
 
             // Act
-            viewmodel.OnNavigatedTo(null);
+            await viewmodel.InitializeAsync(null);
 
             // Assert
             viewmodel.Missions.Should().NotBeNull();
@@ -47,7 +48,7 @@ namespace Modules.Menu.UnitTests
         }
 
         [Fact]
-        public void OnMissionSelected_NominalCase_ExpectNavigated()
+        public async Task OnMissionSelected_NominalCase_ExpectNavigated()
         {
             // Arrange
             AppSettings.CurrentUser = new Fixture().Create<UserModel>();
@@ -65,7 +66,7 @@ namespace Modules.Menu.UnitTests
             var viewmodel = new MenuRootViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionServiceMock.Object, dashboardServiceMock.Object);
 
             // Act
-            viewmodel.OnNavigatedTo(null);
+            await viewmodel.InitializeAsync(null);
             var selectedMission = viewmodel.Missions[1];
             viewmodel.SelectedMission = selectedMission;
 
@@ -74,7 +75,7 @@ namespace Modules.Menu.UnitTests
         }
 
         [Fact]
-        public void OnOrganizationSelected_NominalCase_ExpectNavigated()
+        public async Task OnOrganizationSelected_NominalCase_ExpectNavigated()
         {
             // Arrange
             AppSettings.CurrentUser = new Fixture().Create<UserModel>();
@@ -92,7 +93,7 @@ namespace Modules.Menu.UnitTests
             var viewmodel = new MenuRootViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionServiceMock.Object, dashboardServiceMock.Object);
 
             // Act
-            viewmodel.OnNavigatedTo(null);
+            await viewmodel.InitializeAsync(null);
             var selectedOrga = viewmodel.Organizations[1];
             viewmodel.SelectedOrganization = selectedOrga;
 
@@ -101,7 +102,7 @@ namespace Modules.Menu.UnitTests
         }
 
         [Fact]
-        public void OnNavigatedTo_WhenOrgaServiceThrowsException_ExpectLogged()
+        public async Task OnNavigatedTo_WhenOrgaServiceThrowsException_ExpectLogged()
         {
             // Arrange
             AppSettings.CurrentUser = new Fixture().Create<UserModel>();
@@ -119,14 +120,14 @@ namespace Modules.Menu.UnitTests
             var viewmodel = new MenuRootViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionServiceMock.Object, dashboardServiceMock.Object);
 
             // Act
-            viewmodel.OnNavigatedTo(null);
+            await viewmodel.InitializeAsync(null);
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
         }
 
         [Fact]
-        public void OnNavigatedTo_WhenMissionServiceThrowsException_ExpectLogged()
+        public async Task OnNavigatedTo_WhenMissionServiceThrowsException_ExpectLogged()
         {
             // Arrange
             AppSettings.CurrentUser = new Fixture().Create<UserModel>();
@@ -144,7 +145,7 @@ namespace Modules.Menu.UnitTests
             var viewmodel = new MenuRootViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionServiceMock.Object, dashboardServiceMock.Object);
 
             // Act
-            viewmodel.OnNavigatedTo(null);
+            await viewmodel.InitializeAsync(null);
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);

@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
-using AutoMapper;
+﻿using AutoMapper;
 using Modules.Authentication.Navigation;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
@@ -71,9 +71,9 @@ namespace Modules.Authentication.ViewModels
             await NavigationService.NavigateAsync("Signup3View", navParams);
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             _userToCreate = parameters.GetValue<RegisterUserDto>(NavigationParameterKeys._User);
         }

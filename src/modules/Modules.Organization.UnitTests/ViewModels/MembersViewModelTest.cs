@@ -6,6 +6,7 @@ using Moq;
 using Prism.Navigation;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
@@ -23,7 +24,7 @@ namespace Modules.Organization.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnNavigatedTo_NominalCase_ExpectMemberList()
+        public async Task OnNavigatedTo_NominalCase_ExpectMemberList()
         {
             // Arrange
             var orga = new Fixture().Create<PartialOrganizationModel>();
@@ -46,14 +47,14 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
 
             // Assert
             viewmodel.Members.Should().NotBeNull();
         }
 
         [Fact]
-        public void OnNavigatedTo_WhenOrgaServiceThrowsException_ExpectReport()
+        public async Task OnNavigatedTo_WhenOrgaServiceThrowsException_ExpectReport()
         {
             // Arrange
             var orga = new Fixture().Create<PartialOrganizationModel>();
@@ -69,14 +70,14 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
         }
 
         [Fact]
-        public void OnNavigatedTo_WhenMembersServiceThrowsException_ExpectReport()
+        public async Task OnNavigatedTo_WhenMembersServiceThrowsException_ExpectReport()
         {
             // Arrange
             var orga = new Fixture().Create<PartialOrganizationModel>();
@@ -95,14 +96,14 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
         }
 
         [Fact]
-        public void OnSelectdMember_NominalCase_ExpectNavigated()
+        public async Task OnSelectdMember_NominalCase_ExpectNavigated()
         {
             // Arrange
             var orga = new Fixture().Create<PartialOrganizationModel>();
@@ -121,7 +122,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             var selectedMember = _mapper.Map<UserDto>(members.First());
             viewmodel.SelectedMember = selectedMember;
 

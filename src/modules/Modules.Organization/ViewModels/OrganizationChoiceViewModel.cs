@@ -35,9 +35,9 @@ namespace Modules.Organization.ViewModels
             await NavigationService.NavigateAsync("JoinOrganizationView");
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             // Only for the subscribe workflow so it can get the user back if navigating back
             _lastPageParams = parameters;

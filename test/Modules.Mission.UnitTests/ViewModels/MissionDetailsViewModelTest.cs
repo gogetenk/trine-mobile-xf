@@ -3,6 +3,7 @@ using FluentAssertions;
 using Modules.Mission.ViewModels;
 using Moq;
 using Prism.Navigation;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
@@ -14,7 +15,7 @@ namespace Modules.Mission.UnitTests.ViewModels
     public class MissionDetailsViewModelTest : UnitTestBase
     {
         [Fact]
-        public void OnNavigatedTo_NominalCase_ExpectOnNavigatedToFirstTab()
+        public async Task OnNavigatedTo_NominalCase_ExpectOnNavigatedToFirstTab()
         {
             // Arrange
             var mission = new Fixture().Create<MissionDto>();
@@ -25,7 +26,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Mission, mission);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
 
             // Assert
             viewmodel.MissionActivityViewModel.Should().NotBeNull();

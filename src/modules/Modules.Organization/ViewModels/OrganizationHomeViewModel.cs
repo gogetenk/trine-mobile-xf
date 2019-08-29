@@ -4,6 +4,7 @@ using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
@@ -31,9 +32,9 @@ namespace Modules.Organization.ViewModels
         {
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             Organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
             if (Organization is null)

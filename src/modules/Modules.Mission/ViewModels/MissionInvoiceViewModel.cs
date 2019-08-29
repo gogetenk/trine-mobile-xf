@@ -49,9 +49,9 @@ namespace Modules.Mission.ViewModels
             RefreshCommand = new DelegateCommand(async () => await LoadData());
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             Mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
         }

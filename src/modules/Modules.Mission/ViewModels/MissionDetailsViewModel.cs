@@ -2,6 +2,7 @@
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
@@ -53,15 +54,15 @@ namespace Modules.Mission.ViewModels
             MissionInvoiceViewModel = new MissionInvoiceViewModel(navigationService, mapper, logger, dialogService);
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             _mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
-            TriggerOnNavigatedTo(0);
+            await TriggerOnNavigatedTo(0);
         }
 
-        private void TriggerOnNavigatedTo(int value)
+        private async Task TriggerOnNavigatedTo(int value)
         {
             var parameters = new NavigationParameters();
             parameters.Add(NavigationParameterKeys._Mission, _mission);
@@ -69,13 +70,13 @@ namespace Modules.Mission.ViewModels
             switch (value)
             {
                 case 0:
-                    MissionActivityViewModel.OnNavigatedTo(parameters);
+                    await MissionActivityViewModel.InitializeAsync(parameters);
                     break;
                 case 1:
-                    MissionInvoiceViewModel.OnNavigatedTo(parameters);
+                    await MissionInvoiceViewModel.InitializeAsync(parameters);
                     break;
                 case 2:
-                    MissionContractViewModel.OnNavigatedTo(parameters);
+                    await MissionContractViewModel.InitializeAsync(parameters);
                     break;
             }
         }

@@ -15,6 +15,7 @@ using Prism.Ioc;
 using Prism.Logging;
 using Prism.Modularity;
 using Prism.Unity;
+using System;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Factory;
 using Trine.Mobile.Bll.Impl.Services;
@@ -47,13 +48,21 @@ namespace Trine.Mobile.Bootstrapper
 
         protected override async void OnInitialized()
         {
-            InitializeComponent();
-            LoadStyles();
+            try
+            {
+
+                InitializeComponent();
+                LoadStyles();
 #if DEBUG
-            HotReloader.Current.Run(this);
+                HotReloader.Current.Run(this);
 #endif
-            Akavache.Registrations.Start("TrineApp");
-            await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
+                Akavache.Registrations.Start("TrineApp");
+                await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
         }
 
         protected override void OnStart()

@@ -3,6 +3,7 @@ using FluentAssertions;
 using Modules.Organization.ViewModels;
 using Moq;
 using Prism.Navigation;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
@@ -19,14 +20,14 @@ namespace Modules.Organization.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnNavigatedTo_NominalCase_ExpectMember()
+        public async Task OnNavigatedTo_NominalCase_ExpectMember()
         {
             // Arrange
             var orgaId = new Fixture().Create<string>();
             var user = new Fixture().Create<UserDto>();
             var member = new Fixture().Create<OrganizationMemberModel>();
             var organizationServiceMock = new Mock<IOrganizationService>();
-            
+
             organizationServiceMock
                 .Setup(x => x.GetMember(orgaId, user.Id))
                 .ReturnsAsync(member);
@@ -37,7 +38,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._User, user);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
 
             // Assert
             viewmodel.Member.Should().NotBeNull();
@@ -45,13 +46,13 @@ namespace Modules.Organization.UnitTests.ViewModels
         }
 
         [Fact]
-        public void DeleteMember_NominalCase_ExpectDeleted()
+        public async Task DeleteMember_NominalCase_ExpectDeleted()
         {
             // Arrange
             var orgaId = new Fixture().Create<string>();
             var user = new Fixture().Create<UserDto>();
             var member = new Fixture().Create<OrganizationMemberModel>();
-            
+
             var organizationServiceMock = new Mock<IOrganizationService>();
             organizationServiceMock
                 .Setup(x => x.GetMember(orgaId, user.Id))
@@ -67,7 +68,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._User, user);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.DeleteCommand.Execute(null);
 
             // Assert
@@ -76,7 +77,7 @@ namespace Modules.Organization.UnitTests.ViewModels
         }
 
         [Fact]
-        public void DeleteMember_NominalCase_ExpectNotDeleted()
+        public async Task DeleteMember_NominalCase_ExpectNotDeleted()
         {
             // Arrange
             var orgaId = new Fixture().Create<string>();
@@ -98,7 +99,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._User, user);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.DeleteCommand.Execute(null);
 
             // Assert
@@ -107,7 +108,7 @@ namespace Modules.Organization.UnitTests.ViewModels
         }
 
         [Fact]
-        public void Save_NominalCase_ExpectUpdated()
+        public async Task Save_NominalCase_ExpectUpdated()
         {
             // Arrange
             var orgaId = new Fixture().Create<string>();
@@ -132,7 +133,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._User, user);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.SaveCommand.Execute(null);
 
             // Assert

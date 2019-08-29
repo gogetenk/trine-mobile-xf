@@ -30,9 +30,9 @@ namespace Modules.Organization.ViewModels
         {
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             _navigatedFrom = parameters.GetValue<string>(NavigationParameterKeys._NavigatedFromUri);
 

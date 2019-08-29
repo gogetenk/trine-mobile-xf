@@ -1,12 +1,12 @@
-﻿using System.Windows.Input;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
-using Trine.Mobile.Dal.Swagger;
 using Trine.Mobile.Dto;
 
 namespace Modules.Mission.ViewModels
@@ -26,9 +26,9 @@ namespace Modules.Mission.ViewModels
             StartCommand = new DelegateCommand(async () => await NavigationService.NavigateAsync("CreateMissionContextView"));
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             _partialOrganization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
         }

@@ -45,9 +45,9 @@ namespace Modules.Organization.ViewModels
             RefreshCommand = new DelegateCommand(async () => await LoadData());
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             // We dont load the data each time we navigate on the tab
             if (_hasBeenLoadedOnce)
@@ -64,9 +64,9 @@ namespace Modules.Organization.ViewModels
             _hasBeenLoadedOnce = true;
         }
 
-        private void OrganizationMissionsViewModel_IsActiveChanged(object sender, EventArgs e)
+        private async void OrganizationMissionsViewModel_IsActiveChanged(object sender, EventArgs e)
         {
-            OnNavigatedTo(new NavigationParameters());
+            await InitializeAsync(new NavigationParameters());
         }
 
         private async Task LoadData()

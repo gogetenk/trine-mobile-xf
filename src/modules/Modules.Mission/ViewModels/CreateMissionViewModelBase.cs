@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
@@ -41,7 +41,6 @@ namespace Modules.Mission.ViewModels
 
         #endregion
 
-
         public CreateMissionViewModelBase(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
             PickUserCommand = new DelegateCommand(async () => await OnPickUser());
@@ -52,9 +51,9 @@ namespace Modules.Mission.ViewModels
             BackCommand = new DelegateCommand(async () => await NavigationService.GoBackAsync(parameters));
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             // If the current Picked user is null, we reset the UI of the picker
             if (PickedUser is null)
@@ -92,7 +91,9 @@ namespace Modules.Mission.ViewModels
 
         protected virtual async Task OnPickUser()
         {
-            await NavigationService.NavigateAsync("MemberPickerView", useModalNavigation: true);
+            var parameters = new NavigationParameters();
+            parameters.Add(NavigationParameterKeys._Organization, SelectedOrganization);
+            await NavigationService.NavigateAsync("MemberPickerView", parameters, useModalNavigation: true);
         }
 
         protected virtual void OnRemoveUser()

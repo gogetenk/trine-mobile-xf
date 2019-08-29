@@ -1,9 +1,10 @@
-﻿using System;
-using AutoFixture;
+﻿using AutoFixture;
 using FluentAssertions;
 using Modules.Authentication.ViewModels;
 using Moq;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Tests;
 using Xunit;
@@ -17,7 +18,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void LoginTest_NominalCase_ExpectNavigatedToDashboard()
+        public async Task LoginTest_NominalCase_ExpectNavigatedToDashboard()
         {
             // Arrange
             string email = new Fixture().Create<string>();
@@ -40,7 +41,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void LoginTest_WhenServiceThrowsException_ExpectReport()
+        public async Task LoginTest_WhenServiceThrowsException_ExpectReport()
         {
             // Arrange
             string email = new Fixture().Create<string>();
@@ -63,7 +64,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void LoginTest_WhenServiceThrowsBusinessException_ExpectReport()
+        public async Task LoginTest_WhenServiceThrowsBusinessException_ExpectReport()
         {
             // Arrange
             string email = new Fixture().Create<string>();
@@ -88,7 +89,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void LoginTest_WhenServiceReturnsNull_ExpectNoException()
+        public async Task LoginTest_WhenServiceReturnsNull_ExpectNoException()
         {
             // Arrange
             string email = new Fixture().Create<string>();
@@ -110,7 +111,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void LoginTest_whenEmailIsNull_ExpectEmailErrorMessage()
+        public async Task LoginTest_whenEmailIsNull_ExpectEmailErrorMessage()
         {
             // Arrange
             string email = new Fixture().Create<string>();
@@ -134,7 +135,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void LoginTest_whenPasswordIsNull_ExpectPasswordErrorMessage()
+        public async Task LoginTest_whenPasswordIsNull_ExpectPasswordErrorMessage()
         {
             // Arrange
             string email = new Fixture().Create<string>();
@@ -158,7 +159,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void LoginTest_whenCredentialsAreNull_ExpectCredentialsErrorMessages()
+        public async Task LoginTest_whenCredentialsAreNull_ExpectCredentialsErrorMessages()
         {
             // Arrange
             string email = new Fixture().Create<string>();

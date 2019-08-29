@@ -50,9 +50,9 @@ namespace Modules.Mission.ViewModels
             _missionService = missionService;
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             await CreateMission();
         }

@@ -77,9 +77,9 @@ namespace Modules.Activity.ViewModels
             SaveActivityCommand = new DelegateCommand(async () => await OnSaveActivity());
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             Activity = parameters.GetValue<ActivityDto>(NavigationParameterKeys._Activity);
             if (Activity is null)

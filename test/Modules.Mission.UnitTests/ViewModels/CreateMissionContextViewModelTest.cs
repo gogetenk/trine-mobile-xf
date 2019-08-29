@@ -3,6 +3,7 @@ using FluentAssertions;
 using Modules.Mission.ViewModels;
 using Moq;
 using Prism.Navigation;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
@@ -14,7 +15,7 @@ namespace Modules.Mission.UnitTests.ViewModels
     public class CreateMissionContextViewModelTest : UnitTestBase
     {
         [Fact]
-        public void OnNextStep_NominalCase_ExpectNavigated()
+        public async Task OnNextStep_NominalCase_ExpectNavigated()
         {
             // Arrange
             var pickedUser = new Fixture().Create<UserDto>();
@@ -28,7 +29,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, orga);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.CreateMissionRequest.ProjectName = "toto";
             viewmodel.NextCommand.Execute();
 
@@ -39,7 +40,7 @@ namespace Modules.Mission.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnNextStep_WhenNoPickedUser_ExpectErrorMessageVisible()
+        public async Task OnNextStep_WhenNoPickedUser_ExpectErrorMessageVisible()
         {
             // Arrange
             var request = new Fixture().Create<CreateMissionRequestDto>();
@@ -49,7 +50,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.CreateMissionRequest.ProjectName = "toto";
             viewmodel.NextCommand.Execute();
 
@@ -59,7 +60,7 @@ namespace Modules.Mission.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnNextStep_WhenTitleEmpty_ExpectErrorMessageVisible()
+        public async Task OnNextStep_WhenTitleEmpty_ExpectErrorMessageVisible()
         {
             // Arrange
             var request = new Fixture().Create<CreateMissionRequestDto>();
@@ -69,7 +70,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            viewmodel.OnNavigatedTo(navParams);
+            await viewmodel.InitializeAsync(navParams);
             viewmodel.CreateMissionRequest.ProjectName = "";
             viewmodel.NextCommand.Execute();
 

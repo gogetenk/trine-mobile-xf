@@ -57,18 +57,18 @@ namespace Modules.Organization.ViewModels
             switch (value)
             {
                 case 0:
-                    OrganizationMissionsViewModel.OnNavigatedTo(parameters);
+                    await OrganizationMissionsViewModel.InitializeAsync(parameters);
                     break;
                 case 1:
-                    MembersViewModel.OnNavigatedTo(parameters);
+                    await MembersViewModel.InitializeAsync(parameters);
                     MembersViewModel.IsActionButtonShown = true;
                     break;
             }
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override async Task InitializeAsync(INavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            await base.InitializeAsync(parameters);
 
             if (Organization != null)
                 return;
