@@ -1,32 +1,31 @@
 ﻿using Microsoft.Extensions.Logging;
 using Prism.Logging;
 using System;
+using System.Collections.Generic;
 
-namespace Trine.Mobile.Components.Logging
+namespace Trine.Mobile.Bootstrapper.Wrappers
 {
-    public class PrismLoggerWrapper<T> : PrismLoggerWrapper, ILogger<T>, Microsoft.Extensions.Logging.ILogger
-    {
-        public PrismLoggerWrapper(Prism.Logging.ILogger logger)
-            : base(logger)
-        {
-        }
-    }
-
     public class PrismLoggerWrapper : Microsoft.Extensions.Logging.ILogger
     {
-        private readonly ILoggerFacade _logger;
+        private readonly Prism.Logging.ILogger _logger;
 
-        public PrismLoggerWrapper(ILoggerFacade logger)
+        public PrismLoggerWrapper(Prism.Logging.ILogger logger)
         {
             _logger = logger;
         }
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
-            var prismLogLevel = ConvertLogLevel(logLevel);
-            if (!IsEnabled(prismLogLevel)) return;
-            var message = formatter.Invoke(state, exception);
-            _logger.Log(message, prismLogLevel, Priority.None);
+            Category category = ConvertLogLevel(logLevel);
+            if (IsEnabled(logLevel) && IsEnabled(category))
+            {
+                string message = formatter(state, exception);
+                _logger.Log(message, category, Priority.None);
+                if (exception != null)
+                {
+                    _logger.Log(exception, category, new Dictionary<string, string>());
+                }
+            }
         }
 
         private Category ConvertLogLevel(LogLevel logLevel)
@@ -48,13 +47,17 @@ namespace Trine.Mobile.Components.Logging
                 case LogLevel.None:
                     return Category.Debug;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, null);
+                    throw new ArgumentOutOfRangeException("logLevel", logLevel, null);
             }
         }
 
         public bool IsEnabled(LogLevel logLevel)
         {
-            return IsEnabled(ConvertLogLevel(logLevel));
+            if (logLevel != LogLevel.None)
+            {
+                return IsEnabled(ConvertLogLevel(logLevel));
+            }
+            return false;
         }
 
         private bool IsEnabled(Category logLevel)
@@ -67,5 +70,4 @@ namespace Trine.Mobile.Components.Logging
             throw new NotImplementedException();
         }
     }
-
 }

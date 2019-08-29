@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Logging;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll.Impl.Messages;
 
 namespace Trine.Mobile.Components.ViewModels
 {
-    public abstract class ViewModelBase : BindableBase, INavigationAware
+    public abstract class ViewModelBase : BindableBase, IInitializeAsync
     {
         public INavigationService NavigationService { get; }
         public IMapper Mapper { get; }
@@ -28,9 +28,7 @@ namespace Trine.Mobile.Components.ViewModels
 
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add("UserId", null);
-            Logger.TrackEvent("[" + base.GetType().Name + "] Navigated To", dictionary);
+            InitializeAsync(parameters);
         }
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)
@@ -50,6 +48,13 @@ namespace Trine.Mobile.Components.ViewModels
         {
             Logger.Log(bExc.Message);
             await DialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+        }
+
+        public async Task InitializeAsync(INavigationParameters parameters)
+        {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            dictionary.Add("UserId", null);
+            Logger.TrackEvent("[" + base.GetType().Name + "] Navigated To", dictionary);
         }
     }
 }

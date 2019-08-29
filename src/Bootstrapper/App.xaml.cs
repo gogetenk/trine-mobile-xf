@@ -13,7 +13,6 @@ using Modules.Organization;
 using Prism;
 using Prism.Ioc;
 using Prism.Logging;
-using Prism.Logging.AppCenter;
 using Prism.Modularity;
 using Prism.Unity;
 using Trine.Mobile.Bll;
@@ -125,11 +124,11 @@ namespace Trine.Mobile.Bootstrapper
         {
 #if DEBUG
             containerRegistry.RegisterSingleton<Prism.Logging.ILogger, ConsoleLoggingService>();
+#else
+            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, AppCenterLogger>();
 #endif
             containerRegistry.RegisterSingleton<Microsoft.Extensions.Logging.ILogger, PrismLoggerWrapper>();
-            containerRegistry.Register(typeof(Microsoft.Extensions.Logging.ILogger<>), typeof(CustoLog<>));
-            var logger = new AppCenterLogger();
-            containerRegistry.RegisterInstance<Prism.Logging.ILogger>(logger);
+            containerRegistry.Register(typeof(ILogger<>), typeof(PrismLoggerWrapper<>));
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)
@@ -163,11 +162,4 @@ namespace Trine.Mobile.Bootstrapper
 
     }
 
-    // TODO Bug 14899: Récupérer le bon logger dans Sinapse une fois disponible
-    public class CustoLog<T> : PrismLoggerWrapper, ILogger<T>
-    {
-        public CustoLog(Prism.Logging.ILogger logger) : base(logger)
-        {
-        }
-    }
 }
