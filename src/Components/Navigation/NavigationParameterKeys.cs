@@ -12,5 +12,7 @@
         public static readonly string _CreateMissionRequest = "CreateMissionRequest";
         public static readonly string _Activity = "Activity";
         public static readonly string _IsActivitySigned = "IsActivitySigned";
+        public static readonly string _IsActivityRefused = "IsActivityRefused";
+        public static readonly string _ActivityComment = "ActivityComment";
     }
 }

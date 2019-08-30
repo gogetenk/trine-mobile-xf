@@ -152,17 +152,27 @@ namespace Modules.Activity.ViewModels
 
         private async Task OnRefuseActivity()
         {
+            _dialogService.ShowDialog("RefuseActivityDialogView", null, async result => await OnRefuseDialogClosed(result.Parameters));
+        }
+
+        private async Task OnRefuseDialogClosed(IDialogParameters result)
+        {
             try
             {
+                if (!result.GetValue<bool>(NavigationParameterKeys._IsActivityRefused))
+                    return;
+
                 if (IsLoading)
                     return;
+
+                var comment = result.GetValue<string>(NavigationParameterKeys._ActivityComment);
 
                 IsLoading = true;
                 Activity.ModificationProposals = new System.Collections.Generic.List<ModificationProposalDto>()
                 {
                     new ModificationProposalDto()
                     {
-                        Comment = "T'es pas beau !!"
+                        Comment = comment
                     }
                 };
                 Activity.Consultant.SignatureDate = null;
