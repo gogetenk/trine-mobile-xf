@@ -4,6 +4,7 @@
                                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:effects="clr-namespace:Trine.Mobile.Components.Effects"
              mc:Ignorable="d"
              x:Class="Trine.Mobile.Components.Controls.ActivitySphereView">
     <Frame BackgroundColor="{Binding CellBackgroundColor}"
@@ -14,11 +15,15 @@
            CornerRadius="140"
            HorizontalOptions="Fill"
            VerticalOptions="Fill"
+           effects:LongPressedEffect.Command="{Binding LongPressedCommand, Mode=TwoWay}"
            Padding="0">
         <Frame.GestureRecognizers>
             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
                                   TappedCallbackParameter="1" />
         </Frame.GestureRecognizers>
+        <Frame.Effects>
+            <effects:LongPressedEffect />
+        </Frame.Effects>
         <AbsoluteLayout  VerticalOptions="Fill"
                          HorizontalOptions="Fill">
             <BoxView Color="{StaticResource AccentColor}"

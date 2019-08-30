@@ -24,6 +24,9 @@ namespace Modules.Activity.ViewModels
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
         private bool _isLoading;
 
+        public bool CanModify { get => _canModify; set { _canModify = value; RaisePropertyChanged(); } }
+        private bool _canModify;
+
         public bool IsSignButtonVisible { get => _isSignButtonVisible; set { _isSignButtonVisible = value; RaisePropertyChanged(); } }
         private bool _isSignButtonVisible;
 
@@ -63,6 +66,7 @@ namespace Modules.Activity.ViewModels
         public DelegateCommand RefuseActivityCommand { get; set; }
         public DelegateCommand SignActivityCommand { get; set; }
         public DelegateCommand SaveActivityCommand { get; set; }
+        public DelegateCommand<GridDayDto> AbsenceCommand { get; set; }
 
         #endregion
 
@@ -74,10 +78,13 @@ namespace Modules.Activity.ViewModels
             _activityService = activityService;
             _dialogService = dialogService;
             AcceptActivityCommand = new DelegateCommand(async () => await OnAcceptActivity());
-            RefuseActivityCommand = new DelegateCommand(async () => await OnRefuseActivity());
-            SignActivityCommand = new DelegateCommand(async () => await OnSignActivity());
+            RefuseActivityCommand = new DelegateCommand(() => OnRefuseActivity());
+            SignActivityCommand = new DelegateCommand(() => OnSignActivity());
             SaveActivityCommand = new DelegateCommand(async () => await OnSaveActivity());
+            AbsenceCommand = new DelegateCommand<GridDayDto>((gridDay) => OnAbsenceSettingsOpened(gridDay as GridDayDto));
         }
+
+
 
         public override async Task InitializeAsync(INavigationParameters parameters)
         {
@@ -90,7 +97,14 @@ namespace Modules.Activity.ViewModels
             SetupUI();
         }
 
-        private async Task OnSignActivity()
+        private void OnAbsenceSettingsOpened(GridDayDto gridDay)
+        {
+            var dialogParams = new DialogParameters();
+            dialogParams.Add(NavigationParameterKeys._Absence, gridDay);
+            _dialogService.ShowDialog("AbsenceDialogView", dialogParams, async result => await OnSignDialogClosed(result.Parameters));
+        }
+
+        private void OnSignActivity()
         {
             _dialogService.ShowDialog("SignActivityDialogView", null, async result => await OnSignDialogClosed(result.Parameters));
         }
@@ -150,7 +164,7 @@ namespace Modules.Activity.ViewModels
             }
         }
 
-        private async Task OnRefuseActivity()
+        private void OnRefuseActivity()
         {
             _dialogService.ShowDialog("RefuseActivityDialogView", null, async result => await OnRefuseDialogClosed(result.Parameters));
         }
@@ -256,6 +270,7 @@ namespace Modules.Activity.ViewModels
             IsRefuseButtonVisible = false;
             IsSignButtonVisible = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.Generated;
             IsSaveButtonVisible = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.Generated;
+            CanModify = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.Generated || Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired;
         }
         private void SetupCustomerUI()
         {
@@ -263,6 +278,7 @@ namespace Modules.Activity.ViewModels
             IsRefuseButtonVisible = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned;
             IsSignButtonVisible = false;
             IsSaveButtonVisible = false;
+            CanModify = false;
         }
 
         private void SetupCommercialUI()

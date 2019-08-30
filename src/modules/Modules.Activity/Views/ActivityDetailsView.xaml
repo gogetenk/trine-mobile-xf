@@ -77,8 +77,9 @@
 
                 <!-- Calendar -->
                 <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
+                                               DaySettingsCommand="{Binding AbsenceCommand}"
                                                x:Name="calendar"
-                                               IsInputEnabled="True"
+                                               IsInputEnabled="{Binding CanModify}"
                                                CellBackgroundColor="#CCCCCC"
                                                CellForegroundColor="White"
                                                RowHeight="50"

@@ -11,7 +11,6 @@ namespace Trine.Mobile.Components.Controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ActivityCalendarView : ContentView
     {
-
         #region Bindable properties
 
         public static readonly BindableProperty CurrentGridProperty = BindableProperty.Create(nameof(CurrentActivity), typeof(ActivityDto), typeof(ActivityCalendarView), default(ActivityDto), propertyChanged: OnPropertyChanged);
@@ -91,7 +90,6 @@ namespace Trine.Mobile.Components.Controls
 
         private ActivityDto _activity;
 
-
         public ActivityCalendarView()
         {
             InitializeComponent();
@@ -164,8 +162,8 @@ namespace Trine.Mobile.Components.Controls
                     ActivityDate = day.Day,
                     DayPart = dayPart,
                     TappedCommand = new Command(() => SphereClicked()),
-                    LongPressCommand = new Command((gridDay) => SphereLongPressed((GridDayDto)gridDay)),
-                    IsInputEnabled = _isInputEnabled
+                    //LongPressCommand = new Command((gridDay) => SphereLongPressed((GridDayDto)gridDay)),
+                    IsInputEnabled = _isInputEnabled,
                 };
 
                 grid_calendar.Children.Add(

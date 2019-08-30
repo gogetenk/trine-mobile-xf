@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomApplication.cs" />
+    <Compile Include="Effects\AndroidLongPressedEffect.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Renderers\MaterialEntryRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

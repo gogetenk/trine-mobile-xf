@@ -36,11 +36,11 @@ namespace Trine.Mobile.Components.Controls
             set => SetValue(TappedCommandProperty, value);
         }
 
-        //public static readonly BindableProperty LongPressCommandProperty = BindableProperty.Create(nameof(LongPressCommand), typeof(ICommand), typeof(ActivitySphereView), null);
+        public static readonly BindableProperty LongPressCommandProperty = BindableProperty.Create(nameof(LongPressCommand), typeof(ICommand), typeof(ActivitySphereView), null);
         public ICommand LongPressCommand
         {
-            get;
-            set;
+            get => (ICommand)GetValue(LongPressCommandProperty);
+            set => SetValue(LongPressCommandProperty, value);
         }
 
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(ActivitySphereView), null);
@@ -99,7 +99,7 @@ namespace Trine.Mobile.Components.Controls
             lb_day.SetBinding(Label.FontSizeProperty, new Binding(nameof(CellFontSize), source: this));
             frame.SetBinding(Label.BackgroundColorProperty, new Binding(nameof(CellBackgroundColor), source: this));
 
-            LongPressed += ActivitySphereView_LongPressed;
+            //LongPressed += ActivitySphereView_LongPressed;
             //RightClicked += ActivitySphereView_LongPressed;
 
         }
