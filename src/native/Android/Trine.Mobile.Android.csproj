@@ -36,6 +36,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Com.OneSignal">
+      <Version>3.4.1</Version>
+    </PackageReference>
     <PackageReference Include="instabug-for-android">
       <Version>8.5.1</Version>
     </PackageReference>
@@ -115,6 +119,7 @@
     <AndroidAsset Include="Assets\icomoon.ttf" />
     <AndroidAsset Include="Assets\MaterialIcons-Regular.ttf" />
     <AndroidAsset Include="Assets\proxima-thin.otf" />
+    <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>

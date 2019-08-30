@@ -38,6 +38,9 @@
     <None Update="Views\ActivityDetailsView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <None Update="Views\SignActivityDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 
 </Project>

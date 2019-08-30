@@ -13,7 +13,7 @@ using Trine.Mobile.Bll.Impl.Settings;
 
 namespace Trine.Mobile.Components.ViewModels
 {
-    public abstract class ViewModelBase : BindableBase, IInitializeAsync, INavigatedAware, IAutoInitialize
+    public abstract class ViewModelBase : BindableBase, IInitializeAsync, INavigatedAware, IAutoInitialize, IConfirmNavigationAsync
     {
         public INavigationService NavigationService { get; }
         public IMapper Mapper { get; }
@@ -56,6 +56,11 @@ namespace Trine.Mobile.Components.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
+        }
+
+        public virtual async Task<bool> CanNavigateAsync(INavigationParameters parameters)
+        {
+            return true;
         }
     }
 }

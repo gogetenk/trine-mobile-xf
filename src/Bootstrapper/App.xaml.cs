@@ -1,5 +1,6 @@
 ﻿using Akavache;
 using AutoMapper;
+using Com.OneSignal;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -53,6 +54,11 @@ namespace Trine.Mobile.Bootstrapper
 
                 InitializeComponent();
                 LoadStyles();
+
+                OneSignal
+                    .Current
+                    .StartInit("12785512-a98b-4c91-89ca-05959a685120")
+                    .EndInit();
 #if DEBUG
                 HotReloader.Current.Run(this);
 #endif
