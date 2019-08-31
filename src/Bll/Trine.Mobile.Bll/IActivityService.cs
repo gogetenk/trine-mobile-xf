@@ -15,6 +15,6 @@ namespace Trine.Mobile.Bll
         Task UpdateActivity(ActivityModel currentActivity);
         Task DeleteActivity(string id);
         Task<ObservableCollection<ActivityModel>> GetFromMission(string missionId);
-        //Task RefuseActivity(ActivityModel activityModel);
+        Task RefuseActivity(ActivityModel activityModel);
     }
 }

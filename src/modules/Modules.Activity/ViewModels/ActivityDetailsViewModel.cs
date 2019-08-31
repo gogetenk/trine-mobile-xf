@@ -199,12 +199,14 @@ namespace Modules.Activity.ViewModels
                 {
                     new ModificationProposalDto()
                     {
-                        Comment = comment
+                        Comment = comment,
+                        CreationDate = DateTime.UtcNow
                     }
                 };
                 Activity.Consultant.SignatureDate = null;
                 Activity.Customer.SignatureDate = null;
                 Activity.Status = Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired;
+                //await _activityService.RefuseActivity(Mapper.Map<ActivityModel>(Activity));
                 await _activityService.SaveActivityReport(Mapper.Map<ActivityModel>(Activity));
                 SetupUI();
             }

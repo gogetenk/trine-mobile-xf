@@ -179,5 +179,21 @@ namespace Trine.Mobile.Bll.Impl.Services
                 throw;
             }
         }
+
+        public async Task RefuseActivity(ActivityModel activityModel)
+        {
+            try
+            {
+                await _gatewayRepository.ApiActivitiesByActivityIdRequestChangePostAsync(activityModel.Id, AppSettings.CurrentUser.Id, _activityApiVersion);
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
     }
 }
