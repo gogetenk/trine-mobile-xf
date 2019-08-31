@@ -5,9 +5,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
       xmlns:prism="http://prismlibrary.com"
+      xmlns:local="clr-namespace:Trine.Mobile.Components.Converters;assembly=Trine.Mobile.Components"
       prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.85, Desktop=0.5}"
       prism:DialogLayout.CloseOnBackgroundTapped="True"
       x:Class="Modules.Activity.Views.AbsenceDialogView">
+    <Grid.Resources>
+        <ResourceDictionary>
+            <local:AbsenceStatusToStringConverter x:Key="statusToString" />
+        </ResourceDictionary>
+    </Grid.Resources>
+
     <Frame CornerRadius="5"
            Padding="35"
            BackgroundColor="White">
@@ -30,9 +37,9 @@
                    CornerRadius="5"
                    HasShadow="False">
                 <Picker Style="{StaticResource Paragraph}"
-                        SelectedIndex="0"
+                        SelectedItem="{Binding Day.Absence.Reason, Converter={StaticResource statusToString}, Mode=TwoWay}"
                         VerticalOptions="FillAndExpand"
-                        Visual="Default">
+                        Visual="Default"> 
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Congé</x:String>
@@ -47,7 +54,7 @@
             </Frame>
 
             <Frame Margin="0,5,0,35" BorderColor="#DCDEE6" CornerRadius="5" HasShadow="False" HeightRequest="100">
-                <Editor Text="{Binding Comment}"
+                <Editor Text="{Binding Day.Absence.Comment}"
                         Placeholder="Commentaire facultatif"
                         Style="{StaticResource Paragraph}"
                         VerticalOptions="FillAndExpand"

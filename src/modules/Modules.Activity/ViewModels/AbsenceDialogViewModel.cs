@@ -5,6 +5,8 @@ using Prism.Navigation;
 using Prism.Services;
 using Prism.Services.Dialogs;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
@@ -16,6 +18,12 @@ namespace Modules.Activity.ViewModels
     {
         public GridDayDto Day { get => _day; set { _day = value; RaisePropertyChanged(); } }
         private GridDayDto _day;
+
+        private List<string> _reasons = Enum.GetNames(typeof(ReasonEnum)).ToList();
+        public List<string> Reasons { get => _reasons; set { _reasons = value; RaisePropertyChanged(); } }
+
+        private string _selectedReason;
+        public string SelectedReason { get => _selectedReason; set { _selectedReason = value; RaisePropertyChanged(); OnReasonChanged(); } }
 
         public ICommand SendCommand { get; set; }
         public ICommand CancelCommand { get; set; }
@@ -47,6 +55,22 @@ namespace Modules.Activity.ViewModels
         public void OnDialogOpened(IDialogParameters parameters)
         {
             Day = parameters.GetValue<GridDayDto>(NavigationParameterKeys._Absence);
+            if (Day.Absence is null)
+                Day.Absence = new AbsenceDto();
+
+            SelectedReason = Enum.GetName(typeof(ReasonEnum), Day?.Absence?.Reason);
+        }
+
+        private void OnReasonChanged()
+        {
+            if (Day is null)
+                return;
+
+            if (Day.Absence is null)
+                Day.Absence = new AbsenceDto();
+
+            Enum.TryParse(SelectedReason, out ReasonEnum reason);
+            Day.Absence.Reason = reason;
         }
     }
 }

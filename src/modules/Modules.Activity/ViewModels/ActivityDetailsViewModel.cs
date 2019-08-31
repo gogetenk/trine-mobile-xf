@@ -6,6 +6,7 @@ using Prism.Services;
 using Prism.Services.Dialogs;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
@@ -99,7 +100,21 @@ namespace Modules.Activity.ViewModels
         {
             var dialogParams = new DialogParameters();
             dialogParams.Add(NavigationParameterKeys._Absence, gridDay);
-            _dialogService.ShowDialog("AbsenceDialogView", dialogParams, async result => await OnSignDialogClosed(result.Parameters));
+            _dialogService.ShowDialog("AbsenceDialogView", dialogParams, result => OnAbsenceSettingsClosed(result.Parameters));
+        }
+
+        private void OnAbsenceSettingsClosed(IDialogParameters parameters)
+        {
+            var updatedDay = parameters.GetValue<GridDayDto>(NavigationParameterKeys._Absence);
+            if (updatedDay is null)
+                return;
+
+            if (updatedDay.Absence is null)
+                return;
+
+            var activityDays = Activity.Days.Where(x => x.Day != updatedDay.Day).ToList();
+            activityDays.Add(updatedDay);
+            Activity.Days = activityDays;
         }
 
         private void OnSignActivity()
