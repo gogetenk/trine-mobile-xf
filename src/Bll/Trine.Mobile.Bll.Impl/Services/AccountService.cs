@@ -1,9 +1,9 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Newtonsoft.Json;
 using Prism.Logging;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Bll.Impl.Services.Base;
 using Trine.Mobile.Bll.Impl.Settings;
@@ -87,7 +87,8 @@ namespace Trine.Mobile.Bll.Impl.Services
             try
             {
                 // Registers user
-                token = await _gatewayRepository.ApiAccountsUsersRegisterPostAsync(_mapper.Map<RegisterUserRequest>(model));
+                var result = await _gatewayRepository.ApiAccountsUsersRegisterPostAsync(_mapper.Map<RegisterUserRequest>(model));
+                token = result.Token;
 
                 _logger.TrackEvent("New user subscription");
 

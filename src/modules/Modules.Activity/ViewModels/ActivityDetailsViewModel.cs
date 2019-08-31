@@ -207,7 +207,7 @@ namespace Modules.Activity.ViewModels
                 Activity.Customer.SignatureDate = null;
                 Activity.Status = Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired;
                 //await _activityService.RefuseActivity(Mapper.Map<ActivityModel>(Activity));
-                await _activityService.SaveActivityReport(Mapper.Map<ActivityModel>(Activity));
+                Activity = Mapper.Map<ActivityDto>(await _activityService.SaveActivityReport(Mapper.Map<ActivityModel>(Activity)));
                 SetupUI();
             }
             catch (BusinessException bExc)
