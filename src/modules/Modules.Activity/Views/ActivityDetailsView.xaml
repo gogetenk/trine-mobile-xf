@@ -82,6 +82,7 @@
                                                IsInputEnabled="{Binding CanModify}"
                                                CellBackgroundColor="#CCCCCC"
                                                CellForegroundColor="White"
+                                               AbsenceCellBackgroundColor="#FF5A39"
                                                RowHeight="50"
                                                ColumnWidth="50"
                                                WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"

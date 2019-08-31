@@ -72,6 +72,13 @@ namespace Trine.Mobile.Components.Controls
             set => SetValue(CellBackgroundColorProperty, value);
         }
 
+        public static readonly BindableProperty AbsenceCellBackgroundColorProperty = BindableProperty.Create(nameof(AbsenceCellBackgroundColor), typeof(Color), typeof(ActivityCalendarView), default(Color));
+        public Color AbsenceCellBackgroundColor
+        {
+            get => (Color)GetValue(AbsenceCellBackgroundColorProperty);
+            set => SetValue(AbsenceCellBackgroundColorProperty, value);
+        }
+
         public static readonly BindableProperty CellForegroundColorProperty = BindableProperty.Create(nameof(CellForegroundColor), typeof(Color), typeof(ActivityCalendarView), default(Color));
         public Color CellForegroundColor
         {
@@ -156,7 +163,7 @@ namespace Trine.Mobile.Components.Controls
                 var sphere = new ActivitySphereView()
                 {
                     GridDay = day,
-                    CellBackgroundColor = CellBackgroundColor,
+                    CellBackgroundColor = (day.Absence == null) ? CellBackgroundColor : AbsenceCellBackgroundColor,
                     CellForegroundColor = CellForegroundColor,
                     CellFontSize = CellFontSize,
                     ActivityDate = day.Day,

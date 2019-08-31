@@ -38,6 +38,10 @@ namespace Modules.Activity.ViewModels
 
         private void OnValidateAbsence()
         {
+            // Setting the absence to null if it's cancelled
+            if (Day.Absence.Reason == ReasonEnum.Absent && string.IsNullOrEmpty(Day.Absence.Comment))
+                Day = null;
+
             var dialogParams = new DialogParameters();
             dialogParams.Add(NavigationParameterKeys._Absence, Day);
             RequestClose.Invoke(dialogParams);
