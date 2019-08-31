@@ -1,44 +1,46 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-                                         xmlns:multigestureviewplugin="clr-namespace:MultiGestureViewPlugin;assembly=MultiGestureViewPlugin"
-                                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:multigestureviewplugin="clr-namespace:MultiGestureViewPlugin;assembly=MultiGestureViewPlugin"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:effects="clr-namespace:Trine.Mobile.Components.Effects"
              mc:Ignorable="d"
              x:Class="Trine.Mobile.Components.Controls.ActivitySphereView">
-    <Frame BackgroundColor="{Binding CellBackgroundColor}"
-           HasShadow="False"
-           x:Name="frame"
-           Margin="2"
-           IsClippedToBounds="True"
-           CornerRadius="140"
-           HorizontalOptions="Fill"
-           VerticalOptions="Fill"
-           effects:LongPressedEffect.Command="{Binding LongPressedCommand, Mode=TwoWay}"
-           Padding="0">
-        <Frame.GestureRecognizers>
-            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
-                                  TappedCallbackParameter="1" />
-        </Frame.GestureRecognizers>
-        <Frame.Effects>
-            <effects:LongPressedEffect />
-        </Frame.Effects>
-        <AbsoluteLayout  VerticalOptions="Fill"
-                         HorizontalOptions="Fill">
-            <BoxView Color="{StaticResource AccentColor}"
-                     x:Name="boxview"
-                     WidthRequest="100"/>
-            <Label x:Name="lb_day"
-                   Text="1"
-                   AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                   AbsoluteLayout.LayoutFlags="SizeProportional"
-                   HorizontalTextAlignment="Center"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"
-                   TextColor="{Binding CellForegroundColor}"
-                   FontSize="{Binding CellFontSize}"
-                   Margin="2" />
-        </AbsoluteLayout>
-    </Frame>
+
+    <multigestureviewplugin:MultiGestureView LongPressed="MultiGestureView_LongPressed_1"
+                                             Tapped="TapGestureRecognizer_Tapped"> 
+
+        <Frame BackgroundColor="{Binding CellBackgroundColor}"
+               HasShadow="False"
+               x:Name="frame"
+               Margin="2"
+               IsClippedToBounds="True"
+               CornerRadius="140"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"
+               Padding="0">
+            <!--<Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                      TappedCallbackParameter="1" />
+            </Frame.GestureRecognizers>-->
+            <AbsoluteLayout  VerticalOptions="Fill"
+                             HorizontalOptions="Fill">
+                <BoxView Color="{StaticResource AccentColor}"
+                         x:Name="boxview"
+                         WidthRequest="100" />
+                <Label x:Name="lb_day"
+                       Text="1" 
+                       AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                       AbsoluteLayout.LayoutFlags="SizeProportional"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       TextColor="{Binding CellForegroundColor}"
+                       FontSize="{Binding CellFontSize}"
+                       Margin="2" />
+            </AbsoluteLayout>
+        </Frame>
+
+    </multigestureviewplugin:MultiGestureView>
+    
 </ContentView>

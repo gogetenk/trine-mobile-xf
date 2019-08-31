@@ -84,8 +84,6 @@ namespace Modules.Activity.ViewModels
             AbsenceCommand = new DelegateCommand<GridDayDto>((gridDay) => OnAbsenceSettingsOpened(gridDay as GridDayDto));
         }
 
-
-
         public override async Task InitializeAsync(INavigationParameters parameters)
         {
             await base.InitializeAsync(parameters);

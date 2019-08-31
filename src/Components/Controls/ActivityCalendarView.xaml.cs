@@ -162,7 +162,7 @@ namespace Trine.Mobile.Components.Controls
                     ActivityDate = day.Day,
                     DayPart = dayPart,
                     TappedCommand = new Command(() => SphereClicked()),
-                    //LongPressCommand = new Command((gridDay) => SphereLongPressed((GridDayDto)gridDay)),
+                    LongPressCommand = new Command((gridDay) => SphereLongPressed((GridDayDto)gridDay)),
                     IsInputEnabled = _isInputEnabled,
                 };
 
