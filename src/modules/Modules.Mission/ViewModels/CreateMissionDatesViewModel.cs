@@ -6,7 +6,6 @@ using Prism.Services;
 using System;
 using System.Threading.Tasks;
 using Trine.Mobile.Components.Navigation;
-using Trine.Mobile.Dto;
 
 namespace Modules.Mission.ViewModels
 {
@@ -52,6 +51,7 @@ namespace Modules.Mission.ViewModels
                 return;
 
             var navigationParams = new NavigationParameters();
+            navigationParams.Add(NavigationParameterKeys._Organization, SelectedOrganization);
             navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
             await NavigationService.NavigateAsync("CreateMissionConsultantView", navigationParams);
         }

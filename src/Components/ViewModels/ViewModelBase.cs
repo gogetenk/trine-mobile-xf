@@ -54,7 +54,7 @@ namespace Trine.Mobile.Components.ViewModels
             Logger.TrackEvent("[" + base.GetType().Name + "] Navigated To", dictionary);
         }
 
-        public void OnNavigatedTo(INavigationParameters parameters)
+        public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
         }
 

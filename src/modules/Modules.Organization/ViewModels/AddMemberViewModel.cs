@@ -80,7 +80,7 @@ namespace Modules.Organization.ViewModels
             try
             {
                 IsLoading = true;
-                Invites = Mapper.Map<ObservableCollection<InviteDto>>(await _organizationService.GetInvites(_organization.Id)); // TODO Mocked
+                Invites = Mapper.Map<ObservableCollection<InviteDto>>(await _organizationService.GetInvites(_organization.Id));
             }
             catch (BusinessException bExc)
             {
@@ -145,7 +145,7 @@ namespace Modules.Organization.ViewModels
                     Mail = Email
                 };
 
-                var invite = await _organizationService.SendInvitation("5ca5cab077e80c1344dbafec", Mapper.Map<CreateInvitationRequestModel>(request));
+                var invite = await _organizationService.SendInvitation(_organization.Id, Mapper.Map<CreateInvitationRequestModel>(request));
                 Invites.Insert(0, Mapper.Map<InviteDto>(invite));
                 Email = string.Empty;
             }

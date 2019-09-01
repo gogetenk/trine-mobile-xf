@@ -27,7 +27,7 @@ namespace Modules.Mission.ViewModels
         private bool _isOrganizationPickerVisible = false;
         public bool IsOrganizationPickerVisible { get => _isOrganizationPickerVisible; set { _isOrganizationPickerVisible = value; RaisePropertyChanged(); } }
 
-        
+
         private List<PartialOrganizationDto> _organizations;
         public List<PartialOrganizationDto> Organizations { get => _organizations; set { _organizations = value; RaisePropertyChanged(); } }
 
@@ -56,6 +56,7 @@ namespace Modules.Mission.ViewModels
             if (SelectedOrganization != null)
                 return;
 
+            // Load all organizations 
             IsOrganizationPickerVisible = true;
             await LoadData();
         }
@@ -96,6 +97,7 @@ namespace Modules.Mission.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
+            navigationParams.Add(NavigationParameterKeys._Organization, SelectedOrganization);
             await NavigationService.NavigateAsync("CreateMissionDatesView", navigationParams);
         }
     }

@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System.Threading.Tasks;
 using Trine.Mobile.Components.Navigation;
 
 namespace Modules.Mission.ViewModels
@@ -25,6 +25,7 @@ namespace Modules.Mission.ViewModels
 
             var navigationParams = new NavigationParameters();
             navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
+            navigationParams.Add(NavigationParameterKeys._Organization, SelectedOrganization);
             await NavigationService.NavigateAsync("CreateMissionCommercialView", navigationParams);
         }
     }

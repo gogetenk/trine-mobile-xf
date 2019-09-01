@@ -81,6 +81,20 @@ namespace Modules.Mission.ViewModels
             }
         }
 
+        // Obligé d'utiliser OnNavigatedTo car InitializeAsync ne se trigger pas lors d'un goback depuis la modale UserPicker...
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            // We get the user from navigation (from picker) only if it was null or if he has not the same id
+            var pickedUser = parameters.GetValue<UserDto>(NavigationParameterKeys._User);
+            if (pickedUser != null)
+            {
+                IsInvitedUser = pickedUser.Id == null; // So we can show the information bubble 
+                PickedUser = pickedUser;
+            }
+        }
+
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
             // Used for member picker

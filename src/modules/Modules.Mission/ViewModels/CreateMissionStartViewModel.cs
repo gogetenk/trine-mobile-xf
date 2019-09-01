@@ -23,7 +23,14 @@ namespace Modules.Mission.ViewModels
 
         public CreateMissionStartViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
-            StartCommand = new DelegateCommand(async () => await NavigationService.NavigateAsync("CreateMissionContextView"));
+            StartCommand = new DelegateCommand(async () => await OnNext());
+        }
+
+        private async Task OnNext()
+        {
+            var parameters = new NavigationParameters();
+            parameters.Add(NavigationParameterKeys._Organization, _partialOrganization);
+            await NavigationService.NavigateAsync("CreateMissionContextView", parameters);
         }
 
         public override async Task InitializeAsync(INavigationParameters parameters)
