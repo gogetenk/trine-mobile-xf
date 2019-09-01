@@ -80,12 +80,14 @@ namespace Modules.Mission.ViewModels
             {
                 IsErrorShown = true;
                 IsSuccessShown = false;
+                IsGridEnabled = false;
                 await LogAndShowBusinessError(bExc);
             }
             catch (Exception exc)
             {
                 IsErrorShown = true;
                 IsSuccessShown = false;
+                IsGridEnabled = false;
                 LogTechnicalError(exc);
             }
             finally

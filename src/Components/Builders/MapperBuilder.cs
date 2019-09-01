@@ -43,8 +43,11 @@ namespace Trine.Mobile.Components.Builders
                 cfg.CreateMap<DashboardCountModel, DashboardCountDto>();
                 cfg.CreateMap<DashboardCustomerModel, DashboardCustomerDto>();
                 cfg.CreateMap<User, UserModel>();
+                cfg.CreateMap<UserModel, User>();
                 cfg.CreateMap<UserModel, UserDto>()
                     .ForMember(x => x.DisplayName, opts => opts.MapFrom(x => $"{x.Firstname} {x.Lastname.ToUpperInvariant()}"));
+                cfg.CreateMap<User, UserDto>()
+                    .ForMember(x => x.DisplayName, opts => opts.MapFrom(x => $"{x.FirstName} {x.LastName.ToUpperInvariant()}"));
 
                 cfg.CreateMap<ActivityModel, ActivityDto>()
                     .ForMember(x => x.PinColor, opts => opts.MapFrom(x => GetPinFromActivityStatus(x.Status)))

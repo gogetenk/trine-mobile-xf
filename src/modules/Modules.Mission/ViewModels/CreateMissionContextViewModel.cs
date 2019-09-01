@@ -43,7 +43,6 @@ namespace Modules.Mission.ViewModels
             NextCommand = new DelegateCommand(async () => await OnNextStep());
             CreateMissionRequest = new CreateMissionRequestDto();
             CreateMissionRequest.IsTripartite = true; // Default
-            CreateMissionRequest.OrganizationId = "5ca5cab077e80c1344dbafec"; // TODO: Mocked 
 
             _dashboardService = dashboardService;
         }
@@ -54,7 +53,10 @@ namespace Modules.Mission.ViewModels
 
             SelectedOrganization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
             if (SelectedOrganization != null)
+            {
+                CreateMissionRequest.OrganizationId = SelectedOrganization.Id;
                 return;
+            }
 
             // Load all organizations 
             IsOrganizationPickerVisible = true;
