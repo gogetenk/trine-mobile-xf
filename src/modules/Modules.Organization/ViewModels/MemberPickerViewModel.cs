@@ -37,7 +37,7 @@ namespace Modules.Organization.ViewModels
             _navigatedFrom = parameters.GetValue<string>(NavigationParameterKeys._NavigatedFromUri);
 
             if (Members is null || !Members.Any())
-                await LoadData();
+                await Task.Run(async () => await LoadData());
         }
 
         protected override async Task OnSelectedMember(UserDto user)
