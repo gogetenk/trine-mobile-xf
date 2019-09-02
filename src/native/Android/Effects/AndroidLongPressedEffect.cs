@@ -18,7 +18,7 @@ namespace Trine.Mobile.Bootstrapper.Droid.Effects
         /// <summary>
         /// Initializer to avoid linking out
         /// </summary>
-        public static void Initialize() { }
+        public static void OnNavigatedTo() { }
 
         /// <summary>
         /// Initializes a new instance of the

@@ -71,9 +71,9 @@ namespace Modules.Authentication.ViewModels
             await NavigationService.NavigateAsync("Signup3View", navParams);
         }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             _userToCreate = parameters.GetValue<RegisterUserDto>(NavigationParameterKeys._User);
         }

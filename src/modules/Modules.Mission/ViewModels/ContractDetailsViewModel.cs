@@ -17,9 +17,9 @@ namespace Modules.Mission.ViewModels
         {
         }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             Contract = parameters.GetValue<FrameContractDto>(NavigationParameterKeys._Contract);
         }

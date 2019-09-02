@@ -30,9 +30,9 @@ namespace Modules.Mission.ViewModels
             NextCommand = new DelegateCommand(async () => await OnNextStep());
         }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             if (CreateMissionRequest.StartDate == default(DateTime))
                 CreateMissionRequest.StartDate = DateTime.UtcNow;

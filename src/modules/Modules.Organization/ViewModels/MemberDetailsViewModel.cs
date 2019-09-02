@@ -48,9 +48,9 @@ namespace Modules.Organization.ViewModels
             DeleteCommand = new DelegateCommand(async () => await OnDelete());
         }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             _organizationId = parameters.GetValue<string>(NavigationParameterKeys._OrganizationId);
             var user = parameters.GetValue<UserDto>(NavigationParameterKeys._User);

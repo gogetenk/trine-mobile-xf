@@ -13,6 +13,9 @@ using Trine.Mobile.Bll.Impl.Settings;
 
 namespace Trine.Mobile.Components.ViewModels
 {
+    /// <summary>
+    /// Base class exposing navigation and analytics methods for PRISM ViewModels.
+    /// </summary>
     public abstract class ViewModelBase : BindableBase, IInitializeAsync, INavigatedAware, IAutoInitialize, IConfirmNavigationAsync
     {
         public INavigationService NavigationService { get; }
@@ -32,10 +35,6 @@ namespace Trine.Mobile.Components.ViewModels
         {
         }
 
-        public virtual void OnNavigatingTo(INavigationParameters parameters)
-        {
-        }
-
         public virtual void LogTechnicalError(Exception exc)
         {
             Logger.Report(exc, null);
@@ -47,15 +46,24 @@ namespace Trine.Mobile.Components.ViewModels
             await DialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
         }
 
+        /// <summary>
+        /// This method is called before you navigated onto a page. This is a replacement for OnNavigatingTo from Prism 7.2.
+        /// </summary>
+        /// <param name="parameters">Optional parameters</param>
+        /// <returns></returns>
         public virtual async Task InitializeAsync(INavigationParameters parameters)
         {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add("UserId", AppSettings.CurrentUser?.Id);
-            Logger.TrackEvent("[" + base.GetType().Name + "] Navigated To", dictionary);
         }
 
+        /// <summary>
+        /// This method is called when you navigated onto a page. This should be the most common overriden method.
+        /// </summary>
+        /// <param name="parameters">Optional parameters</param>
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
+            var logParams = new Dictionary<string, string>();
+            logParams.Add("UserId", AppSettings.CurrentUser?.Id);
+            Logger.TrackEvent($"[{GetType().Name}] Navigated To", logParams);
         }
 
         public virtual async Task<bool> CanNavigateAsync(INavigationParameters parameters)

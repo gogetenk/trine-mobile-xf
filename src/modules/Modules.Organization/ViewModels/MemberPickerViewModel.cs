@@ -30,14 +30,14 @@ namespace Modules.Organization.ViewModels
         {
         }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             _navigatedFrom = parameters.GetValue<string>(NavigationParameterKeys._NavigatedFromUri);
 
             if (Members is null || !Members.Any())
-                await Task.Run(async () => await LoadData());
+                await LoadData();
         }
 
         protected override async Task OnSelectedMember(UserDto user)

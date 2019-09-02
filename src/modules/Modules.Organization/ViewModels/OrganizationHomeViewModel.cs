@@ -32,9 +32,9 @@ namespace Modules.Organization.ViewModels
         {
         }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             Organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
             if (Organization is null)

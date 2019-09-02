@@ -51,15 +51,13 @@ namespace Modules.Mission.ViewModels
             BackCommand = new DelegateCommand(async () => await NavigationService.GoBackAsync(parameters));
         }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             // If the current Picked user is null, we reset the UI of the picker
             if (PickedUser is null)
                 OnRemoveUser();
-
-            SelectedOrganization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
 
             // We get the user from navigation (from picker) only if it was null or if he has not the same id
             var pickedUser = parameters.GetValue<UserDto>(NavigationParameterKeys._User);
@@ -68,6 +66,8 @@ namespace Modules.Mission.ViewModels
                 IsInvitedUser = pickedUser.Id == null; // So we can show the information bubble 
                 PickedUser = pickedUser;
             }
+
+            SelectedOrganization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
 
             // If the page was already populated, or if we are on the first form page, we stop here.
             if (CreateMissionRequest != null || base.GetType().Name == "CreateMissionContextViewModel")
@@ -78,20 +78,6 @@ namespace Modules.Mission.ViewModels
             {
                 await DialogService.DisplayAlertAsync("Oops...", ErrorMessages.unknownError, "Ok");
                 await NavigationService.NavigateAsync("CreateMissionStartView");
-            }
-        }
-
-        // Obligé d'utiliser OnNavigatedTo car InitializeAsync ne se trigger pas lors d'un goback depuis la modale UserPicker...
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            base.OnNavigatedTo(parameters);
-
-            // We get the user from navigation (from picker) only if it was null or if he has not the same id
-            var pickedUser = parameters.GetValue<UserDto>(NavigationParameterKeys._User);
-            if (pickedUser != null)
-            {
-                IsInvitedUser = pickedUser.Id == null; // So we can show the information bubble 
-                PickedUser = pickedUser;
             }
         }
 

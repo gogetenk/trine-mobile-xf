@@ -54,9 +54,9 @@ namespace Modules.Mission.ViewModels
             MissionInvoiceViewModel = new MissionInvoiceViewModel(navigationService, mapper, logger, dialogService);
         }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             _mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
             await TriggerOnNavigatedTo(0);

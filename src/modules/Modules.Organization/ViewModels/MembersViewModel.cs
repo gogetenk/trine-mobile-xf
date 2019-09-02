@@ -27,9 +27,9 @@ namespace Modules.Organization.ViewModels
         }
 
         // Triggered only during classical navigation
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             _isUserPickerMode = parameters.GetValue<bool>(NavigationParameterKeys._IsUserPickerModeEnabled);
             _navigatedFrom = parameters.GetValue<string>(NavigationParameterKeys._NavigatedFromUri);

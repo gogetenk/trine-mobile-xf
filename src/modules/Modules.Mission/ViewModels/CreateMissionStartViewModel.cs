@@ -33,9 +33,9 @@ namespace Modules.Mission.ViewModels
             await NavigationService.NavigateAsync("CreateMissionContextView", parameters);
         }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             _partialOrganization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
         }

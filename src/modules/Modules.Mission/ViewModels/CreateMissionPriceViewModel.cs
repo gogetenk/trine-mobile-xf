@@ -28,9 +28,9 @@ namespace Modules.Mission.ViewModels
             PriceChangedCommand = new DelegateCommand(() => CalculateTotalPrice());
         }
 
-        public override async Task InitializeAsync(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            await base.InitializeAsync(parameters);
+            base.OnNavigatedTo(parameters);
 
             if (CreateMissionRequest.DailyPrice == 0)
                 CreateMissionRequest.DailyPrice = 400;
