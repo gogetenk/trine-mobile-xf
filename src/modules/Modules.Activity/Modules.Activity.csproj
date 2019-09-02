@@ -29,6 +29,9 @@
     <Compile Update="Views\AbsenceDialogView.xaml.cs">
       <DependentUpon>AbsenceDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\PeriodChoiceDialogView.xaml.cs">
+      <DependentUpon>PeriodChoiceDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\RefuseActivityDialogView.xaml.cs">
       <DependentUpon>RefuseActivityDialogView.xaml</DependentUpon>
     </Compile>

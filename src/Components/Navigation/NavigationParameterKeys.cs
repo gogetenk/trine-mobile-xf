@@ -15,5 +15,6 @@
         public static readonly string _IsActivityRefused = "IsActivityRefused";
         public static readonly string _ActivityComment = "ActivityComment";
         public static readonly string _Absence = "Absence";
+        public static readonly string _Period = "Period";
     }
 }

@@ -20,6 +20,7 @@ namespace Modules.Activity
             containerRegistry.RegisterDialog<SignActivityDialogView, SignActivityDialogViewModel>();
             containerRegistry.RegisterDialog<RefuseActivityDialogView, RefuseActivityDialogViewModel>();
             containerRegistry.RegisterDialog<AbsenceDialogView, AbsenceDialogViewModel>();
+            containerRegistry.RegisterDialog<PeriodChoiceDialogView, PeriodChoiceDialogViewModel>();
         }
     }
 }
