@@ -59,10 +59,10 @@ namespace Modules.Mission.ViewModels
             base.OnNavigatedTo(parameters);
 
             _mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
-            await TriggerOnNavigatedTo(0);
+            TriggerOnNavigatedTo(0);
         }
 
-        private async Task TriggerOnNavigatedTo(int value)
+        private void TriggerOnNavigatedTo(int value)
         {
             var parameters = new NavigationParameters();
             parameters.Add(NavigationParameterKeys._Mission, _mission);
@@ -70,13 +70,13 @@ namespace Modules.Mission.ViewModels
             switch (value)
             {
                 case 0:
-                    await MissionActivityViewModel.InitializeAsync(parameters);
+                    MissionActivityViewModel.OnNavigatedTo(parameters);
                     break;
                 case 1:
-                    await MissionInvoiceViewModel.InitializeAsync(parameters);
+                    MissionInvoiceViewModel.OnNavigatedTo(parameters);
                     break;
                 case 2:
-                    await MissionContractViewModel.InitializeAsync(parameters);
+                    MissionContractViewModel.OnNavigatedTo(parameters);
                     break;
             }
         }

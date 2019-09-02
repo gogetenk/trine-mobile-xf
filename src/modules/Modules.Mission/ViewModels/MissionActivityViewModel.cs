@@ -35,6 +35,7 @@ namespace Modules.Mission.ViewModels
         private ActivityDto _selectedActivity;
 
         public ICommand RefreshCommand { get; set; }
+        public ICommand AddMemberCommand { get; set; }
 
         #endregion
 
@@ -48,7 +49,10 @@ namespace Modules.Mission.ViewModels
             _activityService = activityService;
 
             RefreshCommand = new DelegateCommand(async () => await LoadData());
+            AddMemberCommand = new DelegateCommand(async () => await OnCreateActivity());
         }
+
+        
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
@@ -60,7 +64,10 @@ namespace Modules.Mission.ViewModels
 
             _mission = parameters.GetValue<MissionDto>(NavigationParameterKeys._Mission);
             if (_mission is null)
+            {
                 await NavigationService.GoBackAsync();
+                return;
+            }
 
             await LoadData();
             _hasBeenLoadedOnce = true;
@@ -76,6 +83,38 @@ namespace Modules.Mission.ViewModels
                 IsLoading = true;
                 Activities = Mapper.Map<ObservableCollection<ActivityDto>>(await _activityService.GetFromMission(_mission.Id));
                 _totalActivities = Activities?.ToList();
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        private async Task OnCreateActivity()
+        {
+            try
+            {
+                if (IsLoading)
+                    return;
+
+                IsLoading = true;
+                var createdActivity = Mapper.Map<ActivityDto>(await _activityService.GenerateNewActivityReport(_mission.Id));
+                if (createdActivity is null)
+                    throw new BusinessException("Une erreur s'est produite lors de la création du rapport d'activité.");
+
+                if (Activities is null)
+                    Activities = new ObservableCollection<ActivityDto>();
+
+                Activities.Add(createdActivity);
+                _totalActivities = Activities.ToList();
             }
             catch (BusinessException bExc)
             {
