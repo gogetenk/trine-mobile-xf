@@ -35,7 +35,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
                 .ReturnsAsync(id);
 
             var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object);
-            await viewmodel.InitializeAsync(navparams);
+            viewmodel.OnNavigatedTo(navparams);
 
             // Act
             viewmodel.CommercialCommand.Execute(null);
@@ -58,7 +58,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
                 .ReturnsAsync(id);
 
             var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object);
-            await viewmodel.InitializeAsync(navparams);
+            viewmodel.OnNavigatedTo(navparams);
 
             // Act
             viewmodel.ConsultantCommand.Execute(null);
@@ -81,7 +81,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
                 .ReturnsAsync(id);
 
             var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object);
-            await viewmodel.InitializeAsync(navparams);
+            viewmodel.OnNavigatedTo(navparams);
 
             // Act
             viewmodel.CustomerCommand.Execute(null);
@@ -104,7 +104,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
                 .ThrowsAsync(It.IsAny<Exception>());
 
             var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object);
-            await viewmodel.InitializeAsync(navparams);
+            viewmodel.OnNavigatedTo(navparams);
 
             // Act
             viewmodel.CustomerCommand.Execute(null);
@@ -129,7 +129,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
                 .ThrowsAsync(exception);
 
             var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object);
-            await viewmodel.InitializeAsync(navparams);
+            viewmodel.OnNavigatedTo(navparams);
 
             // Act
             viewmodel.CustomerCommand.Execute(null);

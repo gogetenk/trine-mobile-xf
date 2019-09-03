@@ -29,7 +29,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             viewmodel.PickedUser.Should().NotBeNull();
@@ -53,7 +53,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             viewmodel.PickedUser.Should().NotBeNull();
@@ -73,7 +73,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, null);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             viewmodel.PickedUser.Should().NotBeNull();
@@ -92,7 +92,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, createMission);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             viewmodel.PickedUser.Should().NotBeNull();

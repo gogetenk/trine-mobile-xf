@@ -38,7 +38,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._User, user);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             viewmodel.Member.Should().NotBeNull();
@@ -68,7 +68,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._User, user);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             viewmodel.DeleteCommand.Execute(null);
 
             // Assert
@@ -99,7 +99,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._User, user);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             viewmodel.DeleteCommand.Execute(null);
 
             // Assert
@@ -133,7 +133,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._User, user);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             viewmodel.SaveCommand.Execute(null);
 
             // Assert

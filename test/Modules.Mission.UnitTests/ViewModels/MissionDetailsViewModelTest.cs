@@ -3,6 +3,7 @@ using FluentAssertions;
 using Modules.Mission.ViewModels;
 using Moq;
 using Prism.Navigation;
+using Prism.Services.Dialogs;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
@@ -19,14 +20,15 @@ namespace Modules.Mission.UnitTests.ViewModels
         {
             // Arrange
             var mission = new Fixture().Create<MissionDto>();
+            var dialogMock = new Mock<IDialogService>();
             var activityServiceMock = new Mock<IActivityService>();
 
-            var viewmodel = new MissionDetailsViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, activityServiceMock.Object);
+            var viewmodel = new MissionDetailsViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, activityServiceMock.Object, dialogMock.Object);
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._Mission, mission);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             viewmodel.MissionActivityViewModel.Should().NotBeNull();

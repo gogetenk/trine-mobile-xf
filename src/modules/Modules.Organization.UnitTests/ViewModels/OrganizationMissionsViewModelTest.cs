@@ -34,7 +34,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navparams.Add(NavigationParameterKeys._Organization, orga);
 
             // Act
-            await viewmodel.InitializeAsync(navparams);
+            viewmodel.OnNavigatedTo(navparams);
 
             // Assert
             viewmodel.Missions.Should().NotBeNull();
@@ -56,7 +56,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navparams.Add(NavigationParameterKeys._Organization, orga);
 
             // Act
-            await viewmodel.InitializeAsync(navparams);
+            viewmodel.OnNavigatedTo(navparams);
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
@@ -78,12 +78,12 @@ namespace Modules.Organization.UnitTests.ViewModels
             navparams.Add(NavigationParameterKeys._Organization, orga);
 
             // Act
-            await viewmodel.InitializeAsync(navparams);
+            viewmodel.OnNavigatedTo(navparams);
             viewmodel.SelectedMission = viewmodel.Missions.FirstOrDefault();
 
             // Assert
             viewmodel.Missions.Should().NotBeNull();
-            _navigationService.Verify(x => x.NavigateAsync("MissionDetailsView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._Mission] == viewmodel.SelectedMission)));
+            _navigationService.Verify(x => x.NavigateAsync("MissionDetailsView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._Mission] == viewmodel.Missions.FirstOrDefault())));
         }
     }
 }

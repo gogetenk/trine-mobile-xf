@@ -28,7 +28,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             };
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             viewmodel.CreateMissionRequest.DailyPrice.Should().Be(400);
@@ -45,7 +45,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act 
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             request.DailyPrice = 10f;
             request.CommercialFeePercentage = 10f;
             viewmodel.PriceChangedCommand.Execute(null);
@@ -67,7 +67,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             viewmodel.CreateMissionRequest.DailyPrice = 0;
             viewmodel.NextCommand.Execute();
 

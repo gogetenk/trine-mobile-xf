@@ -28,7 +28,7 @@ namespace Modules.Mission.UnitTests.ViewModels
         //    navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
         //    // Act
-        //    await viewmodel.InitializeAsync(navParams);
+        //    viewmodel.OnNavigatedTo(navParams);
         //    viewmodel.NextCommand.Execute();
 
         //    // Assert
@@ -48,7 +48,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             viewmodel.CreateMissionRequest.EndDate = DateTime.UtcNow;
             viewmodel.CreateMissionRequest.StartDate = DateTime.UtcNow.AddMonths(3);
             viewmodel.NextCommand.Execute();
@@ -70,7 +70,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             viewmodel.CreateMissionRequest.EndDate = default(DateTime);
             viewmodel.CreateMissionRequest.StartDate = default(DateTime);
             viewmodel.NextCommand.Execute();

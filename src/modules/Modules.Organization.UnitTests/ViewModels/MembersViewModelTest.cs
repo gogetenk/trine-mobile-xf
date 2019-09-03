@@ -47,7 +47,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             viewmodel.Members.Should().NotBeNull();
@@ -70,7 +70,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
@@ -96,7 +96,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
@@ -122,7 +122,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, _mapper.Map<PartialOrganizationDto>(orga));
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             var selectedMember = _mapper.Map<UserDto>(members.First());
             viewmodel.SelectedMember = selectedMember;
 

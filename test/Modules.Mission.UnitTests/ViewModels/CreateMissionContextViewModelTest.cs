@@ -29,7 +29,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, orga);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             viewmodel.CreateMissionRequest.ProjectName = "toto";
             viewmodel.NextCommand.Execute();
 
@@ -50,7 +50,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             viewmodel.CreateMissionRequest.ProjectName = "toto";
             viewmodel.NextCommand.Execute();
 
@@ -70,7 +70,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             navParams.Add(NavigationParameterKeys._CreateMissionRequest, request);
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
             viewmodel.CreateMissionRequest.ProjectName = "";
             viewmodel.NextCommand.Execute();
 

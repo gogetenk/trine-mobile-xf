@@ -38,7 +38,7 @@ namespace Modules.Menu.UnitTests
             var viewmodel = new MenuRootViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionServiceMock.Object, dashboardServiceMock.Object);
 
             // Act
-            await viewmodel.InitializeAsync(null);
+            viewmodel.OnNavigatedTo(null);
 
             // Assert
             viewmodel.Missions.Should().NotBeNull();
@@ -66,7 +66,7 @@ namespace Modules.Menu.UnitTests
             var viewmodel = new MenuRootViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionServiceMock.Object, dashboardServiceMock.Object);
 
             // Act
-            await viewmodel.InitializeAsync(null);
+            viewmodel.OnNavigatedTo(null);
             var selectedMission = viewmodel.Missions[1];
             viewmodel.SelectedMission = selectedMission;
 
@@ -93,7 +93,7 @@ namespace Modules.Menu.UnitTests
             var viewmodel = new MenuRootViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionServiceMock.Object, dashboardServiceMock.Object);
 
             // Act
-            await viewmodel.InitializeAsync(null);
+            viewmodel.OnNavigatedTo(null);
             var selectedOrga = viewmodel.Organizations[1];
             viewmodel.SelectedOrganization = selectedOrga;
 
@@ -120,7 +120,7 @@ namespace Modules.Menu.UnitTests
             var viewmodel = new MenuRootViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionServiceMock.Object, dashboardServiceMock.Object);
 
             // Act
-            await viewmodel.InitializeAsync(null);
+            viewmodel.OnNavigatedTo(null);
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
@@ -145,7 +145,7 @@ namespace Modules.Menu.UnitTests
             var viewmodel = new MenuRootViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionServiceMock.Object, dashboardServiceMock.Object);
 
             // Act
-            await viewmodel.InitializeAsync(null);
+            viewmodel.OnNavigatedTo(null);
 
             // Assert
             _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);

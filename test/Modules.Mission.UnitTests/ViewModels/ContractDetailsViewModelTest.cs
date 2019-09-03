@@ -26,7 +26,7 @@ namespace Modules.Mission.UnitTests.ViewModels
             };
 
             // Act
-            await viewmodel.InitializeAsync(navParams);
+            viewmodel.OnNavigatedTo(navParams);
 
             // Assert
             viewmodel.Contract.Should().NotBeNull();
