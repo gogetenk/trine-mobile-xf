@@ -6,7 +6,8 @@
              mc:Ignorable="d"
              x:Class="Trine.Mobile.Components.Controls.ActivityCalendarView">
     <StackLayout>
-        <Grid x:Name="grid_calendar">
+        <Grid x:Name="grid_calendar"
+              HorizontalOptions="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{Binding ColumnWidth}" />
                 <ColumnDefinition Width="{Binding ColumnWidth}" />

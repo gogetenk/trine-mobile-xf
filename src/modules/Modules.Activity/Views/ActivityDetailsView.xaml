@@ -91,7 +91,7 @@
 
                 <!-- Nombre de jours travaillés -->
                 <Grid Padding="5"
-                      Margin="0,25,0,25"
+                      Margin="0,20,0,70"
                       HorizontalOptions="FillAndExpand"
                       VerticalOptions="Start">
                     <StackLayout Orientation="Horizontal"
@@ -99,7 +99,8 @@
                         <Label Text="{Binding Activity.DaysNb, StringFormat='{0:G0}', Mode=TwoWay}"
                                VerticalOptions="Center"
                                Margin="0,0,10,0"
-                               FontSize="35" />
+                               TextColor="{StaticResource AccentColor}"
+                               FontSize="40" />
                         <Label Text="jour(s) travaillé(s)"
                                VerticalOptions="Center" />
                     </StackLayout>

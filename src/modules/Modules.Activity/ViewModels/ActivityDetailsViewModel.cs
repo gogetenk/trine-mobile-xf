@@ -317,6 +317,11 @@ namespace Modules.Activity.ViewModels
         }
         private void SetupCommercialUI()
         {
+            IsAcceptButtonVisible = false;
+            IsRefuseButtonVisible = false;
+            IsSignButtonVisible = false;
+            IsSaveButtonVisible = false;
+            CanModify = false;
         }
 
     }

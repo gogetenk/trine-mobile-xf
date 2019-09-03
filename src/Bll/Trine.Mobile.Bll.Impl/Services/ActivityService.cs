@@ -4,6 +4,7 @@ using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll.Impl.Services.Base;
 using Trine.Mobile.Bll.Impl.Settings;
@@ -19,6 +20,22 @@ namespace Trine.Mobile.Bll.Impl.Services
 
         public ActivityService(IMapper mapper, IGatewayRepository gatewayRepository, ILogger logger) : base(mapper, gatewayRepository, logger)
         {
+        }
+
+        public async Task<ActivityModel> CreateActivity(string missionId, DateTime date)
+        {
+            try
+            {
+                return _mapper.Map<ActivityModel>(await _gatewayRepository.ApiActivitiesPostAsync(missionId, date, _activityApiVersion));
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
         }
 
         public async Task<ActivityModel> GenerateNewActivityReport(string missionId)
@@ -96,11 +113,7 @@ namespace Trine.Mobile.Bll.Impl.Services
         {
             try
             {
-                var request = new CreateActivityRequest();
-                request.MissionId = activityModel.MissionId;
-                request.UserId = AppSettings.CurrentUser.Id;
-                request.Days = _mapper.Map<List<GridDay>>(activityModel.Days);
-                var newActivity = await _gatewayRepository.ApiActivitiesPostAsync(request, _userApiVersion);
+                var newActivity = await _gatewayRepository.ApiActivitiesPutAsync(activityModel.Id, _mapper.Map<Activity>(activityModel), _userApiVersion);
                 return _mapper.Map<ActivityModel>(newActivity);
             }
             catch (ApiException dalExc)
@@ -194,6 +207,19 @@ namespace Trine.Mobile.Bll.Impl.Services
             {
                 throw;
             }
+        }
+
+        public List<DateTime> GetMissionPeriods(MissionModel mission)
+        {
+            var startDt = mission.StartDate;
+            var endDt = mission.EndDate;
+
+            var diff = Enumerable.Range(0, 13)
+                        .Select(a => startDt.AddMonths(a))
+                        .TakeWhile(a => a <= endDt)
+                        .ToList();
+
+            return diff;
         }
     }
 }

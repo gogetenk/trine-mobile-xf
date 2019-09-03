@@ -110,11 +110,11 @@ namespace Modules.Mission.ViewModels
             try
             {
                 var period = parameters.GetValue<DateTime>(NavigationParameterKeys._Period);
-                if (period == default(DateTime))
+                if (period == default)
                     return;
 
                 IsLoading = true;
-                var createdActivity = Mapper.Map<ActivityDto>(await _activityService.GenerateNewActivityReport(_mission.Id));
+                var createdActivity = Mapper.Map<ActivityDto>(await _activityService.CreateActivity(_mission.Id, period));
                 if (createdActivity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la création du rapport d'activité.");
 

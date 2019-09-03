@@ -7,9 +7,11 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
+using Trine.Mobile.Model;
 
 namespace Modules.Activity.ViewModels
 {
@@ -26,11 +28,14 @@ namespace Modules.Activity.ViewModels
 
         public event Action<IDialogParameters> RequestClose;
         private MissionDto _mission;
+        private readonly IActivityService _activityService;
 
-        public PeriodChoiceDialogViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
+        public PeriodChoiceDialogViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IActivityService activityService) : base(navigationService, mapper, logger, dialogService)
         {
             SendCommand = new DelegateCommand(() => OnValidatePeriod());
             CancelCommand = new DelegateCommand(() => RequestClose.Invoke(null));
+
+            _activityService = activityService;
         }
 
         private void OnValidatePeriod()
@@ -55,11 +60,7 @@ namespace Modules.Activity.ViewModels
             if (_mission is null)
                 RequestClose.Invoke(null);
 
-            Dates = new List<DateTime>()
-            {
-                DateTime.UtcNow,
-                DateTime.UtcNow.AddMonths(1)
-            };
+            Dates = _activityService.GetMissionPeriods(Mapper.Map<MissionModel>(_mission));
         }
     }
 }
