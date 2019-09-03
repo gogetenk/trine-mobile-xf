@@ -156,6 +156,8 @@ namespace Modules.Mission.ViewModels
             var navparams = new NavigationParameters();
             navparams.Add(NavigationParameterKeys._Activity, SelectedActivity);
             await NavigationService.NavigateAsync("ActivityDetailsView", navparams);
+            // Deselecting item
+            SelectedActivity = null;
         }
 
     }

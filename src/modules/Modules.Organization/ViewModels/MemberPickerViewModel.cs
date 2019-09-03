@@ -49,6 +49,8 @@ namespace Modules.Organization.ViewModels
             var parameters = new NavigationParameters();
             parameters.Add(NavigationParameterKeys._User, user);
             await NavigationService.GoBackAsync(parameters);
+            // Deselecting item
+            SelectedMember = null;
         }
 
         protected override async Task OnAddMember()

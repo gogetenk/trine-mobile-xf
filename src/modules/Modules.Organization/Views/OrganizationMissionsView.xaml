@@ -35,7 +35,7 @@
             </Frame>
 
             <ListView ItemsSource="{Binding Missions}"
-                      SelectedItem="{Binding SelectedMission}"
+                      SelectedItem="{Binding SelectedMission, Mode=TwoWay}"
                       IsRefreshing="{Binding IsLoading, Mode=OneWay}"
                       IsPullToRefreshEnabled="True"
                       Margin="0,30,0,0"

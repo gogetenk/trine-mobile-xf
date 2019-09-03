@@ -101,6 +101,8 @@ namespace Modules.Organization.ViewModels
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._Mission, SelectedMission);
             await NavigationService.NavigateAsync($"MissionDetailsView", navParams);
+            // Deselecting item
+            SelectedMission = null;
         }
 
         private async Task OnAddMission()

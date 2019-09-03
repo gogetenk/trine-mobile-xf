@@ -33,7 +33,7 @@
                 </StackLayout>
             </Frame>
 
-            <ListView SelectedItem="{Binding SelectedActivity}"
+            <ListView SelectedItem="{Binding SelectedActivity, Mode=TwoWay}"
                       IsRefreshing="{Binding IsLoading}"
                       ItemsSource="{Binding Activities}"
                       IsPullToRefreshEnabled="True"

@@ -45,7 +45,7 @@
  
         <ListView Grid.Row="1"
                   ItemsSource="{Binding Members}"
-                  SelectedItem="{Binding SelectedMember}"
+                  SelectedItem="{Binding SelectedMember, Mode=TwoWay}"
                   IsRefreshing="{Binding IsLoading}"
                   IsPullToRefreshEnabled="True"
                   RefreshCommand="{Binding RefreshCommand}"
