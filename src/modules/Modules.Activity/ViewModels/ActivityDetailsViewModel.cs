@@ -85,7 +85,7 @@ namespace Modules.Activity.ViewModels
             AbsenceCommand = new DelegateCommand<GridDayDto>((gridDay) => OnAbsenceSettingsOpened(gridDay as GridDayDto));
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 
@@ -95,6 +95,8 @@ namespace Modules.Activity.ViewModels
 
             SetupUI();
         }
+
+        #region Absence management
 
         private void OnAbsenceSettingsOpened(GridDayDto gridDay)
         {
@@ -116,6 +118,10 @@ namespace Modules.Activity.ViewModels
             activityDays.Add(updatedDay);
             Activity.Days = activityDays;
         }
+
+        #endregion
+
+        #region Signing management
 
         private void OnSignActivity()
         {
@@ -152,30 +158,9 @@ namespace Modules.Activity.ViewModels
             }
         }
 
-        private async Task OnSaveActivity()
-        {
-            try
-            {
-                if (IsLoading)
-                    return;
+        #endregion
 
-                IsLoading = true;
-                await _activityService.UpdateActivity(Mapper.Map<ActivityModel>(Activity));
-                SetupUI();
-            }
-            catch (BusinessException bExc)
-            {
-                await LogAndShowBusinessError(bExc);
-            }
-            catch (Exception exc)
-            {
-                LogTechnicalError(exc);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
-        }
+        #region Refusing management
 
         private void OnRefuseActivity()
         {
@@ -224,9 +209,44 @@ namespace Modules.Activity.ViewModels
             }
         }
 
+        #endregion
+
+        #region Accepting management 
+
         private async Task OnAcceptActivity()
         {
         }
+
+        #endregion
+
+        #region Saving management
+
+        private async Task OnSaveActivity()
+        {
+            try
+            {
+                if (IsLoading)
+                    return;
+
+                IsLoading = true;
+                await _activityService.UpdateActivity(Mapper.Map<ActivityModel>(Activity));
+                SetupUI();
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        #endregion
 
         private void SetupUI()
         {
@@ -295,7 +315,6 @@ namespace Modules.Activity.ViewModels
             IsSaveButtonVisible = false;
             CanModify = false;
         }
-
         private void SetupCommercialUI()
         {
         }
