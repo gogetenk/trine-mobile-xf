@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.1.1" />
     <PackageReference Include="Microsoft.AppCenter.Distribute" Version="2.1.1" />
-    <PackageReference Include="Prism.Plugin.Logging.AppCenter" Version="7.2.0.560" />
+    <PackageReference Include="Prism.Plugin.Logging.AppCenter" Version="7.2.0.616" />
     <PackageReference Include="Prism.Unity.Forms" Version="7.2.0.1367" />
     <PackageReference Include="Sharpnado.Presentation.Forms" Version="1.2.0" />
     <PackageReference Include="Sogetrel.Sinapse.Framework.Mobile" Version="1.2.0-beta-007908" />
