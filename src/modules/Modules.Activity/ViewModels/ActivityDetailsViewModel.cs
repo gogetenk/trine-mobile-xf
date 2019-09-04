@@ -170,7 +170,7 @@ namespace Modules.Activity.ViewModels
             _dialogService.ShowDialog("RefuseActivityDialogView", null, async result => await OnRefuseDialogClosed(result.Parameters));
         }
 
-        private async Task OnRefuseDialogClosed(IDialogParameters result)
+        public async Task OnRefuseDialogClosed(IDialogParameters result)
         {
             try
             {
@@ -196,6 +196,9 @@ namespace Modules.Activity.ViewModels
                 Activity.Status = Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired;
                 //await _activityService.RefuseActivity(Mapper.Map<ActivityModel>(Activity));
                 Activity = Mapper.Map<ActivityDto>(await _activityService.SaveActivityReport(Mapper.Map<ActivityModel>(Activity)));
+                if (Activity is null)
+                    throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
+
                 SetupUI();
             }
             catch (BusinessException bExc)
