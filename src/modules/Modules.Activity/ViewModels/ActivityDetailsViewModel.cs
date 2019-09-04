@@ -128,7 +128,7 @@ namespace Modules.Activity.ViewModels
             _dialogService.ShowDialog("SignActivityDialogView", null, async result => await OnSignDialogClosed(result.Parameters));
         }
 
-        private async Task OnSignDialogClosed(IDialogParameters result)
+        public async Task OnSignDialogClosed(IDialogParameters result)
         {
             try
             {
@@ -141,8 +141,10 @@ namespace Modules.Activity.ViewModels
                 IsLoading = true;
 
                 Activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity)));
-                SetupUI();
+                if (Activity is null)
+                    throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
+                SetupUI();
             }
             catch (BusinessException bExc)
             {
