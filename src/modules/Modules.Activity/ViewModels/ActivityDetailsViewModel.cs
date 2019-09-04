@@ -303,9 +303,9 @@ namespace Modules.Activity.ViewModels
         {
             IsAcceptButtonVisible = false;
             IsRefuseButtonVisible = false;
-            IsSignButtonVisible = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.Generated;
-            IsSaveButtonVisible = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.Generated;
             CanModify = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.Generated || Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired;
+            IsSignButtonVisible = CanModify;
+            IsSaveButtonVisible = CanModify;
         }
         private void SetupCustomerUI()
         {
