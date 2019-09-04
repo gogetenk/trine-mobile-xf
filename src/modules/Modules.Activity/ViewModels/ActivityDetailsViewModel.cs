@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Components;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
@@ -261,42 +262,42 @@ namespace Modules.Activity.ViewModels
 
             if (Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.Generated)
             {
-                ConsultantSignedTextColor = Color.FromHex("#F0B429"); // Yellow
-                CustomerSignedTextColor = Color.FromHex("#F0B429");
+                ConsultantSignedTextColor = Color.FromHex(UIConstants._Yellow); // Yellow
+                CustomerSignedTextColor = Color.FromHex(UIConstants._Yellow);
                 ConsultantSignedStatusText = "En attente de signature";
                 CustomerSignedStatusText = "En attente de signature";
-                ConsultantGlyph = "\ue5d3";
-                CustomerGlyph = "\ue5d3";
+                ConsultantGlyph = UIConstants._PendingGlyph;
+                CustomerGlyph = UIConstants._PendingGlyph;
                 IsCommentVisible = false;
             }
             else if (Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned)
             {
-                ConsultantSignedTextColor = Color.FromHex("#3EBD93");  // Green
-                CustomerSignedTextColor = Color.FromHex("#F0B429");
+                ConsultantSignedTextColor = Color.FromHex(UIConstants._Green);  // Green
+                CustomerSignedTextColor = Color.FromHex(UIConstants._Yellow);
                 ConsultantSignedStatusText = $"Signé le {Activity.Consultant.SignatureDate}";
                 CustomerSignedStatusText = "En attente de signature";
-                ConsultantGlyph = "\ue5ca";
-                CustomerGlyph = "\ue5d3";
+                ConsultantGlyph = UIConstants._SignedGlyph;
+                CustomerGlyph = UIConstants._PendingGlyph;
                 IsCommentVisible = false;
             }
             else if (Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired)
             {
-                ConsultantSignedTextColor = Color.FromHex("#F0B429");
-                CustomerSignedTextColor = Color.FromHex("#FF5A39"); // Red
+                ConsultantSignedTextColor = Color.FromHex(UIConstants._Yellow);
+                CustomerSignedTextColor = Color.FromHex(UIConstants._Red); // Red
                 ConsultantSignedStatusText = "En attente de modification";
                 CustomerSignedStatusText = "Refusé";
-                ConsultantGlyph = "\ue5d3";
-                CustomerGlyph = "\ue5cd";
+                ConsultantGlyph = UIConstants._PendingGlyph;
+                CustomerGlyph = UIConstants._RefusedGlyph;
                 IsCommentVisible = true;
             }
             else if (Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.CustomerSigned)
             {
-                ConsultantSignedTextColor = Color.FromHex("#3EBD93");
-                CustomerSignedTextColor = Color.FromHex("#3EBD93");
+                ConsultantSignedTextColor = Color.FromHex(UIConstants._Green);
+                CustomerSignedTextColor = Color.FromHex(UIConstants._Green);
                 ConsultantSignedStatusText = $"Signé le {Activity.Consultant.SignatureDate}";
                 CustomerSignedStatusText = $"Signé le {Activity.Customer.SignatureDate}";
-                ConsultantGlyph = "\ue5ca";
-                CustomerGlyph = "\ue5ca";
+                ConsultantGlyph = UIConstants._SignedGlyph;
+                CustomerGlyph = UIConstants._SignedGlyph;
                 IsCommentVisible = false;
             }
         }

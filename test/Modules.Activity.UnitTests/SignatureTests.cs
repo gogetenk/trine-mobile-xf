@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Components;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
 using Trine.Mobile.Dto;
@@ -21,12 +22,6 @@ namespace Modules.Activity.UnitTests
 {
     public class SignatureTests : UnitTestBase
     {
-        private const string _Yellow = "#F0B429";
-        private const string _Green = "#3EBD93";
-        private const string _Red = "#FF5A39";
-        private const string _PendingGlyph = "\ue5d3";
-        private const string _SignedGlyph = "\ue5ca";
-        private const string _RefusedGlyph = "\ue5cd";
 
         [Fact]
         public async Task SignActivityAsAConsultant_NominalCase_ExpectUpdatedActivityAndUI()
@@ -61,12 +56,12 @@ namespace Modules.Activity.UnitTests
             dialogServiceMock.Verify(x => x.ShowDialog("SignActivityDialogView", null, It.IsAny<Action<IDialogResult>>()), Times.Once);
             activityServiceMock.Verify(x => x.SignActivityReport(AppSettings.CurrentUser, It.IsAny<ActivityModel>()), Times.Once);
             viewmodel.Activity.Days.FirstOrDefault().WorkedPart.Should().Be(Trine.Mobile.Dto.DayPartEnum.Full);
-            viewmodel.ConsultantSignedTextColor.Should().Be(Color.FromHex(_Green));
-            viewmodel.CustomerSignedTextColor.Should().Be(Color.FromHex(_Yellow));
+            viewmodel.ConsultantSignedTextColor.Should().Be(Color.FromHex(UIConstants._Green));
+            viewmodel.CustomerSignedTextColor.Should().Be(Color.FromHex(UIConstants._Yellow));
             viewmodel.ConsultantSignedStatusText.Should().Be($"Signé le {activity.Consultant.SignatureDate}");
             viewmodel.CustomerSignedStatusText.Should().Be("En attente de signature");
-            viewmodel.ConsultantGlyph.Should().Be(_SignedGlyph);
-            viewmodel.CustomerGlyph.Should().Be(_PendingGlyph);
+            viewmodel.ConsultantGlyph.Should().Be(UIConstants._SignedGlyph);
+            viewmodel.CustomerGlyph.Should().Be(UIConstants._PendingGlyph);
             viewmodel.IsCommentVisible.Should().BeFalse();
             viewmodel.IsAcceptButtonVisible.Should().BeFalse();
             viewmodel.IsRefuseButtonVisible.Should().BeFalse();
