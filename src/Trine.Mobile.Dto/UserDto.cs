@@ -19,5 +19,6 @@ namespace Trine.Mobile.Dto
 
         // Uniquement rempli dans le cas d'un membre 
         public string Role { get; set; }
+        public bool IsDummy { get; set; }
     }
 }

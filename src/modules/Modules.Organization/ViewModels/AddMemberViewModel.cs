@@ -46,7 +46,7 @@ namespace Modules.Organization.ViewModels
         public ObservableCollection<InviteDto> Invites { get => _invites; set { _invites = value; RaisePropertyChanged(); } }
 
         private InviteDto _selectedInvite;
-        private OrganizationDto _organization;
+        private PartialOrganizationDto _organization;
 
         public InviteDto SelectedInvite { get => _selectedInvite; set { _selectedInvite = value; RaisePropertyChanged(); } }
 
@@ -68,7 +68,7 @@ namespace Modules.Organization.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            _organization = parameters.GetValue<OrganizationDto>(NavigationParameterKeys._Organization);
+            _organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
             if (_organization is null)
                 await NavigationService.GoBackAsync();
 
@@ -80,7 +80,7 @@ namespace Modules.Organization.ViewModels
             try
             {
                 IsLoading = true;
-                Invites = Mapper.Map<ObservableCollection<InviteDto>>(await _organizationService.GetInvites(_organization.Id)); // TODO Mocked
+                Invites = Mapper.Map<ObservableCollection<InviteDto>>(await _organizationService.GetInvites(_organization.Id));
             }
             catch (BusinessException bExc)
             {
@@ -145,7 +145,7 @@ namespace Modules.Organization.ViewModels
                     Mail = Email
                 };
 
-                var invite = await _organizationService.SendInvitation("5ca5cab077e80c1344dbafec", Mapper.Map<CreateInvitationRequestModel>(request));
+                var invite = await _organizationService.SendInvitation(_organization.Id, Mapper.Map<CreateInvitationRequestModel>(request));
                 Invites.Insert(0, Mapper.Map<InviteDto>(invite));
                 Email = string.Empty;
             }

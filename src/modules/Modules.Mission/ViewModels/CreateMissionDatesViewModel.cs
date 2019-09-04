@@ -30,7 +30,7 @@ namespace Modules.Mission.ViewModels
             NextCommand = new DelegateCommand(async () => await OnNextStep());
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 
@@ -51,6 +51,7 @@ namespace Modules.Mission.ViewModels
                 return;
 
             var navigationParams = new NavigationParameters();
+            navigationParams.Add(NavigationParameterKeys._Organization, SelectedOrganization);
             navigationParams.Add(NavigationParameterKeys._CreateMissionRequest, CreateMissionRequest);
             await NavigationService.NavigateAsync("CreateMissionConsultantView", navigationParams);
         }

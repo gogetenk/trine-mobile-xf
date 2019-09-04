@@ -1,11 +1,11 @@
-﻿using System;
-using AutoFixture;
-using FluentAssertions;
+﻿using AutoFixture;
 using Modules.Authentication.Navigation;
 using Modules.Authentication.ViewModels;
 using Moq;
 using Prism.Navigation;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.Tests;
@@ -22,7 +22,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SubmitCommercial_NominalCase_ExpectNavigatedToSignup()
+        public async Task SubmitCommercial_NominalCase_ExpectNavigatedToSignup()
         {
             // Arrange
             var id = "1337";
@@ -45,7 +45,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SubmitConsultant_NominalCase_ExpectNavigatedToSignup()
+        public async Task SubmitConsultant_NominalCase_ExpectNavigatedToSignup()
         {
             // Arrange
             var id = "1337";
@@ -68,7 +68,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SubmitCustomer_NominalCase_ExpectNavigatedToSignup()
+        public async Task SubmitCustomer_NominalCase_ExpectNavigatedToSignup()
         {
             // Arrange
             var id = "1337";
@@ -91,7 +91,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void Submit_WhenServiceThrowsException_ExpectReport()
+        public async Task Submit_WhenServiceThrowsException_ExpectReport()
         {
             // Arrange
             var id = "1337";
@@ -115,7 +115,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void Submit_WhenServiceThrowsBusinessException_ExpectLogAndPopup()
+        public async Task Submit_WhenServiceThrowsBusinessException_ExpectLogAndPopup()
         {
             // Arrange
             var id = "1337";

@@ -64,7 +64,7 @@ namespace Modules.Organization.ViewModels
             _hasBeenLoadedOnce = true;
         }
 
-        private void OrganizationMissionsViewModel_IsActiveChanged(object sender, EventArgs e)
+        private async void OrganizationMissionsViewModel_IsActiveChanged(object sender, EventArgs e)
         {
             OnNavigatedTo(new NavigationParameters());
         }
@@ -101,11 +101,18 @@ namespace Modules.Organization.ViewModels
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._Mission, SelectedMission);
             await NavigationService.NavigateAsync($"MissionDetailsView", navParams);
+            // Deselecting item
+            SelectedMission = null;
         }
 
         private async Task OnAddMission()
         {
-            await NavigationService.NavigateAsync("CreateMissionStartView", useModalNavigation: true);
+            if (_organization is null)
+                return;
+
+            var navParams = new NavigationParameters();
+            navParams.Add(NavigationParameterKeys._Organization, _organization);
+            await NavigationService.NavigateAsync("CreateMissionStartView", navParams, true);
         }
 
     }

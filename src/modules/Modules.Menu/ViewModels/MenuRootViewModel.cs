@@ -60,10 +60,10 @@ namespace Modules.Menu.ViewModels
             // Known issue in Xamarin forms where the MasterPage OnAppearing is raised twice
             base.OnNavigatedTo(parameters);
 
-            await LoadUserMissions();
+            await LoadUserData();
         }
 
-        private async Task LoadUserMissions()
+        private async Task LoadUserData()
         {
             if (IsLoading)
                 return;
@@ -84,6 +84,7 @@ namespace Modules.Menu.ViewModels
             catch (Exception exc)
             {
                 LogTechnicalError(exc);
+                throw;
             }
             finally
             {
@@ -110,6 +111,8 @@ namespace Modules.Menu.ViewModels
             navParams.Add(NavigationParameterKeys._Organization, SelectedOrganization);
             //await NavigationService.NavigateAsync("TrineNavigationPage/OrganizationDetailsView", navParams);
             await NavigationService.NavigateAsync("TrineNavigationPage/OrganizationTabbedView", navParams);
+            // Deselecting item
+            SelectedOrganization = null;
         }
 
         private async Task OnMissionChanged()
@@ -120,6 +123,8 @@ namespace Modules.Menu.ViewModels
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._Mission, SelectedMission);
             await NavigationService.NavigateAsync("TrineNavigationPage/MissionDetailsView", navParams);
+            // Deselecting item
+            SelectedMission = null;
         }
     }
 }

@@ -3,5 +3,6 @@
   <PropertyGroup>
     <SelectedDevice>Android_Accelerated_Nougat</SelectedDevice>
     <DefaultDevice>Android_Accelerated_Nougat</DefaultDevice>
+    <AndroidDesignerPreferredTheme>Theme.AppCompat.Light.NoActionBar</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>

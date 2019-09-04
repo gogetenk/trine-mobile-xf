@@ -1,14 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
-using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
@@ -54,7 +52,7 @@ namespace Modules.Organization.ViewModels
                 var createdOrga = await _organizationService.CreateOrganization(Name, IconUrl);
                 var navParams = new NavigationParameters();
                 navParams.Add(NavigationParameterKeys._Organization, Mapper.Map<OrganizationDto>(createdOrga));
-                await NavigationService.NavigateAsync("TrineNavigationPage/OrganizationDetailsView", navParams);
+                await NavigationService.NavigateAsync("TrineNavigationPage/OrganizationTabbedViewModel", navParams);
             }
             catch (BusinessException bExc)
             {

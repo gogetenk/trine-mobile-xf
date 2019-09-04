@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using Polly;
 
 namespace Trine.Mobile.Bll.Impl.Factory
 {
@@ -14,6 +11,9 @@ namespace Trine.Mobile.Bll.Impl.Factory
     {
         public ResilientHttpClientHandler() : base()
         {
+#if DEBUG
+            Proxy = new WebProxy("192.168.1.6", 8888); // Pour faire marcher fiddler 
+#endif
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)

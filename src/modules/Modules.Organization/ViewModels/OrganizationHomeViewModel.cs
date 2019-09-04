@@ -4,6 +4,7 @@ using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;

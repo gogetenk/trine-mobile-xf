@@ -32,26 +32,28 @@
 
         <StackLayout VerticalOptions="Center"
                      Grid.Row="2">
-            <Label Text="Quel est votre nom ?"
-                       Style="{StaticResource Paragraph}" />
+            
+            <Label Text="Quel est votre prénom ?"
+                   Style="{StaticResource Paragraph}" />
 
+     
+            <Entry AutomationId="tb_firstname"
+                   Style="{StaticResource EntryStyle}"
+                   Placeholder="ex : John"
+                   Text="{Binding Firstname}" />
+            <Label Text="Veuillez spécifier un prénom valide."
+                   IsVisible="{Binding IsFirstnameErrorVisible}"
+                   Style="{StaticResource ErrorText}" />
+
+            <Label Text="Et votre nom ?" 
+                   Style="{StaticResource Paragraph}"
+                   Margin="0,20,0,0" />
             <Entry AutomationId="tb_lastname"
                      Style="{StaticResource EntryStyle}"
-                       Placeholder="ex : John"
+                       Placeholder="ex : Doe"
                        Text="{Binding Lastname}" />
             <Label Text="Veuillez spécifier un nom valide."
                        IsVisible="{Binding IsLastnameErrorVisible}"
-                       Style="{StaticResource ErrorText}" />
-
-            <Label Text="Et votre prénom ?"
-                   Style="{StaticResource Paragraph}"
-                   Margin="0,20,0,0"/>
-            <Entry AutomationId="tb_firstname"
-                     Style="{StaticResource EntryStyle}"
-                       Placeholder="ex : Doe"
-                       Text="{Binding Firstname}" />
-            <Label Text="Veuillez spécifier un prénom valide."
-                       IsVisible="{Binding IsFirstnameErrorVisible}"
                        Style="{StaticResource ErrorText}" />
 
             <Label Text="J'ai déjà un compte →"

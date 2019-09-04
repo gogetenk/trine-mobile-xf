@@ -2,6 +2,7 @@
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using Prism.Services.Dialogs;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
@@ -46,14 +47,14 @@ namespace Modules.Mission.ViewModels
 
         #endregion
 
-        public MissionDetailsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IActivityService activityService) : base(navigationService, mapper, logger, dialogService)
+        public MissionDetailsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService pageDialogService, IActivityService activityService, IDialogService dialogService) : base(navigationService, mapper, logger, pageDialogService)
         {
-            MissionActivityViewModel = new MissionActivityViewModel(navigationService, mapper, logger, dialogService, activityService);
-            MissionContractViewModel = new MissionContractViewModel(navigationService, mapper, logger, dialogService);
-            MissionInvoiceViewModel = new MissionInvoiceViewModel(navigationService, mapper, logger, dialogService);
+            MissionActivityViewModel = new MissionActivityViewModel(navigationService, mapper, logger, pageDialogService, activityService, dialogService);
+            MissionContractViewModel = new MissionContractViewModel(navigationService, mapper, logger, pageDialogService);
+            MissionInvoiceViewModel = new MissionInvoiceViewModel(navigationService, mapper, logger, pageDialogService);
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 

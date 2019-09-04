@@ -1,9 +1,17 @@
-﻿using System;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Prism.Logging;
+using System;
 
 namespace Trine.Mobile.Components.Logging
 {
+    public class PrismLoggerWrapper<T> : PrismLoggerWrapper, ILogger<T>, Microsoft.Extensions.Logging.ILogger
+    {
+        public PrismLoggerWrapper(Prism.Logging.ILogger logger)
+            : base(logger)
+        {
+        }
+    }
+
     public class PrismLoggerWrapper : Microsoft.Extensions.Logging.ILogger
     {
         private readonly ILoggerFacade _logger;

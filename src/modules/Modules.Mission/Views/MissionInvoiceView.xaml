@@ -36,6 +36,7 @@
             <ListView SelectedItem="{Binding SelectedActivity}"
                       IsRefreshing="{Binding IsLoading}"
                       IsPullToRefreshEnabled="True"
+                      VerticalOptions="FillAndExpand"
                       Margin="0,20,0,0"
                       RefreshCommand="{Binding RefreshCommand}"
                       HasUnevenRows="True"
@@ -71,11 +72,12 @@
                                 <StackLayout Orientation="Horizontal"
                                              VerticalOptions="Center"
                                              Padding="15">
-                                    <StackLayout Margin="10,0,0,0"
+                                    <StackLayout Margin="5,0,0,0"
                                                  VerticalOptions="Center">
                                         <Label Text="&#xea7b;"
-                                               FontSize="Title"
-                                               Margin="0,-37,0,0"
+                                               FontSize="{OnPlatform Default='Title', iOS='Subtitle'}"
+                                               TextColor="{StaticResource SecondaryTextColor}"
+                                               Margin="{OnPlatform Android='0,-37,10,0', Default='0,0,0,0'}"
                                                FontFamily="{StaticResource IconFont}" />
                                     </StackLayout>
                                     <StackLayout Margin="15,0,0,0"

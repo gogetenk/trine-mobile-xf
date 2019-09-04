@@ -2,6 +2,7 @@
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System.Threading.Tasks;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Dto;
 
@@ -16,7 +17,7 @@ namespace Modules.Mission.ViewModels
         {
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 

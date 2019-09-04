@@ -78,14 +78,16 @@ namespace Modules.Mission.ViewModels
             }
             catch (BusinessException bExc)
             {
-                IsErrorShown = false;
-                IsSuccessShown = true;
+                IsErrorShown = true;
+                IsSuccessShown = false;
+                IsGridEnabled = false;
                 await LogAndShowBusinessError(bExc);
             }
             catch (Exception exc)
             {
-                IsErrorShown = false;
-                IsSuccessShown = true;
+                IsErrorShown = true;
+                IsSuccessShown = false;
+                IsGridEnabled = false;
                 LogTechnicalError(exc);
             }
             finally

@@ -3,6 +3,7 @@ using FluentAssertions;
 using Modules.Mission.ViewModels;
 using Moq;
 using Prism.Navigation;
+using System.Threading.Tasks;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
 using Trine.Mobile.Dto;
@@ -13,7 +14,7 @@ namespace Modules.Mission.UnitTests.ViewModels
     public class CreateMissionConsultantViewModelTest : UnitTestBase
     {
         [Fact]
-        public void OnNextStep_NominalCase_ExpectNavigated()
+        public async Task OnNextStep_NominalCase_ExpectNavigated()
         {
             // Arrange
             var pickedUser = new Fixture().Create<UserDto>();
@@ -34,7 +35,7 @@ namespace Modules.Mission.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnNextStep_WhenNoPickedUser_ExpectErrorMessageVisible()
+        public async Task OnNextStep_WhenNoPickedUser_ExpectErrorMessageVisible()
         {
             // Arrange
             var request = new Fixture().Create<CreateMissionRequestDto>();

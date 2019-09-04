@@ -70,9 +70,17 @@ namespace Modules.Organization.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            Organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
             if (Organization is null)
-                await NavigationService.GoBackAsync();
+            {
+                Organization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
+                if (Organization is null)
+                {
+                    await NavigationService.GoBackAsync();
+                    return;
+                }
+            }
+
+            await TriggerOnNavigatedTo(0);
         }
     }
 }

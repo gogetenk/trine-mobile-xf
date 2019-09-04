@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             mc:Ignorable="d"
+             x:Class="Trine.Mobile.Components.Controls.ActivityUserView">
+    <StackLayout Orientation="Horizontal"
+                 HorizontalOptions="Center"
+                 Grid.Column="0">
+        <StackLayout Orientation="Vertical">
+            <Grid HorizontalOptions="Center">
+                <abstractions:CircleImage WidthRequest="60"
+                                          HeightRequest="60"
+                                          Source="{Binding Activity.Consultant.ProfilePicUrl}"
+                                          HorizontalOptions="Center"
+                                          BorderColor="White"
+                                          BorderThickness="1"
+                                          Aspect="AspectFill" />
+                <Frame CornerRadius="120"
+                       Padding="0"
+                       HeightRequest="25"
+                       WidthRequest="25"
+                       Margin="40,0,0,0"
+                       HasShadow="False"
+                       BackgroundColor="{Binding ConsultantSignedTextColor}"
+                       VerticalOptions="End"
+                       HorizontalOptions="Center">
+                    <Label Text="{Binding ConsultantGlyph}"
+                           FontFamily="{StaticResource MaterialIcons}"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Frame>
+            </Grid>
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <Label Text="{Binding Activity.Consultant.FirstName}"
+                       Style="{StaticResource Paragraph}"
+                       Margin="0"
+                       HorizontalTextAlignment="Center" />
+                <Label Text="{Binding Activity.Consultant.LastName}"
+                       Style="{StaticResource Paragraph}"
+                       Margin="0"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <Label Text="Consultant"
+                   Margin="0"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="{Binding IsSignedByConsultant}"
+                   TextColor="{Binding Activity.Status, Converter={StaticResource statusToColor}}"
+                   HorizontalOptions="Center"
+                   FontSize="16" />
+            <Label Text="{Binding Activity.Consultant.SignatureDate}"
+                   Margin="0"
+                   HorizontalTextAlignment="Center" />
+        </StackLayout>
+    </StackLayout>
+</ContentView>

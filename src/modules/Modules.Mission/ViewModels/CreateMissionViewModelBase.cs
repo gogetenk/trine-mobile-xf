@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
@@ -36,8 +36,10 @@ namespace Modules.Mission.ViewModels
         private bool _isInvitedUser = false;
         public bool IsInvitedUser { get => _isInvitedUser; set { _isInvitedUser = value; RaisePropertyChanged(); } }
 
-        #endregion
+        private PartialOrganizationDto _selectedOrganization;
+        public PartialOrganizationDto SelectedOrganization { get => _selectedOrganization; set { _selectedOrganization = value; RaisePropertyChanged(); } }
 
+        #endregion
 
         public CreateMissionViewModelBase(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
@@ -65,6 +67,8 @@ namespace Modules.Mission.ViewModels
                 PickedUser = pickedUser;
             }
 
+            SelectedOrganization = parameters.GetValue<PartialOrganizationDto>(NavigationParameterKeys._Organization);
+
             // If the page was already populated, or if we are on the first form page, we stop here.
             if (CreateMissionRequest != null || base.GetType().Name == "CreateMissionContextViewModel")
                 return;
@@ -77,9 +81,19 @@ namespace Modules.Mission.ViewModels
             }
         }
 
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            // Used for member picker
+            parameters.Add(NavigationParameterKeys._Organization, SelectedOrganization);
+
+            base.OnNavigatedFrom(parameters);
+        }
+
         protected virtual async Task OnPickUser()
         {
-            await NavigationService.NavigateAsync("MemberPickerView", useModalNavigation: true);
+            var parameters = new NavigationParameters();
+            parameters.Add(NavigationParameterKeys._Organization, SelectedOrganization);
+            await NavigationService.NavigateAsync("MemberPickerView", parameters, useModalNavigation: true);
         }
 
         protected virtual void OnRemoveUser()

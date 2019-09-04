@@ -6,10 +6,13 @@
              xmlns:views="clr-namespace:Modules.Mission.Views"
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              NavigationPage.HasNavigationBar="True"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:NavigationPage.PrefersLargeTitles="false"
              mc:Ignorable="d"
              x:Class="Modules.Mission.Views.MissionDetailsView">
+    
     <NavigationPage.TitleView>
-        <StackLayout Margin="0,0,0,0"
+        <StackLayout Margin="{OnPlatform Default='0,0,0,0', iOS='30,5,0,0'}"
                      Spacing="0">
             <Label Text="Panda Services"
                    TextColor="White"
@@ -18,11 +21,6 @@
             <Label Text="Sogetrel"
                    TextColor="White"
                    FontSize="18">
-                <Label.IsVisible>
-                    <OnPlatform x:TypeArguments="x:Boolean"
-                                iOS="False"
-                                Android="True" />
-                </Label.IsVisible>
             </Label>
         </StackLayout>
     </NavigationPage.TitleView>
@@ -56,7 +54,7 @@
 
         <tabs:TabHostView x:Name="TabHost"
                           Grid.Row="0"
-                          Margin="-16,0"
+                          Margin="{OnPlatform Default='-16,0', iOS='-16,-20,-16,0'}"
                           BackgroundColor="White"
                           SelectedIndex="{Binding Source={x:Reference Switcher}, 
                                               Path=SelectedIndex, 
@@ -72,6 +70,7 @@
 
         <tabs:ViewSwitcher  Grid.Row="1"
                             x:Name="Switcher"
+                            VerticalOptions="FillAndExpand"
                             Animate="True"
                             SelectedIndex="{Binding SelectedViewModelIndex, 
                                                    Mode=TwoWay}">

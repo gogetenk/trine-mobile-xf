@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:local="clr-namespace:Trine.Mobile.Components.Converters;assembly=Trine.Mobile.Components"
+             xmlns:multigestureviewplugin="clr-namespace:MultiGestureViewPlugin;assembly=MultiGestureViewPlugin"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             Title="Activité Mars 2019"
+             x:Class="Modules.Activity.Views.ActivityDetailsView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ActivityStatusToColorConverter x:Key="statusToColor" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <ScrollView>
+
+            <StackLayout VerticalOptions="FillAndExpand"
+                         HorizontalOptions="Fill">
+
+                <!-- Commentaire -->
+                <Frame Margin="20"
+                       IsVisible="{Binding IsCommentVisible}"
+                       Padding="0"
+                       Visual="Material"
+                       IsClippedToBounds="True"
+                       CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <BoxView BackgroundColor="#FF5A39"
+                                 Grid.Row="0" />
+
+                        <StackLayout Grid.Row="1"
+                                     Padding="20">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="&#xf2d5;"
+                                       Margin="{OnPlatform Android='0,-33,10,0', Default='0,0,10,0'}"
+                                       Grid.Row="1"
+                                       FontSize="Large"
+                                       TextColor="#FF5A39"
+                                       FontFamily="{StaticResource IconFont}" />
+                                <Label Text="Compte rendu d'activité refusé"
+                                       TextColor="#FF5A39"
+                                       Style="{StaticResource H2}" />
+                            </StackLayout>
+
+                            <Label Text="L'une des parties a refusé le compte rendu d'activité en vous laissant un commentaire."
+                                   Grid.Row="1"
+                                   Margin="{OnPlatform Android='0,-15,10,0', Default='0,0,0,0'}"
+                                   TextColor="#707070"
+                                   Style="{StaticResource TertiaryText}"
+                                   TextDecorations="None" />
+
+                            <Frame CornerRadius="5"
+                                   HasShadow="False"
+                                   Margin="0,15,0,0"
+                                   BorderColor="#F5F5F7"
+                                   Padding="10">
+                                <Label Text="{Binding Activity.ModificationProposals[0].Comment}"
+                                       Grid.Row="1"
+                                       TextColor="#707070"
+                                       Style="{StaticResource Paragraph}"
+                                       TextDecorations="None" />
+                            </Frame>
+                        </StackLayout>
+
+                    </Grid>
+                </Frame>
+
+                <!-- Calendar -->
+                <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
+                                               DaySettingsCommand="{Binding AbsenceCommand}"
+                                               x:Name="calendar"
+                                               IsInputEnabled="{Binding CanModify}"
+                                               CellBackgroundColor="#CCCCCC"
+                                               CellForegroundColor="White"
+                                               AbsenceCellBackgroundColor="#FF5A39"
+                                               RowHeight="50"
+                                               ColumnWidth="50"
+                                               WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center" />
+
+                <!-- Nombre de jours travaillés -->
+                <Grid Padding="5"
+                      Margin="0,20,0,70"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="Start">
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center">
+                        <Label Text="{Binding Activity.DaysNb, StringFormat='{0:G0}', Mode=TwoWay}"
+                               VerticalOptions="Center"
+                               Margin="0,0,10,0"
+                               TextColor="{StaticResource AccentColor}"
+                               FontSize="40" />
+                        <Label Text="jour(s) travaillé(s)"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                </Grid>
+
+                <!-- Signataires -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*" />
+                        <ColumnDefinition Width="50*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center"
+                                 Grid.Column="0">
+                        <StackLayout Orientation="Vertical">
+                            <Grid HorizontalOptions="Center">
+                                <abstractions:CircleImage WidthRequest="60"
+                                                          HeightRequest="60"
+                                                          Source="{Binding Activity.Consultant.ProfilePicUrl}"
+                                                          HorizontalOptions="Center"
+                                                          BorderColor="White"
+                                                          BorderThickness="1"
+                                                          Aspect="AspectFill" />
+                                <Frame CornerRadius="120"
+                                       Padding="0"
+                                       HeightRequest="25"
+                                       WidthRequest="25"
+                                       Margin="40,0,0,0"
+                                       HasShadow="False"
+                                       BackgroundColor="{Binding ConsultantSignedTextColor}"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="Center">
+                                    <Label Text="{Binding ConsultantGlyph}"
+                                           FontFamily="{StaticResource MaterialIcons}"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Frame>
+                            </Grid>
+
+                            <StackLayout Orientation="Horizontal"
+                                         HorizontalOptions="Center">
+                                <Label Text="{Binding Activity.Consultant.FirstName}"
+                                       Style="{StaticResource Paragraph}"
+                                       Margin="0"
+                                       HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding Activity.Consultant.LastName}"
+                                       Style="{StaticResource Paragraph}"
+                                       Margin="0"
+                                       HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                            <Label Text="Consultant"
+                                   Margin="0"
+                                   TextColor="{StaticResource SecondaryTextColor}"
+                                   Style="{StaticResource Paragraph}"
+                                   HorizontalTextAlignment="Center" />
+                            <Label Text="{Binding ConsultantSignedStatusText}"
+                                   TextColor="{Binding Activity.Status, Converter={StaticResource statusToColor}}"
+                                   HorizontalOptions="Center"
+                                   FontSize="Small"
+                                   Style="{StaticResource Paragraph}" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center"
+                                 Grid.Column="1">
+                        <StackLayout Orientation="Vertical">
+                            <Grid HorizontalOptions="Center">
+                                <abstractions:CircleImage WidthRequest="60"
+                                                          HeightRequest="60"
+                                                          Source="{Binding Activity.Customer.ProfilePicUrl}"
+                                                          HorizontalOptions="Center"
+                                                          BorderColor="White"
+                                                          BorderThickness="1"
+                                                          Aspect="AspectFill" />
+                                <Frame CornerRadius="120"
+                                       Padding="0"
+                                       HeightRequest="25"
+                                       WidthRequest="25"
+                                       Margin="40,0,0,0"
+                                       HasShadow="False"
+                                       BackgroundColor="{Binding CustomerSignedTextColor}"
+                                       VerticalOptions="End"
+                                       HorizontalOptions="Center">
+                                    <Label Text="{Binding CustomerGlyph}"
+                                           FontFamily="{StaticResource MaterialIcons}"
+                                           TextColor="White"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Frame>
+                            </Grid>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Activity.Customer.FirstName}"
+                                       Margin="0"
+                                       Style="{StaticResource Paragraph}"
+                                       HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding Activity.Customer.LastName}"
+                                       Style="{StaticResource Paragraph}"
+                                       Margin="0"
+                                       HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                            <Label Text="Client"
+                                   Margin="0"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="{StaticResource SecondaryTextColor}"
+                                   Style="{StaticResource Paragraph}" />
+
+                            <Label Text="{Binding CustomerSignedStatusText, StringFormat='{}{0:MM/dd/yyyy}'}"
+                                   TextColor="{Binding CustomerSignedTextColor}"
+                                   HorizontalOptions="Center"
+                                   FontSize="Small"
+                                   Style="{StaticResource Paragraph}" />
+
+                        </StackLayout>
+                    </StackLayout>
+
+                </Grid>
+
+                <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                   Margin="15" />
+
+            </StackLayout>
+        </ScrollView>
+
+        <StackLayout  VerticalOptions="EndAndExpand"
+                      HorizontalOptions="EndAndExpand">
+            <Frame Padding="0"
+                   IsVisible="{Binding IsRefuseButtonVisible}"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource FrameButtonStyle}"
+                   CornerRadius="{OnPlatform Default=120, iOS=30}"
+                   BackgroundColor="#F5F5F7"
+                   HeightRequest="40"
+                   WidthRequest="40"
+                   Margin="0,0,25,5">
+                <Button Text="&#xe5cd;"
+                        FontFamily="{StaticResource MaterialIcons}"
+                        TextColor="#95989A"
+                        FontSize="24"
+                        BackgroundColor="#F5F5F7"
+                        Command="{Binding RefuseActivityCommand}"
+                        CornerRadius="{OnPlatform Default=120, iOS=30}"
+                        Padding="0,0,0,0" />
+            </Frame>
+            <Frame Padding="0"
+                   IsVisible="{Binding IsSignButtonVisible}"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource FrameButtonStyle}"
+                   CornerRadius="{OnPlatform Default=120, iOS=30}"
+                   BackgroundColor="#F5F5F7"
+                   HeightRequest="40"
+                   WidthRequest="40"
+                   Margin="0,0,25,5">
+                <Button Text="&#xe3c9;"
+                        FontFamily="{StaticResource MaterialIcons}"
+                        TextColor="#95989A"
+                        FontSize="24"
+                        BackgroundColor="#F5F5F7"
+                        Command="{Binding SignActivityCommand}"
+                        CornerRadius="{OnPlatform Default=120, iOS=30}"
+                        Padding="0,0,0,0" />
+            </Frame>
+            <Frame Padding="0"
+                   IsVisible="{Binding IsAcceptButtonVisible}"
+                   Style="{StaticResource FrameButtonStyle}"
+                   CornerRadius="{OnPlatform Default=120, iOS=30}"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   Margin="0,0,25,40">
+                <Button Text="&#xe3c9;"
+                        FontSize="24"
+                        FontFamily="{StaticResource MaterialIcons}"
+                        Style="{StaticResource ActionButtonStyle}"
+                        Command="{Binding AcceptActivityCommand}"
+                        CornerRadius="{OnPlatform Default=120, iOS=30}"
+                        Padding="0,0,0,0" />
+            </Frame>
+            <Frame Padding="0"
+                   IsVisible="{Binding IsSaveButtonVisible}"
+                   Style="{StaticResource FrameButtonStyle}"
+                   CornerRadius="{OnPlatform Default=120, iOS=30}"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   Margin="0,0,25,40">
+                <Button Text="&#xe161;"
+                        FontSize="24"
+                        Style="{StaticResource ActionButtonStyle}"
+                        Command="{Binding SaveActivityCommand}"
+                        CornerRadius="{OnPlatform Default=120, iOS=30}"
+                        Padding="0,0,0,0" />
+            </Frame>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>

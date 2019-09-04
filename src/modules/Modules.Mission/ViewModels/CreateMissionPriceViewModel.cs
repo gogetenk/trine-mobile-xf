@@ -28,7 +28,7 @@ namespace Modules.Mission.ViewModels
             PriceChangedCommand = new DelegateCommand(() => CalculateTotalPrice());
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 

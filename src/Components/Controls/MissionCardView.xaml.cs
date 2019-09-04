@@ -47,7 +47,7 @@ namespace Trine.Mobile.Components.Controls
             img_user3.Source = (missionDto.Consultant?.ProfilePicUrl == null) ? profilePicturePlaceholder : missionDto.Consultant.ProfilePicUrl;
             img_user1.Source = (missionDto.Commercial?.ProfilePicUrl == null) ? profilePicturePlaceholder : missionDto.Commercial.ProfilePicUrl;
             img_user1.IsVisible = missionDto.IsTripartite;
-            lb_consultantName.Text = missionDto.Consultant?.DisplayName ?? missionDto.Consultant?.Mail;
+            lb_consultantName.Text = missionDto.Consultant.IsDummy ? missionDto.Consultant?.Firstname + " " + missionDto.Consultant?.Lastname : missionDto.Consultant?.Mail;
         }
     }
 }

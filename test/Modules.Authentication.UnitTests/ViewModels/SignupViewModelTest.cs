@@ -1,10 +1,11 @@
-﻿using System;
-using AutoFixture;
+﻿using AutoFixture;
 using FluentAssertions;
 using Modules.Authentication.ViewModels;
 using Moq;
 using Prism.Navigation;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Tests;
 using Trine.Mobile.Model;
@@ -19,7 +20,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SignupTest_NominalCase_ExpectNavigatedToSignup()
+        public async Task SignupTest_NominalCase_ExpectNavigatedToSignup()
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
@@ -40,7 +41,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SignupTest_WhenServiceThrowsException_ExpectReport()
+        public async Task SignupTest_WhenServiceThrowsException_ExpectReport()
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
@@ -62,7 +63,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SignupTest_WhenServiceThrowsBusinessException_ExpectLog()
+        public async Task SignupTest_WhenServiceThrowsBusinessException_ExpectLog()
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
@@ -86,7 +87,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
 
 
         [Fact]
-        public void SignupTest_whenEmailIsNull_ExpectEmailErrorMessage()
+        public async Task SignupTest_whenEmailIsNull_ExpectEmailErrorMessage()
         {
             // Arrange
             string email = new Fixture().Create<string>();
@@ -107,7 +108,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SignupTest_whenPasswordIsNull_ExpectPasswordErrorMessage()
+        public async Task SignupTest_whenPasswordIsNull_ExpectPasswordErrorMessage()
         {
             // Arrange
             string email = new Fixture().Create<string>();
@@ -128,7 +129,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SignupTest_whenCredentialsAreNull_ExpectCredentialsErrorMessages()
+        public async Task SignupTest_whenCredentialsAreNull_ExpectCredentialsErrorMessages()
         {
             // Arrange
             string email = new Fixture().Create<string>();
@@ -149,7 +150,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnEmailEntered_NominalCase_ExpectNoMessage()
+        public async Task OnEmailEntered_NominalCase_ExpectNoMessage()
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
@@ -169,7 +170,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnEmailEntered_WhenUserAlreadyExist_ExpectMessage()
+        public async Task OnEmailEntered_WhenUserAlreadyExist_ExpectMessage()
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
@@ -189,7 +190,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnEmailEntered_WhenServiceThrowsException_ExpectLogButNoPopup()
+        public async Task OnEmailEntered_WhenServiceThrowsException_ExpectLogButNoPopup()
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
@@ -210,7 +211,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnEmailEntered_WhenServiceThrowsBusinessException_ExpectLogButNoPopup()
+        public async Task OnEmailEntered_WhenServiceThrowsBusinessException_ExpectLogButNoPopup()
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();

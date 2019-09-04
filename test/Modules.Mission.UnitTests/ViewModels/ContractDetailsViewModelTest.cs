@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Modules.Mission.ViewModels;
 using Prism.Navigation;
+using System.Threading.Tasks;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
 using Trine.Mobile.Dto;
@@ -12,7 +13,7 @@ namespace Modules.Mission.UnitTests.ViewModels
     public class ContractDetailsViewModelTest : UnitTestBase
     {
         [Fact]
-        public void OnNavigatedTo_NominalCase_ExpectContract()
+        public async Task OnNavigatedTo_NominalCase_ExpectContract()
         {
             // Arrange
             var request = new Fixture().Create<CreateMissionRequestDto>();

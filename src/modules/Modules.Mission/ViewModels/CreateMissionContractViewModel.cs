@@ -19,6 +19,7 @@ namespace Modules.Mission.ViewModels
 
         private bool _isLoading = false;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); ReadCommand.RaiseCanExecuteChanged(); } }
+
         private FrameContractDto _contract;
         public FrameContractDto Contract { get => _contract; set { _contract = value; RaisePropertyChanged(); } }
 
@@ -27,7 +28,6 @@ namespace Modules.Mission.ViewModels
         #endregion
 
         private readonly IMissionService _missionService;
-
 
         public CreateMissionContractViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IMissionService missionService) : base(navigationService, mapper, logger, dialogService)
         {

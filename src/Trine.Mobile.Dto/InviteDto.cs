@@ -14,7 +14,6 @@ namespace Trine.Mobile.Dto
         public string InviterId { get; set; }
         public DateTime Created { get; set; }
         public DateTime Expires { get; set; }
-        public bool IsRevoked { get; set; }
         public string GuestEmail { get; set; }
     }
 }

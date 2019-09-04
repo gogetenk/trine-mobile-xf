@@ -1,8 +1,9 @@
-﻿using System;
-using AutoFixture;
+﻿using AutoFixture;
 using FluentAssertions;
 using Modules.Authentication.ViewModels;
 using Moq;
+using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Tests;
 using Trine.Mobile.Model;
@@ -17,7 +18,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SubmitTest_NominalCase_ExpectNavigatedToConfirmationView()
+        public async Task SubmitTest_NominalCase_ExpectNavigatedToConfirmationView()
         {
             // Arrange
             var passwordUpdate = new Fixture().Create<PasswordUpdateModel>();
@@ -38,7 +39,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SubmitTest_WhenNotSamePassword_ExpectErrorMessage()
+        public async Task SubmitTest_WhenNotSamePassword_ExpectErrorMessage()
         {
             // Arrange
             var passwordUpdate = new Fixture().Create<PasswordUpdateModel>();
@@ -59,7 +60,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         }
 
         [Fact]
-        public void SubmitTest_WhenServiceThrowsException_ExpectReport()
+        public async Task SubmitTest_WhenServiceThrowsException_ExpectReport()
         {
             // Arrange
             var passwordUpdate = new Fixture().Create<PasswordUpdateModel>();

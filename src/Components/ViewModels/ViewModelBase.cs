@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
+using Prism.AppModel;
 using Prism.Logging;
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll.Impl.Messages;
+using Trine.Mobile.Bll.Impl.Settings;
 
 namespace Trine.Mobile.Components.ViewModels
 {
-    public abstract class ViewModelBase : BindableBase, INavigationAware
+    /// <summary>
+    /// Base class exposing navigation and analytics methods for PRISM ViewModels.
+    /// </summary>
+    public abstract class ViewModelBase : BindableBase, IInitializeAsync, INavigatedAware, IAutoInitialize, IConfirmNavigationAsync
     {
         public INavigationService NavigationService { get; }
         public IMapper Mapper { get; }
@@ -26,18 +31,7 @@ namespace Trine.Mobile.Components.ViewModels
             DialogService = dialogService;
         }
 
-        public virtual void OnNavigatedTo(INavigationParameters parameters)
-        {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add("UserId", null);
-            Logger.TrackEvent("[" + base.GetType().Name + "] Navigated To", dictionary);
-        }
-
         public virtual void OnNavigatedFrom(INavigationParameters parameters)
-        {
-        }
-
-        public virtual void OnNavigatingTo(INavigationParameters parameters)
         {
         }
 
@@ -50,6 +44,31 @@ namespace Trine.Mobile.Components.ViewModels
         {
             Logger.Log(bExc.Message);
             await DialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+        }
+
+        /// <summary>
+        /// This method is called before you navigated onto a page. This is a replacement for OnNavigatingTo from Prism 7.2.
+        /// </summary>
+        /// <param name="parameters">Optional parameters</param>
+        /// <returns></returns>
+        public virtual async Task InitializeAsync(INavigationParameters parameters)
+        {
+        }
+
+        /// <summary>
+        /// This method is called when you navigated onto a page. This should be the most common overriden method.
+        /// </summary>
+        /// <param name="parameters">Optional parameters</param>
+        public virtual void OnNavigatedTo(INavigationParameters parameters)
+        {
+            var logParams = new Dictionary<string, string>();
+            logParams.Add("UserId", AppSettings.CurrentUser?.Id);
+            Logger.TrackEvent($"[{GetType().Name}] Navigated To", logParams);
+        }
+
+        public virtual async Task<bool> CanNavigateAsync(INavigationParameters parameters)
+        {
+            return true;
         }
     }
 }

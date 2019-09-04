@@ -11,6 +11,7 @@
         <StackLayout Padding="25,25,25,0">
             <Frame HeightRequest="46"
                    CornerRadius="5"
+                   IsClippedToBounds="True"
                    VerticalOptions="CenterAndExpand"
                    Visual="Material"
                    BackgroundColor="White"
@@ -34,7 +35,7 @@
             </Frame>
 
             <ListView ItemsSource="{Binding Missions}"
-                      SelectedItem="{Binding SelectedMission}"
+                      SelectedItem="{Binding SelectedMission, Mode=TwoWay}"
                       IsRefreshing="{Binding IsLoading, Mode=OneWay}"
                       IsPullToRefreshEnabled="True"
                       Margin="0,30,0,0"

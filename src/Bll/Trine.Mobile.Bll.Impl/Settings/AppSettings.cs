@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Microsoft.WindowsAzure.MobileServices;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using System.Collections.Generic;
 using Trine.Mobile.Model;
 
 namespace Trine.Mobile.Bll.Impl.Settings

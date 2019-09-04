@@ -7,9 +7,9 @@
     }
     public enum ReasonEnum
     {
+        Absent,
         Formation,
         Holiday,
-        Absent,
         Sickness,
         Recover
     }

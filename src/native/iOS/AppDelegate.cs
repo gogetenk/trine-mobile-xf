@@ -1,12 +1,13 @@
 ﻿using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
+using InstabugLib;
 using Prism;
 using Prism.Ioc;
+using Sharpnado.Presentation.Forms.iOS;
 using System;
 using Trine.Mobile.Bootstrapper;
 using UIKit;
 using Xamarin.Forms;
-
 namespace Trine.Mobile.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -33,13 +34,17 @@ namespace Trine.Mobile.iOS
             return base.FinishedLaunching(app, options);
         }
 
-        private static void InitializeLibs()
+        private static void OnNavigatedToLibs()
         {
             try
             {
                 ImageCircleRenderer.Init();
                 FormsMaterial.Init();
-                //SharpnadoInitializer.Initialize(enableInternalLogger: true);
+                SharpnadoInitializer.Initialize(enableInternalLogger: true);
+                Instabug.StartWithToken("ee39ba65bc0171ea932b98e05acab1f2", IBGInvocationEvent.Shake | IBGInvocationEvent.TwoFingersSwipeLeft);
+                Instabug.ShouldCaptureViewHierarchy = true;
+                // Disable the Replies. If disabled, the chats list button is removed from Instabug's prompt, the in-app notifications are disabled, and manually showing the chats list doesn't have an effect. 
+                IBGReplies.Enabled = false;
             }
             catch (Exception exception)
             {

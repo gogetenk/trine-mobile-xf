@@ -6,6 +6,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.Navigation;
@@ -19,7 +20,7 @@ namespace Modules.Menu.UnitTests
     public class MenuRootViewModelTest : UnitTestBase
     {
         [Fact]
-        public void OnNavigatedTo_NominalCase_ExpectOrgasAndMissions()
+        public async Task OnNavigatedTo_NominalCase_ExpectOrgasAndMissions()
         {
             // Arrange
             AppSettings.CurrentUser = new Fixture().Create<UserModel>();
@@ -47,7 +48,7 @@ namespace Modules.Menu.UnitTests
         }
 
         [Fact]
-        public void OnMissionSelected_NominalCase_ExpectNavigated()
+        public async Task OnMissionSelected_NominalCase_ExpectNavigated()
         {
             // Arrange
             AppSettings.CurrentUser = new Fixture().Create<UserModel>();
@@ -74,7 +75,7 @@ namespace Modules.Menu.UnitTests
         }
 
         [Fact]
-        public void OnOrganizationSelected_NominalCase_ExpectNavigated()
+        public async Task OnOrganizationSelected_NominalCase_ExpectNavigated()
         {
             // Arrange
             AppSettings.CurrentUser = new Fixture().Create<UserModel>();
@@ -101,7 +102,7 @@ namespace Modules.Menu.UnitTests
         }
 
         [Fact]
-        public void OnNavigatedTo_WhenOrgaServiceThrowsException_ExpectLogged()
+        public async Task OnNavigatedTo_WhenOrgaServiceThrowsException_ExpectLogged()
         {
             // Arrange
             AppSettings.CurrentUser = new Fixture().Create<UserModel>();
@@ -126,7 +127,7 @@ namespace Modules.Menu.UnitTests
         }
 
         [Fact]
-        public void OnNavigatedTo_WhenMissionServiceThrowsException_ExpectLogged()
+        public async Task OnNavigatedTo_WhenMissionServiceThrowsException_ExpectLogged()
         {
             // Arrange
             AppSettings.CurrentUser = new Fixture().Create<UserModel>();

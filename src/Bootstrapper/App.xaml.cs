@@ -1,8 +1,11 @@
 ﻿using Akavache;
 using AutoMapper;
+using Com.OneSignal;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Microsoft.Extensions.Logging;
+using Modules.Activity;
 using Modules.Authentication;
 using Modules.Dashboard;
 using Modules.Menu;
@@ -11,9 +14,9 @@ using Modules.Organization;
 using Prism;
 using Prism.Ioc;
 using Prism.Logging;
-using Prism.Logging.AppCenter;
 using Prism.Modularity;
 using Prism.Unity;
+using System;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Factory;
 using Trine.Mobile.Bll.Impl.Services;
@@ -46,13 +49,26 @@ namespace Trine.Mobile.Bootstrapper
 
         protected override async void OnInitialized()
         {
-            InitializeComponent();
-            LoadStyles();
+            try
+            {
+
+                InitializeComponent();
+                LoadStyles();
+
+                OneSignal
+                    .Current
+                    .StartInit("12785512-a98b-4c91-89ca-05959a685120")
+                    .EndInit();
 #if DEBUG
-            HotReloader.Current.Run(this);
+                HotReloader.Current.Run(this);
 #endif
-            Akavache.Registrations.Start("TrineApp");
-            await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
+                Akavache.Registrations.Start("TrineApp");
+                await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
         }
 
         protected override void OnStart()
@@ -89,6 +105,7 @@ namespace Trine.Mobile.Bootstrapper
             moduleCatalog.AddModule<DashboardModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<MenuModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<MissionModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<ActivityModule>(InitializationMode.WhenAvailable);
         }
 
         public static bool IsASmallDevice()
@@ -121,14 +138,12 @@ namespace Trine.Mobile.Bootstrapper
         private void RegisterLogger(IContainerRegistry containerRegistry)
         {
 #if DEBUG
-            containerRegistry.RegisterSingleton<ILoggerFacade, DebugLogger>();
+            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, ConsoleLoggingService>();
+#else
+            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, AppCenterLogger>();
 #endif
             containerRegistry.RegisterSingleton<Microsoft.Extensions.Logging.ILogger, PrismLoggerWrapper>();
-
-            var logger = new AppCenterLogger();
-            containerRegistry.RegisterInstance<ILogger>(logger);
-            containerRegistry.RegisterInstance<IAnalyticsService>(logger);
-            containerRegistry.RegisterInstance<ICrashesService>(logger);
+            containerRegistry.Register(typeof(ILogger<>), typeof(PrismLoggerWrapper<>));
         }
 
         private void RegisterNavigation(IContainerRegistry containerRegistry)
@@ -159,5 +174,7 @@ namespace Trine.Mobile.Bootstrapper
         }
 
         #endregion
+
     }
+
 }

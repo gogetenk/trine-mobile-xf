@@ -6,6 +6,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
@@ -18,7 +19,7 @@ namespace Modules.Organization.UnitTests.ViewModels
     public class OrganizationMissionsViewModelTest : UnitTestBase
     {
         [Fact]
-        public void IsActiveChanged_NominalCase_ExpectMissionList()
+        public async Task IsActiveChanged_NominalCase_ExpectMissionList()
         {
             // Arrange
             var orga = new Fixture().Create<PartialOrganizationDto>();
@@ -40,7 +41,7 @@ namespace Modules.Organization.UnitTests.ViewModels
         }
 
         [Fact]
-        public void IsActiveChanged_WhenServiceThrowsException_ExpectLogged()
+        public async Task IsActiveChanged_WhenServiceThrowsException_ExpectLogged()
         {
             // Arrange
             var orga = new Fixture().Create<PartialOrganizationDto>();
@@ -62,7 +63,7 @@ namespace Modules.Organization.UnitTests.ViewModels
         }
 
         [Fact]
-        public void OnSelectedMission_NominalCase_ExpectNavigated()
+        public async Task OnSelectedMission_NominalCase_ExpectNavigated()
         {
             // Arrange
             var orga = new Fixture().Create<PartialOrganizationDto>();
@@ -82,7 +83,7 @@ namespace Modules.Organization.UnitTests.ViewModels
 
             // Assert
             viewmodel.Missions.Should().NotBeNull();
-            _navigationService.Verify(x => x.NavigateAsync("MissionDetailsView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._Mission] == viewmodel.SelectedMission)));
+            _navigationService.Verify(x => x.NavigateAsync("MissionDetailsView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._Mission] == viewmodel.Missions.FirstOrDefault())));
         }
     }
 }
