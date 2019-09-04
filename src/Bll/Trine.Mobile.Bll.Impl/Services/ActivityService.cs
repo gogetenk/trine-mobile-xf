@@ -143,13 +143,14 @@ namespace Trine.Mobile.Bll.Impl.Services
             }
         }
 
-        public async Task UpdateActivity(ActivityModel currentActivity)
+        public async Task<ActivityModel> UpdateActivity(ActivityModel currentActivity)
         {
             try
             {
                 var result = _mapper.Map<ActivityModel>(await _gatewayRepository.ApiActivitiesPutAsync(currentActivity.Id, _mapper.Map<Activity>(currentActivity), _activityApiVersion));
                 if (result == null)
                     throw new TechnicalException("An error occured while updating the activity report. Please proceed again.");
+                return result;
             }
             catch (ApiException dalExc)
             {

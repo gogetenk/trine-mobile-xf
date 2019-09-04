@@ -102,6 +102,7 @@ namespace Modules.Activity.UnitTests
             // Assert
             dialogServiceMock.Verify(x => x.ShowDialog("SignActivityDialogView", null, It.IsAny<Action<IDialogResult>>()), Times.Once);
             activityServiceMock.Verify(x => x.SignActivityReport(AppSettings.CurrentUser, It.IsAny<ActivityModel>()), Times.Never);
+            viewmodel.Activity.Should().BeEquivalentTo(activity);
         }
 
         [Fact]

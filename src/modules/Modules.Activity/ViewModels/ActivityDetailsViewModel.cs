@@ -141,10 +141,11 @@ namespace Modules.Activity.ViewModels
 
                 IsLoading = true;
 
-                Activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity)));
-                if (Activity is null)
+                var activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity)));
+                if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
+                Activity = Mapper.Map<ActivityDto>(activity);
                 SetupUI();
             }
             catch (BusinessException bExc)
@@ -195,10 +196,11 @@ namespace Modules.Activity.ViewModels
                 Activity.Customer.SignatureDate = null;
                 Activity.Status = Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired;
                 //await _activityService.RefuseActivity(Mapper.Map<ActivityModel>(Activity));
-                Activity = Mapper.Map<ActivityDto>(await _activityService.SaveActivityReport(Mapper.Map<ActivityModel>(Activity)));
-                if (Activity is null)
+                var activity = Mapper.Map<ActivityDto>(await _activityService.SaveActivityReport(Mapper.Map<ActivityModel>(Activity)));
+                if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
+                Activity = Mapper.Map<ActivityDto>(activity);
                 SetupUI();
             }
             catch (BusinessException bExc)
@@ -235,7 +237,11 @@ namespace Modules.Activity.ViewModels
                     return;
 
                 IsLoading = true;
-                await _activityService.UpdateActivity(Mapper.Map<ActivityModel>(Activity));
+                var activity = await _activityService.UpdateActivity(Mapper.Map<ActivityModel>(Activity));
+                if (activity is null)
+                    throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
+
+                Activity = Mapper.Map<ActivityDto>(activity);
                 SetupUI();
             }
             catch (BusinessException bExc)
