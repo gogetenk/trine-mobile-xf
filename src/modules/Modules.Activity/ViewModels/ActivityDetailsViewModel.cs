@@ -106,7 +106,7 @@ namespace Modules.Activity.ViewModels
             _dialogService.ShowDialog("AbsenceDialogView", dialogParams, result => OnAbsenceSettingsClosed(result.Parameters));
         }
 
-        private void OnAbsenceSettingsClosed(IDialogParameters parameters)
+        public void OnAbsenceSettingsClosed(IDialogParameters parameters)
         {
             var updatedDay = parameters.GetValue<GridDayDto>(NavigationParameterKeys._Absence);
             if (updatedDay is null)
