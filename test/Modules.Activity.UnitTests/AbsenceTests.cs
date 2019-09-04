@@ -28,11 +28,17 @@ namespace Modules.Activity.UnitTests
             activity.Status = Trine.Mobile.Dto.ActivityStatusEnum.Generated;
             activity.Consultant.Id = AppSettings.CurrentUser.Id;
             var dialogServiceMock = new Mock<IDialogService>();
+
+            var absenceDay = activity.Days.FirstOrDefault();
+            absenceDay.Absence = new AbsenceDto()
+            {
+                Comment = "Titi",
+                Reason = Trine.Mobile.Dto.ReasonEnum.Holiday
+            };
             var dialogParams = new DialogParameters();
-            dialogParams.Add(NavigationParameterKeys._IsActivitySigned, true);
+            dialogParams.Add(NavigationParameterKeys._Absence, absenceDay);
 
             var activityServiceMock = new Mock<IActivityService>();
-
             var viewmodel = new ActivityDetailsViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, activityServiceMock.Object, dialogServiceMock.Object);
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._Activity, activity);
@@ -43,8 +49,42 @@ namespace Modules.Activity.UnitTests
             viewmodel.OnAbsenceSettingsClosed(dialogParams);
 
             // Assert
-            dialogServiceMock.Verify(x => x.ShowDialog("AbsenceDialogView", null, It.IsAny<Action<IDialogResult>>()), Times.Once);
-            viewmodel.Activity.Days.FirstOrDefault().Should().Be();
+            dialogServiceMock.Verify(x => x.ShowDialog("AbsenceDialogView", dialogParams, It.IsAny<Action<IDialogResult>>()), Times.Once);
+            viewmodel.Activity.Days.Any(x => x == absenceDay);
+        }
+
+        [Fact]
+        public async Task SetAbsence_DialogCancelled_ExpectNoChanges()
+        {
+            // Arrange
+            AppSettings.CurrentUser = new Fixture().Create<UserModel>();
+            var activity = new Fixture().Create<ActivityDto>();
+            activity.Status = Trine.Mobile.Dto.ActivityStatusEnum.Generated;
+            activity.Consultant.Id = AppSettings.CurrentUser.Id;
+            var dialogServiceMock = new Mock<IDialogService>();
+
+            var absenceDay = activity.Days.FirstOrDefault();
+            absenceDay.Absence = new AbsenceDto()
+            {
+                Comment = "Titi",
+                Reason = Trine.Mobile.Dto.ReasonEnum.Holiday
+            };
+            var dialogParams = new DialogParameters();
+            dialogParams.Add(NavigationParameterKeys._Absence, null);
+
+            var activityServiceMock = new Mock<IActivityService>();
+            var viewmodel = new ActivityDetailsViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, activityServiceMock.Object, dialogServiceMock.Object);
+            var navParams = new NavigationParameters();
+            navParams.Add(NavigationParameterKeys._Activity, activity);
+
+            // Act
+            viewmodel.OnNavigatedTo(navParams);
+            viewmodel.AbsenceCommand.Execute(activity.Days.FirstOrDefault());
+            viewmodel.OnAbsenceSettingsClosed(dialogParams);
+
+            // Assert
+            dialogServiceMock.Verify(x => x.ShowDialog("AbsenceDialogView", It.IsAny<IDialogParameters>(), It.IsAny<Action<IDialogResult>>()), Times.Once);
+            viewmodel.Activity.Should().BeEquivalentTo(activity);
         }
     }
 }
