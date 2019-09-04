@@ -223,6 +223,34 @@ namespace Modules.Activity.ViewModels
 
         private async Task OnAcceptActivity()
         {
+            try
+            {
+                if (IsLoading)
+                    return;
+
+                IsLoading = true;
+
+                Activity.Customer.SignatureDate = DateTime.UtcNow;
+                Activity.Status = Trine.Mobile.Dto.ActivityStatusEnum.CustomerSigned;
+                var activity = Mapper.Map<ActivityDto>(await _activityService.SaveActivityReport(Mapper.Map<ActivityModel>(Activity)));
+                if (activity is null)
+                    throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
+
+                Activity = Mapper.Map<ActivityDto>(activity);
+                SetupUI();
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         #endregion
