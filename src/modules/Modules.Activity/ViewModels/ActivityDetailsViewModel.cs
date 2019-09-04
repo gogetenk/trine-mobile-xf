@@ -79,7 +79,7 @@ namespace Modules.Activity.ViewModels
         {
             _activityService = activityService;
             _dialogService = dialogService;
-            AcceptActivityCommand = new DelegateCommand(async () => await OnAcceptActivity());
+            AcceptActivityCommand = new DelegateCommand(() => OnSignActivity());
             RefuseActivityCommand = new DelegateCommand(() => OnRefuseActivity());
             SignActivityCommand = new DelegateCommand(() => OnSignActivity());
             SaveActivityCommand = new DelegateCommand(async () => await OnSaveActivity());
@@ -221,18 +221,24 @@ namespace Modules.Activity.ViewModels
 
         #region Accepting management 
 
-        private async Task OnAcceptActivity()
+        private void OnAcceptActivity()
+        {
+            _dialogService.ShowDialog("SignActivityDialogView", null, async result => await OnSignDialogClosed(result.Parameters));
+        }
+
+        public async Task OnAcceptActivity(IDialogParameters result)
         {
             try
             {
+                if (!result.GetValue<bool>(NavigationParameterKeys._IsActivitySigned))
+                    return;
+
                 if (IsLoading)
                     return;
 
                 IsLoading = true;
 
-                Activity.Customer.SignatureDate = DateTime.UtcNow;
-                Activity.Status = Trine.Mobile.Dto.ActivityStatusEnum.CustomerSigned;
-                var activity = Mapper.Map<ActivityDto>(await _activityService.SaveActivityReport(Mapper.Map<ActivityModel>(Activity)));
+                var activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity)));
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 

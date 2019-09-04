@@ -35,6 +35,9 @@
     <Compile Update="Views\RefuseActivityDialogView.xaml.cs">
       <DependentUpon>RefuseActivityDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\AcceptActivityDialogView.xaml.cs">
+      <DependentUpon>AcceptActivityDialogView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

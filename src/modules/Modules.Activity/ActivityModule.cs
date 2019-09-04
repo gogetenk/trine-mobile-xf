@@ -18,6 +18,7 @@ namespace Modules.Activity
         {
             containerRegistry.RegisterForNavigation<ActivityDetailsView, ActivityDetailsViewModel>();
             containerRegistry.RegisterDialog<SignActivityDialogView, SignActivityDialogViewModel>();
+            containerRegistry.RegisterDialog<AcceptActivityDialogView, SignActivityDialogViewModel>(); // Same VM
             containerRegistry.RegisterDialog<RefuseActivityDialogView, RefuseActivityDialogViewModel>();
             containerRegistry.RegisterDialog<AbsenceDialogView, AbsenceDialogViewModel>();
             containerRegistry.RegisterDialog<PeriodChoiceDialogView, PeriodChoiceDialogViewModel>();
