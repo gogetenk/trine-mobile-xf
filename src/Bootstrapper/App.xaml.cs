@@ -140,7 +140,7 @@ namespace Trine.Mobile.Bootstrapper
         {
 #if DEBUG
             containerRegistry.RegisterSingleton<Prism.Logging.ILogger, ConsoleLoggingService>();
-#endif
+#else
             containerRegistry.RegisterSingleton<Prism.Logging.ILogger, AppCenterLogger>();
 #endif
             containerRegistry.RegisterSingleton<Microsoft.Extensions.Logging.ILogger, PrismLoggerWrapper>();
