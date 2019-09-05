@@ -15,7 +15,7 @@ namespace Modules.Mission.UnitTests.ViewModels
     {
 
         [Fact]
-        public async Task OnNextStep_NominalCase_ExpectNavigated()
+        public void OnNextStep_NominalCase_ExpectNavigated()
         {
             // Arrange
             var pickedUser = new Fixture().Create<UserDto>();
