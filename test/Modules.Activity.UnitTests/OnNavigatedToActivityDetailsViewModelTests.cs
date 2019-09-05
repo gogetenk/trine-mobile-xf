@@ -19,7 +19,7 @@ namespace Modules.Activity.UnitTests
 {
     public class OnNavigatedToActivityDetailsViewModelTests : UnitTestBase
     {
-        private const string _Refuse = "Refusé";
+        private const string _Refuse = "RefusÃ©";
         private const string _WaitingModifications = "En attente de modification";
         private const string _WaitingSignature = "En attente de signature";
         #region Consultant
@@ -85,7 +85,7 @@ namespace Modules.Activity.UnitTests
             viewmodel.Activity.Should().BeEquivalentTo(activity);
             viewmodel.ConsultantSignedTextColor.Should().Be(Color.FromHex(UIConstants._Green));
             viewmodel.CustomerSignedTextColor.Should().Be(Color.FromHex(UIConstants._Yellow));
-            viewmodel.ConsultantSignedStatusText.Should().Be($"Signé le {activity.Consultant.SignatureDate}");
+            viewmodel.ConsultantSignedStatusText.Should().Be($"SignÃ© le {activity.Consultant.SignatureDate}");
             viewmodel.CustomerSignedStatusText.Should().Be(_WaitingSignature);
             viewmodel.ConsultantGlyph.Should().Be(UIConstants._SignedGlyph);
             viewmodel.CustomerGlyph.Should().Be(UIConstants._PendingGlyph);
@@ -122,8 +122,8 @@ namespace Modules.Activity.UnitTests
             viewmodel.Activity.Should().BeEquivalentTo(activity);
             viewmodel.ConsultantSignedTextColor.Should().Be(Color.FromHex(UIConstants._Green));
             viewmodel.CustomerSignedTextColor.Should().Be(Color.FromHex(UIConstants._Green));
-            viewmodel.ConsultantSignedStatusText.Should().Be($"Signé le {activity.Consultant.SignatureDate}");
-            viewmodel.CustomerSignedStatusText.Should().Be($"Signé le {activity.Customer.SignatureDate}");
+            viewmodel.ConsultantSignedStatusText.Should().Be($"SignÃ© le {activity.Consultant.SignatureDate}");
+            viewmodel.CustomerSignedStatusText.Should().Be($"SignÃ© le {activity.Customer.SignatureDate}");
             viewmodel.ConsultantGlyph.Should().Be(UIConstants._SignedGlyph);
             viewmodel.CustomerGlyph.Should().Be(UIConstants._SignedGlyph);
             viewmodel.IsCommentVisible.Should().BeFalse();
@@ -159,8 +159,8 @@ namespace Modules.Activity.UnitTests
             viewmodel.Activity.Should().BeEquivalentTo(activity);
             viewmodel.ConsultantSignedTextColor.Should().Be(Color.FromHex(UIConstants._Yellow));
             viewmodel.CustomerSignedTextColor.Should().Be(Color.FromHex(UIConstants._Red));
-            viewmodel.ConsultantSignedStatusText.Should().Be($"En attente de modification");
-            viewmodel.CustomerSignedStatusText.Should().Be($"Refusé");
+            viewmodel.ConsultantSignedStatusText.Should().Be(_WaitingModifications);
+            viewmodel.CustomerSignedStatusText.Should().Be(_Refuse);
             viewmodel.ConsultantGlyph.Should().Be(UIConstants._PendingGlyph);
             viewmodel.CustomerGlyph.Should().Be(UIConstants._RefusedGlyph);
             viewmodel.IsCommentVisible.Should().BeTrue();
@@ -238,7 +238,7 @@ namespace Modules.Activity.UnitTests
             viewmodel.Activity.Should().BeEquivalentTo(activity);
             viewmodel.ConsultantSignedTextColor.Should().Be(Color.FromHex(UIConstants._Green));
             viewmodel.CustomerSignedTextColor.Should().Be(Color.FromHex(UIConstants._Yellow));
-            viewmodel.ConsultantSignedStatusText.Should().Be($"Signé le {activity.Consultant.SignatureDate}");
+            viewmodel.ConsultantSignedStatusText.Should().Be($"SignÃ© le {activity.Consultant.SignatureDate}");
             viewmodel.CustomerSignedStatusText.Should().Be(_WaitingSignature);
             viewmodel.ConsultantGlyph.Should().Be(UIConstants._SignedGlyph);
             viewmodel.CustomerGlyph.Should().Be(UIConstants._PendingGlyph);
@@ -275,8 +275,8 @@ namespace Modules.Activity.UnitTests
             viewmodel.Activity.Should().BeEquivalentTo(activity);
             viewmodel.ConsultantSignedTextColor.Should().Be(Color.FromHex(UIConstants._Green));
             viewmodel.CustomerSignedTextColor.Should().Be(Color.FromHex(UIConstants._Green));
-            viewmodel.ConsultantSignedStatusText.Should().Be($"Signé le {activity.Consultant.SignatureDate}");
-            viewmodel.CustomerSignedStatusText.Should().Be($"Signé le {activity.Customer.SignatureDate}");
+            viewmodel.ConsultantSignedStatusText.Should().Be($"SignÃ© le {activity.Consultant.SignatureDate}");
+            viewmodel.CustomerSignedStatusText.Should().Be($"SignÃ© le {activity.Customer.SignatureDate}");
             viewmodel.ConsultantGlyph.Should().Be(UIConstants._SignedGlyph);
             viewmodel.CustomerGlyph.Should().Be(UIConstants._SignedGlyph);
             viewmodel.IsCommentVisible.Should().BeFalse();
@@ -390,7 +390,7 @@ namespace Modules.Activity.UnitTests
             viewmodel.Activity.Should().BeEquivalentTo(activity);
             viewmodel.ConsultantSignedTextColor.Should().Be(Color.FromHex(UIConstants._Green));
             viewmodel.CustomerSignedTextColor.Should().Be(Color.FromHex(UIConstants._Yellow));
-            viewmodel.ConsultantSignedStatusText.Should().Be($"Signé le {activity.Consultant.SignatureDate}");
+            viewmodel.ConsultantSignedStatusText.Should().Be($"SignÃ© le {activity.Consultant.SignatureDate}");
             viewmodel.CustomerSignedStatusText.Should().Be(_WaitingSignature);
             viewmodel.ConsultantGlyph.Should().Be(UIConstants._SignedGlyph);
             viewmodel.CustomerGlyph.Should().Be(UIConstants._PendingGlyph);
@@ -427,8 +427,8 @@ namespace Modules.Activity.UnitTests
             viewmodel.Activity.Should().BeEquivalentTo(activity);
             viewmodel.ConsultantSignedTextColor.Should().Be(Color.FromHex(UIConstants._Green));
             viewmodel.CustomerSignedTextColor.Should().Be(Color.FromHex(UIConstants._Green));
-            viewmodel.ConsultantSignedStatusText.Should().Be($"Signé le {activity.Consultant.SignatureDate}");
-            viewmodel.CustomerSignedStatusText.Should().Be($"Signé le {activity.Customer.SignatureDate}");
+            viewmodel.ConsultantSignedStatusText.Should().Be($"SignÃ© le {activity.Consultant.SignatureDate}");
+            viewmodel.CustomerSignedStatusText.Should().Be($"SignÃ© le {activity.Customer.SignatureDate}");
             viewmodel.ConsultantGlyph.Should().Be(UIConstants._SignedGlyph);
             viewmodel.CustomerGlyph.Should().Be(UIConstants._SignedGlyph);
             viewmodel.IsCommentVisible.Should().BeFalse();
@@ -465,7 +465,7 @@ namespace Modules.Activity.UnitTests
             viewmodel.ConsultantSignedTextColor.Should().Be(Color.FromHex(UIConstants._Yellow));
             viewmodel.CustomerSignedTextColor.Should().Be(Color.FromHex(UIConstants._Red));
             viewmodel.ConsultantSignedStatusText.Should().Be($"En attente de modification");
-            viewmodel.CustomerSignedStatusText.Should().Be($"Refusé");
+            viewmodel.CustomerSignedStatusText.Should().Be($"RefusÃ©");
             viewmodel.ConsultantGlyph.Should().Be(UIConstants._PendingGlyph);
             viewmodel.CustomerGlyph.Should().Be(UIConstants._RefusedGlyph);
             viewmodel.IsCommentVisible.Should().BeTrue();
