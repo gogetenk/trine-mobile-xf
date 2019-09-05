@@ -34,7 +34,7 @@ namespace Trine.Mobile.iOS
             return base.FinishedLaunching(app, options);
         }
 
-        private static void OnNavigatedToLibs()
+        private static void InitializeLibs()
         {
             try
             {
