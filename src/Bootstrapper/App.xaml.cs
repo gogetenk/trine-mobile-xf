@@ -14,6 +14,7 @@ using Modules.Organization;
 using Prism;
 using Prism.Ioc;
 using Prism.Logging;
+using Prism.Logging.AppCenter;
 using Prism.Modularity;
 using Prism.Unity;
 using System;
@@ -139,7 +140,7 @@ namespace Trine.Mobile.Bootstrapper
         {
 #if DEBUG
             containerRegistry.RegisterSingleton<Prism.Logging.ILogger, ConsoleLoggingService>();
-#else
+#endif
             containerRegistry.RegisterSingleton<Prism.Logging.ILogger, AppCenterLogger>();
 #endif
             containerRegistry.RegisterSingleton<Microsoft.Extensions.Logging.ILogger, PrismLoggerWrapper>();
