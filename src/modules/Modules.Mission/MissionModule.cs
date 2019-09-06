@@ -26,6 +26,7 @@ namespace Modules.Mission
             //containerRegistry.RegisterForNavigation<MissionActivityView, MissionActivityViewModel>();
             //containerRegistry.RegisterForNavigation<MissionContractView, MissionContractViewModel>();
             containerRegistry.RegisterForNavigation<MissionDetailsView, MissionDetailsViewModel>();
+            containerRegistry.RegisterForNavigation<MissionStartView, MissionStartViewModel>();
             //containerRegistry.RegisterForNavigation<MissionInvoiceView, MissionInvoiceViewModel>();
         }
     }

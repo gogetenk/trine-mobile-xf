@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             BackgroundColor="{StaticResource AccentColor}"
+             x:Class="Modules.Mission.Views.MissionStartView">
+    <NavigationPage.TitleView>
+        <StackLayout Margin="{OnPlatform Default='0,0,0,0', iOS='30,5,0,0'}"
+                     Spacing="0">
+            <Label Text="Panda Services"
+                   TextColor="White"
+                   FontSize="14"
+                   Opacity=".6" />
+            <Label Text="Sogetrel"
+                   TextColor="White"
+                   FontSize="18">
+            </Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <Grid Margin="45">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+        </Grid.RowDefinitions>
+        <StackLayout  Grid.Row="0" VerticalOptions="Center">
+            <Label Text="Bienvenue sur votre mission Sogetrel"
+                   HorizontalTextAlignment="Center"
+                   FontSize="32"
+                   FontFamily="ThinFont"
+                   Style="{StaticResource H1}"
+                   Margin="0,0,0,10"
+                   TextColor="White" />
+            <Label Text="En attente des trois parties"
+                   HorizontalTextAlignment="Center"
+                   FontFamily="ThinFont"
+                   Style="{StaticResource Paragraph}"
+                   TextColor="#F0B429" />
+        </StackLayout>
+ 
+        <StackLayout Orientation="Horizontal"
+                     Spacing="15"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Grid.Row="1">
+         
+                <StackLayout Orientation="Vertical">
+                    <Grid HorizontalOptions="Center">
+                        <abstractions:CircleImage WidthRequest="60"
+                                                  HeightRequest="60"
+                                                  Source="https://i.imgur.com/d8e5wvg.jpg"
+                                                  HorizontalOptions="Center"
+                                                  BorderColor="White"
+                                                  BorderThickness="1"
+                                                  Aspect="AspectFill" />
+                        <Frame CornerRadius="120"
+                               Padding="0"
+                               HeightRequest="25"
+                               WidthRequest="25"
+                               Margin="40,0,0,0"
+                               HasShadow="False"
+                               BackgroundColor="{Binding ConsultantSignedTextColor}"
+                               VerticalOptions="End"
+                               HorizontalOptions="Center">
+                            <Label Text="{Binding ConsultantGlyph}"
+                                   FontFamily="{StaticResource MaterialIcons}"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Frame>
+                    </Grid>
+                </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Grid HorizontalOptions="Center">
+                    <abstractions:CircleImage WidthRequest="60"
+                                              HeightRequest="60"
+                                              Source="https://i.imgur.com/d8e5wvg.jpg"
+                                              HorizontalOptions="Center"
+                                              BorderColor="White"
+                                              BorderThickness="1"
+                                              Aspect="AspectFill" />
+                    <Frame CornerRadius="120"
+                           Padding="0"
+                           HeightRequest="25"
+                           WidthRequest="25"
+                           Margin="40,0,0,0"
+                           HasShadow="False"
+                           BackgroundColor="{Binding ConsultantSignedTextColor}"
+                           VerticalOptions="End"
+                           HorizontalOptions="Center">
+                        <Label Text="{Binding ConsultantGlyph}"
+                               FontFamily="{StaticResource MaterialIcons}"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Frame>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Grid HorizontalOptions="Center">
+                    <abstractions:CircleImage WidthRequest="60"
+                                              HeightRequest="60"
+                                              Source="https://i.imgur.com/d8e5wvg.jpg"
+                                              HorizontalOptions="Center"
+                                              BorderColor="White"
+                                              BorderThickness="1"
+                                              Aspect="AspectFill" />
+                    <Frame CornerRadius="120"
+                           Padding="0"
+                           HeightRequest="25"
+                           WidthRequest="25"
+                           Margin="40,0,0,0"
+                           HasShadow="False"
+                           BackgroundColor="{Binding ConsultantSignedTextColor}"
+                           VerticalOptions="End"
+                           HorizontalOptions="Center">
+                        <Label Text="{Binding ConsultantGlyph}"
+                               FontFamily="{StaticResource MaterialIcons}"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Frame>
+                </Grid>
+            </StackLayout>
+
+        </StackLayout>
+
+        <Button Text="Démarrer la mission"
+                Grid.Row="2"
+                CornerRadius="5"
+                HeightRequest="50"
+                BackgroundColor="#F5F5F7"
+                TextColor="#5A28D6"
+                Visual="Material"
+                VerticalOptions="End" />
+    </Grid>
+</ContentPage>

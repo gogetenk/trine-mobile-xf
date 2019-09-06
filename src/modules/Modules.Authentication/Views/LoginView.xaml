@@ -23,7 +23,7 @@
                    Style="{StaticResource H2}" />
             <BoxView BackgroundColor="#5A28D6"
                      WidthRequest="45"
-                     HeightRequest="4"
+                     HeightRequest="4" 
                      HorizontalOptions="Start"
                      Margin="0,15" />
         </StackLayout>
