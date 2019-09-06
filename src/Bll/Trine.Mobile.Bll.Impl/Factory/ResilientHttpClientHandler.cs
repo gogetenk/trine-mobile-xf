@@ -11,9 +11,7 @@ namespace Trine.Mobile.Bll.Impl.Factory
     {
         public ResilientHttpClientHandler() : base()
         {
-#if DEBUG
-            Proxy = new WebProxy("192.168.1.6", 8888); // Pour faire marcher fiddler 
-#endif
+
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)

@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:Trine.Mobile.Components.Converters;assembly=Trine.Mobile.Components"
              xmlns:multigestureviewplugin="clr-namespace:MultiGestureViewPlugin;assembly=MultiGestureViewPlugin"
              mc:Ignorable="d"
-             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasNavigationBar="True"
              Title="Activité Mars 2019"
              x:Class="Modules.Activity.Views.ActivityDetailsView">
     <ContentPage.Resources>
