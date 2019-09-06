@@ -1,8 +1,11 @@
 ﻿using Android.App;
+using Android.Graphics;
 using Android.Runtime;
 using Com.Instabug.Library;
 using Com.Instabug.Library.Core;
 using Com.Instabug.Library.Invocation;
+using Com.Instabug.Library.UI.Onboarding;
+using Java.Util;
 using System;
 
 namespace Trine.Mobile.Bootstrapper.Droid
@@ -25,6 +28,9 @@ namespace Trine.Mobile.Bootstrapper.Droid
                 .Build();
             Instabug.SetViewHierarchyState(Feature.State.Enabled);
             InstabugCore.SetRepliesState(Feature.State.Disabled);
+            Instabug.PrimaryColor = Color.ParseColor("#5A28D6");
+            Instabug.SetLocale(Locale.French);
+            Instabug.SetWelcomeMessageState(WelcomeMessage.State.Disabled);
         }
     }
 }
