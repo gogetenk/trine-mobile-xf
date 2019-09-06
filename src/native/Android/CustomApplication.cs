@@ -21,7 +21,7 @@ namespace Trine.Mobile.Bootstrapper.Droid
 
             new Instabug
                 .Builder(this, "ee39ba65bc0171ea932b98e05acab1f2")
-                .SetInvocationEvents(InstabugInvocationEvent.Shake, InstabugInvocationEvent.TwoFingerSwipeLeft)
+                .SetInvocationEvents(InstabugInvocationEvent.Shake, InstabugInvocationEvent.TwoFingerSwipeLeft, InstabugInvocationEvent.Screenshot)
                 .Build();
             Instabug.SetViewHierarchyState(Feature.State.Enabled);
             InstabugCore.SetRepliesState(Feature.State.Disabled);
