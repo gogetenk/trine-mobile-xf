@@ -41,7 +41,7 @@ namespace Trine.Mobile.iOS
                 ImageCircleRenderer.Init();
                 FormsMaterial.Init();
                 SharpnadoInitializer.Initialize(enableInternalLogger: true);
-                Instabug.StartWithToken("ee39ba65bc0171ea932b98e05acab1f2", IBGInvocationEvent.Shake | IBGInvocationEvent.TwoFingersSwipeLeft);
+                Instabug.StartWithToken("ee39ba65bc0171ea932b98e05acab1f2", IBGInvocationEvent.Shake | IBGInvocationEvent.TwoFingersSwipeLeft | IBGInvocationEvent.Screenshot);
                 Instabug.ShouldCaptureViewHierarchy = true;
                 // Disable the Replies. If disabled, the chats list button is removed from Instabug's prompt, the in-app notifications are disabled, and manually showing the chats list doesn't have an effect. 
                 IBGReplies.Enabled = false;
