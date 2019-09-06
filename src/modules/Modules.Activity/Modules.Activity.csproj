@@ -50,7 +50,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Views\AbsenceDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AcceptActivityDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Update="Views\ActivityDetailsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\PeriodChoiceDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\RefuseActivityDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\SignActivityDialogView.xaml">
