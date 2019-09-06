@@ -2,6 +2,6 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SelectedDevice>OnePlus A6003</SelectedDevice>
-    <DefaultDevice>Android_Accelerated_Nougat</DefaultDevice>
+    <DefaultDevice>my_device_big</DefaultDevice>
   </PropertyGroup>
 </Project>

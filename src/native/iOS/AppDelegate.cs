@@ -45,7 +45,7 @@ namespace Trine.Mobile.iOS
                 Instabug.ShouldCaptureViewHierarchy = true;
                 Instabug.TintColor = UIColor.FromHSB(257, 81, 84);
                 Instabug.SetLocale(IBGLocale.French);
-                Instabug.SetWelcomeMessageMode(IBGWelcomeMessageMode.WelcomeMessageModeDisabled) // Disable welcome message
+                Instabug.SetWelcomeMessageMode(IBGWelcomeMessageMode.WelcomeMessageModeDisabled); // Disable welcome message
                 // Disable the Replies. If disabled, the chats list button is removed from Instabug's prompt, the in-app notifications are disabled, and manually showing the chats list doesn't have an effect. 
                 IBGReplies.Enabled = false;
             }
