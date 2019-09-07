@@ -6,7 +6,7 @@
              xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              mc:Ignorable="d"
              x:Class="Modules.Mission.Views.MissionActivityView">
-    <Grid>
+    <Grid VerticalOptions="FillAndExpand">
 
         <StackLayout Padding="25,25,25,0">
             <Frame HeightRequest="46"
