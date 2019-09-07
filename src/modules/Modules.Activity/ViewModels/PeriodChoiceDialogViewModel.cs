@@ -6,6 +6,7 @@ using Prism.Services;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.Navigation;
@@ -22,6 +23,13 @@ namespace Modules.Activity.ViewModels
 
         public List<DateTime> Dates { get => _dates; set { _dates = value; RaisePropertyChanged(); } }
         private List<DateTime> _dates;
+
+        public List<string> StringDates { get => _stringDates; set { _stringDates = value; RaisePropertyChanged();  } }
+        private List<string> _stringDates;
+
+        public string SelectedStringDate { get => _selectedStringDate; set { _selectedStringDate = value; RaisePropertyChanged(); } }
+        private string _selectedStringDate;
+
 
         public ICommand SendCommand { get; set; }
         public ICommand CancelCommand { get; set; }
@@ -40,6 +48,7 @@ namespace Modules.Activity.ViewModels
 
         private void OnValidatePeriod()
         {
+            SelectedDate = Dates.Where(x => StringDates.Contains(x.ToString("MMMM yyyy"))).FirstOrDefault();
             var dialogParams = new DialogParameters();
             dialogParams.Add(NavigationParameterKeys._Period, SelectedDate);
             RequestClose.Invoke(dialogParams);
@@ -61,6 +70,7 @@ namespace Modules.Activity.ViewModels
                 RequestClose.Invoke(null);
 
             Dates = _activityService.GetMissionPeriods(Mapper.Map<MissionModel>(_mission));
+            StringDates = Dates.Select(x => x.ToString("MMMM yyyy")).ToList();
         }
     }
 }
