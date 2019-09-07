@@ -42,7 +42,7 @@ namespace Trine.Mobile.Components.Controls
             lb_title.Text = missionDto.ProjectName;
             lb_startDate.Text = missionDto.StartDate.ToString("dd/MM/yyyy");
             lb_endDate.Text = missionDto.EndDate.ToString("dd/MM/yyyy");
-            bv_status.BackgroundColor = missionDto.PinColor;
+            bv_status.Color = missionDto.PinColor;
             img_user2.Source = (missionDto.Customer?.ProfilePicUrl == null) ? profilePicturePlaceholder : missionDto.Customer.ProfilePicUrl;
             img_user3.Source = (missionDto.Consultant?.ProfilePicUrl == null) ? profilePicturePlaceholder : missionDto.Consultant.ProfilePicUrl;
             img_user1.Source = (missionDto.Commercial?.ProfilePicUrl == null) ? profilePicturePlaceholder : missionDto.Commercial.ProfilePicUrl;
