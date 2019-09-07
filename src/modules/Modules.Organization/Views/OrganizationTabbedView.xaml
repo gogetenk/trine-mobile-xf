@@ -7,6 +7,8 @@
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              xmlns:pages="clr-namespace:Modules.Organization.Views"
              xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:NavigationPage.PrefersLargeTitles="False"
              Title="Panda Services"
              x:Class="Modules.Organization.Views.OrganizationTabbedView">
 
@@ -94,6 +96,7 @@
                                           Source="{Binding Organization.Icon}" />
             </StackLayout>
         </Grid>
+        
         <tabs:TabHostView x:Name="TabHost"
                           Grid.Row="1"
                           Margin="-16,0"
