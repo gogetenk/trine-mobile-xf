@@ -15,6 +15,24 @@ namespace Trine.Mobile.Bll.Impl.Services
         {
         }
 
+        public async Task<MissionModel> ActivateMissionAsync(MissionModel missionModel)
+        {
+            try
+            {
+                missionModel.Status = MissionModel.StatusEnum.CONFIRMED;
+                var mission = _mapper.Map<MissionModel>(await _gatewayRepository.ApiMissionsPutAsync(missionModel.Id, _mapper.Map<Mission>(missionModel)));
+                return mission;
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
+
         public async Task<MissionModel> CancelMissionAsync(string id)
         {
             try

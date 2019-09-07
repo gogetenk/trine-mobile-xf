@@ -15,8 +15,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <BoxView Color="#F0B429"
-                     x:Name="bv_status"
+            <BoxView x:Name="bv_status"
                      Grid.Column="0" />
             
             <StackLayout Orientation="Horizontal"

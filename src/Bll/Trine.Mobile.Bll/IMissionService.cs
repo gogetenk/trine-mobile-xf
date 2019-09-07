@@ -14,5 +14,6 @@ namespace Trine.Mobile.Bll
         Task<List<MissionModel>> GetFromOrganization(string id);
         Task<MissionModel> GetMissionById(string id);
         Task<MissionModel> CancelMissionAsync(string id);
+        Task<MissionModel> ActivateMissionAsync(MissionModel missionModel);
     }
 }
