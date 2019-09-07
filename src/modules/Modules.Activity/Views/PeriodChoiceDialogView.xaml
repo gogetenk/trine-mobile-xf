@@ -4,10 +4,12 @@
       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
+      xmlns:local="clr-namespace:Trine.Mobile.Components.Converters;assembly=Trine.Mobile.Components"
       xmlns:prism="http://prismlibrary.com"
       prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.75, Desktop=0.5}"
       prism:DialogLayout.CloseOnBackgroundTapped="True"
       x:Class="Modules.Activity.Views.PeriodChoiceDialogView">
+    
     <Frame CornerRadius="5"
            Padding="35"
            BackgroundColor="White">
@@ -24,7 +26,10 @@
                    TextColor="#474747"
                    FontSize="14" />
 
-            <Picker ItemsSource="{Binding Dates}" Margin="0,20,0,25" Style="{StaticResource Paragraph}" SelectedItem="{Binding SelectedDate}" />
+            <Picker ItemsSource="{Binding StringDates}"
+                    Margin="0,20,0,25"
+                    Style="{StaticResource Paragraph}"
+                    SelectedItem="{Binding SelectedStringDate}" />
 
             <Grid HeightRequest="42">
                 <Grid.ColumnDefinitions>
