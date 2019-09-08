@@ -40,7 +40,7 @@ namespace Modules.Mission.ViewModels
                 request.StartDate = DateTime.UtcNow;
 
             if (request.EndDate == new DateTime() || request.StartDate == new DateTime(2000, 01, 01))
-                request.EndDate = CreateMissionRequest.StartDate.AddMonths(3);
+                request.EndDate = request.StartDate.AddMonths(3);
 
             CreateMissionRequest = request;
         }
