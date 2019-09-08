@@ -68,6 +68,7 @@ namespace Modules.Organization.UnitTests.ViewModels
             // Arrange
             var orga = new Fixture().Create<PartialOrganizationDto>();
             var missions = new Fixture().Create<List<MissionModel>>();
+            missions[0].Status = MissionModel.StatusEnum.CONFIRMED;
             var missionService = new Mock<IMissionService>();
             missionService
                 .Setup(x => x.GetFromOrganization(It.IsAny<string>()))
@@ -84,6 +85,30 @@ namespace Modules.Organization.UnitTests.ViewModels
             // Assert
             viewmodel.Missions.Should().NotBeNull();
             _navigationService.Verify(x => x.NavigateAsync("MissionDetailsView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._Mission] == viewmodel.Missions.FirstOrDefault())));
+        }
+
+        [Fact]
+        public async Task OnSelectedMission_WhenMissionIsNotStartedYet_ExpectNavigateToWelcomePage()
+        {
+            // Arrange
+            var orga = new Fixture().Create<PartialOrganizationDto>();
+            var missions = new Fixture().Create<List<MissionModel>>();
+            var missionService = new Mock<IMissionService>();
+            missionService
+                .Setup(x => x.GetFromOrganization(It.IsAny<string>()))
+                .ReturnsAsync(missions);
+
+            var viewmodel = new OrganizationMissionsViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, missionService.Object);
+            var navparams = new NavigationParameters();
+            navparams.Add(NavigationParameterKeys._Organization, orga);
+
+            // Act
+            viewmodel.OnNavigatedTo(navparams);
+            viewmodel.SelectedMission = viewmodel.Missions.FirstOrDefault();
+
+            // Assert
+            viewmodel.Missions.Should().NotBeNull();
+            _navigationService.Verify(x => x.NavigateAsync("MissionStartView", It.Is<NavigationParameters>(y => y[NavigationParameterKeys._Mission] == viewmodel.Missions.FirstOrDefault())));
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AutoFixture;
-using Modules.Authentication.Navigation;
 using Modules.Authentication.ViewModels;
 using Moq;
 using Prism.Navigation;
@@ -8,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Messages;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.Tests;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
@@ -41,7 +41,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.CommercialCommand.Execute(null);
 
             // Assert
-            _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView"), Times.Once);
+            _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView", It.IsAny<NavigationParameters>()), Times.Once);
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.ConsultantCommand.Execute(null);
 
             // Assert
-            _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView"), Times.Once);
+            _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView", It.IsAny<NavigationParameters>()), Times.Once);
         }
 
         [Fact]
@@ -87,7 +87,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
             viewmodel.CustomerCommand.Execute(null);
 
             // Assert
-            _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView"), Times.Once);
+            _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView", It.IsAny<NavigationParameters>()), Times.Once);
         }
 
         [Fact]
