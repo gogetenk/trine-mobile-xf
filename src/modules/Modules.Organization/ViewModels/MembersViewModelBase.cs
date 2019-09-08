@@ -1,5 +1,4 @@
-﻿using Akavache;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
@@ -9,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Extensions;
@@ -122,11 +120,11 @@ namespace Modules.Organization.ViewModels
                 //if (_organization is null)
                 //    return; // TODO : Que faire?
 
-                if (BlobCache.ApplicationName == "TrineUnitTests")
-                {
-                    RefreshUI(await _organizationService.GetOrganizationMembers(_organization.Id));
-                    return;
-                }
+                //if (BlobCache.ApplicationName == "TrineUnitTests")
+                //{
+                //    RefreshUI(await _organizationService.GetOrganizationMembers(_organization.Id));
+                //    return;
+                //}
 
                 //BlobCache.LocalMachine.GetAndFetchLatest(
                 //        "MemberList",

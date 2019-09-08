@@ -1,5 +1,4 @@
-﻿using Akavache;
-using AutoFixture;
+﻿using AutoFixture;
 using FluentAssertions;
 using Modules.Organization.ViewModels;
 using Moq;
@@ -20,7 +19,7 @@ namespace Modules.Organization.UnitTests.ViewModels
     {
         public MembersViewModelTest()
         {
-            BlobCache.ApplicationName = "TrineUnitTests";
+            //BlobCache.ApplicationName = "TrineUnitTests";
         }
 
         [Fact]
@@ -30,8 +29,8 @@ namespace Modules.Organization.UnitTests.ViewModels
             var orga = new Fixture().Create<PartialOrganizationModel>();
             var members = new Fixture().CreateMany<UserModel>().ToList();
             var organizationServiceMock = new Mock<IOrganizationService>();
-            var cacheMock = new Mock<IBlobCache>();
-            cacheMock.SetupAllProperties();
+            //var cacheMock = new Mock<IBlobCache>();
+            //cacheMock.SetupAllProperties();
             organizationServiceMock
                 .Setup(x => x.GetById(It.IsAny<string>()))
                 .ReturnsAsync(orga);
@@ -39,7 +38,7 @@ namespace Modules.Organization.UnitTests.ViewModels
                 .Setup(x => x.GetOrganizationMembers(orga.Id))
                 .ReturnsAsync(members);
 
-            BlobCache.LocalMachine = cacheMock.Object;
+            //BlobCache.LocalMachine = cacheMock.Object;
 
             var viewmodel = new MembersViewModel(_navigationService.Object, _mapper, _logger.Object, _pageDialogService.Object, organizationServiceMock.Object);
             var navParams = new NavigationParameters();

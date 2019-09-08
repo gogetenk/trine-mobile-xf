@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="akavache" Version="6.1.1" />
     <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="CacheCow.Client" Version="2.4.4" />
     <PackageReference Include="Microsoft.Azure.Mobile.Client" Version="4.1.1" />

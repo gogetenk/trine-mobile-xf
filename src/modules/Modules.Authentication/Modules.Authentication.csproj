@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="akavache" Version="6.1.1" />
+    <Compile Remove="Navigation\**" />
+    <EmbeddedResource Remove="Navigation\**" />
+    <None Remove="Navigation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Sogetrel.Sinapse.Framework.Exceptions" Version="1.2.0-beta-007908" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
@@ -62,10 +67,6 @@
     <None Update="Views\SignupView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Navigation\" />
   </ItemGroup>
 
 </Project>
