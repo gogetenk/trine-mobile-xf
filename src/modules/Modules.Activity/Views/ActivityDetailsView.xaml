@@ -18,13 +18,44 @@
     </ContentPage.Resources>
 
     <Grid>
-        <ScrollView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
+        <Grid BackgroundColor="{StaticResource AccentColor}"
+              Grid.Row="0" />
+        
+        <ScrollView Grid.RowSpan="2">
             <StackLayout VerticalOptions="FillAndExpand"
                          HorizontalOptions="Fill">
 
+             
+
+                <!-- Calendar -->
+                <Frame BackgroundColor="White"
+                       CornerRadius="5"
+                       Visual="Material"
+                       HorizontalOptions="Center"
+                       Margin="25"
+                       HasShadow="True">
+                    <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
+                                                   Visual="Default"
+                                                   DaySettingsCommand="{Binding AbsenceCommand}"
+                                                   x:Name="calendar"
+                                                   IsInputEnabled="{Binding CanModify}"
+                                                   CellBackgroundColor="#CCCCCC"
+                                                   CellForegroundColor="White"
+                                                   AbsenceCellBackgroundColor="#FF5A39"
+                                                   RowHeight="50"
+                                                   ColumnWidth="50"
+                                                   WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
+                </Frame>
+
                 <!-- Commentaire -->
-                <Frame Margin="20"
+                <Frame Margin="25,0,25,0"
                        IsVisible="{Binding IsCommentVisible}"
                        Padding="0"
                        Visual="Material"
@@ -74,20 +105,6 @@
 
                     </Grid>
                 </Frame>
-
-                <!-- Calendar -->
-                <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
-                                               DaySettingsCommand="{Binding AbsenceCommand}"
-                                               x:Name="calendar"
-                                               IsInputEnabled="{Binding CanModify}"
-                                               CellBackgroundColor="#CCCCCC"
-                                               CellForegroundColor="White"
-                                               AbsenceCellBackgroundColor="#FF5A39"
-                                               RowHeight="50"
-                                               ColumnWidth="50"
-                                               WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
-                                               HorizontalOptions="Center"
-                                               VerticalOptions="Center" />
 
                 <!-- Nombre de jours travaillés -->
                 <Grid Padding="5"
