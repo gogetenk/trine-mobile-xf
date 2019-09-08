@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Modules.Authentication.Navigation;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
@@ -7,6 +6,7 @@ using Prism.Services;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using AutoMapper;
-using Modules.Authentication.Navigation;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
@@ -95,7 +95,9 @@ namespace Modules.Authentication.ViewModels
                 if (string.IsNullOrEmpty(id))
                     throw new TechnicalException("Error while subscribing the user.");
 
-                await NavigationService.NavigateAsync("OrganizationChoiceView");
+                var navParams = new NavigationParameters();
+                navParams.Add(NavigationParameterKeys._IsLaterTextVisible, true);
+                await NavigationService.NavigateAsync("OrganizationChoiceView", navParams);
             }
             catch (BusinessException bExc)
             {

@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
-             NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              x:Class="Modules.Organization.Views.OrganizationChoiceView">
+    
     <Grid Padding="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
@@ -14,6 +14,7 @@
         </Grid.RowDefinitions>
 
         <components:TrineLogoHeaderView Grid.Row="0" />
+     
 
         <StackLayout VerticalOptions="Center"
                      Grid.Row="1">
@@ -33,13 +34,13 @@
             <Label Text="Souhaitez-vous :"
                    Style="{StaticResource Paragraph}" />
 
-            <Grid Margin="0,20,0,0">
+            <Grid Margin="0,20,0,0" ColumnSpacing="15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50*" />
                     <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
 
-                <Frame Padding="25"
+                <Frame Padding="{OnPlatform iOS=15, Default=20}"
                        Grid.Column="0"
                        HasShadow="False"
                        Visual="Material"
@@ -51,15 +52,16 @@
                         <Label Text="&#xebde;"
                                FontFamily="{StaticResource IconFont}"
                                HorizontalOptions="Center"
-                                />
+                               TextColor="#000000"
+                               FontSize="25"
+                               Margin="{OnPlatform Default='0,-20,0,-15', iOS='0'}" />
                         <Label Text="Créer une organisation"
                                Style="{StaticResource Paragraph}"
-                               HorizontalTextAlignment="Center"
-                                />
+                               HorizontalTextAlignment="Center" />
                     </StackLayout>
                 </Frame>
 
-                <Frame Padding="25"
+                <Frame Padding="{OnPlatform iOS=15, Default=20}"
                        Grid.Column="1"
                        HasShadow="False"
                        Visual="Material"
@@ -72,12 +74,12 @@
                                FontFamily="{StaticResource IconFont}"
                                HorizontalOptions="Center"
                                FontSize="25"
+                               Margin="{OnPlatform Default='0,-20,0,-15', iOS='0'}"
                                TextColor="#000000" />
                         <Label Text="Rejoindre une organisation"
                                HorizontalTextAlignment="Center"
                                Style="{StaticResource Paragraph}"
-                               HorizontalOptions="Center"
-                                />
+                               HorizontalOptions="Center" />
                     </StackLayout>
                 </Frame>
 
@@ -85,6 +87,16 @@
 
             <Label Text="Plus tard →"
                    AutomationId="lb_alreadyAccount"
+                   IsVisible="{Binding IsLaterTextVisible}"
+                   Style="{StaticResource TertiaryText}"
+                   Margin="0,10,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LaterCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="← Retour"
+                   AutomationId="lb_alreadyAccount"
+                   IsVisible="{Binding IsBackVisible}"
                    Style="{StaticResource TertiaryText}"
                    Margin="0,10,0,0">
                 <Label.GestureRecognizers>

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Modules.Authentication.Navigation;
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Logging;
@@ -10,6 +9,7 @@ using System;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
