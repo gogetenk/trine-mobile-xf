@@ -1,16 +1,19 @@
-﻿using System;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Modules.Authentication.Navigation;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
+using Xamarin.Essentials;
 
 namespace Modules.Authentication.ViewModels
 {
@@ -55,6 +58,28 @@ namespace Modules.Authentication.ViewModels
             EmailUnfocusedCommand = new DelegateCommand(async () => await OnEmailEntered());
         }
 
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            // If the user is already logged in, we just fetch the user in cache and navigate to his dashboard
+            //var user = await BlobCache.UserAccount.GetObject<UserModel>(CacheKeys._CurrentUser);
+            try
+            {
+                var userJson = await SecureStorage.GetAsync(CacheKeys._CurrentUser);
+                if (userJson is null)
+                    return;
+
+                AppSettings.CurrentUser = JsonConvert.DeserializeObject<UserModel>(userJson);
+                await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/DashboardView");
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+            }
+
+        }
+
         private async Task OnEmailEntered()
         {
             if (string.IsNullOrEmpty(Email))
@@ -94,7 +119,7 @@ namespace Modules.Authentication.ViewModels
 
             if (IsEmailErrorVisible || IsPasswordErrorVisible)
                 return;
-            
+
             var userToComplete = new RegisterUserDto()
             {
                 Email = Email,

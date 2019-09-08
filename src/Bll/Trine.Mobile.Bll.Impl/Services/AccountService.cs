@@ -1,14 +1,17 @@
-﻿using AutoMapper;
+﻿using Akavache;
+using AutoMapper;
 using Newtonsoft.Json;
 using Prism.Logging;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System.Net.Http;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Bll.Impl.Services.Base;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Dal.Swagger;
 using Trine.Mobile.Model;
+using Xamarin.Essentials;
 
 namespace Trine.Mobile.Bll.Impl.Services
 {
@@ -42,6 +45,9 @@ namespace Trine.Mobile.Bll.Impl.Services
                 var tokenModel = _mapper.Map<TokenModel>(token);
                 AppSettings.AccessToken = tokenModel;
                 AppSettings.CurrentUser = user;
+                //await BlobCache.UserAccount.InsertObject(CacheKeys._CurrentUser, user);
+                await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
+
                 return tokenModel.UserId;
             }
             catch (ApiException apiExc)
@@ -99,6 +105,7 @@ namespace Trine.Mobile.Bll.Impl.Services
 
                 AppSettings.AccessToken = _mapper.Map<TokenModel>(token);
                 AppSettings.CurrentUser = user;
+                await BlobCache.UserAccount.InsertObject(CacheKeys._CurrentUser, user);
 
                 return token.UserId;
             }
