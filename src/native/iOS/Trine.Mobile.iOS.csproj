@@ -47,11 +47,10 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: Rémi Roycourt (CLUR4NKXWV)</CodesignKey>
+    <CodesignKey>iPhone Developer: Yannis Tocreau (ZZKDQ2YL2R)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignEntitlements>
-    </CodesignEntitlements>
-    <CodesignProvision>iOS Team Provisioning Profile: *</CodesignProvision>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>hellotrine</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <MtouchLink>Full</MtouchLink>
@@ -64,8 +63,9 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Yannis Tocreau (ZZKDQ2YL2R)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>hellotrine</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -244,6 +244,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll\Bll.csproj">
+      <Project>{5AB648D4-C1D2-4C6A-934A-10F401662663}</Project>
+      <Name>Bll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Bootstrapper\Trine.Mobile.Bootstrapper.csproj">
       <Project>{92f28cbd-cb0d-4f4e-a272-2004811b96ba}</Project>
       <Name>Trine.Mobile.Bootstrapper</Name>
@@ -251,6 +255,10 @@
     <ProjectReference Include="..\..\Components\Trine.Mobile.Components.csproj">
       <Project>{03733502-C617-4953-8CE2-1CE15638A973}</Project>
       <Name>Trine.Mobile.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Model\Trine.Mobile.Model\Model.csproj">
+      <Project>{3FA8D1D0-F3B3-40CF-91C9-4B6CD052015A}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
