@@ -244,7 +244,9 @@
             </StackLayout>
         </ScrollView>
 
-        <StackLayout  VerticalOptions="EndAndExpand"
+        <StackLayout 
+            Grid.RowSpan="2"
+            VerticalOptions="EndAndExpand"
                       HorizontalOptions="EndAndExpand">
             <Frame Padding="0"
                    IsVisible="{Binding IsRefuseButtonVisible}"
