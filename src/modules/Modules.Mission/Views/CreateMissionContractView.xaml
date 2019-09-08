@@ -107,6 +107,8 @@
         <Label Text="Retour"
                HorizontalOptions="Center"
                AutomationId="lb_back"
+               VerticalTextAlignment="Center"
+               HeightRequest="30"
                Style="{StaticResource TertiaryText}">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding BackCommand}" />

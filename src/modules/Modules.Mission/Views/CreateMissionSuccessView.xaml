@@ -106,6 +106,8 @@
                VerticalOptions="EndAndExpand"
                HorizontalOptions="Center"
                AutomationId="lb_back"
+               VerticalTextAlignment="Center"
+               HeightRequest="30"
                Style="{StaticResource TertiaryText}">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding QuitCommand}" />

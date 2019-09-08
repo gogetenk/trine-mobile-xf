@@ -73,6 +73,8 @@
                     WidthRequest="180" />
             <Label Text="Mot de passe oublié"
                    AutomationId="lb_alreadyAccount"
+                   VerticalTextAlignment="Center"
+                   HeightRequest="30"
                    Margin="0,10,0,0"
                    HorizontalOptions="Center"
                    TextDecorations="Underline"
