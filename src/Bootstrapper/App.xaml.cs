@@ -1,5 +1,4 @@
-﻿using Akavache;
-using AutoMapper;
+﻿using AutoMapper;
 using Com.OneSignal;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -63,7 +62,7 @@ namespace Trine.Mobile.Bootstrapper
 #if DEBUG
                 HotReloader.Current.Run(this);
 #endif
-                Akavache.Registrations.Start("TrineApp");
+                //Akavache.Registrations.Start("TrineApp");
                 await NavigationService.NavigateAsync("TrineNavigationPage/SignupView");
             }
             catch (Exception exc)
@@ -86,7 +85,7 @@ namespace Trine.Mobile.Bootstrapper
         {
             base.CleanUp();
 
-            BlobCache.Shutdown().Wait();
+            //BlobCache.Shutdown().Wait();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
