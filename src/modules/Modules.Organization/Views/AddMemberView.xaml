@@ -29,41 +29,42 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*" />
-            <RowDefinition Height="15*" />
-            <RowDefinition Height="80*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="70*" />
         </Grid.RowDefinitions>
 
         <Grid BackgroundColor="{StaticResource AccentColor}"
               Grid.Row="0"
+              Grid.RowSpan="2"
               Margin="0"
               VerticalOptions="Fill">
         </Grid>
 
         <Grid Grid.Row="0"
-              Grid.RowSpan="2"
-              VerticalOptions="Start"
-              BackgroundColor="{StaticResource AccentColor}">
+              Grid.RowSpan="3"
+              VerticalOptions="Start">
 
-            <Frame HeightRequest="70"
+            <Frame HeightRequest="80"
                    CornerRadius="5"
                    Visual="Material"
                    x:Name="frame_caption"
-                   Margin="35,70,35,-10"
+                   Margin="35,70,35,-20"
                    BackgroundColor="#FFEAB8"
                    Opacity="{Binding CaptionOpacity}"
-                   Padding="0"
+                   Padding="0,10,0,0"
                    HasShadow="True">
                 <StackLayout Orientation="Horizontal">
                     <Label FontFamily="{StaticResource MaterialIcons}"
                            Text="&#xe88f;"
-                           FontSize="18"
+                           FontSize="16"
                            TextColor="#FFB400"
-                           VerticalOptions="End"
-                           Margin="10,0,10,12" />
+                           VerticalOptions="CenterAndExpand"
+                           Margin="10,20,10,12" />
                     <Label Text="Cet utilisateur n'est pas inscrit sur Trine et sera invité par la même occasion."
-                           VerticalOptions="End"
-                           Margin="0,0,15,7"
-                           FontSize="Small"
+                           VerticalOptions="CenterAndExpand"
+                           Margin="0,20,10,7"
+                           FontSize="Caption"
                            TextColor="#FFB400"
                            Style="{StaticResource Paragraph}" />
                 </StackLayout>
@@ -113,7 +114,7 @@
 
         </Grid>
 
-        <StackLayout Grid.Row="2">
+        <StackLayout Grid.Row="3">
 
             <Label Text="Invitations envoyées"
                    Margin="35,20,35,20"
