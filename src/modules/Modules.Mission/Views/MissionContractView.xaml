@@ -37,7 +37,7 @@
                                x:Name="lb_title"
                                Style="{StaticResource Paragraph}" />
                     </StackLayout>
-                    <Label Text="En attente de signature"
+                    <Label Text="En attente"
                            HorizontalOptions="EndAndExpand"
                            FontSize="14"
                            x:Name="lb_status"
