@@ -6,21 +6,15 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="Modules.Mission.Views.CreateMissionSuccessView">
 
+    <ScrollView>
+        
     <StackLayout Padding="{StaticResource PagePadding}">
-
-        <Frame CornerRadius="5"
-               Visual="Material"
-               HasShadow="False"
-               Margin="20,0,20,40"
-               HeightRequest="8"
-               Padding="0"
-               BackgroundColor="#D9E2EC" />
 
         <StackLayout VerticalOptions="Start"
                      IsVisible="{Binding IsSuccessShown}"
                      x:Name="sl_title"
                      Opacity="0"
-                     Margin="0,30,0,0"
+                     Margin="0,20,0,0"
                      HorizontalOptions="CenterAndExpand">
 
             <Label Text="Mission créée avec succès ! 🎉"
@@ -52,12 +46,12 @@
                                PropertyChanged="ActivityIndicator_PropertyChanged" />
 
             <Grid x:Name="grid_missionCard"
-                  Margin="0,50,0,0"
+                  Margin="0,40,0,0"
                   IsEnabled="{Binding IsGridEnabled}"
                   PropertyChanged="Grid_missionCard_PropertyChanged"
                   Opacity="0">
 
-                <controls:MissionCardView Margin="10,20,10,0"
+                <controls:MissionCardView Margin="0,20,0,0"
                                           Mission="{Binding CreatedMission}"
                                           TappedCommand="{Binding NavigateToMissionDetailsCommand}">
                     <controls:MissionCardView.GestureRecognizers>
@@ -114,5 +108,7 @@
             </Label.GestureRecognizers>
         </Label>
     </StackLayout>
+
+    </ScrollView>
 
 </ContentPage>

@@ -6,15 +6,31 @@
 
   <StackLayout Padding="{StaticResource PagePadding}">
 
-    <Frame CornerRadius="5"
-           Visual="Material"
-           HasShadow="False"
-           Margin="20,0,20,40"
-           HeightRequest="8"
-           Padding="0"
-           BackgroundColor="#D9E2EC" />
+        <Frame CornerRadius="5"
+               Visual="Material"
+               HasShadow="False"
+               Margin="20,0,20,40"
+               HeightRequest="8"
+               Padding="0"
+               BackgroundColor="#D9E2EC">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="16*" />
+                </Grid.ColumnDefinitions>
+                <BoxView CornerRadius="5"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Visual="Material"
+                         BackgroundColor="{StaticResource AccentColor}" />
+            </Grid>
+        </Frame>
 
-    <StackLayout VerticalOptions="Start">
+        <StackLayout VerticalOptions="Start">
       <Label Text="Créer une mission"
              Style="{StaticResource H1}" />
       <Label Text="Pour gérer vos calendriers, il nous faut vos dates."
@@ -33,7 +49,6 @@
       <DatePicker Style="{StaticResource EntryStyle}"
                   x:Name="startDatePicker"
                   Format="dd/MM/yyyy"
-                  MinimumDate="01/01/2000"
                   Date="{Binding CreateMissionRequest.StartDate, StringFormat='{0:dd/MM/yyyy}'}" />
       <Label Text="Vous devez spécifier une date de début."
              IsVisible="{Binding IsStartDateNull}"
@@ -46,7 +61,6 @@
              Margin="0,20,0,0"
              Style="{StaticResource Paragraph}" />
       <DatePicker Style="{StaticResource EntryStyle}"
-                  MinimumDate="{Binding Source={x:Reference startDatePicker}, Path=Date}"
                   Format="dd/MM/yyyy"
                   Date="{Binding CreateMissionRequest.EndDate, StringFormat='{0:dd/MM/yyyy}'}" />
       <Label Text="Vous devez spécifier une date de fin."
