@@ -46,9 +46,9 @@
 
             <Frame HeightRequest="70"
                    CornerRadius="5"
-                    Visual="Material"
+                   Visual="Material"
                    x:Name="frame_caption"
-                   Margin="35,70,35,0"
+                   Margin="35,70,35,-10"
                    BackgroundColor="#FFEAB8"
                    Opacity="{Binding CaptionOpacity}"
                    Padding="0"
@@ -87,7 +87,7 @@
                            Margin="15,0,10,0" />
                     <components:MaterialEntry HorizontalOptions="FillAndExpand"
                                               Placeholder="Adresse e-mail"
-                    Visual="Default"
+                                              Visual="Default"
                                               FontSize="Small"
                                               Text="{Binding Email}"
                                               PlaceholderColor="#B9B9B9"
@@ -148,13 +148,6 @@
                                                  Margin="10,0,0,0">
                                         <Label Text="{Binding GuestEmail}" Style="{StaticResource Paragraph}" />
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding IsRevoked}"
-                                                   FontSize="Caption"
-                                                   TextColor="{StaticResource SecondaryTextColor}" />
-                                            <Label Text="⚬"
-                                                   Margin="5,0,5,0"
-                                                   FontSize="Caption"
-                                                   TextColor="{StaticResource SecondaryTextColor}" />
                                             <Label Text="{Binding Created}"
                                                    FontSize="Caption"
                                                    TextColor="{StaticResource SecondaryTextColor}" />

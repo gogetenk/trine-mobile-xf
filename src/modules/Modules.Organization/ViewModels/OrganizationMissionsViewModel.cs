@@ -98,9 +98,11 @@ namespace Modules.Organization.ViewModels
             if (SelectedMission is null)
                 return;
 
+            string viewName = SelectedMission.Status == MissionDto.StatusEnum.CREATED ? "MissionStartView" : "MissionDetailsView";
             var navParams = new NavigationParameters();
             navParams.Add(NavigationParameterKeys._Mission, SelectedMission);
-            await NavigationService.NavigateAsync($"MissionDetailsView", navParams);
+            await NavigationService.NavigateAsync(viewName, navParams);
+
             // Deselecting item
             SelectedMission = null;
         }

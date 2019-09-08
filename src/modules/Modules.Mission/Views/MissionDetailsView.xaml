@@ -6,11 +6,11 @@
              xmlns:views="clr-namespace:Modules.Mission.Views"
              xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
              NavigationPage.HasNavigationBar="True"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:NavigationPage.PrefersLargeTitles="false"
              mc:Ignorable="d"
              x:Class="Modules.Mission.Views.MissionDetailsView">
-    
+
     <NavigationPage.TitleView>
         <StackLayout Margin="{OnPlatform Default='0,0,0,0', iOS='30,5,0,0'}"
                      Spacing="0">
@@ -76,11 +76,14 @@
                                                    Mode=TwoWay}">
 
             <views:MissionActivityView BindingContext="{Binding MissionActivityViewModel}"
-                                       Animate="True" />
+                                       Animate="True"
+                                       VerticalOptions="FillAndExpand" />
             <views:MissionInvoiceView BindingContext="{Binding MissionInvoiceViewModel}"
-                                      Animate="True" />
+                                      Animate="True"
+                                      VerticalOptions="FillAndExpand" />
             <views:MissionContractView BindingContext="{Binding MissionContractViewModel}"
-                                       Animate="True" />
+                                       Animate="True"
+                                       VerticalOptions="FillAndExpand" />
 
         </tabs:ViewSwitcher>
     </Grid>
