@@ -39,6 +39,7 @@ namespace Modules.Menu.ViewModels
 
         public ICommand CreateMissionCommand { get; set; }
         public ICommand CreateOrganizationCommand { get; set; }
+        public ICommand SettingsCommand { get; set; }
 
         #endregion 
 
@@ -50,10 +51,13 @@ namespace Modules.Menu.ViewModels
         {
             CreateMissionCommand = new DelegateCommand(async () => await OnCreateMission());
             CreateOrganizationCommand = new DelegateCommand(async () => await OnAddOrganization());
+            SettingsCommand = new DelegateCommand(async () => await OnSettingsTapped());
 
             _missionService = missionService;
             _dashboardService = dashboardService;
         }
+
+
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
         {
@@ -90,6 +94,11 @@ namespace Modules.Menu.ViewModels
             {
                 IsLoading = false;
             }
+        }
+
+        private async Task OnSettingsTapped()
+        {
+            await NavigationService.NavigateAsync("TrineNavigationPage/SettingsView");
         }
 
         private async Task OnCreateMission()

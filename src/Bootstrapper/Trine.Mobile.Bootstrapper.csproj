@@ -30,6 +30,7 @@
     <ProjectReference Include="..\modules\Modules.Menu\Modules.Menu.csproj" />
     <ProjectReference Include="..\modules\Modules.Mission\Modules.Mission.csproj" />
     <ProjectReference Include="..\modules\Modules.Organization\Modules.Organization.csproj" />
+    <ProjectReference Include="..\modules\Modules.Settings\Modules.Settings.csproj" />
   </ItemGroup>
 
   <ItemGroup>

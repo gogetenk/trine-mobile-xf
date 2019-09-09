@@ -10,10 +10,10 @@ using Modules.Dashboard;
 using Modules.Menu;
 using Modules.Mission;
 using Modules.Organization;
+using Modules.Settings;
 using Prism;
 using Prism.Ioc;
 using Prism.Logging;
-using Prism.Logging.AppCenter;
 using Prism.Modularity;
 using Prism.Unity;
 using System;
@@ -106,6 +106,7 @@ namespace Trine.Mobile.Bootstrapper
             moduleCatalog.AddModule<MenuModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<MissionModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<ActivityModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<SettingsModule>(InitializationMode.WhenAvailable);
         }
 
         public static bool IsASmallDevice()
