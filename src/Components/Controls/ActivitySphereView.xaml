@@ -15,7 +15,7 @@
                x:Name="frame"
                Margin="2"
                IsClippedToBounds="True"
-               CornerRadius="140"
+               CornerRadius="{OnPlatform Default=120, iOS=23}"
                HorizontalOptions="Fill"
                VerticalOptions="Fill"
                Padding="0">

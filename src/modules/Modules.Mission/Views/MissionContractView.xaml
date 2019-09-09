@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:components="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              mc:Ignorable="d"
-             x:Class="Modules.Mission.Views.MissionContractView">
+             x:Class="Modules.Mission.Views.MissionContractView"
+            VerticalOptions="FillAndExpand">
     <Grid>
 
         <StackLayout Padding="25,25,25,0">
@@ -123,8 +124,8 @@
                Margin="0,0,25,40">
             <Button Text="+"
                     FontSize="24"
-                    Padding="0,-5,0,0" 
-            Style="{StaticResource ActionButtonStyle}"
+                    Padding="{OnPlatform Default='0,-5,0,0', iOS='0,-10,0,0'}"
+                    Style="{StaticResource ActionButtonStyle}"
                     Command="{Binding AddMemberCommand}"
                     CornerRadius="{OnPlatform Default=120, iOS=30}" />
         </Frame>

@@ -37,10 +37,9 @@
                        CornerRadius="5"
                        Visual="Material"
                        HorizontalOptions="Center"
-                       Margin="25"
+                       Margin="15,25,15,25"
                        HasShadow="True">
                     <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
-                                                   Visual="Default"
                                                    DaySettingsCommand="{Binding AbsenceCommand}"
                                                    x:Name="calendar"
                                                    IsInputEnabled="{Binding CanModify}"
@@ -55,7 +54,7 @@
                 </Frame>
 
                 <!-- Commentaire -->
-                <Frame Margin="25,0,25,0"
+                <Frame Margin="15,0,15,0"
                        IsVisible="{Binding IsCommentVisible}"
                        Padding="0"
                        Visual="Material"
@@ -252,7 +251,7 @@
                    IsVisible="{Binding IsRefuseButtonVisible}"
                    HorizontalOptions="Center"
                    Style="{StaticResource FrameButtonStyle}"
-                   CornerRadius="{OnPlatform Default=120, iOS=30}"
+                   CornerRadius="{OnPlatform Default=120, iOS=23}"
                    BackgroundColor="#F5F5F7"
                    HeightRequest="40"
                    WidthRequest="40"
@@ -263,14 +262,14 @@
                         FontSize="24"
                         BackgroundColor="#F5F5F7"
                         Command="{Binding RefuseActivityCommand}"
-                        CornerRadius="{OnPlatform Default=120, iOS=30}"
+                        CornerRadius="{OnPlatform Default=120, iOS=23}"
                         Padding="0,0,0,0" />
             </Frame>
             <Frame Padding="0"
                    IsVisible="{Binding IsSignButtonVisible}"
                    HorizontalOptions="Center"
                    Style="{StaticResource FrameButtonStyle}"
-                   CornerRadius="{OnPlatform Default=120, iOS=30}"
+                   CornerRadius="{OnPlatform Default=120, iOS=23}"
                    BackgroundColor="#F5F5F7"
                    HeightRequest="40"
                    WidthRequest="40"
@@ -281,13 +280,13 @@
                         FontSize="24"
                         BackgroundColor="#F5F5F7"
                         Command="{Binding SignActivityCommand}"
-                        CornerRadius="{OnPlatform Default=120, iOS=30}"
+                        CornerRadius="{OnPlatform Default=120, iOS=23}"
                         Padding="0,0,0,0" />
             </Frame>
             <Frame Padding="0"
                    IsVisible="{Binding IsAcceptButtonVisible}"
                    Style="{StaticResource FrameButtonStyle}"
-                   CornerRadius="{OnPlatform Default=120, iOS=30}"
+                   CornerRadius="{OnPlatform Default=120, iOS=23}"
                    HeightRequest="60"
                    WidthRequest="60"
                    Margin="0,0,25,40">
@@ -296,7 +295,7 @@
                         FontFamily="{StaticResource MaterialIcons}"
                         Style="{StaticResource ActionButtonStyle}"
                         Command="{Binding AcceptActivityCommand}"
-                        CornerRadius="{OnPlatform Default=120, iOS=30}"
+                        CornerRadius="{OnPlatform Default=120, iOS=23}"
                         Padding="0,0,0,0" />
             </Frame>
             <Frame Padding="0"

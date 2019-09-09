@@ -44,7 +44,7 @@ namespace Trine.Mobile.Bll.Impl.Services
                 AppSettings.AccessToken = tokenModel;
                 AppSettings.CurrentUser = user;
                 //await BlobCache.UserAccount.InsertObject(CacheKeys._CurrentUser, user);
-                await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
+                //await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
 
                 return tokenModel.UserId;
             }
