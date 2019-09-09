@@ -30,7 +30,7 @@
                                               x:Name="img_user1"
                                               HorizontalOptions="Start"
                                               BorderColor="White"
-                                              BorderThickness="1"
+                                              BorderThickness="{OnPlatform Default=1, iOS=2}"
                                               VerticalOptions="CenterAndExpand"
                                               Aspect="AspectFill" />
                     <abstractions:CircleImage HeightRequest="33"
@@ -38,7 +38,7 @@
                                               x:Name="img_user2"
                                               HorizontalOptions="Start"
                                               BorderColor="White"
-                                              BorderThickness="1"
+                                              BorderThickness="{OnPlatform Default=1, iOS=2}"
                                               VerticalOptions="CenterAndExpand"
                                               Aspect="AspectFill" />
                     <abstractions:CircleImage HeightRequest="33"
@@ -46,7 +46,7 @@
                                               x:Name="img_user3"
                                               HorizontalOptions="Start"
                                               BorderColor="White"
-                                              BorderThickness="1"
+                                              BorderThickness="{OnPlatform Default=1, iOS=2}"
                                               VerticalOptions="CenterAndExpand"
                                               Aspect="AspectFill" />
                 </StackLayout>
