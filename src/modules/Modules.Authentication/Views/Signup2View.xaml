@@ -6,7 +6,8 @@
              BackgroundColor="White"
              x:Class="Modules.Authentication.Views.Signup2View">
 
-    <Grid Margin="0, 30, 0, 0" Padding="{StaticResource PagePadding}">
+    <Grid Margin="0, 30, 0, 0"
+          Padding="{StaticResource PagePadding}">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="20*" />
@@ -17,26 +18,25 @@
         <components:TrineLogoHeaderView Grid.Row="0" />
 
         <StackLayout VerticalOptions="Start"
-            Grid.Row="1">
+                     Grid.Row="1">
             <Label Text="Qui êtes-vous ?"
-                       Style="{StaticResource H1}" />
+                   Style="{StaticResource H1}" />
             <Label Text="Nous voudrions mieux vous connaître."
-                       Style="{StaticResource H2}" />
+                   Style="{StaticResource H2}" />
 
             <BoxView BackgroundColor="#5A28D6"
-                         WidthRequest="45"
-                         HeightRequest="4"
-                         HorizontalOptions="Start"
-                         Margin="0,15" />
+                     WidthRequest="45"
+                     HeightRequest="4"
+                     HorizontalOptions="Start"
+                     Margin="0,15" />
         </StackLayout>
 
         <StackLayout VerticalOptions="Center"
                      Grid.Row="2">
-            
+
             <Label Text="Quel est votre prénom ?"
                    Style="{StaticResource Paragraph}" />
 
-     
             <Entry AutomationId="tb_firstname"
                    Style="{StaticResource EntryStyle}"
                    Placeholder="ex : John"
@@ -45,20 +45,22 @@
                    IsVisible="{Binding IsFirstnameErrorVisible}"
                    Style="{StaticResource ErrorText}" />
 
-            <Label Text="Et votre nom ?" 
+            <Label Text="Et votre nom ?"
                    Style="{StaticResource Paragraph}"
                    Margin="0,20,0,0" />
             <Entry AutomationId="tb_lastname"
-                     Style="{StaticResource EntryStyle}"
-                       Placeholder="ex : Doe"
-                       Text="{Binding Lastname}" />
+                   Style="{StaticResource EntryStyle}"
+                   Placeholder="ex : Doe"
+                   Text="{Binding Lastname}" />
             <Label Text="Veuillez spécifier un nom valide."
-                       IsVisible="{Binding IsLastnameErrorVisible}"
-                       Style="{StaticResource ErrorText}" />
+                   IsVisible="{Binding IsLastnameErrorVisible}"
+                   Style="{StaticResource ErrorText}" />
 
             <Label Text="J'ai déjà un compte →"
-                       AutomationId="lb_alreadyAccount"
-                       Style="{StaticResource TertiaryText}">
+                   AutomationId="lb_alreadyAccount"
+                   VerticalTextAlignment="Center"
+                   HeightRequest="30"
+                   Style="{StaticResource TertiaryText}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LoginCommand}" />
                 </Label.GestureRecognizers>

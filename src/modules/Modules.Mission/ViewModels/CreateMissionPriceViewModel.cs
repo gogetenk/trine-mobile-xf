@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Trine.Mobile.Components.Navigation;
 
 namespace Modules.Mission.ViewModels
@@ -32,11 +32,15 @@ namespace Modules.Mission.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            if (CreateMissionRequest.DailyPrice == 0)
-                CreateMissionRequest.DailyPrice = 400;
+            var request = CreateMissionRequest;
 
-            if (CreateMissionRequest.CommercialFeePercentage == 0 && CreateMissionRequest.IsTripartite)
-                CreateMissionRequest.CommercialFeePercentage = 15;
+            if (request.DailyPrice == 0)
+                request.DailyPrice = 400;
+
+            if (request.CommercialFeePercentage == 0 && request.IsTripartite)
+                request.CommercialFeePercentage = 15f;
+
+            CreateMissionRequest = request;
         }
 
         private async Task OnNextStep()

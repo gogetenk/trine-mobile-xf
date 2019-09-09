@@ -17,6 +17,17 @@
                  Default="40"
                  x:Key="PagePadding" />
 
+    <OnIdiom  x:TypeArguments="GridLength"
+              Tablet="50"
+              Phone="{OnPlatform Android=30, iOS=20*}"
+              Default="30"
+              x:Key="ActivityColumnWidth" />
+    <OnIdiom  x:TypeArguments="GridLength"
+              Tablet="50"
+              Phone="{OnPlatform Android=30, iOS=20*}"
+              Default="30"
+              x:Key="ActivityRowHeight" />
+
     <Style x:Key="H1"
            TargetType="Label">
         <Setter Property="TextColor"
@@ -24,13 +35,13 @@
         <Setter Property="FontFamily"
                 Value="{StaticResource BoldFont}" />
         <Setter Property="FontSize"
-                Value="15" />
+                Value="16" />
     </Style>
 
     <Style x:Key="H2"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="12" />
+                Value="14" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextColor"
@@ -40,7 +51,7 @@
     <Style x:Key="Paragraph"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="10" />
+                Value="12" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextColor"
@@ -50,7 +61,7 @@
     <Style x:Key="SecondaryText"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="9" />
+                Value="10" />
         <Setter Property="TextDecorations"
                 Value="Underline" />
         <Setter Property="TextColor"
@@ -60,7 +71,7 @@
     <Style x:Key="TertiaryText"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="9" />
+                Value="10" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextDecorations"

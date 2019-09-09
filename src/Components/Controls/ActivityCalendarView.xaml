@@ -6,25 +6,18 @@
              mc:Ignorable="d"
              x:Class="Trine.Mobile.Components.Controls.ActivityCalendarView">
     <StackLayout>
-        <Grid x:Name="grid_calendar"
-              HorizontalOptions="Center">
+        <Grid HorizontalOptions="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{Binding ColumnWidth}" />
-                <ColumnDefinition Width="{Binding ColumnWidth}" />
-                <ColumnDefinition Width="{Binding ColumnWidth}" />
-                <ColumnDefinition Width="{Binding ColumnWidth}" />
-                <ColumnDefinition Width="{Binding ColumnWidth}" />
-                <ColumnDefinition Width="{Binding ColumnWidth}" />
-                <ColumnDefinition Width="{Binding ColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
-                <RowDefinition Height="{Binding RowHeight}" />
-                <RowDefinition Height="{Binding RowHeight}" />
-                <RowDefinition Height="{Binding RowHeight}" />
-                <RowDefinition Height="{Binding RowHeight}" />
-                <RowDefinition Height="{Binding RowHeight}" />
-                <RowDefinition Height="{Binding RowHeight}" />
             </Grid.RowDefinitions>
             <Label Grid.Row="0"
                    Grid.Column="0"
@@ -61,6 +54,28 @@
                    Text="SUN"
                    HorizontalOptions="Center"
                    TextColor="Gray" />
+        </Grid>
+        <Grid x:Name="grid_calendar"
+              HorizontalOptions="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+            </Grid.RowDefinitions>
+           
         </Grid>
 
     </StackLayout>

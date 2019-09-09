@@ -99,6 +99,7 @@ namespace Modules.Organization.ViewModels
         private async Task OnItemSelected()
         {
             await Clipboard.SetTextAsync(SelectedInvite.Code.ToString());
+            SelectedInvite = null;
         }
 
         private async Task OnEmailUnfocused()
@@ -148,6 +149,7 @@ namespace Modules.Organization.ViewModels
                 var invite = await _organizationService.SendInvitation(_organization.Id, Mapper.Map<CreateInvitationRequestModel>(request));
                 Invites.Insert(0, Mapper.Map<InviteDto>(invite));
                 Email = string.Empty;
+                CaptionOpacity = 0f;
             }
             catch (BusinessException bExc)
             {

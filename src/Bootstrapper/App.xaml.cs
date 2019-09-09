@@ -13,7 +13,6 @@ using Modules.Organization;
 using Prism;
 using Prism.Ioc;
 using Prism.Logging;
-using Prism.Logging.AppCenter;
 using Prism.Modularity;
 using Prism.Unity;
 using System;
@@ -113,12 +112,16 @@ namespace Trine.Mobile.Bootstrapper
             // Get Metrics
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
 
+            // Screen density
+            var density = mainDisplayInfo.Density;
+
             // Width (in pixels)
             var width = mainDisplayInfo.Width;
 
             // Height (in pixels)
             var height = mainDisplayInfo.Height;
-            return (width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS;
+            return ((width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
+                || (density > 1 && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android);
         }
 
         private void LoadStyles()
@@ -140,7 +143,7 @@ namespace Trine.Mobile.Bootstrapper
 #if DEBUG
             containerRegistry.RegisterSingleton<Prism.Logging.ILogger, ConsoleLoggingService>();
 #else
-            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, AppCenterLogger>();
+            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, Prism.Logging.AppCenter.AppCenterLogger>();
 #endif
             containerRegistry.RegisterSingleton<Microsoft.Extensions.Logging.ILogger, PrismLoggerWrapper>();
             containerRegistry.Register(typeof(ILogger<>), typeof(PrismLoggerWrapper<>));
