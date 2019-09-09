@@ -35,13 +35,13 @@
         <Setter Property="FontFamily"
                 Value="{StaticResource BoldFont}" />
         <Setter Property="FontSize"
-                Value="15" />
+                Value="16" />
     </Style>
 
     <Style x:Key="H2"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="12" />
+                Value="14" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextColor"
@@ -51,7 +51,7 @@
     <Style x:Key="Paragraph"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="10" />
+                Value="12" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextColor"
@@ -61,7 +61,7 @@
     <Style x:Key="SecondaryText"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="9" />
+                Value="10" />
         <Setter Property="TextDecorations"
                 Value="Underline" />
         <Setter Property="TextColor"
@@ -71,7 +71,7 @@
     <Style x:Key="TertiaryText"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="9" />
+                Value="10" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextDecorations"

@@ -31,7 +31,7 @@
     <Grid ColumnSpacing="0"
           RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="120" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="50" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -46,42 +46,43 @@
                                  Margin="0,0,0,0">
                         <Label Text="&#xe55f;"
                                VerticalOptions="Center"
-                               FontSize="Small"
                                TextColor="#DED4F7"
+                               Style="{StaticResource Paragraph}"
                                FontFamily="{StaticResource MaterialIcons}"
+                               FontSize="12"
                                Margin="0,0,10,0" />
                         <Label Text="Montpellier, France"
                                VerticalOptions="Center"
                                TextColor="#DED4F7"
-                               FontSize="Small"
+                               FontSize="12"
                                Style="{StaticResource Paragraph}" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal"
                                  Margin="0,5,0,0">
                         <Label Text="&#xe8d3;"
                                VerticalOptions="Center"
-                               FontSize="Small"
                                TextColor="#DED4F7"
+                               Style="{StaticResource Paragraph}"
                                FontFamily="{StaticResource MaterialIcons}"
+                               FontSize="12"
                                Margin="0,0,10,0" />
                         <Label Text="{Binding Organization.MembersNb, StringFormat='{0:} membres'}"
                                VerticalOptions="Center"
+                               FontSize="12"
                                TextColor="#DED4F7"
-                               FontSize="Small"
                                Style="{StaticResource Paragraph}" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal"
                                  Margin="0,5,0,0">
                         <Label Text="&#xe8f9;"
                                VerticalOptions="Center"
-                               FontSize="Small"
+                               Style="{StaticResource Paragraph}"
                                TextColor="#DED4F7"
                                FontFamily="{StaticResource MaterialIcons}"
                                Margin="0,0,10,0" />
                         <Label Text="{Binding Organization.MissionsNb, StringFormat='{0:} missions'}"
                                VerticalOptions="Center"
                                TextColor="#DED4F7"
-                               FontSize="Small"
                                Style="{StaticResource Paragraph}" />
                     </StackLayout>
                 </StackLayout>
@@ -93,8 +94,7 @@
                        BorderColor="White"
                        VerticalOptions="Center"
                        HorizontalOptions="EndAndExpand"
-                       HeightRequest="60"
-                       WidthRequest="60">
+                       WidthRequest="50">
                     <Image Source="{Binding Organization.Icon}"
                            Aspect="AspectFit" />
                 </Frame>
