@@ -53,6 +53,7 @@
 
             <Label Text="Je n'ai pas de compte →"
                    AutomationId="lb_alreadyAccount"
+                   HeightRequest="30"
                    Style="{StaticResource TertiaryText}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding SignupCommand}" />

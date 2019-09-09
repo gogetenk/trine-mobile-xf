@@ -30,12 +30,10 @@
             <StackLayout VerticalOptions="FillAndExpand"
                          HorizontalOptions="Fill">
 
-             
-
                 <!-- Calendar -->
                 <Frame BackgroundColor="White"
                        CornerRadius="5"
-                       Visual="Material"
+                       Visual="{OnPlatform Default=Default, iOS=Material}"
                        HorizontalOptions="Center"
                        Margin="15,25,15,25"
                        HasShadow="True">
@@ -46,8 +44,7 @@
                                                    CellBackgroundColor="#CCCCCC"
                                                    CellForegroundColor="White"
                                                    AbsenceCellBackgroundColor="#FF5A39"
-                                                   RowHeight="50"
-                                                   ColumnWidth="50"
+                                                   CellFontSize="12"
                                                    WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
                                                    HorizontalOptions="Center"
                                                    VerticalOptions="Center" />
@@ -141,7 +138,8 @@
                                                           BorderColor="White"
                                                           BorderThickness="1"
                                                           Aspect="AspectFill" />
-                                <Frame CornerRadius="120"
+                                <Frame CornerRadius="{OnPlatform iOS=12, Default=120}"
+                                       Visual="{OnPlatform iOS=Material, Default=Default}"
                                        Padding="0"
                                        HeightRequest="25"
                                        WidthRequest="25"
@@ -194,7 +192,8 @@
                                                           BorderColor="White"
                                                           BorderThickness="1"
                                                           Aspect="AspectFill" />
-                                <Frame CornerRadius="120"
+                                <Frame CornerRadius="{OnPlatform iOS=12, Default=120}"
+                                       Visual="{OnPlatform iOS=Material, Default=Default}"
                                        Padding="0"
                                        HeightRequest="25"
                                        WidthRequest="25"

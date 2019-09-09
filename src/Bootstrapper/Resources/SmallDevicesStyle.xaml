@@ -17,6 +17,17 @@
                  Default="40"
                  x:Key="PagePadding" />
 
+    <OnIdiom  x:TypeArguments="GridLength"
+              Tablet="50"
+              Phone="{OnPlatform Android=30, iOS=20*}"
+              Default="30"
+              x:Key="ActivityColumnWidth" />
+    <OnIdiom  x:TypeArguments="GridLength"
+              Tablet="50"
+              Phone="{OnPlatform Android=30, iOS=20*}"
+              Default="30"
+              x:Key="ActivityRowHeight" />
+
     <Style x:Key="H1"
            TargetType="Label">
         <Setter Property="TextColor"

@@ -104,11 +104,11 @@ namespace Trine.Mobile.Components.Controls
 
             DaysDictionary = new List<GridDayDto>();
 
-            foreach (var column in grid_calendar.ColumnDefinitions)
-                column.SetBinding(ColumnDefinition.WidthProperty, new Binding(nameof(ColumnWidth), source: this));
+            //foreach (var column in grid_calendar.ColumnDefinitions)
+            //    column.SetBinding(ColumnDefinition.WidthProperty, new Binding(nameof(ColumnWidth), source: this));
 
-            foreach (var column in grid_calendar.RowDefinitions.Skip(1))
-                column.SetBinding(RowDefinition.HeightProperty, new Binding(nameof(RowHeight), source: this));
+            //foreach (var column in grid_calendar.RowDefinitions.Skip(1))
+            //    column.SetBinding(RowDefinition.HeightProperty, new Binding(nameof(RowHeight), source: this));
         }
 
         private static void OnPropertyChanged(BindableObject bindable, object oldValue, object newValue)
