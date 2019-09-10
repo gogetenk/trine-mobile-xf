@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Bll\Trine.Mobile.Bll.Impl\Bll.Impl.csproj" />
     <ProjectReference Include="..\Bll\Trine.Mobile.Bll\Bll.csproj" />
+    <ProjectReference Include="..\Dal\Trine.Mobile.Dal.AzureBlobStorage\Dal.AzureBlobStorage.csproj" />
     <ProjectReference Include="..\Dal\Trine.Mobile.Dal.Swagger\Dal.Swagger.csproj" />
     <ProjectReference Include="..\modules\Modules.Activity\Modules.Activity.csproj" />
     <ProjectReference Include="..\modules\Modules.Authentication\Modules.Authentication.csproj" />

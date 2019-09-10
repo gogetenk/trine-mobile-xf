@@ -13,10 +13,9 @@ namespace Trine.Mobile.Bootstrapper.Configuration
 
 #if DEBUG
         public string ConnectionString => _configuration.GetValue("ConnectionString", "UseDevelopmentStorage=true");
-
 #else
         public string ConnectionString => _configuration.GetValue<string>("ConnectionString");
 #endif
-        public string Container => _configuration.GetValue("Container", "image-attachments");
+        public string Container => _configuration.GetValue("Container", "uploads");
     }
 }

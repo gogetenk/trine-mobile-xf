@@ -17,7 +17,7 @@
                                       BorderThickness="2"
                                       HorizontalOptions="Start"
                                       VerticalOptions="Center"
-                                      Aspect="AspectFit"
+                                      Aspect="AspectFill"
                                       Source="{Binding User.ProfilePicUrl}" />
             <StackLayout Margin="20,0,0,0" VerticalOptions="Center">
                 <Label Text="Bonjour,"

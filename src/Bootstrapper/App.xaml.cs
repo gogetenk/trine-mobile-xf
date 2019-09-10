@@ -26,6 +26,8 @@ using Trine.Mobile.Bootstrapper.Resources;
 using Trine.Mobile.Bootstrapper.Views;
 using Trine.Mobile.Components.Builders;
 using Trine.Mobile.Components.Logging;
+using Trine.Mobile.Dal;
+using Trine.Mobile.Dal.AzureBlobStorage.Repositories;
 using Trine.Mobile.Dal.Configuration;
 using Trine.Mobile.Dal.Swagger;
 using Xamarin.Essentials;
@@ -179,6 +181,8 @@ namespace Trine.Mobile.Bootstrapper
         private void RegisterServices(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository(AppSettings.ApiUrls[AppSettings.GatewayApi], HttpClientFactory.GetClient()));
+            containerRegistry.Register<IImageAttachmentStorageRepository, ImageAttachmentStorageRepository>();
+
             containerRegistry.Register<IAccountService, AccountService>();
             containerRegistry.Register<IOrganizationService, OrganizationService>();
             containerRegistry.Register<IUserService, UserService>();

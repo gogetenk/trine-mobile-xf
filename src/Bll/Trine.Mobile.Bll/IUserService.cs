@@ -11,6 +11,6 @@ namespace Trine.Mobile.Bll
         Task<UserModel> UpdateUser(UserModel user);
         Task<List<UserModel>> GetAllUsers();
         Task DeleteUser(string id);
-        Task<UserModel> UploadProfilePicture(Stream stream, UserModel user);
+        Task<string> UploadProfilePicture(Stream stream);
     }
 }

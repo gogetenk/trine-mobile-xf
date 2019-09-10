@@ -6,6 +6,7 @@
              xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              mc:Ignorable="d"
              x:Class="Modules.Settings.Views.EditUserView">
+    
     <ScrollView>
         
     <Grid RowSpacing="0">
@@ -22,8 +23,12 @@
                       VerticalOptions="Start">
                     <abstractions:CircleImage BorderColor="White"
                                               BorderThickness="2"
-                                              Aspect="AspectFit"
-                                              Source="{Binding User.ProfilePicUrl}" />
+                                              Aspect="AspectFill"
+                                              Source="{Binding User.ProfilePicUrl}">
+                        <abstractions:CircleImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TakePictureCommand}" />
+                        </abstractions:CircleImage.GestureRecognizers>
+                    </abstractions:CircleImage>
                     <Button CornerRadius="{OnPlatform Default=120, iOS=20}"
                             VerticalOptions="EndAndExpand"
                             HorizontalOptions="EndAndExpand"
@@ -55,7 +60,7 @@
                     <Label Text="Prénom"
                            Style="{StaticResource TertiaryText}"
                            TextDecorations="None" />
-                    <Editor Text="{Binding User.Firstname}"
+                    <Editor Text="{Binding User.Firstname}" 
                             Visual="Default"
                             Style="{StaticResource Paragraph}" />
 
@@ -94,17 +99,15 @@
            
             <Button Text="Sauvegarder"
                     Command="{Binding SaveCommand}"
-                    AutomationId="bt_start"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="EndAndExpand"
                     Margin="40,2,40,2"
                     HeightRequest="50"
                     Style="{StaticResource PrimaryButtonStyle}" />
+            
             <Button Text="Supprimer le compte"
                     Command="{Binding DeleteCommand}"
-                    AutomationId="bt_start"
                     HorizontalOptions="FillAndExpand"
-                    VerticalOptions="EndAndExpand"
                     Margin="40,2,40,30"
                     HeightRequest="50"
                     BorderColor="Red"

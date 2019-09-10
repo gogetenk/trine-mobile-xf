@@ -17,11 +17,11 @@ namespace Trine.Mobile.Dal.AzureBlobStorage.Repositories
             _storageConfig = storageConfig;
 
             // Create cloudstorage account by passing the storagecredentials
-            CloudStorageAccount.TryParse(storageConfig.ConnectionString, out CloudStorageAccount storageAccount);
+            CloudStorageAccount.TryParse("DefaultEndpointsProtocol=https;AccountName=trine;AccountKey=UoXxi67YPXq1O7/IkREhno3f3C2vMQPU/cbXH37vRfjbqyft8IpRa6K9OLxJPtEwakzbw6oyegTwuKZeLjApfQ==;EndpointSuffix=core.windows.net", out CloudStorageAccount storageAccount);
             // Create the blob client.
             var blobClient = storageAccount.CreateCloudBlobClient();
             // Get reference to the blob container by passing the name by reading the value from the configuration (appsettings.json)
-            _container = blobClient.GetContainerReference(_storageConfig.Container);
+            _container = blobClient.GetContainerReference("uploads");
         }
 
         public async Task<Uri> UploadToStorage(byte[] data, string fileName, string mimeType, IDictionary<string, string> exifData = null)
@@ -40,10 +40,8 @@ namespace Trine.Mobile.Dal.AzureBlobStorage.Repositories
 
             // Upload the file
             blockBlob.Properties.ContentType = mimeType;
-            blockBlob.Metadata.Add(_storageConfig.MetadataKey, Newtonsoft.Json.JsonConvert.SerializeObject(exifData));
 
             await blockBlob.UploadFromByteArrayAsync(data, 0, data.Length);
-
             return blockBlob.Uri;
         }
     }

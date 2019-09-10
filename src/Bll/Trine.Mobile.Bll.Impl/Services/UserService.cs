@@ -94,7 +94,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             }
         }
 
-        public async Task<UserModel> UploadProfilePicture(Stream stream, UserModel user)
+        public async Task<string> UploadProfilePicture(Stream stream)
         {
             try
             {
@@ -111,10 +111,7 @@ namespace Trine.Mobile.Bll.Impl.Services
                 var fileExtension = imageEncoder.FileExtensions.FirstOrDefault();
                 var uri = await _imageAttachmentStorageRepository.UploadToStorage(bytes, $"{Guid.NewGuid()}.{fileExtension}", imageEncoder.DefaultMimeType);
                 _logger.LogTrace("Image attachment uploaded to Azure");
-
-                // Updating the user with the new profile pic uri
-                user.ProfilePicUrl = uri.AbsoluteUri;
-                return await UpdateUser(user);
+                return uri.AbsoluteUri;
             }
             catch (ApiException dalExc)
             {
