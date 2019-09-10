@@ -16,15 +16,18 @@ using Prism.Ioc;
 using Prism.Logging;
 using Prism.Modularity;
 using Prism.Unity;
+using Sogetrel.Sinapse.Framework.Mobile.Extensions;
 using System;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Factory;
 using Trine.Mobile.Bll.Impl.Services;
 using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Bootstrapper.Configuration;
 using Trine.Mobile.Bootstrapper.Resources;
 using Trine.Mobile.Bootstrapper.Views;
 using Trine.Mobile.Components.Builders;
 using Trine.Mobile.Components.Logging;
+using Trine.Mobile.Dal.Configuration;
 using Trine.Mobile.Dal.Swagger;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -90,10 +93,21 @@ namespace Trine.Mobile.Bootstrapper
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            RegisterConfiguration(containerRegistry);
             RegisterNavigation(containerRegistry);
             RegisterLogger(containerRegistry);
             RegisterMapper(containerRegistry);
             RegisterServices(containerRegistry);
+        }
+
+        private void RegisterConfiguration(IContainerRegistry containerRegistry)
+        {
+            // Configuration
+#if DEBUG
+            var configuration = containerRegistry.AddConfiguration(builder => builder.AddPackagedJsonFile("appsettings.development.json", true));
+#else
+            var configuration = containerRegistry.AddConfiguration();
+#endif
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -172,6 +186,8 @@ namespace Trine.Mobile.Bootstrapper
             containerRegistry.Register<IMissionService, MissionService>();
             containerRegistry.Register<IDashboardService, DashboardService>();
             containerRegistry.Register<IActivityService, ActivityService>();
+
+            containerRegistry.Register<IImageAttachmentStorageConfiguration, ImageAttachmentStorageConfiguration>();
         }
 
         #endregion

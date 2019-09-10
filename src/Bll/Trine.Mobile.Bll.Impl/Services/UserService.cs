@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Logging;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll.Impl.Services.Base;
 using Trine.Mobile.Dal.Swagger;
 using Trine.Mobile.Model;
@@ -56,6 +55,23 @@ namespace Trine.Mobile.Bll.Impl.Services
             {
                 var users = await _gatewayRepository.ApiUsersSearchGetAsync(email, firstname, lastname, companyName);
                 return _mapper.Map<List<UserModel>>(users);
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
+
+        public async Task<UserModel> UpdateUser(UserModel user)
+        {
+            try
+            {
+                await _gatewayRepository.ApiUsersByIdPutAsync(user.Id, _mapper.Map<User>(user));
+                return user;
             }
             catch (ApiException dalExc)
             {

@@ -7,6 +7,7 @@ namespace Trine.Mobile.Bll
     public interface IUserService
     {
         Task<List<UserModel>> SearchUsers(string email = null, string firstname = null, string lastname = null, string companyName = null);
+        Task<UserModel> UpdateUser(UserModel user);
         Task<List<UserModel>> GetAllUsers();
         Task DeleteUser(string id);
     }

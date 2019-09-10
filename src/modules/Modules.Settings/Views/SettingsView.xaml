@@ -18,21 +18,22 @@
                                       HorizontalOptions="Start"
                                       VerticalOptions="Center"
                                       Aspect="AspectFit"
-                                      Source="https://i.imgur.com/d8e5wvg.jpg" />
+                                      Source="{Binding User.ProfilePicUrl}" />
             <StackLayout Margin="20,0,0,0" VerticalOptions="Center">
                 <Label Text="Bonjour,"
                        TextColor="White"
                        Opacity="0.7"
                        Style="{StaticResource Paragraph}" />
-                <Label Text="Yannis Tocreau"
+                <Label Text="{Binding User.DisplayName}"
                        TextColor="White"
-                       Style="{StaticResource H2}" />
+                       Style="{StaticResource H2}" /> 
             </StackLayout>
 
             <Button CornerRadius="{OnPlatform Default=120, iOS=25}"
                     HorizontalOptions="EndAndExpand"
                     TextColor="White"
                     BackgroundColor="#8C69E3"
+                    Command="{Binding EditUserCommand}"
                     Padding="0"
                     FontSize="18"
                     VerticalOptions="Center"
@@ -131,7 +132,11 @@
             </Grid>
         </StackLayout>
 
-        <StackLayout Padding="40,20,40,0">
+        <StackLayout Padding="40,20,40,0"> 
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding DisconnectCommand}" />
+            </StackLayout.GestureRecognizers>
+            
             <Grid RowSpacing="-15">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70" />

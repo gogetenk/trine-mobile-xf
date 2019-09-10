@@ -15,6 +15,7 @@ namespace Modules.Settings
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
+            containerRegistry.RegisterForNavigation<EditUserView, EditUserViewModel>();
         }
     }
 }
