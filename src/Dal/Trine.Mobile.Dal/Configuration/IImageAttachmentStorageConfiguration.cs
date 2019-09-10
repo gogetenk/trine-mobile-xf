@@ -4,6 +4,5 @@
     {
         string ConnectionString { get; }
         string Container { get; }
-        string MetadataKey { get; }
     }
 }

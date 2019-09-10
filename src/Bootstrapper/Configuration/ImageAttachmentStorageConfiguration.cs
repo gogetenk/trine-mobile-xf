@@ -18,6 +18,5 @@ namespace Trine.Mobile.Bootstrapper.Configuration
         public string ConnectionString => _configuration.GetValue<string>("ConnectionString");
 #endif
         public string Container => _configuration.GetValue("Container", "image-attachments");
-        public string MetadataKey => _configuration.GetValue("MetadataKey", "Metadata");
     }
 }

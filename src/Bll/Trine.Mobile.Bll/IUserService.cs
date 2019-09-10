@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Trine.Mobile.Model;
 
@@ -10,5 +11,6 @@ namespace Trine.Mobile.Bll
         Task<UserModel> UpdateUser(UserModel user);
         Task<List<UserModel>> GetAllUsers();
         Task DeleteUser(string id);
+        Task<UserModel> UploadProfilePicture(Stream stream, UserModel user);
     }
 }

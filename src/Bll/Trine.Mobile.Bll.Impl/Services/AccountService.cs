@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Prism.Logging;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -94,7 +94,7 @@ namespace Trine.Mobile.Bll.Impl.Services
                 var result = await _gatewayRepository.ApiAccountsUsersRegisterPostAsync(_mapper.Map<RegisterUserRequest>(model));
                 token = result.Token;
 
-                _logger.TrackEvent("New user subscription");
+                _logger.LogTrace("New user subscription");
 
                 //TODO : trop de calls, a optimiser
                 var user = _mapper.Map<UserModel>(await _gatewayRepository.ApiAccountsUsersByIdGetAsync(token.UserId));

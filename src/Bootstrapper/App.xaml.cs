@@ -13,7 +13,6 @@ using Modules.Organization;
 using Modules.Settings;
 using Prism;
 using Prism.Ioc;
-using Prism.Logging;
 using Prism.Modularity;
 using Prism.Unity;
 using Sogetrel.Sinapse.Framework.Mobile.Extensions;
@@ -153,9 +152,9 @@ namespace Trine.Mobile.Bootstrapper
         private void RegisterLogger(IContainerRegistry containerRegistry)
         {
 #if DEBUG
-            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, ConsoleLoggingService>();
+            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, Prism.Logging.ConsoleLoggingService>();
 #else
-            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, AppCenterLogger>();
+            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, Prism.Logging.AppCenter.AppCenterLogger>();
 #endif
             containerRegistry.RegisterSingleton<Microsoft.Extensions.Logging.ILogger, PrismLoggerWrapper>();
             containerRegistry.Register(typeof(ILogger<>), typeof(PrismLoggerWrapper<>));
