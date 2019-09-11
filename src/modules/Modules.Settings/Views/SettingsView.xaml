@@ -58,6 +58,9 @@
                              Padding="20"
                              VerticalOptions="FillAndExpand"
                              Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NotificationsCommand}" />
+                    </StackLayout.GestureRecognizers>
                     <Label Style="{StaticResource Paragraph}"
                            VerticalOptions="Center"
                            Text="Notifications" />
@@ -73,6 +76,9 @@
                              Padding="20"
                              VerticalOptions="FillAndExpand"
                              Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding IntegrationsCommand}" />
+                    </StackLayout.GestureRecognizers>
                     <Label Style="{StaticResource Paragraph}"
                            VerticalOptions="Center"
                            Text="Intégrations" />
@@ -103,6 +109,9 @@
                              Padding="20"
                              VerticalOptions="FillAndExpand"
                              Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
+                    </StackLayout.GestureRecognizers>
                     <Label Style="{StaticResource Paragraph}"
                            VerticalOptions="Center"
                            Text="Changer de mot de passe" />
@@ -118,6 +127,9 @@
                              Padding="20"
                              VerticalOptions="FillAndExpand"
                              Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HelpCommand}" />
+                    </StackLayout.GestureRecognizers>
                     <Label Style="{StaticResource Paragraph}"
                            VerticalOptions="Center"
                            Text="Support" />
@@ -127,7 +139,7 @@
                            FontFamily="{StaticResource MaterialIcons}"
                            FontSize="20"
                            Text="&#xe5cc;" />
-                </StackLayout>
+                </StackLayout> 
 
             </Grid>
         </StackLayout>

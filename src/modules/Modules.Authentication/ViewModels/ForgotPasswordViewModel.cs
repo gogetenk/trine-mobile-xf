@@ -1,12 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using AutoMapper;
+﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
+using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
@@ -45,22 +44,20 @@ namespace Modules.Authentication.ViewModels
 
         public DelegateCommand SignUpCommand { get; set; }
         public DelegateCommand SubmitCommand { get; set; }
-        public DelegateCommand LoginCommand { get; set; }
+        public DelegateCommand GoBackCommand { get; set; }
         public DelegateCommand EmailUnfocusedCommand { get; set; }
 
         #endregion
 
         private readonly IAccountService _accountService;
-        private readonly IPageDialogService _dialogService;
 
         public ForgotPasswordViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
-            _dialogService = dialogService;
 
             SignUpCommand = new DelegateCommand(async () => await OnSignUp());
             SubmitCommand = new DelegateCommand(async () => await OnSubmit());
-            LoginCommand = new DelegateCommand(async () => await OnLogin());
+            GoBackCommand = new DelegateCommand(async () => await OnGoBack());
             EmailUnfocusedCommand = new DelegateCommand(async () => await OnEmailEntered());
         }
 
@@ -69,9 +66,9 @@ namespace Modules.Authentication.ViewModels
             await NavigationService.NavigateAsync("SignupView");
         }
 
-        private async Task OnLogin()
+        private async Task OnGoBack()
         {
-            await NavigationService.NavigateAsync("LoginView");
+            await NavigationService.GoBackAsync();
         }
 
         private async Task OnEmailEntered()

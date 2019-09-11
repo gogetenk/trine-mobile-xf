@@ -16,6 +16,9 @@ namespace Modules.Settings
         {
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
             containerRegistry.RegisterForNavigation<EditUserView, EditUserViewModel>();
+            containerRegistry.RegisterForNavigation<HelpView, HelpViewModel>();
+            containerRegistry.RegisterForNavigation<NotificationsView, NotificationsViewModel>();
+            containerRegistry.RegisterForNavigation<IntegrationsView, IntegrationsViewModel>();
         }
     }
 }

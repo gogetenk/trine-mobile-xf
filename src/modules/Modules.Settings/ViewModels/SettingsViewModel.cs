@@ -33,6 +33,32 @@ namespace Modules.Settings.ViewModels
         {
             DisconnectCommand = new DelegateCommand(async () => await OnDisconnect());
             EditUserCommand = new DelegateCommand(async () => await OnEditUser());
+            ChangePasswordCommand = new DelegateCommand(async () => await OnChangePassword());
+            IntegrationsCommand = new DelegateCommand(async () => await OnIntegrationsOpened());
+            NotificationsCommand = new DelegateCommand(async () => await OnNotificationsOpened());
+            HelpCommand = new DelegateCommand(async () => await OnHelpOpened());
+        }
+
+        private async Task OnIntegrationsOpened()
+        {
+            await NavigationService.NavigateAsync("IntegrationsView");
+        }
+
+        private async Task OnNotificationsOpened()
+        {
+            await NavigationService.NavigateAsync("NotificationsView");
+        }
+
+        private async Task OnHelpOpened()
+        {
+            await NavigationService.NavigateAsync("HelpView");
+        }
+
+        private async Task OnChangePassword()
+        {
+            var navparams = new NavigationParameters();
+            navparams.Add(NavigationParameterKeys._User, User);
+            await NavigationService.NavigateAsync("ForgotPasswordView");
         }
 
         private async Task OnEditUser()
