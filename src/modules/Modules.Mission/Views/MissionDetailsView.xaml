@@ -72,12 +72,11 @@
                             x:Name="Switcher"
                             VerticalOptions="FillAndExpand"
                             Animate="True"
-                            SelectedIndex="{Binding SelectedViewModelIndex, 
-                                                   Mode=TwoWay}">
+                            SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}">
 
             <views:MissionActivityView BindingContext="{Binding MissionActivityViewModel}"
                                        Animate="True"
-                                       VerticalOptions="FillAndExpand" />
+                                       VerticalOptions="FillAndExpand"/>
             <views:MissionInvoiceView BindingContext="{Binding MissionInvoiceViewModel}"
                                       Animate="True"
                                       VerticalOptions="FillAndExpand" />

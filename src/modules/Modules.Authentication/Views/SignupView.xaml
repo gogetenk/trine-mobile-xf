@@ -78,6 +78,8 @@
                    Style="{StaticResource ErrorText}" />
 
             <Label Text="J'ai déjà un compte →"
+                   HeightRequest="30"
+                   VerticalTextAlignment="Center"
                    AutomationId="lb_alreadyAccount"
                    Style="{StaticResource TertiaryText}">
                 <Label.GestureRecognizers>

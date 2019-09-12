@@ -8,6 +8,8 @@
              mc:Ignorable="d"
              x:Class="Modules.Mission.Views.CreateMissionContractView">
 
+    <ScrollView>
+        
     <StackLayout Padding="{StaticResource PagePadding}">
 
         <Frame CornerRadius="5"
@@ -16,7 +18,23 @@
                Margin="20,0,20,40"
                HeightRequest="8"
                Padding="0"
-               BackgroundColor="#D9E2EC" />
+               BackgroundColor="#D9E2EC">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="16*" />
+                </Grid.ColumnDefinitions>
+                <BoxView CornerRadius="5"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="6"
+                         Visual="Material"
+                         BackgroundColor="{StaticResource AccentColor}" />
+            </Grid>
+        </Frame>
 
         <StackLayout VerticalOptions="Start">
             <Label Text="Créer une mission"
@@ -107,11 +125,15 @@
         <Label Text="Retour"
                HorizontalOptions="Center"
                AutomationId="lb_back"
+               VerticalTextAlignment="Center"
+               HeightRequest="30"
                Style="{StaticResource TertiaryText}">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding BackCommand}" />
             </Label.GestureRecognizers>
         </Label>
     </StackLayout>
+
+    </ScrollView>
 
 </ContentPage>

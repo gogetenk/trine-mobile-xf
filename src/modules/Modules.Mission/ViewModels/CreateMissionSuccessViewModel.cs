@@ -104,6 +104,7 @@ namespace Modules.Mission.ViewModels
         private async Task OnQuit()
         {
             await NavigationService.GoBackToRootAsync();
+            await NavigationService.GoBackAsync();
         }
     }
 }

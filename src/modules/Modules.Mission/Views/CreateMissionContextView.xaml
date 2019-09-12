@@ -8,15 +8,32 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="Modules.Mission.Views.CreateMissionContextView">
 
-    <StackLayout Padding="50">
+    <ScrollView>
+        
+    <StackLayout Padding="{StaticResource PagePadding}">
 
-        <Frame CornerRadius="5"
-               Visual="Material"
-               HasShadow="False"
-               Margin="20,0,20,40"
-               HeightRequest="8"
-               Padding="0"
-               BackgroundColor="#D9E2EC" />
+            <Frame CornerRadius="5"
+                   Visual="Material"
+                   HasShadow="False"
+                   Margin="20,0,20,40"
+                   HeightRequest="8"
+                   Padding="0"
+                   BackgroundColor="#D9E2EC">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="16*" />
+                        <ColumnDefinition Width="16*" />
+                        <ColumnDefinition Width="16*" />
+                        <ColumnDefinition Width="16*" />
+                        <ColumnDefinition Width="16*" />
+                        <ColumnDefinition Width="16*" />
+                    </Grid.ColumnDefinitions>
+                    <BoxView CornerRadius="5"
+                           Grid.Column="0"
+                           Visual="Material"
+                           BackgroundColor="{StaticResource AccentColor}" />
+                </Grid>
+            </Frame>
 
         <StackLayout VerticalOptions="Start">
             <Label Text="Créer une mission"
@@ -29,7 +46,6 @@
                      HorizontalOptions="Start"
                      Margin="0,15" />
         </StackLayout>
-
 
         <StackLayout VerticalOptions="CenterAndExpand"
                      Margin="0,40,0,0">
@@ -97,6 +113,8 @@
                    VerticalOptions="CenterAndExpand"
                    AutomationId="lb_back"
                    Margin="0,0,30,0"
+                   VerticalTextAlignment="Center"
+                   HeightRequest="30"
                    Style="{StaticResource TertiaryText}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding BackCommand}" />
@@ -112,5 +130,7 @@
                     WidthRequest="110" />
         </StackLayout>
     </StackLayout>
+        
+    </ScrollView>
 
 </ContentPage>

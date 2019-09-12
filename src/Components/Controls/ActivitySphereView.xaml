@@ -8,28 +8,28 @@
              x:Class="Trine.Mobile.Components.Controls.ActivitySphereView">
 
     <multigestureviewplugin:MultiGestureView LongPressed="MultiGestureView_LongPressed_1"
-                                             Tapped="TapGestureRecognizer_Tapped"> 
+                                             Tapped="TapGestureRecognizer_Tapped">
 
         <Frame BackgroundColor="{Binding CellBackgroundColor}"
                HasShadow="False"
                x:Name="frame"
-               Margin="2"
                IsClippedToBounds="True"
-               CornerRadius="140"
+               CornerRadius="{OnPlatform Default=120, iOS=20}"
                HorizontalOptions="Fill"
                VerticalOptions="Fill"
+               Visual="Default"
                Padding="0">
-            <!--<Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
-                                      TappedCallbackParameter="1" />
-            </Frame.GestureRecognizers>-->
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </Frame.GestureRecognizers>
             <AbsoluteLayout  VerticalOptions="Fill"
                              HorizontalOptions="Fill">
                 <BoxView Color="{StaticResource AccentColor}"
                          x:Name="boxview"
+                         Visual="Default"
                          WidthRequest="100" />
                 <Label x:Name="lb_day"
-                       Text="1" 
+                       Text="1"
                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                        AbsoluteLayout.LayoutFlags="SizeProportional"
                        HorizontalTextAlignment="Center"
@@ -42,5 +42,5 @@
         </Frame>
 
     </multigestureviewplugin:MultiGestureView>
-    
+
 </ContentView>

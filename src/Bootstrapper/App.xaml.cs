@@ -129,12 +129,16 @@ namespace Trine.Mobile.Bootstrapper
             // Get Metrics
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
 
+            // Screen density
+            var density = mainDisplayInfo.Density;
+
             // Width (in pixels)
             var width = mainDisplayInfo.Width;
 
             // Height (in pixels)
             var height = mainDisplayInfo.Height;
-            return (width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS;
+            return ((width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
+                || (density > 1 && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android);
         }
 
         private void LoadStyles()

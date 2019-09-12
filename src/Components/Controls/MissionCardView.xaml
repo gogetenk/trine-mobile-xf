@@ -30,7 +30,7 @@
                                               x:Name="img_user1"
                                               HorizontalOptions="Start"
                                               BorderColor="White"
-                                              BorderThickness="1"
+                                              BorderThickness="{OnPlatform Default=1, iOS=2}"
                                               VerticalOptions="CenterAndExpand"
                                               Aspect="AspectFill" />
                     <abstractions:CircleImage HeightRequest="33"
@@ -38,7 +38,7 @@
                                               x:Name="img_user2"
                                               HorizontalOptions="Start"
                                               BorderColor="White"
-                                              BorderThickness="1"
+                                              BorderThickness="{OnPlatform Default=1, iOS=2}"
                                               VerticalOptions="CenterAndExpand"
                                               Aspect="AspectFill" />
                     <abstractions:CircleImage HeightRequest="33"
@@ -46,7 +46,7 @@
                                               x:Name="img_user3"
                                               HorizontalOptions="Start"
                                               BorderColor="White"
-                                              BorderThickness="1"
+                                              BorderThickness="{OnPlatform Default=1, iOS=2}"
                                               VerticalOptions="CenterAndExpand"
                                               Aspect="AspectFill" />
                 </StackLayout>
@@ -59,30 +59,30 @@
                            FontFamily="{StaticResource ThinFont}"
                            x:Name="lb_consultantName"
                            TextColor="#818182" />
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="EndAndExpand">
+                        <Label Text="-"
+                               FontFamily="{StaticResource ThinFont}"
+                               FontSize="Caption"
+                               VerticalOptions="Start"
+                               x:Name="lb_startDate"
+                               TextColor="#818182" />
+                        <Label Text="-"
+                               FontSize="Caption"
+                               FontFamily="{StaticResource ThinFont}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               TextColor="#818182" />
+                        <Label Text="-"
+                               FontFamily="{StaticResource ThinFont}"
+                               FontSize="Caption"
+                               VerticalOptions="EndAndExpand"
+                               x:Name="lb_endDate"
+                               TextColor="#818182" />
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout Margin="20,0,0,0"
-                             Spacing="-6"
-                             VerticalOptions="Center"
-                             HorizontalOptions="EndAndExpand"> 
-                    <Label Text="-"
-                           FontFamily="{StaticResource ThinFont}"
-                           FontSize="12"
-                           VerticalOptions="Start"
-                           x:Name="lb_startDate"
-                           TextColor="#818182" />
-                    <Label Text="-"
-                           FontSize="12"
-                           FontFamily="{StaticResource ThinFont}"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center"
-                           TextColor="#818182" />
-                    <Label Text="-"
-                           FontFamily="{StaticResource ThinFont}"
-                           FontSize="12"
-                           VerticalOptions="EndAndExpand"
-                           x:Name="lb_endDate"
-                           TextColor="#818182" />
-                </StackLayout>
+              
             </StackLayout>
         </Grid>
     </Frame>
