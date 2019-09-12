@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
-    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+    <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,6 +75,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Distribute">
       <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="nventive.Binding.Intercom">
+      <Version>4.1.13</Version>
+    </PackageReference>
+    <PackageReference Include="nventive.Binding.Intercom.Android.Fcm">
+      <Version>4.1.13</Version>
     </PackageReference>
     <PackageReference Include="Sharpnado.Presentation.Forms">
       <Version>1.2.0</Version>
@@ -118,6 +124,7 @@
     <Compile Include="Renderers\MaterialEntryRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IntercomService.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\proxima-regular.ttf" />
@@ -147,6 +154,14 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll.Impl\Bll.Impl.csproj">
+      <Project>{2E0D3107-4A4C-44AC-90A2-4EEA56D2AEDF}</Project>
+      <Name>Bll.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll\Bll.csproj">
+      <Project>{5AB648D4-C1D2-4C6A-934A-10F401662663}</Project>
+      <Name>Bll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Bootstrapper\Trine.Mobile.Bootstrapper.csproj">
       <Project>{92f28cbd-cb0d-4f4e-a272-2004811b96ba}</Project>
       <Name>Trine.Mobile.Bootstrapper</Name>
@@ -154,6 +169,10 @@
     <ProjectReference Include="..\..\Components\Trine.Mobile.Components.csproj">
       <Project>{03733502-C617-4953-8CE2-1CE15638A973}</Project>
       <Name>Trine.Mobile.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Model\Trine.Mobile.Model\Model.csproj">
+      <Project>{3FA8D1D0-F3B3-40CF-91C9-4B6CD052015A}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

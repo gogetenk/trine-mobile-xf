@@ -100,6 +100,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\MaterialEntryRenderer.cs" />
+    <Compile Include="Services\IntercomService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
@@ -212,6 +213,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Distribute">
       <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="nventive.Binding.Intercom">
+      <Version>4.1.13</Version>
     </PackageReference>
     <PackageReference Include="Sharpnado.Presentation.Forms">
       <Version>1.2.0</Version>

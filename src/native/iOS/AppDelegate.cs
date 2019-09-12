@@ -5,7 +5,9 @@ using Prism;
 using Prism.Ioc;
 using Sharpnado.Presentation.Forms.iOS;
 using System;
+using Trine.Mobile.Bll;
 using Trine.Mobile.Bootstrapper;
+using Trine.Mobile.iOS.Services;
 using UIKit;
 using Xamarin.Forms;
 namespace Trine.Mobile.iOS
@@ -96,6 +98,7 @@ namespace Trine.Mobile.iOS
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            containerRegistry.Register<ISupportService, IntercomService>();
         }
     }
 }

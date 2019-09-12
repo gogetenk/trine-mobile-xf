@@ -3,12 +3,11 @@ using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Trine.Mobile.Bll;
 using Trine.Mobile.Components.ViewModels;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace Modules.Settings.ViewModels
 {
@@ -23,8 +22,12 @@ namespace Modules.Settings.ViewModels
 
         #endregion
 
-        public HelpViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
+        private readonly ISupportService _supportService;
+
+        public HelpViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, ISupportService supportService) : base(navigationService, mapper, logger, dialogService)
         {
+            _supportService = supportService;
+
             LegalCommand = new DelegateCommand(async () => await OnLegalCommand());
             ContactCommand = new DelegateCommand(() => OnContactCommand());
             BlogCommand = new DelegateCommand(async () => await OnBlogCommand());
@@ -33,6 +36,7 @@ namespace Modules.Settings.ViewModels
 
         private void OnHelpCenterCommand()
         {
+            _supportService.ShowHelpCenter();
         }
 
         private async Task OnBlogCommand()
@@ -42,6 +46,7 @@ namespace Modules.Settings.ViewModels
 
         private void OnContactCommand()
         {
+            _supportService.ShowMessenger();
         }
 
         private async Task OnLegalCommand()
