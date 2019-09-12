@@ -54,7 +54,7 @@
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
 	<DxExtraArguments>--dex --no-strict --force-jumbo</DxExtraArguments>
 	<AndroidDexTool>d8</AndroidDexTool>
-	<AndroidLinkTool>r8</AndroidLinkTool>
+	<EnableProguard>true</EnableProguard>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
