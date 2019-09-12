@@ -248,6 +248,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll.Impl\Bll.Impl.csproj">
+      <Project>{2E0D3107-4A4C-44AC-90A2-4EEA56D2AEDF}</Project>
+      <Name>Bll.Impl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll\Bll.csproj">
       <Project>{5AB648D4-C1D2-4C6A-934A-10F401662663}</Project>
       <Name>Bll</Name>
