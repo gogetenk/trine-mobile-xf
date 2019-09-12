@@ -10,20 +10,25 @@ using Modules.Dashboard;
 using Modules.Menu;
 using Modules.Mission;
 using Modules.Organization;
+using Modules.Settings;
 using Prism;
 using Prism.Ioc;
-using Prism.Logging;
 using Prism.Modularity;
 using Prism.Unity;
+using Sogetrel.Sinapse.Framework.Mobile.Extensions;
 using System;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Factory;
 using Trine.Mobile.Bll.Impl.Services;
 using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Bootstrapper.Configuration;
 using Trine.Mobile.Bootstrapper.Resources;
 using Trine.Mobile.Bootstrapper.Views;
 using Trine.Mobile.Components.Builders;
 using Trine.Mobile.Components.Logging;
+using Trine.Mobile.Dal;
+using Trine.Mobile.Dal.AzureBlobStorage.Repositories;
+using Trine.Mobile.Dal.Configuration;
 using Trine.Mobile.Dal.Swagger;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -89,10 +94,21 @@ namespace Trine.Mobile.Bootstrapper
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            RegisterConfiguration(containerRegistry);
             RegisterNavigation(containerRegistry);
             RegisterLogger(containerRegistry);
             RegisterMapper(containerRegistry);
             RegisterServices(containerRegistry);
+        }
+
+        private void RegisterConfiguration(IContainerRegistry containerRegistry)
+        {
+            // Configuration
+#if DEBUG
+            var configuration = containerRegistry.AddConfiguration(builder => builder.AddPackagedJsonFile("appsettings.development.json", true));
+#else
+            var configuration = containerRegistry.AddConfiguration();
+#endif
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -105,6 +121,7 @@ namespace Trine.Mobile.Bootstrapper
             moduleCatalog.AddModule<MenuModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<MissionModule>(InitializationMode.WhenAvailable);
             moduleCatalog.AddModule<ActivityModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<SettingsModule>(InitializationMode.WhenAvailable);
         }
 
         public static bool IsASmallDevice()
@@ -120,8 +137,10 @@ namespace Trine.Mobile.Bootstrapper
 
             // Height (in pixels)
             var height = mainDisplayInfo.Height;
-            return ((width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
-                || (density > 1 && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android);
+            return (width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS;
+
+            //return ((width <= smallWightResolution && height <= smallHeightResolution) && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.iOS)
+            //    || (density > 1 && Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android);
         }
 
         private void LoadStyles()
@@ -141,7 +160,7 @@ namespace Trine.Mobile.Bootstrapper
         private void RegisterLogger(IContainerRegistry containerRegistry)
         {
 #if DEBUG
-            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, ConsoleLoggingService>();
+            containerRegistry.RegisterSingleton<Prism.Logging.ILogger, Prism.Logging.ConsoleLoggingService>();
 #else
             containerRegistry.RegisterSingleton<Prism.Logging.ILogger, Prism.Logging.AppCenter.AppCenterLogger>();
 #endif
@@ -168,12 +187,16 @@ namespace Trine.Mobile.Bootstrapper
         private void RegisterServices(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository(AppSettings.ApiUrls[AppSettings.GatewayApi], HttpClientFactory.GetClient()));
+            containerRegistry.Register<IImageAttachmentStorageRepository, ImageAttachmentStorageRepository>();
+
             containerRegistry.Register<IAccountService, AccountService>();
             containerRegistry.Register<IOrganizationService, OrganizationService>();
             containerRegistry.Register<IUserService, UserService>();
             containerRegistry.Register<IMissionService, MissionService>();
             containerRegistry.Register<IDashboardService, DashboardService>();
             containerRegistry.Register<IActivityService, ActivityService>();
+
+            containerRegistry.Register<IImageAttachmentStorageConfiguration, ImageAttachmentStorageConfiguration>();
         }
 
         #endregion

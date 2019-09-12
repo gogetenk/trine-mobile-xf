@@ -1,10 +1,17 @@
-﻿using System;
+﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using Prism.Logging;
+using Trine.Mobile.Bll.Impl.Extensions;
 using Trine.Mobile.Bll.Impl.Services.Base;
+using Trine.Mobile.Dal;
 using Trine.Mobile.Dal.Swagger;
 using Trine.Mobile.Model;
 
@@ -12,8 +19,11 @@ namespace Trine.Mobile.Bll.Impl.Services
 {
     public class UserService : ServiceBase, IUserService
     {
-        public UserService(IMapper mapper, IGatewayRepository gatewayRepository, ILogger logger) : base(mapper, gatewayRepository, logger)
+        private readonly IImageAttachmentStorageRepository _imageAttachmentStorageRepository;
+
+        public UserService(IMapper mapper, IGatewayRepository gatewayRepository, ILogger logger, IImageAttachmentStorageRepository imageAttachmentStorageRepository) : base(mapper, gatewayRepository, logger)
         {
+            _imageAttachmentStorageRepository = imageAttachmentStorageRepository;
         }
 
         public async Task DeleteUser(string id)
@@ -56,6 +66,52 @@ namespace Trine.Mobile.Bll.Impl.Services
             {
                 var users = await _gatewayRepository.ApiUsersSearchGetAsync(email, firstname, lastname, companyName);
                 return _mapper.Map<List<UserModel>>(users);
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
+
+        public async Task<UserModel> UpdateUser(UserModel user)
+        {
+            try
+            {
+                await _gatewayRepository.ApiUsersByIdPutAsync(user.Id, _mapper.Map<User>(user));
+                return user;
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
+
+        public async Task<string> UploadProfilePicture(Stream stream)
+        {
+            try
+            {
+                // Image Loading
+                var image = Image.Load<Rgba32>(stream);
+                _logger.LogTrace("Image attachment loaded");
+
+                var imageEncoder = JpegFormat.Instance;
+                var bytes = image.Resize(512).GetBytes(imageEncoder);
+
+                _logger.LogTrace("Image attachment rendered");
+
+                // Image upload to Azure
+                var fileExtension = imageEncoder.FileExtensions.FirstOrDefault();
+                var uri = await _imageAttachmentStorageRepository.UploadToStorage(bytes, $"{Guid.NewGuid()}.{fileExtension}", imageEncoder.DefaultMimeType);
+                _logger.LogTrace("Image attachment uploaded to Azure");
+                return uri.AbsoluteUri;
             }
             catch (ApiException dalExc)
             {

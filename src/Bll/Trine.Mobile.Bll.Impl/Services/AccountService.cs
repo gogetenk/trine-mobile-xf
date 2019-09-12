@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Prism.Logging;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -44,8 +44,15 @@ namespace Trine.Mobile.Bll.Impl.Services
                 AppSettings.AccessToken = tokenModel;
                 AppSettings.CurrentUser = user;
                 //await BlobCache.UserAccount.InsertObject(CacheKeys._CurrentUser, user);
-                await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
 
+                try
+                {
+                    await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
+                }
+                catch
+                {
+                    _logger.LogInformation("This device AND debug type doesn't support secure storage (probably iOS + Debug on simulator)");
+                }
                 return tokenModel.UserId;
             }
             catch (ApiException apiExc)
@@ -94,7 +101,7 @@ namespace Trine.Mobile.Bll.Impl.Services
                 var result = await _gatewayRepository.ApiAccountsUsersRegisterPostAsync(_mapper.Map<RegisterUserRequest>(model));
                 token = result.Token;
 
-                _logger.TrackEvent("New user subscription");
+                _logger.LogTrace("New user subscription");
 
                 //TODO : trop de calls, a optimiser
                 var user = _mapper.Map<UserModel>(await _gatewayRepository.ApiAccountsUsersByIdGetAsync(token.UserId));
@@ -104,7 +111,14 @@ namespace Trine.Mobile.Bll.Impl.Services
                 AppSettings.AccessToken = _mapper.Map<TokenModel>(token);
                 AppSettings.CurrentUser = user;
                 //await BlobCache.UserAccount.InsertObject(CacheKeys._CurrentUser, user);
-                await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
+                try
+                {
+                    await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
+                }
+                catch
+                {
+                    _logger.LogInformation("This device AND debug type doesn't support secure storage (probably iOS + Debug on simulator)");
+                }
 
                 return token.UserId;
             }

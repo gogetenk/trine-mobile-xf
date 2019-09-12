@@ -47,15 +47,20 @@ namespace Modules.Authentication.ViewModels
 
         private readonly IAccountService _accountService;
         private readonly IPageDialogService _dialogService;
+        private readonly ISupportService _supportService;
 
-        public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
+        public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, ISupportService supportService) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
             _dialogService = dialogService;
+            _supportService = supportService;
 
             SubmitCommand = new DelegateCommand(async () => await OnSubmit(), () => !IsLoading);
             LoginCommand = new DelegateCommand(async () => await OnLogin());
             EmailUnfocusedCommand = new DelegateCommand(async () => await OnEmailEntered());
+
+            // Tracking lead 
+            _supportService.RegisterAnonymousUser();
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)

@@ -54,7 +54,7 @@ namespace Modules.Mission.ViewModels
             MissionInvoiceViewModel = new MissionInvoiceViewModel(navigationService, mapper, logger, pageDialogService);
         }
 
-        public override async void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
 

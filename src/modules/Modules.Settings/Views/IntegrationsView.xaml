@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Trine.Mobile.Components.Converters;assembly=Trine.Mobile.Components"
+             mc:Ignorable="d"
+             Title="Integrations"
+             x:Class="Modules.Settings.Views.IntegrationsView">
+    <StackLayout VerticalOptions="Center"
+                 Margin="40">
+        <Label Text="Nous n'avons pas encore d'intégration à vous proposer !"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Center"
+               TextColor="Black"
+               Style="{StaticResource H2}" />
+        <Label Text="Revenez plus tard afin de brancher vos outils préférés."
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Center"
+               FontFamily="{StaticResource ThinFont}"
+               Style="{StaticResource SecondaryText}"
+               TextDecorations="None" />
+
+        <Image x:Name="img"
+               Source="{local:ImageResource Modules.Settings.Assets.integrations.png}"
+               HorizontalOptions="Center"
+               Aspect="AspectFit"
+               Margin="0,40,0,0" />
+    </StackLayout>
+</ContentPage>

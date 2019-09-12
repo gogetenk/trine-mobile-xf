@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             mc:Ignorable="d"
+             x:Class="Modules.Settings.Views.EditUserView">
+    
+    <ScrollView>
+        
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="65*" />
+        </Grid.RowDefinitions>
+
+        <Grid BackgroundColor="{StaticResource AccentColor}" Grid.Row="0">
+                <Grid HeightRequest="120"
+                      WidthRequest="120"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Start">
+                    <abstractions:CircleImage BorderColor="White"
+                                              BorderThickness="2"
+                                              Aspect="AspectFill"
+                                              Source="{Binding User.ProfilePicUrl}">
+                        <abstractions:CircleImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TakePictureCommand}" />
+                        </abstractions:CircleImage.GestureRecognizers>
+                    </abstractions:CircleImage>
+                    <Button CornerRadius="{OnPlatform Default=120, iOS=20}"
+                            VerticalOptions="EndAndExpand"
+                            HorizontalOptions="EndAndExpand"
+                            Padding="0"
+                            Text="&#xe412;"
+                            Command="{Binding TakePictureCommand}"
+                            FontFamily="{StaticResource MaterialIcons}"
+                            WidthRequest="40"
+                            HeightRequest="40"
+                            FontSize="24"
+                            TextColor="Black"
+                            BackgroundColor="White" />
+                </Grid>
+           
+        </Grid>
+
+        <Grid BackgroundColor="{StaticResource AccentColor}"
+              Grid.Row="1" />
+
+        <StackLayout Grid.Row="1"
+                     Grid.RowSpan="2">
+            <Frame CornerRadius="5"
+                   Margin="40,0,40,25"
+                   Padding="30"
+                   Visual="Material"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Fill">
+                <StackLayout>
+                    <Label Text="Prénom"
+                           Style="{StaticResource TertiaryText}"
+                           TextDecorations="None" />
+                    <Editor Text="{Binding User.Firstname}" 
+                            Visual="Default"
+                            Style="{StaticResource Paragraph}" />
+
+                    <Label Text="Nom"
+                           Style="{StaticResource TertiaryText}"
+                           TextDecorations="None" />
+                    <Editor Text="{Binding User.Lastname}"
+                            Visual="Default"
+                            Style="{StaticResource Paragraph}" />
+
+                    <Label Text="Profil"
+                           Style="{StaticResource TertiaryText}"
+                           TextDecorations="None" />
+                    <Picker SelectedItem="{Binding User.Role}"
+                            Visual="Default"
+                            Style="{StaticResource Paragraph}" />
+
+                    <Label Text="Téléphone"
+                           Style="{StaticResource TertiaryText}"
+                           TextDecorations="None" />
+                    <Editor Text="{Binding User.PhoneNumber}"
+                            Visual="Default"
+                            Style="{StaticResource Paragraph}" />
+
+                    <Label Text="E-mail"
+                           Style="{StaticResource TertiaryText}"
+                           TextDecorations="None" />
+                    <Editor Text="{Binding User.Mail}"
+                            Visual="Default"
+                            Style="{StaticResource Paragraph}" />
+
+                </StackLayout>
+            </Frame>
+
+
+           
+            <Button Text="Sauvegarder"
+                    Command="{Binding SaveCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="EndAndExpand"
+                    Margin="40,2,40,2"
+                    HeightRequest="50"
+                    Style="{StaticResource PrimaryButtonStyle}" />
+            
+            <Button Text="Supprimer le compte"
+                    Command="{Binding DeleteCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="40,2,40,30"
+                    HeightRequest="50"
+                    Visual="Material"
+                    BorderColor="Red"
+                    CornerRadius="5"
+                    BorderWidth="1"
+                    BackgroundColor="White"
+                    TextColor="Red" />
+        </StackLayout>
+
+    </Grid>
+    </ScrollView>
+
+</ContentPage>

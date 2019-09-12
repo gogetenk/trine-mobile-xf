@@ -26,8 +26,7 @@
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignEntitlements>
-    </CodesignEntitlements>
+    <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -65,9 +64,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: Yannis Tocreau (ZZKDQ2YL2R)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>hellotrine</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -102,6 +100,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\MaterialEntryRenderer.cs" />
+    <Compile Include="Services\IntercomService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
@@ -215,6 +214,9 @@
     <PackageReference Include="Microsoft.AppCenter.Distribute">
       <Version>2.1.1</Version>
     </PackageReference>
+    <PackageReference Include="nventive.Binding.Intercom">
+      <Version>4.1.13</Version>
+    </PackageReference>
     <PackageReference Include="Sharpnado.Presentation.Forms">
       <Version>1.2.0</Version>
     </PackageReference>
@@ -246,6 +248,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll.Impl\Bll.Impl.csproj">
+      <Project>{2E0D3107-4A4C-44AC-90A2-4EEA56D2AEDF}</Project>
+      <Name>Bll.Impl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Bll\Trine.Mobile.Bll\Bll.csproj">
       <Project>{5AB648D4-C1D2-4C6A-934A-10F401662663}</Project>
       <Name>Bll</Name>

@@ -1,11 +1,14 @@
-﻿using Foundation;
+﻿using Binding.Intercom.iOS;
+using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using InstabugLib;
 using Prism;
 using Prism.Ioc;
 using Sharpnado.Presentation.Forms.iOS;
 using System;
+using Trine.Mobile.Bll;
 using Trine.Mobile.Bootstrapper;
+using Trine.Mobile.iOS.Services;
 using UIKit;
 using Xamarin.Forms;
 namespace Trine.Mobile.iOS
@@ -48,6 +51,9 @@ namespace Trine.Mobile.iOS
                 Instabug.SetWelcomeMessageMode(IBGWelcomeMessageMode.WelcomeMessageModeDisabled); // Disable welcome message
                 // Disable the Replies. If disabled, the chats list button is removed from Instabug's prompt, the in-app notifications are disabled, and manually showing the chats list doesn't have an effect. 
                 IBGReplies.Enabled = false;
+
+                // Intercom
+                Intercom.SetApiKey("ios_sdk-be15dd592c71d03d0f5245caece3fd0a40ae6435", "v4l26lv4");
             }
             catch (Exception exception)
             {
@@ -96,6 +102,7 @@ namespace Trine.Mobile.iOS
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            containerRegistry.Register<ISupportService, IntercomService>();
         }
     }
 }

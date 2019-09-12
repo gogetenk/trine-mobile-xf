@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Prism.Logging;
+using Microsoft.Extensions.Logging;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Collections.Generic;

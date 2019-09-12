@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Trine.Mobile.Dal.AzureBlobStorage</AssemblyName>
+    <RootNamespace>Trine.Mobile.Dal.AzureBlobStorage</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Trine.Mobile.Dal\Dal.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -45,7 +45,7 @@
 
         <Frame HasShadow="True"
                Grid.Row="1"
-                    Visual="Material"
+               Visual="Material"
                BackgroundColor="White"
                Margin="40,0,40,0"
                Padding="25"
@@ -87,6 +87,7 @@
                     x:Name="bt_delete"
                     HorizontalOptions="FillAndExpand"
                     Margin="40,2,40,30"
+                    Visual="Material"
                     HeightRequest="50"
                     BorderColor="Red"
                     CornerRadius="5"

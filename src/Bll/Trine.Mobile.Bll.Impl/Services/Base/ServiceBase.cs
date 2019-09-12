@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Prism.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace Trine.Mobile.Bll.Impl.Services.Base
 {

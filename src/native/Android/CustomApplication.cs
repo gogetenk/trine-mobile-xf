@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Graphics;
 using Android.Runtime;
+using Binding.Intercom.Android;
 using Com.Instabug.Library;
 using Com.Instabug.Library.Core;
 using Com.Instabug.Library.Invocation;
@@ -21,6 +22,8 @@ namespace Trine.Mobile.Bootstrapper.Droid
         public override void OnCreate()
         {
             base.OnCreate();
+
+            Intercom.Initialize(this, "android_sdk-131fedc98cf2a3bcf9c4b8ac0a64f49cb739bb90", "v4l26lv4");
 
             new Instabug
                 .Builder(this, "ee39ba65bc0171ea932b98e05acab1f2")

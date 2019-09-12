@@ -7,8 +7,10 @@ using ImageCircle.Forms.Plugin.Droid;
 using Plugin.CurrentActivity;
 using Prism;
 using Prism.Ioc;
+using Trine.Mobile.Bll;
 using Trine.Mobile.Bootstrapper;
 using Trine.Mobile.Bootstrapper.Droid;
+using Trine.Mobile.Bootstrapper.Droid.Services;
 using Xamarin.Forms;
 
 namespace Trine.Mobile.Android
@@ -53,6 +55,7 @@ namespace Trine.Mobile.Android
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register any platform specific implementations
+            containerRegistry.Register<ISupportService, IntercomService>();
         }
     }
 }
