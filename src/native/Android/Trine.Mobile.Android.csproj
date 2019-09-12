@@ -52,6 +52,8 @@
     <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
     <AndroidSupportedAbis />
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+	<DxExtraArguments>--dex --no-strict --force-jumbo</DxExtraArguments>
+<AndroidMultiDexClassListExtraArgs>--disable-annotation-resolution workaround</AndroidMultiDexClassListExtraArgs>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
