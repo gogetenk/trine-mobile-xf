@@ -4,13 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:local="clr-namespace:Trine.Mobile.Components.Converters;assembly=Trine.Mobile.Components"
              Title="Notifications"
-             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific.AppCompat;assembly=Xamarin.Forms.Core"
+             xmlns:local="clr-namespace:Trine.Mobile.Components.Converters;assembly=Trine.Mobile.Components"
              x:Class="Modules.Settings.Views.NotificationsView">
     <StackLayout VerticalOptions="Center" Margin="40">
         <Label Text="Vos réglages arrivent bientôt !"
-               HorizontalOptions="Center" 
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Center"
                TextColor="Black"
                Style="{StaticResource H2}"/>
         <Label Text="Revenez plus tard afin de gérer vos préférences de notification."

@@ -4,12 +4,130 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Title="Support"
              x:Class="Modules.Settings.Views.HelpView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+    <StackLayout VerticalOptions="Center">
+        
+        <StackLayout Padding="40,40,40,10">
+
+            <Image x:Name="img"
+                   WidthRequest="100"
+                   Margin="0,0,0,50"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start" />
+
+            <Grid RowSpacing="-15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+
+                <Frame CornerRadius="5"
+                       Grid.RowSpan="2"
+                       BackgroundColor="#F5F5F7"
+                       HasShadow="False" />
+
+                <StackLayout Grid.Row="0"
+                             Padding="20"
+                             VerticalOptions="FillAndExpand"
+                             Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HelpCenterCommand}" />
+                    </StackLayout.GestureRecognizers>
+                    <Label Style="{StaticResource Paragraph}"
+                           VerticalOptions="Center"
+                           Text="Centre d'information" />
+                    <Label Style="{StaticResource Paragraph}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="EndAndExpand"
+                           FontFamily="{StaticResource MaterialIcons}"
+                           FontSize="20"
+                           Text="&#xe5cc;" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="1"
+                             Padding="20"
+                             VerticalOptions="FillAndExpand"
+                             Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ContactCommand}" />
+                    </StackLayout.GestureRecognizers>
+                    <Label Style="{StaticResource Paragraph}"
+                           VerticalOptions="Center"
+                           Text="Nous contacter" />
+                    <Label Style="{StaticResource Paragraph}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="EndAndExpand"
+                           FontFamily="{StaticResource MaterialIcons}"
+                           FontSize="20"
+                           Text="&#xe5cc;" />
+                </StackLayout>
+
+            </Grid>
         </StackLayout>
-    </ContentPage.Content>
+
+        <StackLayout Padding="40,0,40,0">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BlogCommand}" />
+            </StackLayout.GestureRecognizers>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+
+                <Frame CornerRadius="5"
+                       BackgroundColor="#F5F5F7"
+                       HasShadow="False" />
+
+                <StackLayout Grid.Row="0"
+                             Padding="20"
+                             VerticalOptions="FillAndExpand"
+                             Orientation="Horizontal">
+                    <Label Style="{StaticResource Paragraph}"
+                           VerticalOptions="Center"
+                           Text="Lire le blog" />
+                    <Label Style="{StaticResource Paragraph}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="EndAndExpand"
+                           FontFamily="{StaticResource MaterialIcons}"
+                           FontSize="20"
+                           Text="&#xe5cc;" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+
+        <StackLayout Padding="40,10,40,0">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LegalCommand}" />
+            </StackLayout.GestureRecognizers>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+
+                <Frame CornerRadius="5"
+                       BackgroundColor="#F5F5F7"
+                       HasShadow="False" />
+
+                <StackLayout Grid.Row="0"
+                             Padding="20"
+                             VerticalOptions="FillAndExpand"
+                             Orientation="Horizontal">
+                    <Label Style="{StaticResource Paragraph}"
+                           VerticalOptions="Center"
+                           Text="Conditions générales" />
+                    <Label Style="{StaticResource Paragraph}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="EndAndExpand"
+                           FontFamily="{StaticResource MaterialIcons}"
+                           FontSize="20"
+                           Text="&#xe5cc;" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+
+    </StackLayout>
 </ContentPage>

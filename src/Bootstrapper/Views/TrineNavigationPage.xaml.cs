@@ -17,6 +17,7 @@ namespace Trine.Mobile.Bootstrapper.Views
             InitializeComponent();
 
             BarTextColor = Color.White;
+            App.Current.Resources["DynamicNavigationBarColor"] = App.Current.Resources["NavigationBarColor"];
         }
     }
 }

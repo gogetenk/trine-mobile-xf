@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,6 +11,9 @@ namespace Modules.Settings.Views
         public IntegrationsView()
         {
             InitializeComponent();
+
+            img.Source = ImageSource.FromResource("Modules.Settings.Assets.integrations.png", typeof(NotificationsView).GetTypeInfo().Assembly);
+            //SettingsModule.navPageInstance.BarBackgroundColor = Color.FromHex("#FFFFFF");
         }
     }
 }

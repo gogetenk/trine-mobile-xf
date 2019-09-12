@@ -10,7 +10,7 @@
              ios:NavigationPage.HideNavigationBarSeparator="True"
              ios:NavigationPage.PrefersLargeTitles="true"
              BackgroundColor="White"
-             BarBackgroundColor="{StaticResource AccentColor}"
+             BarBackgroundColor="{DynamicResource DynamicNavigationBarColor}"
              BarTextColor="White">
 
 </NavigationPage>

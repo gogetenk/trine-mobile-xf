@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,6 +11,8 @@ namespace Modules.Settings.Views
         public HelpView()
         {
             InitializeComponent();
+
+            img.Source = ImageSource.FromResource("Modules.Settings.Assets.trine.png", typeof(NotificationsView).GetTypeInfo().Assembly);
         }
     }
 }

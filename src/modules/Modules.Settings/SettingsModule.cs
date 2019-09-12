@@ -2,14 +2,17 @@
 using Modules.Settings.Views;
 using Prism.Ioc;
 using Prism.Modularity;
+using Xamarin.Forms;
 
 namespace Modules.Settings
 {
     public class SettingsModule : IModule
     {
+        public static NavigationPage navPageInstance;
+
         public void OnInitialized(IContainerProvider containerProvider)
         {
-
+            //navPageInstance = containerProvider.Resolve<NavigationPage>();
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

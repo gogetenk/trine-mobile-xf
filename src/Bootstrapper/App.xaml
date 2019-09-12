@@ -7,6 +7,15 @@
 
         <!-- Application resource dictionary -->
         <ResourceDictionary x:Name="base_dictionary">
+
+            <Style ApplyToDerivedTypes="true"
+                   TargetType="NavigationPage">
+                <!--ApplyToDerivedTypes means for all content pages -->
+                <Setter Property="BarBackgroundColor"
+                        Value="{DynamicResource Key=DynamicNavigationBarColor}" />
+            </Style>
+            
+            
             <OnPlatform x:TypeArguments="x:String"
                     x:Key="NormalFont">
                 <On Platform="Android"
@@ -55,6 +64,7 @@
 
             <Color x:Key="PageBackgroundColor">White</Color>
             <Color x:Key="AccentColor">#5A28D6</Color>
+            <Color x:Key="NavigationBarColor">#5A28D6</Color>
             <Color x:Key="HeadingTextColor">Black</Color>
             <Color x:Key="NormalTextColor">#333333</Color>
             <Color x:Key="SecondaryTextColor">#707070</Color>
