@@ -87,6 +87,7 @@
                     x:Name="bt_delete"
                     HorizontalOptions="FillAndExpand"
                     Margin="40,2,40,30"
+                    Visual="Material"
                     HeightRequest="50"
                     BorderColor="Red"
                     CornerRadius="5"

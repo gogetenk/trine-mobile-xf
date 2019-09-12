@@ -17,8 +17,8 @@
                HorizontalTextAlignment="Center"
                HorizontalOptions="Center"
                FontFamily="{StaticResource ThinFont}"
-               Style="{StaticResource Paragraph}" />
+               Style="{StaticResource SecondaryText}" TextDecorations="None" />
 
-        <Image x:Name="img" Source="{local:ImageResource Modules.Settings.Assets.notifications.png}" HorizontalOptions="Center" Aspect="AspectFit" Margin="0,20,0" />
+        <Image x:Name="img" Source="{local:ImageResource Modules.Settings.Assets.notifications.png}" HorizontalOptions="Center" Aspect="AspectFit" Margin="0,40,0,0" />
     </StackLayout>
 </ContentPage>

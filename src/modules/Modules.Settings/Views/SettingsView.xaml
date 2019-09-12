@@ -29,7 +29,7 @@
                        Style="{StaticResource H2}" /> 
             </StackLayout>
 
-            <Button CornerRadius="{OnPlatform Default=120, iOS=25}"
+            <Button CornerRadius="{OnPlatform Default=120, iOS=16}"
                     HorizontalOptions="EndAndExpand"
                     TextColor="White"
                     BackgroundColor="#8C69E3"

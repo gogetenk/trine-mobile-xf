@@ -30,7 +30,7 @@
     <Style x:Key="H2"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="Medium" />
+                Value="17" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextColor"

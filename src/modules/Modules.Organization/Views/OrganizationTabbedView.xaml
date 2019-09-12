@@ -86,14 +86,18 @@
                     </StackLayout>
                 </StackLayout>
 
-                <abstractions:CircleImage HeightRequest="100"
-                                          WidthRequest="100"
-                                          BorderColor="White"
-                                          BorderThickness="1"
-                                          HorizontalOptions="EndAndExpand"
-                                          VerticalOptions="Center"
-                                          Aspect="AspectFit"
-                                          Source="{Binding Organization.Icon}" />
+                <Frame CornerRadius="{OnPlatform Default=120, iOS=33}"
+                       IsClippedToBounds="True"
+                       HasShadow="False"
+                       BorderColor="White"
+                       Padding="0"
+                       HorizontalOptions="EndAndExpand"
+                       VerticalOptions="Center"
+                       BackgroundColor="White">
+                    <Image Aspect="AspectFit"
+                           Source="{Binding Organization.Icon}" />
+                </Frame>
+          
             </StackLayout>
         </Grid>
         

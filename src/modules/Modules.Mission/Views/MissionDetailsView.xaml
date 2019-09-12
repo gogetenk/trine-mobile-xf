@@ -49,7 +49,7 @@
           RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <tabs:TabHostView x:Name="TabHost"

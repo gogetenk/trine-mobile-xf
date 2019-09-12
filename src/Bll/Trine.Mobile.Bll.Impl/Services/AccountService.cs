@@ -44,8 +44,15 @@ namespace Trine.Mobile.Bll.Impl.Services
                 AppSettings.AccessToken = tokenModel;
                 AppSettings.CurrentUser = user;
                 //await BlobCache.UserAccount.InsertObject(CacheKeys._CurrentUser, user);
-                await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
 
+                try
+                {
+                    await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
+                }
+                catch
+                {
+                    _logger.LogInformation("This device AND debug type doesn't support secure storage (probably iOS + Debug on simulator)");
+                }
                 return tokenModel.UserId;
             }
             catch (ApiException apiExc)
@@ -104,7 +111,14 @@ namespace Trine.Mobile.Bll.Impl.Services
                 AppSettings.AccessToken = _mapper.Map<TokenModel>(token);
                 AppSettings.CurrentUser = user;
                 //await BlobCache.UserAccount.InsertObject(CacheKeys._CurrentUser, user);
-                await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
+                try
+                {
+                    await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
+                }
+                catch
+                {
+                    _logger.LogInformation("This device AND debug type doesn't support secure storage (probably iOS + Debug on simulator)");
+                }
 
                 return token.UserId;
             }

@@ -110,6 +110,7 @@
                     HorizontalOptions="FillAndExpand"
                     Margin="40,2,40,30"
                     HeightRequest="50"
+                    Visual="Material"
                     BorderColor="Red"
                     CornerRadius="5"
                     BorderWidth="1"
