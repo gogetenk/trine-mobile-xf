@@ -199,9 +199,6 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Com.OneSignal">
-      <Version>3.4.1</Version>
-    </PackageReference>
     <PackageReference Include="instabug-for-ios">
       <Version>8.5.2</Version>
     </PackageReference>

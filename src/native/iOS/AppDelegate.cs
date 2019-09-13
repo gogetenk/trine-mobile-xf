@@ -66,33 +66,33 @@ namespace Trine.Mobile.iOS
         // The following Exports are needed to run OneSignal in the iOS Simulator.
         //   The simulator doesn't support push however this prevents a crash due to a Xamarin bug
         //   https://bugzilla.xamarin.com/show_bug.cgi?id=52660
-        [Export("oneSignalApplicationDidBecomeActive:")]
-        public void OneSignalApplicationDidBecomeActive(UIApplication application)
-        {
-            // Remove line if you don't have a OnActivated method.
-            OnActivated(application);
-        }
+        //[Export("oneSignalApplicationDidBecomeActive:")]
+        //public void OneSignalApplicationDidBecomeActive(UIApplication application)
+        //{
+        //    // Remove line if you don't have a OnActivated method.
+        //    OnActivated(application);
+        //}
 
-        [Export("oneSignalApplicationWillResignActive:")]
-        public void OneSignalApplicationWillResignActive(UIApplication application)
-        {
-            // Remove line if you don't have a OnResignActivation method.
-            OnResignActivation(application);
-        }
+        //[Export("oneSignalApplicationWillResignActive:")]
+        //public void OneSignalApplicationWillResignActive(UIApplication application)
+        //{
+        //    // Remove line if you don't have a OnResignActivation method.
+        //    OnResignActivation(application);
+        //}
 
-        [Export("oneSignalApplicationDidEnterBackground:")]
-        public void OneSignalApplicationDidEnterBackground(UIApplication application)
-        {
-            // Remove line if you don't have a DidEnterBackground method.
-            DidEnterBackground(application);
-        }
+        //[Export("oneSignalApplicationDidEnterBackground:")]
+        //public void OneSignalApplicationDidEnterBackground(UIApplication application)
+        //{
+        //    // Remove line if you don't have a DidEnterBackground method.
+        //    DidEnterBackground(application);
+        //}
 
-        [Export("oneSignalApplicationWillTerminate:")]
-        public void OneSignalApplicationWillTerminate(UIApplication application)
-        {
-            // Remove line if you don't have a WillTerminate method.
-            WillTerminate(application);
-        }
+        //[Export("oneSignalApplicationWillTerminate:")]
+        //public void OneSignalApplicationWillTerminate(UIApplication application)
+        //{
+        //    // Remove line if you don't have a WillTerminate method.
+        //    WillTerminate(application);
+        //}
 
         // Note: Similar exports are needed if you add other AppDelegate overrides.
     }

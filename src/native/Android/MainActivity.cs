@@ -2,7 +2,6 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Com.OneSignal;
 using ImageCircle.Forms.Plugin.Droid;
 using Plugin.CurrentActivity;
 using Prism;
@@ -33,10 +32,10 @@ namespace Trine.Mobile.Android
             ImageCircleRenderer.Init();
             FormsMaterial.Init(this, bundle);
             CrossCurrentActivity.Current.Init(this, bundle);
-            OneSignal
-                .Current
-                .StartInit("12785512-a98b-4c91-89ca-05959a685120")
-                .EndInit();
+            //OneSignal
+            //    .Current
+            //    .StartInit("12785512-a98b-4c91-89ca-05959a685120")
+            //    .EndInit();
 
             LoadApplication(new App(new AndroidInitializer()));
         }
