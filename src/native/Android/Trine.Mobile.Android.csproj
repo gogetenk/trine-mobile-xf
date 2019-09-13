@@ -52,6 +52,7 @@
     <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
     <AndroidSupportedAbis />
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+	AndroidEnableDesugar>true</AndroidEnableDesugar>
 	<AndroidDexTool>d8</AndroidDexTool>
 	<EnableProguard>true</EnableProguard>
   </PropertyGroup>
