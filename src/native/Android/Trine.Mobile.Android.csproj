@@ -53,7 +53,7 @@
     <AndroidSupportedAbis />
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
     <AndroidDexTool>d8</AndroidDexTool>
-    <AndroidLinkTool>proguard</AndroidLinkTool>
+    <AndroidLinkTool>r8</AndroidLinkTool>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
