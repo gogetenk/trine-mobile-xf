@@ -22,7 +22,7 @@
     <PackageReference Include="Sogetrel.Sinapse.Framework.Exceptions" Version="1.2.0-beta-007908" />
     <PackageReference Include="Xam.Plugin.MultiGestureView" Version="1.0.2" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.815419" />
   </ItemGroup>
 
   <ItemGroup>
