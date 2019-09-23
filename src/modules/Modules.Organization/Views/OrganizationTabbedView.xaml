@@ -12,126 +12,123 @@
              Title="Panda Services"
              x:Class="Modules.Organization.Views.OrganizationTabbedView">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="TabStyle"
-                   TargetType="tabs:UnderlinedTabItem">
-                <Setter Property="SelectedTabColor"
-                        Value="#FFFFFF" />
-                <Setter Property="LabelSize"
-                        Value="14" />
-                <Setter Property="BackgroundColor"
-                        Value="{StaticResource AccentColor}" />
-                <Setter Property="UnselectedLabelColor"
-                        Value="White" />
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style x:Key="TabStyle"
+             TargetType="tabs:UnderlinedTabItem">
+        <Setter Property="SelectedTabColor"
+                Value="#FFFFFF" />
+        <Setter Property="LabelSize"
+                Value="14" />
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource AccentColor}" />
+        <Setter Property="UnselectedLabelColor"
+                Value="White" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
 
-    <Grid ColumnSpacing="0"
-          RowSpacing="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+  <Grid ColumnSpacing="0"
+        RowSpacing="0">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="50" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
 
-        <Grid BackgroundColor="{StaticResource AccentColor}"
-              Grid.Row="0">
-            <StackLayout Orientation="Horizontal"
-                         Padding="20">
-                <StackLayout Spacing="0"
-                             VerticalOptions="Center">
-                    <StackLayout Orientation="Horizontal"
-                                 Margin="0,0,0,0">
-                        <Label Text="&#xe55f;"
-                               VerticalOptions="Center"
-                               TextColor="#DED4F7"
-                               Style="{StaticResource Paragraph}"
-                               FontFamily="{StaticResource MaterialIcons}"
-                               FontSize="12"
-                               Margin="0,0,10,0" />
-                        <Label Text="Montpellier, France"
-                               VerticalOptions="Center"
-                               TextColor="#DED4F7"
-                               FontSize="12"
-                               Style="{StaticResource Paragraph}" />
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 Margin="0,5,0,0">
-                        <Label Text="&#xe8d3;"
-                               VerticalOptions="Center"
-                               TextColor="#DED4F7"
-                               Style="{StaticResource Paragraph}"
-                               FontFamily="{StaticResource MaterialIcons}"
-                               FontSize="12"
-                               Margin="0,0,10,0" />
-                        <Label Text="{Binding Organization.MembersNb, StringFormat='{0:} membres'}"
-                               VerticalOptions="Center"
-                               FontSize="12"
-                               TextColor="#DED4F7"
-                               Style="{StaticResource Paragraph}" />
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal"
-                                 Margin="0,5,0,0">
-                        <Label Text="&#xe8f9;"
-                               VerticalOptions="Center"
-                               Style="{StaticResource Paragraph}"
-                               TextColor="#DED4F7"
-                               FontSize="12"
-                               FontFamily="{StaticResource MaterialIcons}"
-                               Margin="0,0,10,0" />
-                        <Label Text="{Binding Organization.MissionsNb, StringFormat='{0:} missions'}"
-                               VerticalOptions="Center"
-                               FontSize="12"
-                               TextColor="#DED4F7"
-                               Style="{StaticResource Paragraph}" />
-                    </StackLayout>
-                </StackLayout>
+    <Grid BackgroundColor="{StaticResource AccentColor}"
+          Grid.Row="0">
+      <StackLayout Orientation="Horizontal"
+                   Padding="20">
+        <StackLayout Spacing="0"
+                     VerticalOptions="Center">
+          <StackLayout Orientation="Horizontal"
+                       Margin="0,0,0,0">
+            <Label Text="&#xe55f;"
+                   VerticalOptions="Center"
+                   TextColor="#DED4F7"
+                   Style="{StaticResource Paragraph}"
+                   FontFamily="{StaticResource MaterialIcons}"
+                   FontSize="12"
+                   Margin="0,0,10,0" />
+            <Label Text="Montpellier, France"
+                   VerticalOptions="Center"
+                   TextColor="#DED4F7"
+                   FontSize="12"
+                   Style="{StaticResource Paragraph}" />
+          </StackLayout>
+          <StackLayout Orientation="Horizontal"
+                       Margin="0,5,0,0">
+            <Label Text="&#xe8d3;"
+                   VerticalOptions="Center"
+                   TextColor="#DED4F7"
+                   Style="{StaticResource Paragraph}"
+                   FontFamily="{StaticResource MaterialIcons}"
+                   FontSize="12"
+                   Margin="0,0,10,0" />
+            <Label Text="{Binding Organization.MembersNb, StringFormat='{0:} membres'}"
+                   VerticalOptions="Center"
+                   FontSize="12"
+                   TextColor="#DED4F7"
+                   Style="{StaticResource Paragraph}" />
+          </StackLayout>
+          <StackLayout Orientation="Horizontal"
+                       Margin="0,5,0,0">
+            <Label Text="&#xe8f9;"
+                   VerticalOptions="Center"
+                   Style="{StaticResource Paragraph}"
+                   TextColor="#DED4F7"
+                   FontFamily="{StaticResource MaterialIcons}"
+                   Margin="0,0,10,0" />
+            <Label Text="{Binding Organization.MissionsNb, StringFormat='{0:} missions'}"
+                   VerticalOptions="Center"
+                   TextColor="#DED4F7"
+                   Style="{StaticResource Paragraph}" />
+          </StackLayout>
+        </StackLayout>
 
-                <Frame CornerRadius="{OnPlatform Default=120, iOS=33}"
-                       IsClippedToBounds="True"
-                       HasShadow="False"
-                       BorderColor="White"
-                       Padding="0"
-                       WidthRequest="50"
-                       HorizontalOptions="EndAndExpand"
-                       VerticalOptions="Center"
-                       BackgroundColor="White">
-                    <Image Aspect="AspectFit"
-                           Source="{Binding Organization.Icon}" />
-                </Frame>
+        <Frame CornerRadius="{OnPlatform Default=120, iOS=33}"
+               IsClippedToBounds="True"
+               HasShadow="False"
+               BorderColor="White"
+               Padding="0"
+               HorizontalOptions="EndAndExpand"
+               VerticalOptions="Center"
+               BackgroundColor="White">
+          <Image Aspect="AspectFit"
+                 Source="{Binding Organization.Icon}" />
+        </Frame>
 
-            </StackLayout>
-        </Grid>
+      </StackLayout>
+    </Grid>
 
-        <tabs:TabHostView x:Name="TabHost"
-                          Grid.Row="1"
-                          Margin="-16,0"
-                          BackgroundColor="White"
-                          SelectedIndex="{Binding Source={x:Reference Switcher}, 
+    <tabs:TabHostView x:Name="TabHost"
+                      Grid.Row="1"
+                      Margin="-16,0"
+                      BackgroundColor="White"
+                      SelectedIndex="{Binding Source={x:Reference Switcher}, 
                                               Path=SelectedIndex, 
                                               Mode=TwoWay}"
-                          ShadowType="Bottom">
-            <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}"
-                                    Label="Missions" />
-            <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}"
-                                    Label="Membres" />
-        </tabs:TabHostView>
+                      ShadowType="Bottom">
+      <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}"
+                              Label="Missions" />
+      <tabs:UnderlinedTabItem Style="{StaticResource TabStyle}"
+                              Label="Membres" />
+    </tabs:TabHostView>
 
-        <tabs:ViewSwitcher  Grid.Row="2"
-                            x:Name="Switcher"
-                            Animate="True"
-                            SelectedIndex="{Binding SelectedViewModelIndex, 
+    <tabs:ViewSwitcher  Grid.Row="2"
+                        x:Name="Switcher"
+                        Animate="True"
+                        SelectedIndex="{Binding SelectedViewModelIndex, 
                                                    Mode=TwoWay}">
 
-            <pages:OrganizationMissionsView Animate="True"
-                                            BindingContext="{Binding OrganizationMissionsViewModel}" />
-            <pages:MembersContentView Animate="True"
-                                      BindingContext="{Binding MembersViewModel}"
-                                      IsColoredHeader="False" />
+      <pages:OrganizationMissionsView Animate="True"
+                                      BindingContext="{Binding OrganizationMissionsViewModel}" />
+      <pages:MembersContentView Animate="True"
+                                BindingContext="{Binding MembersViewModel}"
+                                IsColoredHeader="False" />
 
-        </tabs:ViewSwitcher>
-    </Grid>
+    </tabs:ViewSwitcher>
+  </Grid>
 
 </ContentPage>

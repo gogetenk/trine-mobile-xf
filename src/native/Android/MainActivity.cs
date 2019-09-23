@@ -33,7 +33,7 @@ namespace Trine.Mobile.Android
             FormsMaterial.Init(this, bundle);
             CrossCurrentActivity.Current.Init(this, bundle);
             //OneSignal
-            //    . 
+            //    .Current
             //    .StartInit("12785512-a98b-4c91-89ca-05959a685120")
             //    .EndInit();
 

@@ -30,7 +30,6 @@ using Trine.Mobile.Dal.AzureBlobStorage.Repositories;
 using Trine.Mobile.Dal.Configuration;
 using Trine.Mobile.Dal.Swagger;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
