@@ -4,7 +4,7 @@
 <dict>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>com.trine.hellotrine</string>
+		<string>CLUR4NKXWV.com.trine.hellotrine</string>
 	</array>
 	<key>aps-environment</key>
 	<string>development</string>
