@@ -78,11 +78,13 @@
                    VerticalOptions="Center"
                    Style="{StaticResource Paragraph}"
                    TextColor="#DED4F7"
-                   FontFamily="{StaticResource MaterialIcons}"
+                               FontSize="12"
+                               FontFamily="{StaticResource MaterialIcons}"
                    Margin="0,0,10,0" />
             <Label Text="{Binding Organization.MissionsNb, StringFormat='{0:} missions'}"
                    VerticalOptions="Center"
-                   TextColor="#DED4F7"
+                               FontSize="12"
+                               TextColor="#DED4F7"
                    Style="{StaticResource Paragraph}" />
           </StackLayout>
         </StackLayout>
