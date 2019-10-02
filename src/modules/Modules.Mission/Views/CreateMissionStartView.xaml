@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Modules.Mission.Views.CreateMissionStartView"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
              NavigationPage.HasNavigationBar="False">
     <StackLayout Padding="{StaticResource PagePadding}">
         <Frame CornerRadius="5"
@@ -26,9 +27,18 @@
                 AutomationId="bt_start"
                 x:Name="bt_start"
                 HorizontalOptions="Center"
-                VerticalOptions="CenterAndExpand"
+                VerticalOptions="EndAndExpand"
+                Margin="20"
                 Style="{StaticResource PrimaryButtonStyle}"
                 WidthRequest="180" />
-
+        <Label Text="Retour"
+                   HorizontalOptions="CenterAndExpand"
+                   AutomationId="lb_back"
+                   HeightRequest="30"
+                   Style="{StaticResource TertiaryText}">
+        <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{prism:GoBack}"  />
+        </Label.GestureRecognizers>
+        </Label>
     </StackLayout>
 </ContentPage>
