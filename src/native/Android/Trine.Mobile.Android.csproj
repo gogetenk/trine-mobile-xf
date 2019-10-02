@@ -50,7 +50,7 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <MandroidI18n />
     <JavaMaximumHeapSize>2G</JavaMaximumHeapSize>
-    <AndroidSupportedAbis />
+    <AndroidSupportedAbis>arm64-v8a</AndroidSupportedAbis>
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
