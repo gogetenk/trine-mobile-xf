@@ -19,13 +19,13 @@
 
     <OnIdiom  x:TypeArguments="GridLength"
               Tablet="80"
-              Phone="{OnPlatform Android=50, iOS=20*}"
-              Default="50"
+              Phone="{OnPlatform Android=40, iOS=20*}"
+              Default="40"
               x:Key="ActivityColumnWidth" />
     <OnIdiom  x:TypeArguments="GridLength"
               Tablet="80"
-              Phone="{OnPlatform Android=50, iOS=20*}"
-              Default="50"
+              Phone="{OnPlatform Android=40, iOS=20*}"
+              Default="40"
               x:Key="ActivityRowHeight" />
 
     <Style x:Key="H1"
