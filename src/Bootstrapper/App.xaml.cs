@@ -3,13 +3,8 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.Logging;
-using Modules.Activity;
 using Modules.Authentication;
-using Modules.Dashboard;
-using Modules.Menu;
-using Modules.Mission;
-using Modules.Organization;
-using Modules.Settings;
+using Modules.Consultant;
 using Prism;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -115,12 +110,13 @@ namespace Trine.Mobile.Bootstrapper
             base.ConfigureModuleCatalog(moduleCatalog);
 
             moduleCatalog.AddModule<AuthenticationModule>(InitializationMode.WhenAvailable);
-            moduleCatalog.AddModule<OrganizationModule>(InitializationMode.WhenAvailable);
-            moduleCatalog.AddModule<DashboardModule>(InitializationMode.WhenAvailable);
-            moduleCatalog.AddModule<MenuModule>(InitializationMode.WhenAvailable);
-            moduleCatalog.AddModule<MissionModule>(InitializationMode.WhenAvailable);
-            moduleCatalog.AddModule<ActivityModule>(InitializationMode.WhenAvailable);
-            moduleCatalog.AddModule<SettingsModule>(InitializationMode.WhenAvailable);
+            //moduleCatalog.AddModule<OrganizationModule>(InitializationMode.WhenAvailable);
+            //moduleCatalog.AddModule<DashboardModule>(InitializationMode.WhenAvailable);
+            //moduleCatalog.AddModule<MenuModule>(InitializationMode.WhenAvailable);
+            //moduleCatalog.AddModule<MissionModule>(InitializationMode.WhenAvailable);
+            //moduleCatalog.AddModule<ActivityModule>(InitializationMode.WhenAvailable);
+            //moduleCatalog.AddModule<SettingsModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<ConsultantModule>(InitializationMode.WhenAvailable);
         }
 
         public static bool IsASmallDevice()

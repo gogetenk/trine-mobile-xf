@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Modules.Consultant.Views.HomeView">
+
+    <NavigationPage.TitleView>
+        <StackLayout Margin="0,15,0,0"
+                     Spacing="0">
+            <Label Text="Bienvenue"
+                   TextColor="White"
+                   FontSize="14"
+                   Opacity=".6" />
+            <Label Text="Yannis Tocreau"
+                   TextColor="White"
+                   FontSize="18">
+                <Label.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean"
+                                iOS="False"
+                                Android="True" />
+                </Label.IsVisible>
+            </Label>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="70*" />
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <Grid Grid.Row="0"
+              x:Name="grid_header"
+              BackgroundColor="{StaticResource AccentColor}" />
+
+        <Grid Margin="0"
+              x:Name="grid_header_title"
+              Grid.RowSpan="2"
+              HeightRequest="120"
+              Padding="20,35,20,20">
+
+        </Grid>
+
+        <!-- MAIN CONTENT -->
+        <Grid Grid.RowSpan="2"
+              Padding="0,35,0,0">
+            <ScrollView>
+                <StackLayout>
+                    <Frame Margin="20,10,20,10"
+                           HasShadow="True"
+                           CornerRadius="5"
+                           Visual="Material"
+                           HeightRequest="320">
+                    </Frame>
+                    <Frame Margin="20,10,20,10"
+                           HasShadow="True"
+                           Visual="Material"
+                           CornerRadius="5"
+                           HeightRequest="250">
+                    </Frame>
+                    <Frame Margin="20,10,20,10"
+                           HasShadow="True"
+                           Visual="Material"
+                           CornerRadius="5"
+                           HeightRequest="250">
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               Color="#5C5EDC"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               Margin="20"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+
+        </Grid>
+    </Grid>
+    
+</ContentPage>

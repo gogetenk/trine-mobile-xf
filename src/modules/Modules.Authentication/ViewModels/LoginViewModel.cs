@@ -3,8 +3,6 @@ using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
-using Sogetrel.Sinapse.Framework.Exceptions;
-using System;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Components.ViewModels;
@@ -41,7 +39,7 @@ namespace Modules.Authentication.ViewModels
         public LoginViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
-            
+
             LoginCommand = new DelegateCommand(async () => await OnLogin(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible && !IsLoading);
             ForgotPasswordCommand = new DelegateCommand(async () => await OnForgotPassword());
             SignupCommand = new DelegateCommand(async () => await OnSignup());
@@ -59,37 +57,43 @@ namespace Modules.Authentication.ViewModels
 
         private async Task OnLogin()
         {
-            IsEmailErrorVisible = string.IsNullOrEmpty(Email);
-            IsPasswordErrorVisible = string.IsNullOrEmpty(Password);
+            await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
 
-            if (IsEmailErrorVisible || IsPasswordErrorVisible)
-                return;
 
-            try
-            {
-                IsLoading = true;
-                var userId = await _accountService.Login(Email, Password);
+            //IsEmailErrorVisible = string.IsNullOrEmpty(Email);
+            //IsPasswordErrorVisible = string.IsNullOrEmpty(Password);
 
-                if (string.IsNullOrEmpty(userId))
-                    return;
+            //if (IsEmailErrorVisible || IsPasswordErrorVisible)
+            //    return;
 
-                // Setting the user id to app center
-                //AppCenter.SetUserId(userId);
+            //try
+            //{
+            //    IsLoading = true;
+            //    var userId = await _accountService.Login(Email, Password);
 
-                await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/DashboardView");
-            }
-            catch (BusinessException bExc)
-            {
-                await LogAndShowBusinessError(bExc);
-            }
-            catch (Exception exc)
-            {
-                LogTechnicalError(exc);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
+            //    if (string.IsNullOrEmpty(userId))
+            //        return;
+
+            //    // Setting the user id to app center
+            //    //AppCenter.SetUserId(userId);
+
+
+            //    // TODO : gérer la navigation en fonction du user type (module consultant client ou esn ?)
+            //    //await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/DashboardView");
+
+            //}
+            //catch (BusinessException bExc)
+            //{
+            //    await LogAndShowBusinessError(bExc);
+            //}
+            //catch (Exception exc)
+            //{
+            //    LogTechnicalError(exc);
+            //}
+            //finally
+            //{
+            //    IsLoading = false;
+            //}
         }
     }
 }

@@ -24,13 +24,8 @@
     <ProjectReference Include="..\Bll\Trine.Mobile.Bll\Bll.csproj" />
     <ProjectReference Include="..\Dal\Trine.Mobile.Dal.AzureBlobStorage\Dal.AzureBlobStorage.csproj" />
     <ProjectReference Include="..\Dal\Trine.Mobile.Dal.Swagger\Dal.Swagger.csproj" />
-    <ProjectReference Include="..\modules\Modules.Activity\Modules.Activity.csproj" />
     <ProjectReference Include="..\modules\Modules.Authentication\Modules.Authentication.csproj" />
-    <ProjectReference Include="..\modules\Modules.Dashboard\Modules.Dashboard.csproj" />
-    <ProjectReference Include="..\modules\Modules.Menu\Modules.Menu.csproj" />
-    <ProjectReference Include="..\modules\Modules.Mission\Modules.Mission.csproj" />
-    <ProjectReference Include="..\modules\Modules.Organization\Modules.Organization.csproj" />
-    <ProjectReference Include="..\modules\Modules.Settings\Modules.Settings.csproj" />
+    <ProjectReference Include="..\modules\Modules.Consultant\Modules.Consultant.csproj" />
   </ItemGroup>
 
   <ItemGroup>
