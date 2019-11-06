@@ -14,7 +14,7 @@ namespace Trine.Mobile.Bll.Impl.Settings
 
         public static string GatewayApi = "GatewayApi";
 
-        public static MobileServiceClient CurrentClient => new MobileServiceClient("https://app-assistance.azurewebsites.net");
+        //public static MobileServiceClient CurrentClient => new MobileServiceClient("https://app-assistance.azurewebsites.net");
 
         public static string FcmToken { get; set; }
 
@@ -27,7 +27,7 @@ namespace Trine.Mobile.Bll.Impl.Settings
         private AppSettings()
         {
             ApiUrls = new Dictionary<string, string>();
-            ApiUrls.Add("GatewayApi", "https://app-assistance.azurewebsites.net/");
+            ApiUrls.Add("GatewayApi", "https://gateway-dot-trine-dev.appspot.com");
             //ApiUrls.Add("GatewayApi", "http://localhost:5001/");
         }
     }
