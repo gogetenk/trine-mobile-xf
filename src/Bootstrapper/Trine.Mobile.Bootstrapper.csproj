@@ -26,6 +26,7 @@
     <ProjectReference Include="..\Dal\Trine.Mobile.Dal.Swagger\Dal.Swagger.csproj" />
     <ProjectReference Include="..\modules\Modules.Authentication\Modules.Authentication.csproj" />
     <ProjectReference Include="..\modules\Modules.Consultant\Modules.Consultant.csproj" />
+    <ProjectReference Include="..\modules\Modules.Customer\Modules.Customer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
