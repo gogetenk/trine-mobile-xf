@@ -1,132 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Modules.Consultant.Views.MenuView"
              NavigationPage.HasBackButton="False"
              Title="Menu"
              IconImageSource="menu_small.png"
-             BackgroundColor="#322E3F">
-    <StackLayout Padding="30">
-        <StackLayout Orientation="Horizontal"
-                     VerticalOptions="Start"
-                     Margin="0,0,0,25">
-            <Image x:Name="img"
-                   VerticalOptions="Center"
-                   Margin="0,0,10,0"
-                   HeightRequest="26"
-                   WidthRequest="28" />
-            <Label Text="Trine"
-                   VerticalOptions="Center"
-                   FontSize="Title"
-                   FontAttributes="None"
-                   TextColor="White" />
+             BackgroundColor="White">
+    <StackLayout>
+
+        <StackLayout BackgroundColor="#F5F5F5"
+                     Padding="30"
+                     Orientation="Horizontal">
+            <abstractions:CircleImage HeightRequest="55"
+                                      WidthRequest="55"
+                                      BorderColor="White"
+                                      BorderThickness="2"
+                                      HorizontalOptions="Start"
+                                      VerticalOptions="Center"
+                                      Aspect="AspectFill"
+                                      Source="{Binding User.ProfilePicUrl}" />
+            <StackLayout Margin="20,0,0,0"
+                         VerticalOptions="Center">
+                <Label Text="Yannis Tocreau"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="14" />
+                <Label Text="Consultant"
+                       FontSize="14"
+                       TextColor="Black" />
+            </StackLayout>
+
+            <Button CornerRadius="{OnPlatform Default=120, iOS=16}"
+                    HorizontalOptions="EndAndExpand"
+                    TextColor="White"
+                    BackgroundColor="#E9E9E9"
+                    Command="{Binding EditUserCommand}"
+                    Padding="0"
+                    FontSize="18"
+                    VerticalOptions="Center"
+                    HeightRequest="32"
+                    WidthRequest="32"
+                    Text="&#xe3c9;"
+                    FontFamily="{StaticResource MaterialIcons}" />
         </StackLayout>
 
-        <Grid VerticalOptions="Fill">
-            <Grid.RowDefinitions> 
-                <RowDefinition Height="60*" />
-                <RowDefinition Height="30*" />
-            </Grid.RowDefinitions>
-
-            <StackLayout Grid.Row="0">
-                <Frame VerticalOptions="Start"
-                       Visual="Material"
-                       CornerRadius="5"
-                       Padding="10"
-                       BackgroundColor="#6F6C78">
-                    <StackLayout Orientation="Horizontal">
-                        <Label FontFamily="{StaticResource MaterialIcons}"
-                               Text="&#xe88a;"
-                               VerticalOptions="Center"
-                               FontSize="20"
-                               TextColor="White" />
-                        <Label Text="Dashboard"
-                               VerticalOptions="Center"
-                               TextColor="White" />
-                    </StackLayout>
-                </Frame>
-
-                <StackLayout Orientation="Horizontal"
-                             Margin="0,20,0,0">
-                    <Label Text="MISSIONS"
-                           TextColor="White"
-                           VerticalOptions="Center"
-                           Opacity="0.8" />
-                    <Button Text="+"
-                            CornerRadius="120"
-                            Padding="0"
-                            WidthRequest="50"
-                            BackgroundColor="#322E3F"
-                            HorizontalOptions="EndAndExpand"
-                            FontSize="20"
-                            VerticalOptions="Center"
-                            Command="{Binding CreateMissionCommand}"
-                            TextColor="White" />
-                </StackLayout>
-
-                <CollectionView ItemsSource="{Binding Missions}"
-                                SelectionMode="Single"
-                                SelectedItem="{Binding SelectedMission, Mode=TwoWay}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout Orientation="Horizontal"
-                                         Margin="0,5,0,5">
-                                <Label Text="⬤"
-                                       VerticalOptions="Center"
-                                       TextColor="White"
-                                       Margin="0,0,5,0" />
-                                <Label Text="{Binding ProjectName}"
-                                       VerticalOptions="Center"
-                                       TextColor="White"
-                                       Opacity="0.8" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
-
-            <StackLayout Grid.Row="1">
-
-                <StackLayout Orientation="Horizontal"
-                             Margin="0,20,0,0">
-                    <Label Text="ORGANISATIONS"
-                           TextColor="White"
-                           VerticalOptions="Center"
-                           Opacity="0.8" />
-                    <Button Text="+"
-                            CornerRadius="120"
-                            Padding="0"
-                            WidthRequest="50"
-                            BackgroundColor="#322E3F"
-                            HorizontalOptions="EndAndExpand"
-                            FontSize="20"
-                            VerticalOptions="Center"
-                            Command="{Binding CreateOrganizationCommand}"
-                            TextColor="White" />
-                </StackLayout>
-
-                <CollectionView ItemsSource="{Binding Organizations}"
-                                SelectionMode="Single"
-                                SelectedItem="{Binding SelectedOrganization, Mode=TwoWay}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout Orientation="Horizontal"
-                                         Margin="0,5,0,5">
-                                <Label Text="⬤"
-                                       VerticalOptions="Center"
-                                       TextColor="White"
-                                       Margin="0,0,5,0" />
-                                <Label Text="{Binding Name}"
-                                       VerticalOptions="Center"
-                                       TextColor="White"
-                                       Opacity="0.8" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
-            </StackLayout>
-        </Grid>
+        <StackLayout Orientation="Horizontal"
+                     Margin="20">
+            <Label Text="Comptes rendu d'activité"
+                   FontSize="16"
+                   TextColor="#333333" />
+        </StackLayout>
 
         <Button FontFamily="{StaticResource MaterialIcons}"
                 Text="&#xe8b8;"
@@ -135,9 +59,9 @@
                 Grid.Row="2"
                 CornerRadius="120"
                 HorizontalOptions="Start"
-                BackgroundColor="#322E3F"
+                BackgroundColor="White"
                 VerticalOptions="EndAndExpand"
                 FontSize="20"
-                TextColor="White" />
+                TextColor="#322E3F" />
     </StackLayout>
 </ContentPage>
