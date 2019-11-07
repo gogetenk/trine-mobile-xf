@@ -53,29 +53,56 @@
                            HasShadow="True"
                            CornerRadius="5"
                            Visual="Material"
-                           HeightRequest="320">
-                        <StackLayout>
-                            <Label Text="16 décembre 2019"
-                                   TextColor="{StaticResource AccentColor}"
-                                   FontSize="20" />
-                            <Label Text="Yannis Tocreau"
-                                   TextColor="#707070"
-                                   FontSize="14" />
-                            <Label Text="12 jours"
-                                   TextColor="#A8A4A4"
-                                   FontSize="14" />
+                           HeightRequest="80">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout>
+                                        <Label Text="16 décembre 2019"
+                                               TextColor="{StaticResource AccentColor}"
+                                               FontSize="20" />
+                                        <Label Text="Yannis Tocreau"
+                                               TextColor="#707070"
+                                               FontSize="14" />
+                                        <Label Text="12 jours"
+                                               TextColor="#A8A4A4"
+                                               FontSize="14" />
+                                    </StackLayout>
+                                <StackLayout Orientation="Horizontal" Spacing="10"
+                                             HorizontalOptions="EndAndExpand">
+                                    <Button BackgroundColor="#F1F9FF"
+                                            VerticalOptions="Center"
+                                            Visual="Material"
+                                            HorizontalOptions="EndAndExpand"
+                                            CornerRadius="120"
+                                            Padding="0"
+                                            HeightRequest="47"
+                                            WidthRequest="47" />
+                                    <Button BackgroundColor="#FFFFFF"
+                                            HorizontalOptions="EndAndExpand"
+                                            Padding="0"
+                                            HeightRequest="47"
+                                            Visual="Material"
+                                            BorderColor="#F1F9FF"
+                                            CornerRadius="120"
+                                            BorderWidth="1"
+                                            VerticalOptions="Center"
+                                            WidthRequest="47" />
+                                </StackLayout>
+                            </StackLayout>
+                          
 
                             <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
-                                                           DaySettingsCommand="{Binding AbsenceCommand}"
-                                                           IsInputEnabled="True"
-                                                           Margin="0,25,0,0"
-                                                           CellBackgroundColor="#CCCCCC"
-                                                           CellForegroundColor="White"
-                                                           AbsenceCellBackgroundColor="#FF5A39"
-                                                           CellFontSize="12"
-                                                           WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
-                                                           HorizontalOptions="Center"
-                                                           VerticalOptions="Center" />
+                                                               DaySettingsCommand="{Binding AbsenceCommand}"
+                                                               IsInputEnabled="True"
+                                                               Margin="0,25,0,0"
+                                                               CellBackgroundColor="#CCCCCC"
+                                                               CellForegroundColor="White"
+                                                               AbsenceCellBackgroundColor="#FF5A39"
+                                                               CellFontSize="12"
+                                                               WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
+                                                               HorizontalOptions="Center"
+                                                               VerticalOptions="Center" />
+                           
                         </StackLayout>
                     </Frame>
 
