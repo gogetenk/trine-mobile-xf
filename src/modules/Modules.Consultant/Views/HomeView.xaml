@@ -60,7 +60,7 @@
                            TextColor="#707070"
                            FontSize="14" />
                     
-                    <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
+                    <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
                                                    DaySettingsCommand="{Binding AbsenceCommand}"
                                                    x:Name="calendar"
                                                    IsInputEnabled="True"

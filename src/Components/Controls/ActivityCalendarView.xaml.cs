@@ -13,13 +13,13 @@ namespace Trine.Mobile.Components.Controls
     {
         #region Bindable properties
 
-        public static readonly BindableProperty CurrentGridProperty = BindableProperty.Create(nameof(CurrentActivity), typeof(ActivityDto), typeof(ActivityCalendarView), default(ActivityDto), propertyChanged: OnPropertyChanged);
+        public static readonly BindableProperty CurrentActivityProperty = BindableProperty.Create(nameof(CurrentActivity), typeof(ActivityDto), typeof(ActivityCalendarView), default(ActivityDto), propertyChanged: OnPropertyChanged);
         public ActivityDto CurrentActivity
         {
-            get => (ActivityDto)GetValue(CurrentGridProperty);
+            get => (ActivityDto)GetValue(CurrentActivityProperty);
             set
             {
-                SetValue(CurrentGridProperty, value);
+                SetValue(CurrentActivityProperty, value);
                 PopulateCalendar(value);
             }
         }
