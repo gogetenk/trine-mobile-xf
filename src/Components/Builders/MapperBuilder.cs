@@ -48,7 +48,6 @@ namespace Trine.Mobile.Components.Builders
                     .ForMember(x => x.SignatureFileUrl, opts => opts.Ignore())
                     .ForMember(x => x.BankDetails, opts => opts.Ignore())
                     .ForMember(x => x.LegalContributionFileUrl, opts => opts.Ignore())
-                    .ForMember(x => x.GlobalRole, opts => opts.Ignore())
                     .ForMember(x => x.Address, opts => opts.Ignore());
 
                 cfg.CreateMap<UserModel, UserDto>()

@@ -117,8 +117,8 @@ namespace Trine.Mobile.Bootstrapper
             //moduleCatalog.AddModule<MissionModule>(InitializationMode.WhenAvailable);
             //moduleCatalog.AddModule<ActivityModule>(InitializationMode.WhenAvailable);
             //moduleCatalog.AddModule<SettingsModule>(InitializationMode.WhenAvailable);
-            //moduleCatalog.AddModule<ConsultantModule>(InitializationMode.WhenAvailable);
-            moduleCatalog.AddModule<CustomerModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<ConsultantModule>(InitializationMode.OnDemand);
+            moduleCatalog.AddModule<CustomerModule>(InitializationMode.OnDemand);
         }
 
         public static bool IsASmallDevice()

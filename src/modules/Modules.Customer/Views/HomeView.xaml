@@ -42,8 +42,7 @@
               x:Name="grid_header_title"
               Grid.RowSpan="2"
               HeightRequest="120"
-              Padding="20,35,20,20">
-        </Grid>
+              Padding="20,35,20,20" />
 
         <!-- MAIN CONTENT -->
         <Grid Grid.RowSpan="2"
@@ -51,7 +50,7 @@
             <ScrollView>
                 <StackLayout  Padding="20,0,20,0">
 
-                    <ListView ItemsSource="{Binding Activities}" HasUnevenRows="True" >
+                    <ListView ItemsSource="{Binding Activities}" HasUnevenRows="True" SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -69,7 +68,7 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
 
-                </StackLayout>
+                </StackLayout> 
             </ScrollView>
         </Grid>
 
