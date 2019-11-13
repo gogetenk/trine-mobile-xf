@@ -18,6 +18,9 @@ namespace Modules.Consultant
             containerRegistry.RegisterForNavigation<MenuRootView, MenuRootViewModel>();
             containerRegistry.RegisterForNavigation<TestView, TestViewModel>();
             containerRegistry.RegisterForNavigation<HomeView, HomeViewModel>();
+
+            containerRegistry.RegisterDialog<SignActivityDialogView, SignActivityDialogViewModel>();
+            containerRegistry.RegisterDialog<AbsenceDialogView, AbsenceDialogViewModel>();
         }
     }
 }

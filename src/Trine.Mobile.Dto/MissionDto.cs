@@ -17,9 +17,9 @@ namespace Trine.Mobile.Dto
         public bool IsFreelance { get; set; }
         public FrequencyEnum PaymentFrequency { get; set; }
 
-        public UserDto Commercial { get; set; }
-        public UserDto Consultant { get; set; }
-        public UserDto Customer { get; set; }
+        public UserMissionDto Commercial { get; set; }
+        public UserMissionDto Consultant { get; set; }
+        public UserMissionDto Customer { get; set; }
 
         public string OrganizationId { get; set; }
         public string OrganizationName { get; set; }

@@ -38,7 +38,7 @@ namespace Trine.Mobile.Bll.Impl.Services
             }
         }
 
-        public async Task<ActivityModel> GenerateNewActivityReport(string missionId)
+        public async Task<ActivityModel> GenerateNewActivityReport()
         {
             try
             {
@@ -183,6 +183,22 @@ namespace Trine.Mobile.Bll.Impl.Services
             try
             {
                 return _mapper.Map<ObservableCollection<ActivityModel>>(await _gatewayRepository.ApiActivitiesMissionsByMissionIdGetAsync(missionId, _activityApiVersion));
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
+
+        public async Task<ObservableCollection<ActivityModel>> GetFromMissionAndMonth(string missionId, DateTime dateTime)
+        {
+            try
+            {
+                return _mapper.Map<ObservableCollection<ActivityModel>>(await _gatewayRepository.ApiActivitiesMissionsByMissionIdByDateGetAsync(missionId, dateTime, _activityApiVersion));
             }
             catch (ApiException dalExc)
             {
