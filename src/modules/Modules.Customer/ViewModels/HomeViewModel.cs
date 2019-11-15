@@ -108,7 +108,8 @@ namespace Modules.Customer.ViewModels
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
-                Activity = Mapper.Map<ActivityDto>(activity);
+                Activity = null;
+                await LoadActivities();
             }
             catch (BusinessException bExc)
             {
@@ -140,7 +141,8 @@ namespace Modules.Customer.ViewModels
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
-                Activity = Mapper.Map<ActivityDto>(activity);
+                Activity = null;
+                await LoadActivities();
             }
             catch (BusinessException bExc)
             {
@@ -196,7 +198,8 @@ namespace Modules.Customer.ViewModels
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
-                Activity = Mapper.Map<ActivityDto>(activity);
+                Activity = null;
+                await LoadActivities();
             }
             catch (BusinessException bExc)
             {
