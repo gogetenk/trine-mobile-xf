@@ -101,7 +101,6 @@ namespace Trine.Mobile.Components.Controls
         {
             InitializeComponent();
 
-
             DaysDictionary = new List<GridDayDto>();
 
             //foreach (var column in grid_calendar.ColumnDefinitions)

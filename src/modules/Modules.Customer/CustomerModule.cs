@@ -18,6 +18,9 @@ namespace Modules.Customer
             containerRegistry.RegisterForNavigation<MenuRootView, MenuRootViewModel>();
             containerRegistry.RegisterForNavigation<TestView, TestViewModel>();
             containerRegistry.RegisterForNavigation<HomeView, HomeViewModel>();
+
+            containerRegistry.RegisterDialog<AcceptActivityDialogView, SignActivityDialogViewModel>(); // Same VM
+            containerRegistry.RegisterDialog<RefuseActivityDialogView, RefuseActivityDialogViewModel>();
         }
     }
 }

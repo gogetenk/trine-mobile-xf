@@ -1,6 +1,6 @@
-﻿using AutoFixture;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Trine.Mobile.Dto;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,12 +23,24 @@ namespace Modules.Customer.Controls
             }
         }
 
+        public static readonly BindableProperty AcceptCommandProperty = BindableProperty.Create(nameof(AcceptCommand), typeof(ICommand), typeof(ActivityCardView), default(ICommand));
+        public ICommand AcceptCommand
+        {
+            get => (ICommand)GetValue(AcceptCommandProperty);
+            set => SetValue(AcceptCommandProperty, value);
+        }
+
+        public static readonly BindableProperty RefuseCommandProperty = BindableProperty.Create(nameof(RefuseCommand), typeof(ICommand), typeof(ActivityCardView), default(ICommand));
+        public ICommand RefuseCommand
+        {
+            get => (ICommand)GetValue(RefuseCommandProperty);
+            set => SetValue(RefuseCommandProperty, value);
+        }
+
+
         public ActivityCardView()
         {
             InitializeComponent();
-
-            calendar.CurrentActivity = new Fixture().Create<ActivityDto>();
-
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -57,5 +69,14 @@ namespace Modules.Customer.Controls
             _isExpanded = false;
         }
 
+        private void bt_refuse_Clicked(object sender, EventArgs e)
+        {
+            RefuseCommand.Execute(null);
+        }
+
+        private void bt_accept_Clicked(object sender, EventArgs e)
+        {
+            AcceptCommand.Execute(null);
+        }
     }
 }

@@ -6,6 +6,7 @@
              xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              xmlns:controls1="clr-namespace:Modules.Customer.Controls"
              mc:Ignorable="d"
+             x:Name="HomeViewPage"
              x:Class="Modules.Customer.Views.HomeView">
 
     <NavigationPage.TitleView>
@@ -50,11 +51,17 @@
             <ScrollView>
                 <StackLayout  Padding="20,0,20,0">
 
-                    <ListView ItemsSource="{Binding Activities}" HasUnevenRows="True" SeparatorVisibility="None">
+                    <ListView ItemsSource="{Binding Activities}"
+                              SelectedItem="{Binding Activity}"
+                              HasUnevenRows="True"
+                              SeparatorVisibility="None">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <controls1:ActivityCardView Margin="0,5,0,5" Activity="{Binding}"/>
+                                    <controls1:ActivityCardView Margin="0,5,0,5"
+                                                                AcceptCommand="{Binding BindingContext.AcceptActivityCommand, Source={x:Reference HomeViewPage} }"
+                                                                RefuseCommand="{Binding BindingContext.RefuseActivityCommand, Source={x:Reference HomeViewPage} }"
+                                                                Activity="{Binding}" />
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -68,7 +75,7 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
 
-                </StackLayout> 
+                </StackLayout>
             </ScrollView>
         </Grid>
 

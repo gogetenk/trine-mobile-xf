@@ -33,6 +33,8 @@
                              Spacing="10"
                              HorizontalOptions="EndAndExpand">
                     <Button BackgroundColor="#F1F9FF"
+                            x:Name="bt_accept"
+                            Clicked="bt_accept_Clicked"
                             VerticalOptions="Center"
                             Text="&#xe5ca;"
                             Visual="Default"
@@ -45,6 +47,8 @@
                             HeightRequest="47"
                             WidthRequest="47" />
                     <Button BackgroundColor="#FFFFFF"
+                            x:Name="bt_refuse"
+                            Clicked="bt_refuse_Clicked"
                             FontFamily="{StaticResource MaterialIcons}"
                             HorizontalOptions="EndAndExpand"
                             Text="&#xe14c;"
