@@ -71,12 +71,12 @@ namespace Modules.Customer.Controls
 
         private void bt_refuse_Clicked(object sender, EventArgs e)
         {
-            RefuseCommand.Execute(null);
+            RefuseCommand.Execute(Activity.Id);
         }
 
         private void bt_accept_Clicked(object sender, EventArgs e)
         {
-            AcceptCommand.Execute(null);
+            AcceptCommand.Execute(Activity.Id);
         }
     }
 }

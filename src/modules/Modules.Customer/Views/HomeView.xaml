@@ -52,7 +52,6 @@
                 <StackLayout  Padding="20,0,20,0">
 
                     <ListView ItemsSource="{Binding Activities}"
-                              SelectedItem="{Binding Activity}"
                               HasUnevenRows="True"
                               SeparatorVisibility="None">
                         <ListView.ItemTemplate>

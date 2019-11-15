@@ -6,6 +6,7 @@ using Prism.Services.Dialogs;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
@@ -29,8 +30,8 @@ namespace Modules.Customer.ViewModels
         private bool _isLoading;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
 
-        public DelegateCommand AcceptActivityCommand { get; set; }
-        public DelegateCommand RefuseActivityCommand { get; set; }
+        public DelegateCommand<string> AcceptActivityCommand { get; set; }
+        public DelegateCommand<string> RefuseActivityCommand { get; set; }
 
         #endregion
 
@@ -48,8 +49,8 @@ namespace Modules.Customer.ViewModels
         {
             _activityService = activityService;
             _dialogService = dialogService;
-            RefuseActivityCommand = new DelegateCommand(() => OnRefuseActivity());
-            AcceptActivityCommand = new DelegateCommand(() => OnAcceptActivity());
+            RefuseActivityCommand = new DelegateCommand<string>((id) => OnRefuseActivity(id));
+            AcceptActivityCommand = new DelegateCommand<string>((id) => OnAcceptActivity(id));
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -84,8 +85,10 @@ namespace Modules.Customer.ViewModels
 
         #region Accepting management 
 
-        private void OnAcceptActivity()
+        private void OnAcceptActivity(string id)
         {
+            // Setting the selected activity
+            Activity = Activities.FirstOrDefault(x => x.Id == id);
             _dialogService.ShowDialog("AcceptActivityDialogView", null, async result => await OnSignDialogClosed(result.Parameters));
         }
 
@@ -157,8 +160,10 @@ namespace Modules.Customer.ViewModels
 
         #region Refusing management
 
-        private void OnRefuseActivity()
+        private void OnRefuseActivity(string id)
         {
+            // Setting the selected activity
+            Activity = Activities.FirstOrDefault(x => x.Id == id);
             _dialogService.ShowDialog("RefuseActivityDialogView", null, async result => await OnRefuseDialogClosed(result.Parameters));
         }
 
