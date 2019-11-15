@@ -3550,9 +3550,9 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Id.listMode = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.listMode;
 			global::Xamarin.Forms.Material.Android.Resource.Id.list_item = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.list_item;
 			global::Xamarin.Forms.Material.Android.Resource.Id.main_appbar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.main_appbar;
-			global::Xamarin.Forms.Material.Android.Resource.Id.main_scrollview = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.main_scrollview;
 			global::Xamarin.Forms.Material.Android.Resource.Id.main_tablayout = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.main_tablayout;
 			global::Xamarin.Forms.Material.Android.Resource.Id.main_toolbar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.main_toolbar;
+			global::Xamarin.Forms.Material.Android.Resource.Id.main_viewpager = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.main_viewpager;
 			global::Xamarin.Forms.Material.Android.Resource.Id.masked = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.masked;
 			global::Xamarin.Forms.Material.Android.Resource.Id.materialformsedittext = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.materialformsedittext;
 			global::Xamarin.Forms.Material.Android.Resource.Id.media_actions = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.media_actions;
@@ -3602,7 +3602,6 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Id.select_dialog_listview = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.select_dialog_listview;
 			global::Xamarin.Forms.Material.Android.Resource.Id.selected = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.selected;
 			global::Xamarin.Forms.Material.Android.Resource.Id.shellcontent_appbar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.shellcontent_appbar;
-			global::Xamarin.Forms.Material.Android.Resource.Id.shellcontent_scrollview = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.shellcontent_scrollview;
 			global::Xamarin.Forms.Material.Android.Resource.Id.shellcontent_toolbar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.shellcontent_toolbar;
 			global::Xamarin.Forms.Material.Android.Resource.Id.shortcut = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.shortcut;
 			global::Xamarin.Forms.Material.Android.Resource.Id.showCustom = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.showCustom;
@@ -4307,6 +4306,7 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialProgressBarHorizontal = global::Trine.Mobile.Bootstrapper.Droid.Resource.Style.XamarinFormsMaterialProgressBarHorizontal;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialSlider = global::Trine.Mobile.Bootstrapper.Droid.Resource.Style.XamarinFormsMaterialSlider;
 			global::Xamarin.Forms.Material.Android.Resource.Style.XamarinFormsMaterialTheme = global::Trine.Mobile.Bootstrapper.Droid.Resource.Style.XamarinFormsMaterialTheme;
+			global::Xamarin.Forms.Material.Android.Resource.Style.collectionViewStyle = global::Trine.Mobile.Bootstrapper.Droid.Resource.Style.collectionViewStyle;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Styleable.ActionBar;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar_background = global::Trine.Mobile.Bootstrapper.Droid.Resource.Styleable.ActionBar_background;
 			global::Xamarin.Forms.Material.Android.Resource.Styleable.ActionBar_backgroundSplit = global::Trine.Mobile.Bootstrapper.Droid.Resource.Styleable.ActionBar_backgroundSplit;
@@ -6124,9 +6124,9 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Id.listMode = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.listMode;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.list_item = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.list_item;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.main_appbar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.main_appbar;
-			global::Xamarin.Forms.Platform.Android.Resource.Id.main_scrollview = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.main_scrollview;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.main_tablayout = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.main_tablayout;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.main_toolbar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.main_toolbar;
+			global::Xamarin.Forms.Platform.Android.Resource.Id.main_viewpager = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.main_viewpager;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.masked = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.masked;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.media_actions = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.media_actions;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.message = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.message;
@@ -6175,7 +6175,6 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Id.select_dialog_listview = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.select_dialog_listview;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.selected = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.selected;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.shellcontent_appbar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.shellcontent_appbar;
-			global::Xamarin.Forms.Platform.Android.Resource.Id.shellcontent_scrollview = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.shellcontent_scrollview;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.shellcontent_toolbar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.shellcontent_toolbar;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.shortcut = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.shortcut;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.showCustom = global::Trine.Mobile.Bootstrapper.Droid.Resource.Id.showCustom;
@@ -6869,6 +6868,7 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = global::Trine.Mobile.Bootstrapper.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.Widget_MaterialComponents_Toolbar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Style.Widget_MaterialComponents_Toolbar;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.Widget_Support_CoordinatorLayout = global::Trine.Mobile.Bootstrapper.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
+			global::Xamarin.Forms.Platform.Android.Resource.Style.collectionViewStyle = global::Trine.Mobile.Bootstrapper.Droid.Resource.Style.collectionViewStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ActionBar = global::Trine.Mobile.Bootstrapper.Droid.Resource.Styleable.ActionBar;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ActionBar_background = global::Trine.Mobile.Bootstrapper.Droid.Resource.Styleable.ActionBar_background;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ActionBar_backgroundSplit = global::Trine.Mobile.Bootstrapper.Droid.Resource.Styleable.ActionBar_backgroundSplit;
@@ -15427,13 +15427,13 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			public const int main_appbar = 2131231243;
 			
 			// aapt resource value: 0x7F08020C
-			public const int main_scrollview = 2131231244;
+			public const int main_tablayout = 2131231244;
 			
 			// aapt resource value: 0x7F08020D
-			public const int main_tablayout = 2131231245;
+			public const int main_toolbar = 2131231245;
 			
 			// aapt resource value: 0x7F08020E
-			public const int main_toolbar = 2131231246;
+			public const int main_viewpager = 2131231246;
 			
 			// aapt resource value: 0x7F08020F
 			public const int malertTitle = 2131231247;
@@ -15931,364 +15931,361 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			public const int shellcontent_appbar = 2131231410;
 			
 			// aapt resource value: 0x7F0802B3
-			public const int shellcontent_scrollview = 2131231411;
-			
-			// aapt resource value: 0x7F0802B4
-			public const int shellcontent_toolbar = 2131231412;
+			public const int shellcontent_toolbar = 2131231411;
 			
 			// aapt resource value: 0x7F080004
 			public const int SHIFT = 2131230724;
 			
+			// aapt resource value: 0x7F0802B4
+			public const int shortcut = 2131231412;
+			
 			// aapt resource value: 0x7F0802B5
-			public const int shortcut = 2131231413;
+			public const int showCustom = 2131231413;
 			
 			// aapt resource value: 0x7F0802B6
-			public const int showCustom = 2131231414;
+			public const int showHome = 2131231414;
 			
 			// aapt resource value: 0x7F0802B7
-			public const int showHome = 2131231415;
+			public const int showTitle = 2131231415;
 			
 			// aapt resource value: 0x7F0802B8
-			public const int showTitle = 2131231416;
+			public const int simpleRipple = 2131231416;
 			
 			// aapt resource value: 0x7F0802B9
-			public const int simpleRipple = 2131231417;
+			public const int sliding_tabs = 2131231417;
 			
 			// aapt resource value: 0x7F0802BA
-			public const int sliding_tabs = 2131231418;
+			public const int smallLabel = 2131231418;
 			
 			// aapt resource value: 0x7F0802BB
-			public const int smallLabel = 2131231419;
+			public const int snackbar_action = 2131231419;
 			
 			// aapt resource value: 0x7F0802BC
-			public const int snackbar_action = 2131231420;
+			public const int snackbar_text = 2131231420;
 			
 			// aapt resource value: 0x7F0802BD
-			public const int snackbar_text = 2131231421;
+			public const int snap = 2131231421;
 			
 			// aapt resource value: 0x7F0802BE
-			public const int snap = 2131231422;
+			public const int snapMargins = 2131231422;
 			
 			// aapt resource value: 0x7F0802BF
-			public const int snapMargins = 2131231423;
+			public const int social_button_layout = 2131231423;
 			
 			// aapt resource value: 0x7F0802C0
-			public const int social_button_layout = 2131231424;
+			public const int sortBy_recentlyUpdated = 2131231424;
 			
 			// aapt resource value: 0x7F0802C1
-			public const int sortBy_recentlyUpdated = 2131231425;
+			public const int sortBy_topRated = 2131231425;
 			
 			// aapt resource value: 0x7F0802C2
-			public const int sortBy_topRated = 2131231426;
+			public const int sortingActionsLayoutRoot = 2131231426;
 			
 			// aapt resource value: 0x7F0802C3
-			public const int sortingActionsLayoutRoot = 2131231427;
+			public const int spacer = 2131231427;
 			
 			// aapt resource value: 0x7F0802C4
-			public const int spacer = 2131231428;
+			public const int split_action_bar = 2131231428;
 			
 			// aapt resource value: 0x7F0802C5
-			public const int split_action_bar = 2131231429;
+			public const int spread = 2131231429;
 			
 			// aapt resource value: 0x7F0802C6
-			public const int spread = 2131231430;
+			public const int spread_inside = 2131231430;
 			
 			// aapt resource value: 0x7F0802C7
-			public const int spread_inside = 2131231431;
+			public const int src_atop = 2131231431;
 			
 			// aapt resource value: 0x7F0802C8
-			public const int src_atop = 2131231432;
+			public const int src_in = 2131231432;
 			
 			// aapt resource value: 0x7F0802C9
-			public const int src_in = 2131231433;
+			public const int src_over = 2131231433;
 			
 			// aapt resource value: 0x7F0802CA
-			public const int src_over = 2131231434;
+			public const int standard = 2131231434;
 			
 			// aapt resource value: 0x7F0802CB
-			public const int standard = 2131231435;
+			public const int start = 2131231435;
 			
 			// aapt resource value: 0x7F0802CC
-			public const int start = 2131231436;
+			public const int status_bar_latest_event_content = 2131231436;
 			
 			// aapt resource value: 0x7F0802CD
-			public const int status_bar_latest_event_content = 2131231437;
+			public const int stop = 2131231437;
 			
 			// aapt resource value: 0x7F0802CE
-			public const int stop = 2131231438;
+			public const int stretch = 2131231438;
 			
 			// aapt resource value: 0x7F0802CF
-			public const int stretch = 2131231439;
+			public const int submenuarrow = 2131231439;
 			
 			// aapt resource value: 0x7F0802D0
-			public const int submenuarrow = 2131231440;
+			public const int submit_area = 2131231440;
 			
 			// aapt resource value: 0x7F0802D1
-			public const int submit_area = 2131231441;
+			public const int survey = 2131231441;
 			
 			// aapt resource value: 0x7F0802D2
-			public const int survey = 2131231442;
+			public const int survey_activity_container = 2131231442;
 			
 			// aapt resource value: 0x7F0802D3
-			public const int survey_activity_container = 2131231443;
+			public const int survey_mcq_fade = 2131231443;
 			
 			// aapt resource value: 0x7F0802D4
-			public const int survey_mcq_fade = 2131231444;
+			public const int survey_nps_question_header = 2131231444;
 			
 			// aapt resource value: 0x7F0802D5
-			public const int survey_nps_question_header = 2131231445;
+			public const int survey_nps_text = 2131231445;
 			
 			// aapt resource value: 0x7F0802D6
-			public const int survey_nps_text = 2131231446;
+			public const int survey_optional_answer_textview = 2131231446;
 			
 			// aapt resource value: 0x7F0802D7
-			public const int survey_optional_answer_textview = 2131231447;
+			public const int survey_partial_close_btn = 2131231447;
 			
 			// aapt resource value: 0x7F0802D8
-			public const int survey_partial_close_btn = 2131231448;
+			public const int survey_shadow = 2131231448;
 			
 			// aapt resource value: 0x7F0802D9
-			public const int survey_shadow = 2131231449;
+			public const int survey_step_progressbar = 2131231449;
 			
 			// aapt resource value: 0x7F0802DA
-			public const int survey_step_progressbar = 2131231450;
-			
-			// aapt resource value: 0x7F0802DB
-			public const int swipeRefreshLayout = 2131231451;
+			public const int swipeRefreshLayout = 2131231450;
 			
 			// aapt resource value: 0x7F080005
 			public const int SYM = 2131230725;
 			
-			// aapt resource value: 0x7F0802DC
-			public const int tabMode = 2131231452;
-			
-			// aapt resource value: 0x7F0802DE
-			public const int tabsContainer = 2131231454;
+			// aapt resource value: 0x7F0802DB
+			public const int tabMode = 2131231451;
 			
 			// aapt resource value: 0x7F0802DD
-			public const int tab_layout = 2131231453;
+			public const int tabsContainer = 2131231453;
+			
+			// aapt resource value: 0x7F0802DC
+			public const int tab_layout = 2131231452;
+			
+			// aapt resource value: 0x7F0802DE
+			public const int tag_transition_group = 2131231454;
 			
 			// aapt resource value: 0x7F0802DF
-			public const int tag_transition_group = 2131231455;
+			public const int tag_unhandled_key_event_manager = 2131231455;
 			
 			// aapt resource value: 0x7F0802E0
-			public const int tag_unhandled_key_event_manager = 2131231456;
+			public const int tag_unhandled_key_listeners = 2131231456;
 			
 			// aapt resource value: 0x7F0802E1
-			public const int tag_unhandled_key_listeners = 2131231457;
-			
-			// aapt resource value: 0x7F0802E2
-			public const int talk_to_us = 2131231458;
-			
-			// aapt resource value: 0x7F0802E4
-			public const int teammate_wallpaper_image = 2131231460;
+			public const int talk_to_us = 2131231457;
 			
 			// aapt resource value: 0x7F0802E3
-			public const int team_wallpaper_image = 2131231459;
+			public const int teammate_wallpaper_image = 2131231459;
+			
+			// aapt resource value: 0x7F0802E2
+			public const int team_wallpaper_image = 2131231458;
+			
+			// aapt resource value: 0x7F0802E4
+			public const int text = 2131231460;
 			
 			// aapt resource value: 0x7F0802E5
-			public const int text = 2131231461;
-			
-			// aapt resource value: 0x7F0802E6
-			public const int text2 = 2131231462;
-			
-			// aapt resource value: 0x7F0802ED
-			public const int textinput_counter = 2131231469;
-			
-			// aapt resource value: 0x7F0802EE
-			public const int textinput_error = 2131231470;
-			
-			// aapt resource value: 0x7F0802EF
-			public const int textinput_helper_text = 2131231471;
-			
-			// aapt resource value: 0x7F0802E7
-			public const int textSpacerNoButtons = 2131231463;
-			
-			// aapt resource value: 0x7F0802E8
-			public const int textSpacerNoTitle = 2131231464;
-			
-			// aapt resource value: 0x7F0802E9
-			public const int textStart = 2131231465;
-			
-			// aapt resource value: 0x7F0802EA
-			public const int textView = 2131231466;
-			
-			// aapt resource value: 0x7F0802EB
-			public const int text_input_password_toggle = 2131231467;
+			public const int text2 = 2131231461;
 			
 			// aapt resource value: 0x7F0802EC
-			public const int text_view_pb = 2131231468;
+			public const int textinput_counter = 2131231468;
+			
+			// aapt resource value: 0x7F0802ED
+			public const int textinput_error = 2131231469;
+			
+			// aapt resource value: 0x7F0802EE
+			public const int textinput_helper_text = 2131231470;
+			
+			// aapt resource value: 0x7F0802E6
+			public const int textSpacerNoButtons = 2131231462;
+			
+			// aapt resource value: 0x7F0802E7
+			public const int textSpacerNoTitle = 2131231463;
+			
+			// aapt resource value: 0x7F0802E8
+			public const int textStart = 2131231464;
+			
+			// aapt resource value: 0x7F0802E9
+			public const int textView = 2131231465;
+			
+			// aapt resource value: 0x7F0802EA
+			public const int text_input_password_toggle = 2131231466;
+			
+			// aapt resource value: 0x7F0802EB
+			public const int text_view_pb = 2131231467;
+			
+			// aapt resource value: 0x7F0802EF
+			public const int thumbnail = 2131231471;
 			
 			// aapt resource value: 0x7F0802F0
-			public const int thumbnail = 2131231472;
+			public const int tick = 2131231472;
 			
 			// aapt resource value: 0x7F0802F1
-			public const int tick = 2131231473;
+			public const int time = 2131231473;
 			
 			// aapt resource value: 0x7F0802F2
-			public const int time = 2131231474;
+			public const int title = 2131231474;
 			
 			// aapt resource value: 0x7F0802F3
-			public const int title = 2131231475;
+			public const int titleDividerNoCustom = 2131231475;
 			
 			// aapt resource value: 0x7F0802F4
-			public const int titleDividerNoCustom = 2131231476;
+			public const int title_bar_text = 2131231476;
 			
 			// aapt resource value: 0x7F0802F5
-			public const int title_bar_text = 2131231477;
+			public const int title_template = 2131231477;
 			
 			// aapt resource value: 0x7F0802F6
-			public const int title_template = 2131231478;
+			public const int title_underline = 2131231478;
 			
 			// aapt resource value: 0x7F0802F7
-			public const int title_underline = 2131231479;
+			public const int toolbar = 2131231479;
 			
 			// aapt resource value: 0x7F0802F8
-			public const int toolbar = 2131231480;
+			public const int toolbar_content_container = 2131231480;
 			
 			// aapt resource value: 0x7F0802F9
-			public const int toolbar_content_container = 2131231481;
+			public const int toolbar_progress_bar = 2131231481;
 			
 			// aapt resource value: 0x7F0802FA
-			public const int toolbar_progress_bar = 2131231482;
+			public const int toolbar_shadow = 2131231482;
 			
 			// aapt resource value: 0x7F0802FB
-			public const int toolbar_shadow = 2131231483;
+			public const int toolbar_title = 2131231483;
 			
 			// aapt resource value: 0x7F0802FC
-			public const int toolbar_title = 2131231484;
+			public const int top = 2131231484;
 			
 			// aapt resource value: 0x7F0802FD
-			public const int top = 2131231485;
+			public const int topLeft = 2131231485;
 			
 			// aapt resource value: 0x7F0802FE
-			public const int topLeft = 2131231486;
+			public const int topPanel = 2131231486;
 			
 			// aapt resource value: 0x7F0802FF
-			public const int topPanel = 2131231487;
+			public const int topRight = 2131231487;
 			
 			// aapt resource value: 0x7F080300
-			public const int topRight = 2131231488;
+			public const int top_border = 2131231488;
 			
 			// aapt resource value: 0x7F080301
-			public const int top_border = 2131231489;
+			public const int top_padding = 2131231489;
 			
 			// aapt resource value: 0x7F080302
-			public const int top_padding = 2131231490;
+			public const int touch_outside = 2131231490;
 			
 			// aapt resource value: 0x7F080303
-			public const int touch_outside = 2131231491;
+			public const int transition_current_scene = 2131231491;
 			
 			// aapt resource value: 0x7F080304
-			public const int transition_current_scene = 2131231492;
+			public const int transition_layout_save = 2131231492;
 			
 			// aapt resource value: 0x7F080305
-			public const int transition_layout_save = 2131231493;
+			public const int transition_position = 2131231493;
 			
 			// aapt resource value: 0x7F080306
-			public const int transition_position = 2131231494;
+			public const int transition_scene_layoutid_cache = 2131231494;
 			
 			// aapt resource value: 0x7F080307
-			public const int transition_scene_layoutid_cache = 2131231495;
+			public const int transition_transform = 2131231495;
 			
 			// aapt resource value: 0x7F080308
-			public const int transition_transform = 2131231496;
+			public const int tvKey = 2131231496;
 			
 			// aapt resource value: 0x7F080309
-			public const int tvKey = 2131231497;
+			public const int tvMessage = 2131231497;
 			
 			// aapt resource value: 0x7F08030A
-			public const int tvMessage = 2131231498;
+			public const int tvValue = 2131231498;
 			
 			// aapt resource value: 0x7F08030B
-			public const int tvValue = 2131231499;
+			public const int tv_add_comment = 2131231499;
 			
 			// aapt resource value: 0x7F08030C
-			public const int tv_add_comment = 2131231500;
+			public const int twitter_button = 2131231500;
 			
 			// aapt resource value: 0x7F08030D
-			public const int twitter_button = 2131231501;
+			public const int txtBottomHint = 2131231501;
 			
 			// aapt resource value: 0x7F08030E
-			public const int txtBottomHint = 2131231502;
+			public const int txtBottomHintLayout = 2131231502;
 			
 			// aapt resource value: 0x7F08030F
-			public const int txtBottomHintLayout = 2131231503;
+			public const int txtSubTitle = 2131231503;
 			
 			// aapt resource value: 0x7F080310
-			public const int txtSubTitle = 2131231504;
+			public const int txt_error_state_sub_title = 2131231504;
 			
 			// aapt resource value: 0x7F080311
-			public const int txt_error_state_sub_title = 2131231505;
+			public const int txt_error_state_title = 2131231505;
 			
 			// aapt resource value: 0x7F080312
-			public const int txt_error_state_title = 2131231506;
+			public const int txt_rate_us_question = 2131231506;
 			
 			// aapt resource value: 0x7F080313
-			public const int txt_rate_us_question = 2131231507;
+			public const int txt_rate_us_title = 2131231507;
 			
 			// aapt resource value: 0x7F080314
-			public const int txt_rate_us_title = 2131231508;
+			public const int txt_thanks_title = 2131231508;
 			
 			// aapt resource value: 0x7F080315
-			public const int txt_thanks_title = 2131231509;
+			public const int under = 2131231509;
 			
 			// aapt resource value: 0x7F080316
-			public const int under = 2131231510;
+			public const int undo = 2131231510;
 			
 			// aapt resource value: 0x7F080317
-			public const int undo = 2131231511;
+			public const int uniform = 2131231511;
 			
 			// aapt resource value: 0x7F080318
-			public const int uniform = 2131231512;
+			public const int unlabeled = 2131231512;
 			
 			// aapt resource value: 0x7F080319
-			public const int unlabeled = 2131231513;
+			public const int up = 2131231513;
 			
 			// aapt resource value: 0x7F08031A
-			public const int up = 2131231514;
+			public const int updated = 2131231514;
 			
 			// aapt resource value: 0x7F08031B
-			public const int updated = 2131231515;
+			public const int useLogo = 2131231515;
 			
 			// aapt resource value: 0x7F08031C
-			public const int useLogo = 2131231516;
+			public const int vertical = 2131231516;
 			
 			// aapt resource value: 0x7F08031D
-			public const int vertical = 2131231517;
+			public const int video_view = 2131231517;
 			
 			// aapt resource value: 0x7F08031E
-			public const int video_view = 2131231518;
+			public const int view_offset_helper = 2131231518;
 			
 			// aapt resource value: 0x7F08031F
-			public const int view_offset_helper = 2131231519;
+			public const int visible = 2131231519;
 			
 			// aapt resource value: 0x7F080320
-			public const int visible = 2131231520;
+			public const int volume_item_container = 2131231520;
 			
 			// aapt resource value: 0x7F080321
-			public const int volume_item_container = 2131231521;
+			public const int wallpaper_image = 2131231521;
 			
 			// aapt resource value: 0x7F080322
-			public const int wallpaper_image = 2131231522;
+			public const int webview = 2131231522;
 			
 			// aapt resource value: 0x7F080323
-			public const int webview = 2131231523;
+			public const int wide = 2131231523;
 			
 			// aapt resource value: 0x7F080324
-			public const int wide = 2131231524;
+			public const int width = 2131231524;
 			
 			// aapt resource value: 0x7F080325
-			public const int width = 2131231525;
+			public const int withText = 2131231525;
 			
 			// aapt resource value: 0x7F080326
-			public const int withText = 2131231526;
+			public const int wrap = 2131231526;
 			
 			// aapt resource value: 0x7F080327
-			public const int wrap = 2131231527;
-			
-			// aapt resource value: 0x7F080328
-			public const int wrap_content = 2131231528;
+			public const int wrap_content = 2131231527;
 			
 			static Id()
 			{
@@ -19107,6 +19104,9 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			// aapt resource value: 0x7F1100C6
 			public const int CardView_Light = 2131820742;
 			
+			// aapt resource value: 0x7F11024E
+			public const int collectionViewStyle = 2131821134;
+			
 			// aapt resource value: 0x7F1100C7
 			public const int IbFrActionBar = 2131820743;
 			
@@ -19290,32 +19290,32 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			// aapt resource value: 0x7F110103
 			public const int Intercom_AttachmentTheme = 2131820803;
 			
-			// aapt resource value: 0x7F11024E
-			public const int intercom_card_with_border_and_shadow = 2131821134;
-			
 			// aapt resource value: 0x7F11024F
-			public const int intercom_composer_full_screen_theme = 2131821135;
+			public const int intercom_card_with_border_and_shadow = 2131821135;
 			
 			// aapt resource value: 0x7F110250
-			public const int intercom_composer_tap_to_retry_button = 2131821136;
+			public const int intercom_composer_full_screen_theme = 2131821136;
 			
 			// aapt resource value: 0x7F110251
-			public const int intercom_container_card_app_name_style = 2131821137;
+			public const int intercom_composer_tap_to_retry_button = 2131821137;
 			
 			// aapt resource value: 0x7F110252
-			public const int intercom_container_card_author_style = 2131821138;
+			public const int intercom_container_card_app_name_style = 2131821138;
 			
 			// aapt resource value: 0x7F110253
-			public const int intercom_floating_action_button_style = 2131821139;
+			public const int intercom_container_card_author_style = 2131821139;
 			
 			// aapt resource value: 0x7F110254
-			public const int intercom_home_all_conversation_button = 2131821140;
+			public const int intercom_floating_action_button_style = 2131821140;
 			
 			// aapt resource value: 0x7F110255
-			public const int intercom_home_error_button = 2131821141;
+			public const int intercom_home_all_conversation_button = 2131821141;
 			
 			// aapt resource value: 0x7F110256
-			public const int intercom_home_new_conversation_button = 2131821142;
+			public const int intercom_home_error_button = 2131821142;
+			
+			// aapt resource value: 0x7F110257
+			public const int intercom_home_new_conversation_button = 2131821143;
 			
 			// aapt resource value: 0x7F110104
 			public const int Intercom_LightBoxTheme = 2131820804;
@@ -19332,38 +19332,38 @@ namespace Trine.Mobile.Bootstrapper.Droid
 			// aapt resource value: 0x7F110108
 			public const int Intercom_PostTheme = 2131820808;
 			
-			// aapt resource value: 0x7F110257
-			public const int intercom_profile_team_avatar = 2131821143;
-			
 			// aapt resource value: 0x7F110258
-			public const int intercom_profile_team_bio = 2131821144;
+			public const int intercom_profile_team_avatar = 2131821144;
 			
 			// aapt resource value: 0x7F110259
-			public const int intercom_profile_team_member_style = 2131821145;
+			public const int intercom_profile_team_bio = 2131821145;
 			
 			// aapt resource value: 0x7F11025A
-			public const int intercom_teammate_profile_text_layout_style = 2131821146;
+			public const int intercom_profile_team_member_style = 2131821146;
 			
 			// aapt resource value: 0x7F11025B
-			public const int intercom_teammate_profile_text_style = 2131821147;
+			public const int intercom_teammate_profile_text_layout_style = 2131821147;
 			
 			// aapt resource value: 0x7F11025C
-			public const int intercom_toolbar_container_style = 2131821148;
+			public const int intercom_teammate_profile_text_style = 2131821148;
 			
 			// aapt resource value: 0x7F11025D
-			public const int intercom_toolbar_inbox_title_style = 2131821149;
+			public const int intercom_toolbar_container_style = 2131821149;
 			
 			// aapt resource value: 0x7F11025E
-			public const int intercom_toolbar_style = 2131821150;
+			public const int intercom_toolbar_inbox_title_style = 2131821150;
 			
 			// aapt resource value: 0x7F11025F
-			public const int intercom_toolbar_subtitle_style = 2131821151;
+			public const int intercom_toolbar_style = 2131821151;
 			
 			// aapt resource value: 0x7F110260
-			public const int intercom_toolbar_title_style = 2131821152;
+			public const int intercom_toolbar_subtitle_style = 2131821152;
 			
 			// aapt resource value: 0x7F110261
-			public const int intercom_wallpaper_image_style = 2131821153;
+			public const int intercom_toolbar_title_style = 2131821153;
+			
+			// aapt resource value: 0x7F110262
+			public const int intercom_wallpaper_image_style = 2131821154;
 			
 			// aapt resource value: 0x7F110109
 			public const int MainTheme = 2131820809;
