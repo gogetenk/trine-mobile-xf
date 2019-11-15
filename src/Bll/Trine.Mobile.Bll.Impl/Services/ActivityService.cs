@@ -238,5 +238,21 @@ namespace Trine.Mobile.Bll.Impl.Services
 
             return diff;
         }
+
+        public async Task<List<ActivityModel>> GetFromUser(string id)
+        {
+            try
+            {
+                return _mapper.Map<List<ActivityModel>>(await _gatewayRepository.ApiActivitiesUsersByUserIdGetAsync(id, _activityApiVersion));
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
     }
 }

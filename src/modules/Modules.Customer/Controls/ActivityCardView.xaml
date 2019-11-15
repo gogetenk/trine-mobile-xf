@@ -19,13 +19,13 @@
         <StackLayout>
             <StackLayout Orientation="Horizontal">
                 <StackLayout>
-                    <Label Text="16 décembre 2019"
+                    <Label Text="{Binding CreationDate, StringFormat='{0:MMMM yyyy}'}"
                            TextColor="{StaticResource AccentColor}"
                            FontSize="20" />
-                    <Label Text="Yannis Tocreau"
+                    <Label Text="{Binding Consultant.FullName}"
                            TextColor="#707070"
                            FontSize="14" />
-                    <Label Text="12 jours"
+                    <Label Text="{Binding DaysNb, StringFormat='{0} jours'}"
                            TextColor="#A8A4A4"
                            FontSize="14" />
                 </StackLayout>
@@ -61,7 +61,7 @@
                 </StackLayout>
             </StackLayout>
 
-            <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
+            <controls:ActivityCalendarView CurrentActivity="{Binding}"
                                            x:Name="calendar"
                                            IsVisible="False"
                                            IsInputEnabled="True"

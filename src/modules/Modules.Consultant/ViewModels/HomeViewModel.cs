@@ -46,7 +46,6 @@ namespace Modules.Consultant.ViewModels
             SignActivityCommand = new DelegateCommand(() => OnSignActivity());
             SaveActivityCommand = new DelegateCommand(async () => await OnSaveActivity());
             AbsenceCommand = new DelegateCommand<GridDayDto>((gridDay) => OnAbsenceSettingsOpened(gridDay as GridDayDto));
-
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
