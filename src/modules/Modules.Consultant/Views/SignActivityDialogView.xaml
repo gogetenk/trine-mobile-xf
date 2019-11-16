@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Grid xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:prism="http://prismlibrary.com"
-             prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.75, Desktop=0.5}"
-             prism:DialogLayout.CloseOnBackgroundTapped="True"
-             x:Class="Modules.Consultant.Views.SignActivityDialogView">
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      xmlns:prism="http://prismlibrary.com"
+      xmlns:controls="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
+      prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.75, Desktop=0.5}"
+      prism:DialogLayout.CloseOnBackgroundTapped="True"
+      x:Class="Modules.Consultant.Views.SignActivityDialogView">
     <Frame CornerRadius="5"
            Padding="35"
            BackgroundColor="White">
@@ -15,21 +16,28 @@
             <Label Text="Signer le compte rendu ?"
                    Style="{StaticResource H1}"
                    TextColor="#000000"
-                   FontSize="18"/>
+                   FontSize="18" />
 
-            <Label Margin="0,25,0,35" 
+            <Label Margin="0,25,0,35"
                    Text="En signant votre compte rendu d'activité, vous validez avoir verifié que les données rentrées sont exactes. Une fois signé, nous préviendrons votre client afin qu'il puisse vérifier et signer à son tour le compte rendu."
                    Style="{StaticResource Paragraph}"
                    LineHeight="1.2"
                    TextColor="#474747"
                    FontSize="14" />
 
+            <controls:SignaturePadView x:Name="signatureView"
+                                       StrokeWidth="3"
+                                       Margin="15"
+                                       StrokeColor="Black"
+                                       HeightRequest="200"
+                                       BackgroundColor="White" />
+
             <Grid HeightRequest="42">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50*" />
                     <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <Button Text="J'ai un doute"
                         Grid.Column="0"
                         HorizontalOptions="Start"
@@ -48,7 +56,7 @@
                         HorizontalOptions="Fill"
                         Command="{Binding SignCommand}" />
             </Grid>
-           
+
         </StackLayout>
     </Frame>
 </Grid>
