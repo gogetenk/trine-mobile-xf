@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Com.OneSignal;
+using Microsoft.AppCenter;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Modularity;
@@ -50,7 +52,11 @@ namespace Modules.Authentication.ViewModels
             LoginCommand = new DelegateCommand(async () => await OnLogin(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible && !IsLoading);
             ForgotPasswordCommand = new DelegateCommand(async () => await OnForgotPassword());
             SignupCommand = new DelegateCommand(async () => await OnSignup());
+
+            _moduleManager.LoadModuleCompleted += _moduleManager_LoadModuleCompleted;
         }
+
+
 
         private async Task OnForgotPassword()
         {
@@ -79,11 +85,12 @@ namespace Modules.Authentication.ViewModels
                     return;
 
                 // Setting the user id to app center
-                // AppCenter.SetUserId(userId);
+                AppCenter.SetUserId(userId);
+                // Setting the user id to One Signal
+                OneSignal.Current.SetExternalUserId(userId);
 
                 // Loading the corresponding module depending on user type
                 LoadModuleFromUserType();
-                await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
             }
             catch (BusinessException bExc)
             {
@@ -97,6 +104,11 @@ namespace Modules.Authentication.ViewModels
             {
                 IsLoading = false;
             }
+        }
+
+        private async void _moduleManager_LoadModuleCompleted(object sender, LoadModuleCompletedEventArgs e)
+        {
+            await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
         }
 
         private void LoadModuleFromUserType()

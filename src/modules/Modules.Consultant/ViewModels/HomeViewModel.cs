@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Com.OneSignal;
+using Com.OneSignal.Abstractions;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -113,7 +115,6 @@ namespace Modules.Consultant.ViewModels
 
         #endregion
 
-
         #region Signing management
 
         private void OnSignActivity()
@@ -138,6 +139,10 @@ namespace Modules.Consultant.ViewModels
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
                 Activity = Mapper.Map<ActivityDto>(activity);
+
+                // Sending notif to customer
+                // TODO: a faire dans le back
+                SendNotificationToCustomer();
             }
             catch (BusinessException bExc)
             {
@@ -151,6 +156,21 @@ namespace Modules.Consultant.ViewModels
             {
                 IsLoading = false;
             }
+        }
+
+        private void SendNotificationToCustomer()
+        {
+            var notification = new Dictionary<string, object>();
+            notification["contents"] = new Dictionary<string, string>() { { "fr", "Un rapport d'activité vient de vous être soumis !" } };
+            notification["include_player_ids"] = new List<string>() { Activity.Customer.Id };
+
+            OneSignal.Current.PostNotification(notification, (responseSuccess) =>
+            {
+                var oneSignalDebugMessage = "Notification posted successful! Delayed by about 30 secounds to give you time to press the home button to see a notification vs an in-app alert.\n" + Json.Serialize(responseSuccess);
+            }, (responseFailure) =>
+            {
+                var oneSignalDebugMessage = "Notification failed to post:\n" + Json.Serialize(responseFailure);
+            });
         }
 
         #endregion
