@@ -10,7 +10,7 @@
     <Frame HasShadow="True"
            Margin="0,4,0,4"
            Padding="20,20,20,0"
-           CornerRadius="5"
+           CornerRadius="5" 
            Visual="Material">
         <Frame.GestureRecognizers>
             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
@@ -33,11 +33,10 @@
                              Spacing="10"
                              HorizontalOptions="EndAndExpand">
                     <Button BackgroundColor="#F1F9FF"
-                            x:Name="bt_accept"
                             Clicked="bt_accept_Clicked"
                             VerticalOptions="Center"
                             Text="&#xe5ca;"
-                            Visual="Default"
+                            Visual="Default"  
                             HorizontalOptions="EndAndExpand"
                             CornerRadius="120"
                             FontFamily="{StaticResource MaterialIcons}"
@@ -47,7 +46,6 @@
                             HeightRequest="47"
                             WidthRequest="47" />
                     <Button BackgroundColor="#FFFFFF"
-                            x:Name="bt_refuse"
                             Clicked="bt_refuse_Clicked"
                             FontFamily="{StaticResource MaterialIcons}"
                             HorizontalOptions="EndAndExpand"
@@ -60,22 +58,25 @@
                             BorderColor="#F1F9FF"
                             CornerRadius="120"
                             BorderWidth="1"
-                            VerticalOptions="Center"
+                            VerticalOptions="Center" 
                             WidthRequest="47" />
                 </StackLayout>
             </StackLayout>
 
-            <controls:ActivityCalendarView CurrentActivity="{Binding}"
+            <Grid x:Name="calendar_placeholder" />
+            <!--<controls:ActivityCalendarView CurrentActivity="{Binding}"
+                                           CascadeInputTransparent="True" 
                                            x:Name="calendar"
+                                           IsEnabled="False"
                                            IsVisible="False"
-                                           IsInputEnabled="True"
+                                           IsInputEnabled="False"
                                            Margin="0,25,0,0"
                                            CellBackgroundColor="#CCCCCC"
                                            CellForegroundColor="White"
                                            AbsenceCellBackgroundColor="#FF5A39"
                                            CellFontSize="12"
                                            HorizontalOptions="Center"
-                                           VerticalOptions="Center" />
+                                           VerticalOptions="Center" />-->
 
             <Label x:Name="lb_expand"
                    Text="&#xe5cf;"

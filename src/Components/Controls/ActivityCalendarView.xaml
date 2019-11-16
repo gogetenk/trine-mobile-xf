@@ -5,79 +5,82 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Trine.Mobile.Components.Controls.ActivityCalendarView">
-    <StackLayout>
-        <Grid HorizontalOptions="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0"
-                   Grid.Column="0"
-                   Text="MON"
-                   HorizontalOptions="Center"
-                   TextColor="#ADAEC7" />
-            <Label Grid.Row="0"
-                   Grid.Column="1"
-                   Text="TUE"
-                   HorizontalOptions="Center"
-                   TextColor="#ADAEC7" />
-            <Label Grid.Row="0"
-                   Grid.Column="2"
-                   Text="WED"
-                   HorizontalOptions="Center"
-                   TextColor="#ADAEC7" />
-            <Label Grid.Row="0"
-                   Grid.Column="3"
-                   Text="THU"
-                   HorizontalOptions="Center"
-                   TextColor="#ADAEC7" />
-            <Label Grid.Row="0"
-                   Grid.Column="4"
-                   Text="FRI"
-                   HorizontalOptions="Center"
-                   TextColor="#ADAEC7" />
-            <Label Grid.Row="0"
-                   Grid.Column="5"
-                   Text="SAT"
-                   HorizontalOptions="Center"
-                   TextColor="#ADAEC7" />
-            <Label Grid.Row="0"
-                   Grid.Column="6"
-                   Text="SUN"
-                   HorizontalOptions="Center"
-                   TextColor="#ADAEC7" />
-        </Grid>
-        <Grid x:Name="grid_calendar"
-              HorizontalOptions="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-                <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-                <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-            </Grid.RowDefinitions>
-           
-        </Grid>
+    <Grid>
+        <Image x:Name="image" IsVisible="False" />
+        <StackLayout x:Name="layout"
+                     CompressedLayout.IsHeadless="True">
+            <Grid HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="MON"
+                       HorizontalOptions="Center"
+                       TextColor="#ADAEC7" />
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Text="TUE"
+                       HorizontalOptions="Center"
+                       TextColor="#ADAEC7" />
+                <Label Grid.Row="0"
+                       Grid.Column="2"
+                       Text="WED"
+                       HorizontalOptions="Center"
+                       TextColor="#ADAEC7" />
+                <Label Grid.Row="0"
+                       Grid.Column="3"
+                       Text="THU"
+                       HorizontalOptions="Center"
+                       TextColor="#ADAEC7" />
+                <Label Grid.Row="0"
+                       Grid.Column="4"
+                       Text="FRI"
+                       HorizontalOptions="Center"
+                       TextColor="#ADAEC7" />
+                <Label Grid.Row="0"
+                       Grid.Column="5"
+                       Text="SAT"
+                       HorizontalOptions="Center"
+                       TextColor="#ADAEC7" />
+                <Label Grid.Row="0"
+                       Grid.Column="6"
+                       Text="SUN"
+                       HorizontalOptions="Center"
+                       TextColor="#ADAEC7" />
+            </Grid>
+            <Grid x:Name="grid_calendar"
+                  HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                    <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                </Grid.RowDefinitions>
 
-    </StackLayout>
+            </Grid>
 
+        </StackLayout>
+    </Grid>
 </ContentView>

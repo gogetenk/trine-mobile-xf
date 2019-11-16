@@ -123,6 +123,7 @@
     <Compile Include="CustomApplication.cs" />
     <Compile Include="Effects\AndroidLongPressedEffect.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\CalendarRenderer.cs" />
     <Compile Include="Renderers\MaterialEntryRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

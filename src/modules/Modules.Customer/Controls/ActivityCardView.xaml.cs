@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Trine.Mobile.Components.Controls;
 using Trine.Mobile.Dto;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,7 +20,7 @@ namespace Modules.Customer.Controls
             set
             {
                 SetValue(ActivityProperty, value);
-                calendar.CurrentActivity = value;
+                CreateCalendar();
             }
         }
 
@@ -58,15 +59,33 @@ namespace Modules.Customer.Controls
         private async Task Open(Frame frame)
         {
             lb_expand.RotateTo(-180, 250, Easing.CubicInOut);
-            calendar.IsVisible = true;
             _isExpanded = true;
+            CreateCalendar();
         }
+
 
         private async Task Close(Frame frame)
         {
             lb_expand.RotateTo(0, 250, Easing.CubicInOut);
-            calendar.IsVisible = false;
             _isExpanded = false;
+            calendar_placeholder.Children.Clear();
+        }
+
+        private void CreateCalendar()
+        {
+            var cal = new ActivityCalendarView()
+            {
+                CurrentActivity = Activity,
+                IsEnabled = false,
+                InputTransparent = true,
+                IsInputEnabled = false,
+                Margin = new Thickness(0, 25, 0, 0),
+                CellFontSize = 12,
+                CellBackgroundColor = Color.FromHex("#CCCCCC"),
+                CellForegroundColor = Color.White,
+                AbsenceCellBackgroundColor = Color.FromHex("#FF5A39")
+            };
+            calendar_placeholder.Children.Add(cal);
         }
 
         private void bt_refuse_Clicked(object sender, EventArgs e)
