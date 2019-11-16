@@ -5,11 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              xmlns:controls1="clr-namespace:Modules.Customer.Controls"
+             NavigationPage.HasNavigationBar="False"
              mc:Ignorable="d"
              x:Name="HomeViewPage"
              x:Class="Modules.Customer.Views.HomeView">
 
-    <NavigationPage.TitleView>
+    <!--<NavigationPage.TitleView>
         <StackLayout Margin="0,15,0,0"
                      Spacing="0">
             <Label Text="Bienvenue"
@@ -26,12 +27,12 @@
                 </Label.IsVisible>
             </Label>
         </StackLayout>
-    </NavigationPage.TitleView>
+    </NavigationPage.TitleView>-->
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="15*" />
-            <RowDefinition Height="70*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="75*" />
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
@@ -43,11 +44,38 @@
               x:Name="grid_header_title"
               Grid.RowSpan="2"
               HeightRequest="120"
-              Padding="20,35,20,20" />
+              Padding="20,20,20,20">
+            <StackLayout Margin="0,15,0,0"
+                         Spacing="0">
+                <Label Text="Bienvenue,"
+                       TextColor="White"
+                       FontSize="14"
+                       Opacity=".6" />
+                <Label Text="Yannis Tocreau"
+                       TextColor="White"
+                       FontSize="18">
+                </Label>
+            </StackLayout>
+        </Grid>
 
         <!-- MAIN CONTENT -->
-        <Grid Grid.RowSpan="2"
-              Padding="0,35,0,0">
+        <Grid Grid.RowSpan="2" Margin="20,0,20,0">
+            <ScrollView Scrolled="ScrollView_Scrolled">
+                <StackLayout BindableLayout.ItemsSource="{Binding Activities}"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand"
+                             Margin="0,130,0,0">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <controls1:ActivityCardView Margin="0,2,0,2"
+                                                        AcceptCommand="{Binding BindingContext.AcceptActivityCommand, Source={x:Reference HomeViewPage} }"
+                                                        RefuseCommand="{Binding BindingContext.RefuseActivityCommand, Source={x:Reference HomeViewPage} }"
+                                                        Activity="{Binding}" />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+
             <ActivityIndicator IsRunning="{Binding IsLoading}"
                                IsEnabled="{Binding IsLoading}"
                                Color="#5C5EDC"
@@ -56,18 +84,6 @@
                                Margin="20"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
-
-                <CollectionView ItemsSource="{Binding Activities}"
-                                Margin="20,0,20,0">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <controls1:ActivityCardView Margin="0,5,0,5"
-                                                        AcceptCommand="{Binding BindingContext.AcceptActivityCommand, Source={x:Reference HomeViewPage} }"
-                                                        RefuseCommand="{Binding BindingContext.RefuseActivityCommand, Source={x:Reference HomeViewPage} }"
-                                                        Activity="{Binding}" />
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
 
         </Grid>
 

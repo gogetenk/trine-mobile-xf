@@ -7,8 +7,7 @@
              x:Class="Trine.Mobile.Components.Controls.ActivityCalendarView">
     <Grid>
         <Image x:Name="image" IsVisible="False" />
-        <StackLayout x:Name="layout"
-                     CompressedLayout.IsHeadless="True">
+        <StackLayout x:Name="layout">
             <Grid HorizontalOptions="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{StaticResource ActivityColumnWidth}" />

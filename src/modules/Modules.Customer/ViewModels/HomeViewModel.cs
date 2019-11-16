@@ -68,6 +68,7 @@ namespace Modules.Customer.ViewModels
 
                 // Getting all active activities for the user
                 Activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromUser(AppSettings.CurrentUser.Id));
+                var ids = Activities.Select(x => x.Id).ToList();
             }
             catch (BusinessException bExc)
             {
