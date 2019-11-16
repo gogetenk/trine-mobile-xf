@@ -59,8 +59,8 @@ namespace Trine.Mobile.Bll.Impl.Services
                 var registerUserRequest = new RegisterUserRequest()
                 {
                     Email = AppSettings.CurrentUser.Mail,
-                    FirstName = AppSettings.CurrentUser.Firstname,
-                    LastName = AppSettings.CurrentUser.Lastname,
+                    Firstname = AppSettings.CurrentUser.Firstname,
+                    Lastname = AppSettings.CurrentUser.Lastname,
                     GlobalRole = RegisterUserRequestGlobalRole._0, // TODO : gérer ça
                     InvitationCode = invite.Code.ToString()
                 };

@@ -5,6 +5,8 @@ using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.Logging;
 using Modules.Authentication;
 using Modules.Consultant;
+using Modules.Customer;
+using Modules.Settings;
 using Prism;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -115,8 +117,9 @@ namespace Trine.Mobile.Bootstrapper
             //moduleCatalog.AddModule<MenuModule>(InitializationMode.WhenAvailable);
             //moduleCatalog.AddModule<MissionModule>(InitializationMode.WhenAvailable);
             //moduleCatalog.AddModule<ActivityModule>(InitializationMode.WhenAvailable);
-            //moduleCatalog.AddModule<SettingsModule>(InitializationMode.WhenAvailable);
-            moduleCatalog.AddModule<ConsultantModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<SettingsModule>(InitializationMode.WhenAvailable);
+            moduleCatalog.AddModule<ConsultantModule>(InitializationMode.OnDemand);
+            moduleCatalog.AddModule<CustomerModule>(InitializationMode.OnDemand);
         }
 
         public static bool IsASmallDevice()

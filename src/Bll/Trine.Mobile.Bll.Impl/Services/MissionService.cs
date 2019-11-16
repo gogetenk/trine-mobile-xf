@@ -84,6 +84,23 @@ namespace Trine.Mobile.Bll.Impl.Services
             }
         }
 
+        public async Task<MissionModel> GetConsultantCurrentMission(string id)
+        {
+            try
+            {
+                var mission = await _gatewayRepository.ApiMissionsConsultantByIdGetAsync(id);
+                return _mapper.Map<MissionModel>(mission);
+            }
+            catch (ApiException dalExc)
+            {
+                throw dalExc;
+            }
+            catch (Exception exc)
+            {
+                throw;
+            }
+        }
+
         public async Task<FrameContractModel> GetContractPreview(CreateMissionRequestModel createMissionRequestModel)
         {
             try

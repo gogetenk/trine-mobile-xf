@@ -360,6 +360,13 @@ namespace Trine.Mobile.Dal.Swagger
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Mission>> ApiMissionsUsersByIdGetAsync(string id, bool? isActive = null, string api_version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
+        /// <summary>Gets the current mission of the consultant. (MVP Only ?)</summary>
+        /// <param name="api_version">The requested API version</param>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        System.Threading.Tasks.Task<Mission> ApiMissionsConsultantByIdGetAsync(string id, string api_version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
         /// <summary>Gets a preview of the frame contract before creating the mission</summary>
         /// <param name="api_version">The requested API version</param>
         /// <returns>Success</returns>
@@ -4879,6 +4886,98 @@ namespace Trine.Mobile.Dal.Swagger
             }
         }
 
+        /// <summary>Gets the current mission of the consultant. (MVP Only ?)</summary>
+        /// <param name="api_version">The requested API version</param>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        public async System.Threading.Tasks.Task<Mission> ApiMissionsConsultantByIdGetAsync(string id, string api_version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/missions/consultant/{id}?");
+            urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+            if (api_version != null)
+            {
+                urlBuilder_.Append("api-version=").Append(System.Uri.EscapeDataString(ConvertToString(api_version, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            urlBuilder_.Length--;
+
+            var client_ = _httpClient;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = ((int)response_.StatusCode).ToString();
+                        if (status_ == "200")
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result_ = default(Mission);
+                            try
+                            {
+                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<Mission>(responseData_, _settings.Value);
+                                return result_;
+                            }
+                            catch (System.Exception exception_)
+                            {
+                                throw new ApiException("Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_);
+                            }
+                        }
+                        else
+                        if (status_ == "400")
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Bad Request", (int)response_.StatusCode, responseData_, headers_, null);
+                        }
+                        else
+                        if (status_ == "404")
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("Not Found", (int)response_.StatusCode, responseData_, headers_, null);
+                        }
+                        else
+                        if (status_ != "200" && status_ != "204")
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
+                        }
+
+                        return default(Mission);
+                    }
+                    finally
+                    {
+                        if (response_ != null)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+            }
+        }
+
         /// <summary>Gets a preview of the frame contract before creating the mission</summary>
         /// <param name="api_version">The requested API version</param>
         /// <returns>Success</returns>
@@ -6771,11 +6870,11 @@ namespace Trine.Mobile.Dal.Swagger
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.12.2.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class RegisterUserRequest
     {
-        [Newtonsoft.Json.JsonProperty("firstName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FirstName { get; set; }
+        [Newtonsoft.Json.JsonProperty("firstname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Firstname { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lastName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string LastName { get; set; }
+        [Newtonsoft.Json.JsonProperty("lastname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Lastname { get; set; }
 
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Email { get; set; }
@@ -6897,11 +6996,11 @@ namespace Trine.Mobile.Dal.Swagger
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("firstName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FirstName { get; set; }
+        [Newtonsoft.Json.JsonProperty("firstname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Firstname { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lastName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string LastName { get; set; }
+        [Newtonsoft.Json.JsonProperty("lastname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Lastname { get; set; }
 
         [Newtonsoft.Json.JsonProperty("mail", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Mail { get; set; }
@@ -7176,11 +7275,11 @@ namespace Trine.Mobile.Dal.Swagger
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Id { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("firstName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string FirstName { get; set; }
+        [Newtonsoft.Json.JsonProperty("firstname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Firstname { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("lastName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string LastName { get; set; }
+        [Newtonsoft.Json.JsonProperty("lastname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Lastname { get; set; }
 
         [Newtonsoft.Json.JsonProperty("profilePicUrl", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ProfilePicUrl { get; set; }
@@ -7720,13 +7819,13 @@ namespace Trine.Mobile.Dal.Swagger
         public MissionPaymentFrequency? PaymentFrequency { get; set; }
 
         [Newtonsoft.Json.JsonProperty("commercial", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public User Commercial { get; set; }
+        public UserMission Commercial { get; set; }
 
         [Newtonsoft.Json.JsonProperty("consultant", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public User Consultant { get; set; }
+        public UserMission Consultant { get; set; }
 
         [Newtonsoft.Json.JsonProperty("customer", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public User Customer { get; set; }
+        public UserMission Customer { get; set; }
 
         [Newtonsoft.Json.JsonProperty("organizationId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string OrganizationId { get; set; }
@@ -7802,6 +7901,42 @@ namespace Trine.Mobile.Dal.Swagger
         public static FrameContract FromJson(string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<FrameContract>(data);
+        }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.12.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class UserMission
+    {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("firstname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Firstname { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("lastname", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Lastname { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("mail", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Mail { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("profilePicUrl", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string ProfilePicUrl { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("isDummy", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool? IsDummy { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("globalRole", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public UserMissionGlobalRole? GlobalRole { get; set; }
+
+        public string ToJson()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        }
+
+        public static UserMission FromJson(string data)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<UserMission>(data);
         }
 
     }
@@ -8324,6 +8459,17 @@ namespace Trine.Mobile.Dal.Swagger
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.12.2.0 (Newtonsoft.Json v11.0.0.0)")]
     public enum FrameContractStatus
+    {
+        _0 = 0,
+
+        _1 = 1,
+
+        _2 = 2,
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.12.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public enum UserMissionGlobalRole
     {
         _0 = 0,
 

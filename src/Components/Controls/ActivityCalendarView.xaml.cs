@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using Trine.Mobile.Dto;
@@ -13,13 +14,13 @@ namespace Trine.Mobile.Components.Controls
     {
         #region Bindable properties
 
-        public static readonly BindableProperty CurrentGridProperty = BindableProperty.Create(nameof(CurrentActivity), typeof(ActivityDto), typeof(ActivityCalendarView), default(ActivityDto), propertyChanged: OnPropertyChanged);
+        public static readonly BindableProperty CurrentActivityProperty = BindableProperty.Create(nameof(CurrentActivity), typeof(ActivityDto), typeof(ActivityCalendarView), default(ActivityDto), propertyChanged: OnPropertyChanged);
         public ActivityDto CurrentActivity
         {
-            get => (ActivityDto)GetValue(CurrentGridProperty);
+            get => (ActivityDto)GetValue(CurrentActivityProperty);
             set
             {
-                SetValue(CurrentGridProperty, value);
+                SetValue(CurrentActivityProperty, value);
                 PopulateCalendar(value);
             }
         }
@@ -37,6 +38,7 @@ namespace Trine.Mobile.Components.Controls
             get => (int)GetValue(ColumnWidthProperty);
             set => SetValue(ColumnWidthProperty, value);
         }
+
         public static readonly BindableProperty RowHeightProperty = BindableProperty.Create(nameof(RowHeight), typeof(int), typeof(ActivityCalendarView), default(int));
         public int RowHeight
         {
@@ -95,12 +97,12 @@ namespace Trine.Mobile.Components.Controls
 
         #endregion
 
+        public EventHandler OnDrawBitmap;
         private ActivityDto _activity;
 
         public ActivityCalendarView()
         {
             InitializeComponent();
-
 
             DaysDictionary = new List<GridDayDto>();
 
@@ -193,8 +195,27 @@ namespace Trine.Mobile.Components.Controls
             //grid_calendar.Children.RemoveAt(grid_calendar.Children.Count() - 1);
 
             SphereClicked();
+
+            if (IsInputEnabled)
+                return;
+
+            // We are calling the custom renderer if we are in readonly, so we can generate a bitmap from the calendar
+            //OnDrawBitmap.Invoke(this, new EventArgs());
         }
 
+        // Called by native renderer to generate an image of the calendar. So it can be an image for read only purpose.
+        public void SetImage(byte[] bytes)
+        {
+            if (IsInputEnabled)
+                return;
+
+            if (bytes is null)
+                return;
+
+            image.IsVisible = true;
+            image.Source = ImageSource.FromStream(() => new MemoryStream(bytes));
+            layout.IsVisible = false;
+        }
 
         private int GetIndexFromDayOfWeek(DayOfWeek dayOfWeek)
         {

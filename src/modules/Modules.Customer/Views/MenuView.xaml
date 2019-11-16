@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Modules.Customer.Views.MenuView"
+             NavigationPage.HasBackButton="False"
+             Title="Menu"
+             IconImageSource="menu_small.png"
+             BackgroundColor="White">
+    <StackLayout>
+
+        <!--<StackLayout BackgroundColor="#F5F5F5"
+                     Padding="25"
+                     Orientation="Horizontal">
+            <abstractions:CircleImage HeightRequest="55"
+                                      WidthRequest="55"
+                                      BorderColor="White"
+                                      BorderThickness="2"
+                                      HorizontalOptions="Start"
+                                      VerticalOptions="Center"
+                                      Aspect="AspectFill"
+                                      Source="{Binding User.ProfilePicUrl}" />
+            <StackLayout Margin="20,0,0,0"
+                         VerticalOptions="Center">
+                <Label Text="Yannis Tocreau"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="14" />
+                <Label Text="Client final"
+                       FontSize="14"
+                       TextColor="Black" />
+            </StackLayout>
+
+            <Button CornerRadius="{OnPlatform Default=120, iOS=16}"
+                    HorizontalOptions="EndAndExpand"
+                    TextColor="White"
+                    BackgroundColor="#E9E9E9"
+                    Command="{Binding EditUserCommand}"
+                    Padding="0"
+                    FontSize="18"
+                    VerticalOptions="Center"
+                    HeightRequest="32"
+                    WidthRequest="32"
+                    Text="&#xe3c9;"
+                    FontFamily="{StaticResource MaterialIcons}" />
+        </StackLayout>-->
+
+        <Frame Margin="20"
+               Padding="15"
+               HasShadow="False"
+               BackgroundColor="#FBFBFB"
+               CornerRadius="5"
+               HeightRequest="23">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="&#xf2d8;"
+                       FontSize="{OnPlatform Default='Title', iOS='Subtitle'}"
+                       TextColor="Black"
+                       Margin="{OnPlatform Android='0,-37,10,0', Default='0,0,0,0'}"
+                       FontFamily="{StaticResource IconFont}" />
+                <Label Text="Rapports d'activité"
+                       FontSize="16"
+                       TextColor="Black" />
+            </StackLayout>
+        </Frame>
+        
+        <Button FontFamily="{StaticResource MaterialIcons}"
+                Text="&#xe8b8;"
+                Command="{Binding SettingsCommand}"
+                WidthRequest="50"
+                Grid.Row="2"
+                Margin="10"
+                CornerRadius="120"
+                HorizontalOptions="Start"
+                BackgroundColor="White"
+                VerticalOptions="EndAndExpand"
+                FontSize="20"
+                TextColor="#322E3F" />
+    </StackLayout>
+</ContentPage>

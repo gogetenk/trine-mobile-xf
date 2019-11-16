@@ -64,7 +64,7 @@ namespace Trine.Mobile.Components.Controls
             set => SetValue(CellForegroundColorProperty, value);
         }
 
-        public static readonly BindableProperty CellFontSizeProperty = BindableProperty.Create(nameof(CellForegroundColor), typeof(int), typeof(ActivitySphereView), default(int));
+        public static readonly BindableProperty CellFontSizeProperty = BindableProperty.Create(nameof(CellFontSize), typeof(int), typeof(ActivitySphereView), default(int));
         public int CellFontSize
         {
             get => (int)GetValue(CellFontSizeProperty);
@@ -174,14 +174,17 @@ namespace Trine.Mobile.Components.Controls
                     break;
                 case DayPartEnum.Full: // full
                     boxview.ScaleTo(5, 100, Easing.CubicInOut);
+                    CellForegroundColor = Color.White;
                     break;
                 case DayPartEnum.Morning: // matin
                     boxview.ScaleTo(1, 100, Easing.CubicInOut);
                     boxview.TranslateTo(0, -15, 100, Easing.CubicInOut);
+                    CellForegroundColor = Color.White;
                     break;
                 case DayPartEnum.Afternoon: // soir
                     boxview.ScaleTo(1, 100, Easing.CubicInOut);
                     boxview.TranslateTo(0, 25, 100, Easing.CubicInOut);
+                    CellForegroundColor = Color.White;
                     break;
                 default:
                     break;

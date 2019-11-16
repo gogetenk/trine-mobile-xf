@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              mc:Ignorable="d"
              x:Class="Modules.Consultant.Views.HomeView">
 
@@ -28,7 +29,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*" />
-            <RowDefinition Height="70*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="30*" />
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
@@ -47,28 +49,31 @@
         <!-- MAIN CONTENT -->
         <Grid Grid.RowSpan="2"
               Padding="0,35,0,0">
-            <ScrollView>
+            <Frame Margin="20,10,20,10"
+                   HasShadow="True"
+                   CornerRadius="5"
+                   Visual="Material"
+                   HeightRequest="320">
                 <StackLayout>
-                    <Frame Margin="20,10,20,10"
-                           HasShadow="True"
-                           CornerRadius="5"
-                           Visual="Material"
-                           HeightRequest="320">
-                    </Frame>
-                    <Frame Margin="20,10,20,10"
-                           HasShadow="True"
-                           Visual="Material"
-                           CornerRadius="5"
-                           HeightRequest="250">
-                    </Frame>
-                    <Frame Margin="20,10,20,10"
-                           HasShadow="True"
-                           Visual="Material"
-                           CornerRadius="5"
-                           HeightRequest="250">
-                    </Frame>
+                    <Label Text="16 décembre 2019" TextColor="{StaticResource AccentColor}" FontSize="20" />
+                    <Label Text="Compte rendu d'activité"
+                           TextColor="#707070"
+                           FontSize="14" />
+                    
+                    <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
+                                                   DaySettingsCommand="{Binding AbsenceCommand}"
+                                                   x:Name="calendar"
+                                                   IsInputEnabled="True"
+                                                   Margin="0,35,0,0"
+                                                   CellBackgroundColor="#CCCCCC"
+                                                   CellForegroundColor="White"
+                                                   AbsenceCellBackgroundColor="#FF5A39"
+                                                   CellFontSize="12"
+                                                   WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
                 </StackLayout>
-            </ScrollView>
+            </Frame>
 
             <ActivityIndicator IsRunning="{Binding IsLoading}"
                                Color="#5C5EDC"
@@ -79,6 +84,24 @@
                                VerticalOptions="Center" />
 
         </Grid>
-    </Grid>
-    
+
+        <StackLayout Grid.Row="2"
+                     VerticalOptions="EndAndExpand"
+                     Margin="20,10,20,10">
+            <Button Visual="Material"
+                    HeightRequest="50"
+                    Command="{Binding SignActivityCommand}"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    Text="Valider et signer" />
+            <Button 
+                    HeightRequest="50"
+                    BackgroundColor="White"
+                    Command="{Binding ResetCommand}"
+                    BorderColor="{StaticResource AccentColor}"
+                    TextColor="{StaticResource AccentColor}"
+                    Text="Reinitialiser" />
+        </StackLayout>
+
+    </Grid> 
+
 </ContentPage>

@@ -1,5 +1,4 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Trine.Mobile.Model;
 
 namespace Trine.Mobile.Bll.Impl.Settings
@@ -27,7 +26,8 @@ namespace Trine.Mobile.Bll.Impl.Settings
         private AppSettings()
         {
             ApiUrls = new Dictionary<string, string>();
-            ApiUrls.Add("GatewayApi", "https://gateway-dot-trine-dev.appspot.com");
+            ApiUrls.Add("GatewayApi", "https://app-assistance.azurewebsites.net");
+            //ApiUrls.Add("GatewayApi", "https://gateway-dot-trine-dev.appspot.com");
             //ApiUrls.Add("GatewayApi", "http://localhost:5001/");
         }
     }

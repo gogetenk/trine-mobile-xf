@@ -9,8 +9,9 @@ namespace Trine.Mobile.Bll
     public interface IActivityService
     {
         Task<ActivityModel> CreateActivity(string missionId, DateTime date);
-        Task<ActivityModel> GenerateNewActivityReport(string missionId);
+        Task<ActivityModel> GenerateNewActivityReport();
         Task<UserModel> GetActivityCustomer(ActivityModel activity);
+        Task<ObservableCollection<ActivityModel>> GetFromMissionAndMonth(string missionId, DateTime dateTime);
         Task<UserModel> GetActivityConsultant(ActivityModel activity);
         Task<ActivityModel> SignActivityReport(UserModel customer, ActivityModel activity);
         Task<ActivityModel> SaveActivityReport(ActivityModel activityModel);
@@ -20,5 +21,6 @@ namespace Trine.Mobile.Bll
         Task<ObservableCollection<ActivityModel>> GetFromMission(string missionId);
         Task RefuseActivity(ActivityModel activityModel);
         List<DateTime> GetMissionPeriods(MissionModel mission);
+        Task<List<ActivityModel>> GetFromUser(string id);
     }
 }

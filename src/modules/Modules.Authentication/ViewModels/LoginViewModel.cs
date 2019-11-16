@@ -1,11 +1,16 @@
 ﻿using AutoMapper;
 using Prism.Commands;
 using Prism.Logging;
+using Prism.Modularity;
 using Prism.Navigation;
 using Prism.Services;
+using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.ViewModels;
+using Trine.Mobile.Model;
 
 namespace Modules.Authentication.ViewModels
 {
@@ -35,10 +40,12 @@ namespace Modules.Authentication.ViewModels
         #endregion
 
         private readonly IAccountService _accountService;
+        private readonly IModuleManager _moduleManager;
 
-        public LoginViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
+        public LoginViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, IModuleManager moduleManager) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
+            _moduleManager = moduleManager;
 
             LoginCommand = new DelegateCommand(async () => await OnLogin(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible && !IsLoading);
             ForgotPasswordCommand = new DelegateCommand(async () => await OnForgotPassword());
@@ -57,43 +64,59 @@ namespace Modules.Authentication.ViewModels
 
         private async Task OnLogin()
         {
-            await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
+            IsEmailErrorVisible = string.IsNullOrEmpty(Email);
+            IsPasswordErrorVisible = string.IsNullOrEmpty(Password);
 
+            if (IsEmailErrorVisible || IsPasswordErrorVisible)
+                return;
 
-            //IsEmailErrorVisible = string.IsNullOrEmpty(Email);
-            //IsPasswordErrorVisible = string.IsNullOrEmpty(Password);
+            try
+            {
+                IsLoading = true;
+                var userId = await _accountService.Login(Email, Password);
 
-            //if (IsEmailErrorVisible || IsPasswordErrorVisible)
-            //    return;
+                if (string.IsNullOrEmpty(userId))
+                    return;
 
-            //try
-            //{
-            //    IsLoading = true;
-            //    var userId = await _accountService.Login(Email, Password);
+                // Setting the user id to app center
+                // AppCenter.SetUserId(userId);
 
-            //    if (string.IsNullOrEmpty(userId))
-            //        return;
+                // Loading the corresponding module depending on user type
+                LoadModuleFromUserType();
+                await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
 
-            //    // Setting the user id to app center
-            //    //AppCenter.SetUserId(userId);
-
-
-            //    // TODO : gérer la navigation en fonction du user type (module consultant client ou esn ?)
-            //    //await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/DashboardView");
-
-            //}
-            //catch (BusinessException bExc)
-            //{
-            //    await LogAndShowBusinessError(bExc);
-            //}
-            //catch (Exception exc)
-            //{
-            //    LogTechnicalError(exc);
-            //}
-            //finally
-            //{
-            //    IsLoading = false;
-            //}
+        private void LoadModuleFromUserType()
+        {
+            string moduleName;
+            switch (AppSettings.CurrentUser.GlobalRole)
+            {
+                case UserModel.GlobalRoleEnum.Admin:
+                    moduleName = "CommercialModule";
+                    break;
+                case UserModel.GlobalRoleEnum.Consultant:
+                    moduleName = "ConsultantModule";
+                    break;
+                case UserModel.GlobalRoleEnum.Customer:
+                    moduleName = "CustomerModule";
+                    break;
+                default:
+                    throw new BusinessException("Votre compte utilisateur n'est pas adapté à cette version de Trine. Veuillez créer un nouveau compte ou contacter le support client.");
+            }
+            _moduleManager.LoadModule(moduleName);
         }
     }
 }

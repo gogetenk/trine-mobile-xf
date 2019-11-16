@@ -18,6 +18,14 @@ namespace Trine.Mobile.Model
 
         // Uniquement rempli dans le cas d'un membre 
         public string Role { get; set; }
+        public GlobalRoleEnum GlobalRole { get; set; }
+        public enum GlobalRoleEnum
+        {
+            Customer,
+            Consultant,
+            Admin
+        }
+
         public bool IsDummy { get; set; }
     }
 }

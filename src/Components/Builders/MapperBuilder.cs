@@ -48,13 +48,15 @@ namespace Trine.Mobile.Components.Builders
                     .ForMember(x => x.SignatureFileUrl, opts => opts.Ignore())
                     .ForMember(x => x.BankDetails, opts => opts.Ignore())
                     .ForMember(x => x.LegalContributionFileUrl, opts => opts.Ignore())
-                    .ForMember(x => x.GlobalRole, opts => opts.Ignore())
                     .ForMember(x => x.Address, opts => opts.Ignore());
 
                 cfg.CreateMap<UserModel, UserDto>()
                     .ForMember(x => x.DisplayName, opts => opts.MapFrom(x => $"{x.Firstname} {x.Lastname.ToUpperInvariant()}"));
                 cfg.CreateMap<User, UserDto>()
-                    .ForMember(x => x.DisplayName, opts => opts.MapFrom(x => $"{x.FirstName} {x.LastName.ToUpperInvariant()}"));
+                    .ForMember(x => x.DisplayName, opts => opts.MapFrom(x => $"{x.Firstname} {x.Lastname.ToUpperInvariant()}"));
+
+                cfg.CreateMap<UserActivityModel, UserActivityDto>()
+                   .ForMember(x => x.FullName, opts => opts.MapFrom(x => $"{x.FirstName} {x.LastName.ToUpperInvariant()}"));
 
                 cfg.CreateMap<ActivityModel, ActivityDto>()
                     .ForMember(x => x.PinColor, opts => opts.MapFrom(x => GetPinFromActivityStatus(x.Status)))

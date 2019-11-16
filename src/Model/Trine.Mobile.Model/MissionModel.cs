@@ -16,9 +16,9 @@ namespace Trine.Mobile.Model
         public bool IsFreelance { get; set; }
         public FrequencyEnum PaymentFrequency { get; set; }
 
-        public UserModel Commercial { get; set; }
-        public UserModel Consultant { get; set; }
-        public UserModel Customer { get; set; }
+        public UserMissionModel Commercial { get; set; }
+        public UserMissionModel Consultant { get; set; }
+        public UserMissionModel Customer { get; set; }
 
         public string OrganizationId { get; set; }
         public string OrganizationName { get; set; }

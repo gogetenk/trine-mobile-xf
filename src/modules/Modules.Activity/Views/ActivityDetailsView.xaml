@@ -37,7 +37,7 @@
                        HorizontalOptions="Center"
                        Margin="15,25,15,25"
                        HasShadow="True">
-                    <controls:ActivityCalendarView CurrentGrid="{Binding Activity}"
+                    <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
                                                    DaySettingsCommand="{Binding AbsenceCommand}"
                                                    x:Name="calendar"
                                                    IsInputEnabled="{Binding CanModify}"
