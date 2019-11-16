@@ -27,6 +27,7 @@
     <ProjectReference Include="..\modules\Modules.Authentication\Modules.Authentication.csproj" />
     <ProjectReference Include="..\modules\Modules.Consultant\Modules.Consultant.csproj" />
     <ProjectReference Include="..\modules\Modules.Customer\Modules.Customer.csproj" />
+    <ProjectReference Include="..\modules\Modules.Settings\Modules.Settings.csproj" />
   </ItemGroup>
 
   <ItemGroup>

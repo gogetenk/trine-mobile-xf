@@ -9,7 +9,7 @@
              BackgroundColor="White">
     <StackLayout>
 
-        <StackLayout BackgroundColor="#F5F5F5"
+        <!--<StackLayout BackgroundColor="#F5F5F5"
                      Padding="30"
                      Orientation="Horizontal">
             <abstractions:CircleImage HeightRequest="55"
@@ -42,15 +42,26 @@
                     HeightRequest="32"
                     WidthRequest="32"
                     Text="&#xe3c9;"
-                    FontFamily="{StaticResource MaterialIcons}" />
-        </StackLayout>
+                    FontFamily="{StaticResource MaterialIcons}" /> 
+        </StackLayout>-->
 
-        <StackLayout Orientation="Horizontal"
-                     Margin="20">
-            <Label Text="Comptes rendu d'activité"
-                   FontSize="16"
-                   TextColor="#333333" />
-        </StackLayout>
+        <Frame Margin="20"
+               Padding="15"
+               HasShadow="False"
+               BackgroundColor="#FBFBFB"
+               CornerRadius="5"
+               HeightRequest="23">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="&#xf2d8;"
+                       FontSize="{OnPlatform Default='Title', iOS='Subtitle'}"
+                       TextColor="Black"
+                       Margin="{OnPlatform Android='0,-37,10,0', Default='0,0,0,0'}"
+                       FontFamily="{StaticResource IconFont}" />
+                <Label Text="Rapport d'activité"
+                       FontSize="16"
+                       TextColor="Black" /> 
+            </StackLayout>
+        </Frame>
 
         <Button FontFamily="{StaticResource MaterialIcons}"
                 Text="&#xe8b8;"
@@ -59,6 +70,7 @@
                 Grid.Row="2"
                 CornerRadius="120"
                 HorizontalOptions="Start"
+                Margin="10"
                 BackgroundColor="White"
                 VerticalOptions="EndAndExpand"
                 FontSize="20"
