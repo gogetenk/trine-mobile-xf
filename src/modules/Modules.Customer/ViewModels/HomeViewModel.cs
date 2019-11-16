@@ -67,7 +67,9 @@ namespace Modules.Customer.ViewModels
                 IsLoading = true;
 
                 // Getting all active activities for the user
-                Activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromUser(AppSettings.CurrentUser.Id));
+                Activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromUser(AppSettings.CurrentUser.Id))
+                    .Where(x => x.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned)
+                    .ToList(); // TODO: faire une requete speciale pour ça
                 var ids = Activities.Select(x => x.Id).ToList();
             }
             catch (BusinessException bExc)
@@ -93,39 +95,6 @@ namespace Modules.Customer.ViewModels
             _dialogService.ShowDialog("AcceptActivityDialogView", null, async result => await OnSignDialogClosed(result.Parameters));
         }
 
-        public async Task OnAcceptActivity(IDialogParameters result)
-        {
-            try
-            {
-                if (!result.GetValue<bool>(NavigationParameterKeys._IsActivitySigned))
-                    return;
-
-                if (IsLoading)
-                    return;
-
-                IsLoading = true;
-
-                var activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity)));
-                if (activity is null)
-                    throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
-
-                Activity = null;
-                await LoadActivities();
-            }
-            catch (BusinessException bExc)
-            {
-                await LogAndShowBusinessError(bExc);
-            }
-            catch (Exception exc)
-            {
-                LogTechnicalError(exc);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
-        }
-
         public async Task OnSignDialogClosed(IDialogParameters result)
         {
             try
@@ -142,8 +111,8 @@ namespace Modules.Customer.ViewModels
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
+                Activities.Remove(Activity);
                 Activity = null;
-                await LoadActivities();
             }
             catch (BusinessException bExc)
             {

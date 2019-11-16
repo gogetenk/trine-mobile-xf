@@ -59,9 +59,11 @@
         </Grid>
 
         <!-- MAIN CONTENT -->
-        <Grid Grid.RowSpan="2" Margin="20,0,20,0">
+        <Grid Grid.RowSpan="2"
+              Margin="20,0,20,0">
             <ScrollView Scrolled="ScrollView_Scrolled">
                 <StackLayout BindableLayout.ItemsSource="{Binding Activities}"
+                             Spacing="0"
                              VerticalOptions="FillAndExpand"
                              HorizontalOptions="FillAndExpand"
                              Margin="0,130,0,0">
