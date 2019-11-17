@@ -14,6 +14,7 @@ using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
+using Xamarin.Essentials;
 
 namespace Modules.Customer.ViewModels
 {
@@ -32,6 +33,7 @@ namespace Modules.Customer.ViewModels
 
         public DelegateCommand<string> AcceptActivityCommand { get; set; }
         public DelegateCommand<string> RefuseActivityCommand { get; set; }
+        public DelegateCommand<string> DownloadActivityCommand { get; set; }
 
         #endregion
 
@@ -51,6 +53,7 @@ namespace Modules.Customer.ViewModels
             _dialogService = dialogService;
             RefuseActivityCommand = new DelegateCommand<string>((id) => OnRefuseActivity(id));
             AcceptActivityCommand = new DelegateCommand<string>((id) => OnAcceptActivity(id));
+            DownloadActivityCommand = new DelegateCommand<string>(async (id) => await OnDownloadActivity(id));
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -187,5 +190,33 @@ namespace Modules.Customer.ViewModels
 
         #endregion
 
+        private async Task OnDownloadActivity(string id)
+        {
+            try
+            {
+                if (IsLoading)
+                    return;
+
+                IsLoading = true;
+
+                await Browser.OpenAsync($"{AppSettings.ApiUrls.FirstOrDefault().Value}/api/activities/{id}/export", BrowserLaunchMode.SystemPreferred);
+                //var file = _downloadManager.CreateDownloadFile($"{AppSettings.ApiUrls.FirstOrDefault().Value}/api/activities/{Activity.Id}/export");
+                //_downloadManager.Start(file);
+                //if (file is null)
+                //throw new BusinessException("Une erreur s'est produite lors du téléchargement du CRA");
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
     }
 }

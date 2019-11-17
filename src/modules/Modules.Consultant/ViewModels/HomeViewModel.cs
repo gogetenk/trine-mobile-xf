@@ -17,6 +17,7 @@ using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
+using Xamarin.Essentials;
 
 namespace Modules.Consultant.ViewModels
 {

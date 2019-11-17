@@ -72,6 +72,7 @@
                             <controls1:ActivityCardView Margin="0,2,0,2"
                                                         AcceptCommand="{Binding BindingContext.AcceptActivityCommand, Source={x:Reference HomeViewPage} }"
                                                         RefuseCommand="{Binding BindingContext.RefuseActivityCommand, Source={x:Reference HomeViewPage} }"
+                                                        DownloadCommand="{Binding BindingContext.DownloadActivityCommand, Source={x:Reference HomeViewPage} }"
                                                         Activity="{Binding}" />
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>

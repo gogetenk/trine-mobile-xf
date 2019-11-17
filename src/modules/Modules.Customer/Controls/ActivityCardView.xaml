@@ -78,6 +78,19 @@
                                            HorizontalOptions="Center"
                                            VerticalOptions="Center" />-->
 
+            <Button Text="Télécharger"
+                    Visual="Default"
+                    x:Name="bt_download"
+                    Clicked="bt_download_Clicked"
+                    TextColor="#707070"
+                    Opacity="0"
+                    IsVisible="False"
+                    BackgroundColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="40"
+                    Margin="10"
+                    FontSize="Small" />
+            
             <Label x:Name="lb_expand"
                    Text="&#xe5cf;"
                    TextColor="#707070"

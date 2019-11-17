@@ -38,6 +38,13 @@ namespace Modules.Customer.Controls
             set => SetValue(RefuseCommandProperty, value);
         }
 
+        public static readonly BindableProperty DownloadCommandProperty = BindableProperty.Create(nameof(DownloadCommand), typeof(ICommand), typeof(ActivityCardView), default(ICommand));
+        public ICommand DownloadCommand
+        {
+            get => (ICommand)GetValue(DownloadCommandProperty);
+            set => SetValue(DownloadCommandProperty, value);
+        }
+
 
         public ActivityCardView()
         {
@@ -58,9 +65,11 @@ namespace Modules.Customer.Controls
 
         private async Task Open(Frame frame)
         {
+            bt_download.IsVisible = true;
             lb_expand.RotateTo(-180, 250, Easing.CubicInOut);
             _isExpanded = true;
             CreateCalendar();
+            bt_download.FadeTo(1, 250, Easing.CubicInOut);
         }
 
 
@@ -69,6 +78,8 @@ namespace Modules.Customer.Controls
             lb_expand.RotateTo(0, 250, Easing.CubicInOut);
             _isExpanded = false;
             calendar_placeholder.Children.Clear();
+            bt_download.Opacity = 0;
+            bt_download.IsVisible = false;
         }
 
         private void CreateCalendar()
@@ -90,12 +101,20 @@ namespace Modules.Customer.Controls
 
         private void bt_refuse_Clicked(object sender, EventArgs e)
         {
-            RefuseCommand.Execute(Activity.Id);
+            if (RefuseCommand.CanExecute(Activity.Id))
+                RefuseCommand.Execute(Activity.Id);
         }
 
         private void bt_accept_Clicked(object sender, EventArgs e)
         {
-            AcceptCommand.Execute(Activity.Id);
+            if (AcceptCommand.CanExecute(Activity.Id))
+                AcceptCommand.Execute(Activity.Id);
+        }
+
+        private void bt_download_Clicked(object sender, EventArgs e)
+        {
+            if (DownloadCommand.CanExecute(Activity.Id))
+                DownloadCommand.Execute(Activity.Id);
         }
     }
 }
