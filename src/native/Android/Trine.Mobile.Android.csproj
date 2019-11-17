@@ -154,6 +154,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
+	<AndroidExternalJavaLibrary Include="amazon-device-messaging-1.0.1.jar" />
+    <AndroidExternalJavaLibrary Include="in-app-purchasing-2.0.76.jar" />
+    <AndroidExternalJavaLibrary Include="org.apache.http.legacy.jar" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
