@@ -38,6 +38,7 @@ namespace Modules.Consultant.ViewModels
         private readonly IActivityService _activityService;
         private readonly IMissionService _missionService;
         private readonly IDialogService _dialogService;
+        private MissionModel _mission;
 
         public HomeViewModel(INavigationService navigationService, IMapper mapper, Prism.Logging.ILogger logger, IPageDialogService pageDialogService, IActivityService activityService, IMissionService missionService, IDialogService dialogService) : base(navigationService, mapper, logger, pageDialogService)
         {
@@ -63,12 +64,12 @@ namespace Modules.Consultant.ViewModels
                 IsLoading = true;
 
                 // Getting current mission
-                var mission = await _missionService.GetConsultantCurrentMission(AppSettings.CurrentUser.Id);
-                if (mission is null)
+                _mission = await _missionService.GetConsultantCurrentMission(AppSettings.CurrentUser.Id);
+                if (_mission is null)
                     throw new BusinessException("Vous n'avez pas encore été invité à une mission, vous ne pourrez donc pas remplir de CRA pour le moment.");
 
                 // Check if there's already an activity report for this month
-                var activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromMissionAndMonth(mission.Id, DateTime.UtcNow));
+                var activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromMissionAndMonth(_mission.Id, DateTime.UtcNow));
 
                 // If not, we just generate a new empty one
                 if (Activity is null)
@@ -134,6 +135,14 @@ namespace Modules.Consultant.ViewModels
 
                 IsLoading = true;
 
+                // If the activity doesnt exist yet, we create it
+                string id;
+                if (string.IsNullOrEmpty(Activity.Id))
+                {
+                    id = Mapper.Map<ActivityDto>(await _activityService.CreateActivity(_mission.Id, DateTime.UtcNow))?.Id;
+                    Activity.Id = id;
+                }
+
                 var activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity)));
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
@@ -161,8 +170,8 @@ namespace Modules.Consultant.ViewModels
         private void SendNotificationToCustomer()
         {
             var notification = new Dictionary<string, object>();
-            notification["contents"] = new Dictionary<string, string>() { { "fr", "Un rapport d'activité vient de vous être soumis !" } };
-            notification["include_player_ids"] = new List<string>() { Activity.Customer.Id };
+            notification["contents"] = new Dictionary<string, string>() { { "en", "Un rapport d'activité vient de vous être soumis !" } };
+            notification["include_external_user_ids"] = new List<string>() { _mission.Customer.Id };
 
             OneSignal.Current.PostNotification(notification, (responseSuccess) =>
             {
