@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="akavache.core" Version="6.9.10" />
     <PackageReference Include="Com.OneSignal" Version="3.6.0" />
     <PackageReference Include="Sogetrel.Sinapse.Framework.Exceptions" Version="1.2.0-beta-007908" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />

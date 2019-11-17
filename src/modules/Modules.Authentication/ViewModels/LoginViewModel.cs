@@ -56,8 +56,6 @@ namespace Modules.Authentication.ViewModels
             _moduleManager.LoadModuleCompleted += _moduleManager_LoadModuleCompleted;
         }
 
-
-
         private async Task OnForgotPassword()
         {
             await NavigationService.NavigateAsync("ForgotPasswordView");
@@ -88,7 +86,6 @@ namespace Modules.Authentication.ViewModels
                 AppCenter.SetUserId(userId);
                 // Setting the user id to One Signal
                 OneSignal.Current.SetExternalUserId(userId);
-
                 // Loading the corresponding module depending on user type
                 LoadModuleFromUserType();
             }

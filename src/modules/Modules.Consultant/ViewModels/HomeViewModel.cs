@@ -167,9 +167,11 @@ namespace Modules.Consultant.ViewModels
             OneSignal.Current.PostNotification(notification, (responseSuccess) =>
             {
                 var oneSignalDebugMessage = "Notification posted successful! Delayed by about 30 secounds to give you time to press the home button to see a notification vs an in-app alert.\n" + Json.Serialize(responseSuccess);
+                Logger.Log(oneSignalDebugMessage, new Dictionary<string, string>() { { "Notifcation Data", Json.Serialize(notification) } });
             }, (responseFailure) =>
             {
                 var oneSignalDebugMessage = "Notification failed to post:\n" + Json.Serialize(responseFailure);
+                Logger.Log(oneSignalDebugMessage, new Dictionary<string, string>() { { "Notifcation Data", Json.Serialize(notification) } });
             });
         }
 
