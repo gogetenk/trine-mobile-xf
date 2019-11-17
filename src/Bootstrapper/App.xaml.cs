@@ -7,6 +7,8 @@ using Modules.Authentication;
 using Modules.Consultant;
 using Modules.Customer;
 using Modules.Settings;
+using Plugin.DownloadManager;
+using Plugin.DownloadManager.Abstractions;
 using Prism;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -195,6 +197,8 @@ namespace Trine.Mobile.Bootstrapper
             containerRegistry.Register<IActivityService, ActivityService>();
 
             containerRegistry.Register<IImageAttachmentStorageConfiguration, ImageAttachmentStorageConfiguration>();
+
+            containerRegistry.RegisterInstance<IDownloadManager>(CrossDownloadManager.Current);
         }
 
         #endregion

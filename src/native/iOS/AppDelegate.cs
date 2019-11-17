@@ -3,6 +3,7 @@ using Com.OneSignal;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using InstabugLib;
+using Plugin.DownloadManager;
 using Prism;
 using Prism.Ioc;
 using Sharpnado.Presentation.Forms.iOS;
@@ -102,6 +103,16 @@ namespace Trine.Mobile.iOS
         }
 
         // Note: Similar exports are needed if you add other AppDelegate overrides.
+
+
+        /**
+         * Save the completion-handler we get when the app opens from the background.
+         * This method informs iOS that the app has finished all internal processing and can sleep again.
+         */
+        public override void HandleEventsForBackgroundUrl(UIApplication application, string sessionIdentifier, Action completionHandler)
+        {
+            CrossDownloadManager.BackgroundSessionCompletionHandler = completionHandler;
+        }
     }
 
     public class iOSInitializer : IPlatformInitializer

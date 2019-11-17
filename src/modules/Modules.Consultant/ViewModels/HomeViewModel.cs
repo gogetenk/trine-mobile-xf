@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Com.OneSignal;
 using Com.OneSignal.Abstractions;
+using Plugin.DownloadManager.Abstractions;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -8,6 +9,7 @@ using Prism.Services.Dialogs;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
@@ -32,24 +34,28 @@ namespace Modules.Consultant.ViewModels
         public DelegateCommand SaveActivityCommand { get; set; }
         public DelegateCommand<GridDayDto> AbsenceCommand { get; set; }
         public DelegateCommand DayClickedCommand { get; set; }
+        public DelegateCommand DownloadActivityCommand { get; set; }
 
         #endregion
 
         private readonly IActivityService _activityService;
         private readonly IMissionService _missionService;
         private readonly IDialogService _dialogService;
+        private readonly IDownloadManager _downloadManager;
         private MissionModel _mission;
 
-        public HomeViewModel(INavigationService navigationService, IMapper mapper, Prism.Logging.ILogger logger, IPageDialogService pageDialogService, IActivityService activityService, IMissionService missionService, IDialogService dialogService) : base(navigationService, mapper, logger, pageDialogService)
+        public HomeViewModel(INavigationService navigationService, IMapper mapper, Prism.Logging.ILogger logger, IPageDialogService pageDialogService, IActivityService activityService, IMissionService missionService, IDialogService dialogService, IDownloadManager downloadManager) : base(navigationService, mapper, logger, pageDialogService)
         {
             _activityService = activityService;
             _missionService = missionService;
             _dialogService = dialogService;
+            _downloadManager = downloadManager;
 
             SignActivityCommand = new DelegateCommand(() => OnSignActivity());
             SaveActivityCommand = new DelegateCommand(async () => await OnSaveActivity());
             AbsenceCommand = new DelegateCommand<GridDayDto>((gridDay) => OnAbsenceSettingsOpened(gridDay as GridDayDto));
-            DayClickedCommand = new DelegateCommand(async () => await OnSaveActivity());
+            //DayClickedCommand = new DelegateCommand(async () => await OnSaveActivity());
+            DownloadActivityCommand = new DelegateCommand(async () => await OnDownloadActivity());
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -227,5 +233,34 @@ namespace Modules.Consultant.ViewModels
         }
 
         #endregion
+
+        private async Task OnDownloadActivity()
+        {
+            try
+            {
+                if (IsLoading)
+                    return;
+
+                IsLoading = true;
+
+                await Browser.OpenAsync($"{AppSettings.ApiUrls.FirstOrDefault().Value}/api/activities/{Activity.Id}/export", BrowserLaunchMode.SystemPreferred);
+                //var file = _downloadManager.CreateDownloadFile($"{AppSettings.ApiUrls.FirstOrDefault().Value}/api/activities/{Activity.Id}/export");
+                //_downloadManager.Start(file);
+                //if (file is null)
+                //throw new BusinessException("Une erreur s'est produite lors du téléchargement du CRA");
+            }
+            catch (BusinessException bExc)
+            {
+                await LogAndShowBusinessError(bExc);
+            }
+            catch (Exception exc)
+            {
+                LogTechnicalError(exc);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
     }
 }
