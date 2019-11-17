@@ -62,6 +62,7 @@
                     
                     <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
                                                    DaySettingsCommand="{Binding AbsenceCommand}"
+                                                   DayClickedCommand="{Binding DayClickedCommand}"
                                                    x:Name="calendar"
                                                    IsInputEnabled="True"
                                                    Margin="0,35,0,0"

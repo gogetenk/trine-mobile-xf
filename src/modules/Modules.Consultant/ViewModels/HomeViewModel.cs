@@ -8,7 +8,6 @@ using Prism.Services.Dialogs;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
@@ -32,6 +31,7 @@ namespace Modules.Consultant.ViewModels
         public DelegateCommand SignActivityCommand { get; set; }
         public DelegateCommand SaveActivityCommand { get; set; }
         public DelegateCommand<GridDayDto> AbsenceCommand { get; set; }
+        public DelegateCommand DayClickedCommand { get; set; }
 
         #endregion
 
@@ -49,6 +49,7 @@ namespace Modules.Consultant.ViewModels
             SignActivityCommand = new DelegateCommand(() => OnSignActivity());
             SaveActivityCommand = new DelegateCommand(async () => await OnSaveActivity());
             AbsenceCommand = new DelegateCommand<GridDayDto>((gridDay) => OnAbsenceSettingsOpened(gridDay as GridDayDto));
+            DayClickedCommand = new DelegateCommand(async () => await OnSaveActivity());
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -69,13 +70,13 @@ namespace Modules.Consultant.ViewModels
                     throw new BusinessException("Vous n'avez pas encore été invité à une mission, vous ne pourrez donc pas remplir de CRA pour le moment.");
 
                 // Check if there's already an activity report for this month
-                var activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromMissionAndMonth(_mission.Id, DateTime.UtcNow));
+                var activity = Mapper.Map<ActivityDto>(await _activityService.GetFromMissionAndMonth(_mission.Id, DateTime.UtcNow));
 
                 // If not, we just generate a new empty one
-                if (Activity is null)
+                if (activity is null)
                     Activity = Mapper.Map<ActivityDto>(await _activityService.GenerateNewActivityReport());
                 else
-                    Activity = activities.OrderBy(x => x.StartDate).FirstOrDefault();
+                    Activity = activity;
 
             }
             catch (BusinessException bExc)
@@ -136,12 +137,7 @@ namespace Modules.Consultant.ViewModels
                 IsLoading = true;
 
                 // If the activity doesnt exist yet, we create it
-                string id;
-                if (string.IsNullOrEmpty(Activity.Id))
-                {
-                    id = Mapper.Map<ActivityDto>(await _activityService.CreateActivity(_mission.Id, DateTime.UtcNow))?.Id;
-                    Activity.Id = id;
-                }
+                await CreateActivityIfNeeded();
 
                 var activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity)));
                 if (activity is null)
@@ -164,6 +160,16 @@ namespace Modules.Consultant.ViewModels
             finally
             {
                 IsLoading = false;
+            }
+        }
+
+        private async Task CreateActivityIfNeeded()
+        {
+            string id;
+            if (string.IsNullOrEmpty(Activity.Id))
+            {
+                id = Mapper.Map<ActivityDto>(await _activityService.CreateActivity(_mission.Id, DateTime.UtcNow))?.Id;
+                Activity.Id = id;
             }
         }
 
@@ -196,6 +202,10 @@ namespace Modules.Consultant.ViewModels
                     return;
 
                 IsLoading = true;
+
+                // If the activity doesnt exist yet, we create it
+                await CreateActivityIfNeeded();
+
                 var activity = await _activityService.UpdateActivity(Mapper.Map<ActivityModel>(Activity));
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");

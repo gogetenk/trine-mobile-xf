@@ -52,8 +52,6 @@ namespace Modules.Authentication.ViewModels
             LoginCommand = new DelegateCommand(async () => await OnLogin(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible && !IsLoading);
             ForgotPasswordCommand = new DelegateCommand(async () => await OnForgotPassword());
             SignupCommand = new DelegateCommand(async () => await OnSignup());
-
-            _moduleManager.LoadModuleCompleted += _moduleManager_LoadModuleCompleted;
         }
 
         private async Task OnForgotPassword()
@@ -88,6 +86,7 @@ namespace Modules.Authentication.ViewModels
                 OneSignal.Current.SetExternalUserId(userId);
                 // Loading the corresponding module depending on user type
                 LoadModuleFromUserType();
+                await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
             }
             catch (BusinessException bExc)
             {
@@ -103,10 +102,6 @@ namespace Modules.Authentication.ViewModels
             }
         }
 
-        private async void _moduleManager_LoadModuleCompleted(object sender, LoadModuleCompletedEventArgs e)
-        {
-            await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
-        }
 
         private void LoadModuleFromUserType()
         {

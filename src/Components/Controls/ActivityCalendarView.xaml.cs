@@ -32,6 +32,16 @@ namespace Trine.Mobile.Components.Controls
             set => SetValue(DaySettingsCommandProperty, value);
         }
 
+        /// <summary>
+        /// Used to know if we have to update the CRA
+        /// </summary>
+        public static readonly BindableProperty DayClickedCommandProperty = BindableProperty.Create(nameof(DayClickedCommand), typeof(ICommand), typeof(ActivityCalendarView), default(ICommand));
+        public ICommand DayClickedCommand
+        {
+            get => (ICommand)GetValue(DayClickedCommandProperty);
+            set => SetValue(DayClickedCommandProperty, value);
+        }
+
         public static readonly BindableProperty ColumnWidthProperty = BindableProperty.Create(nameof(ColumnWidth), typeof(int), typeof(ActivityCalendarView), default(int));
         public int ColumnWidth
         {
@@ -257,6 +267,8 @@ namespace Trine.Mobile.Components.Controls
 
             WorkedDays = fulldays + (halfdays / 2f);
             CurrentActivity.DaysNb = WorkedDays;
+            // Trigger an event
+            DayClickedCommand.Execute(null);
         }
 
         private void SphereLongPressed(GridDayDto gridDay)

@@ -64,7 +64,6 @@ namespace Modules.Authentication.ViewModels
 
             // Tracking lead 
             _supportService.RegisterAnonymousUser();
-            _moduleManager.LoadModuleCompleted += _moduleManager_LoadModuleCompleted;
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -82,17 +81,13 @@ namespace Modules.Authentication.ViewModels
                 AppSettings.CurrentUser = JsonConvert.DeserializeObject<UserModel>(userJson);
                 // Loading the corresponding module depending on user type
                 LoadModuleFromUserType();
+                await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
             }
             catch (Exception ex)
             {
                 // Possible that device doesn't support secure storage on device.
             }
 
-        }
-
-        private async void _moduleManager_LoadModuleCompleted(object sender, LoadModuleCompletedEventArgs e)
-        {
-            await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
         }
 
         private void LoadModuleFromUserType()
