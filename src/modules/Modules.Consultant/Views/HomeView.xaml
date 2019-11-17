@@ -90,7 +90,7 @@
                         <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
                                                        DaySettingsCommand="{Binding AbsenceCommand}"
                                                        x:Name="calendar"
-                                                       IsInputEnabled="True"
+                                                       IsInputEnabled="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
                                                        Margin="0,35,0,10"
                                                        CellBackgroundColor="#CCCCCC"
                                                        CellForegroundColor="White"
