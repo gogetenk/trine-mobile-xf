@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Modules.Authentication.ViewModels;
 using Moq;
+using Prism.Modularity;
 using Prism.Navigation;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
@@ -24,13 +25,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
+            var moduleManagerMock = new Mock<IModuleManager>();
             var supportServiceMock = new Mock<ISupportService>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.DoesUserExist(credentials))
                 .ReturnsAsync(false);
 
-            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object);
+            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object, moduleManagerMock.Object);
             viewmodel.Email = credentials.Email;
             viewmodel.Password = credentials.Password;
 
@@ -47,13 +49,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
             string userId = new Fixture().Create<string>();
+            var moduleManagerMock = new Mock<IModuleManager>();
             var supportServiceMock = new Mock<ISupportService>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.DoesUserExist(It.IsAny<RegisterUserModel>()))
                 .ThrowsAsync(It.IsAny<Exception>());
 
-            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object);
+            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object, moduleManagerMock.Object);
             viewmodel.Email = credentials.Email;
             viewmodel.Password = credentials.Password;
 
@@ -73,12 +76,13 @@ namespace Modules.Authentication.UnitTests.ViewModels
             var exception = new Fixture().Create<BusinessException>();
 
             var supportServiceMock = new Mock<ISupportService>();
+            var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.DoesUserExist(It.IsAny<RegisterUserModel>()))
                 .ThrowsAsync(exception);
 
-            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object);
+            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object, moduleManagerMock.Object);
             viewmodel.Email = credentials.Email;
             viewmodel.Password = credentials.Password;
             // Act
@@ -96,10 +100,11 @@ namespace Modules.Authentication.UnitTests.ViewModels
             string email = new Fixture().Create<string>();
             string password = new Fixture().Create<string>();
             string userId = new Fixture().Create<string>();
+            var moduleManagerMock = new Mock<IModuleManager>();
             var supportServiceMock = new Mock<ISupportService>();
             var accountServiceMock = new Mock<IAccountService>();
 
-            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object);
+            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object, moduleManagerMock.Object);
             viewmodel.Email = null;
             viewmodel.Password = password;
 
@@ -118,10 +123,11 @@ namespace Modules.Authentication.UnitTests.ViewModels
             string email = new Fixture().Create<string>();
             string password = new Fixture().Create<string>();
             string userId = new Fixture().Create<string>();
+            var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             var supportServiceMock = new Mock<ISupportService>();
 
-            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object);
+            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object, moduleManagerMock.Object);
             viewmodel.Email = email;
             viewmodel.Password = null;
 
@@ -140,10 +146,11 @@ namespace Modules.Authentication.UnitTests.ViewModels
             string email = new Fixture().Create<string>();
             string password = new Fixture().Create<string>();
             string userId = new Fixture().Create<string>();
+            var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             var supportServiceMock = new Mock<ISupportService>();
 
-            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object);
+            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object, moduleManagerMock.Object);
             viewmodel.Email = null;
             viewmodel.Password = null;
 
@@ -160,13 +167,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
+            var moduleManagerMock = new Mock<IModuleManager>();
             var supportServiceMock = new Mock<ISupportService>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.DoesUserExist(It.IsAny<RegisterUserModel>()))
                 .ReturnsAsync(false);
 
-            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object);
+            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object, moduleManagerMock.Object);
             viewmodel.Email = credentials.Email;
 
             // Act
@@ -181,13 +189,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
+            var moduleManagerMock = new Mock<IModuleManager>();
             var supportServiceMock = new Mock<ISupportService>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.DoesUserExist(It.IsAny<RegisterUserModel>()))
                 .ReturnsAsync(true);
 
-            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object);
+            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object, moduleManagerMock.Object);
             viewmodel.Email = credentials.Email;
 
             // Act
@@ -202,13 +211,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
+            var moduleManagerMock = new Mock<IModuleManager>();
             var supportServiceMock = new Mock<ISupportService>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.DoesUserExist(It.IsAny<RegisterUserModel>()))
                 .ThrowsAsync(It.IsAny<Exception>());
 
-            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object);
+            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object, moduleManagerMock.Object);
             viewmodel.Email = credentials.Email;
 
             // Act
@@ -224,6 +234,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
         {
             // Arrange
             var credentials = new Fixture().Create<RegisterUserModel>();
+            var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             var supportServiceMock = new Mock<ISupportService>();
             var exception = new Fixture().Create<BusinessException>();
@@ -231,7 +242,7 @@ namespace Modules.Authentication.UnitTests.ViewModels
                 .Setup(x => x.DoesUserExist(It.IsAny<RegisterUserModel>()))
                 .ThrowsAsync(exception);
 
-            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object);
+            var viewmodel = new SignupViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, supportServiceMock.Object, moduleManagerMock.Object);
             viewmodel.Email = credentials.Email;
 
             // Act
