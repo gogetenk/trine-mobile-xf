@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Com.OneSignal" Version="3.6.0" />
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.991211" />
     <PackageReference Include="Prism.Forms" Version="7.2.0.1367" />

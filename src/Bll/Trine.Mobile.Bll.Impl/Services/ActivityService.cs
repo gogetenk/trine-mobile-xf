@@ -194,11 +194,11 @@ namespace Trine.Mobile.Bll.Impl.Services
             }
         }
 
-        public async Task<ObservableCollection<ActivityModel>> GetFromMissionAndMonth(string missionId, DateTime dateTime)
+        public async Task<ActivityModel> GetFromMissionAndMonth(string missionId, DateTime dateTime)
         {
             try
             {
-                return _mapper.Map<ObservableCollection<ActivityModel>>(await _gatewayRepository.ApiActivitiesMissionsByMissionIdByDateGetAsync(missionId, dateTime, _activityApiVersion));
+                return _mapper.Map<ActivityModel>(await _gatewayRepository.ApiActivitiesMissionsByMissionIdByDateGetAsync(missionId, dateTime, _activityApiVersion));
             }
             catch (ApiException dalExc)
             {

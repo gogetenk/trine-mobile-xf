@@ -18,17 +18,24 @@ namespace Modules.Consultant.ViewModels
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
 
         public ICommand SettingsCommand { get; set; }
+        public ICommand ActivitiesCommand { get; set; }
 
         #endregion 
 
         public MenuRootViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IMissionService missionService, IDashboardService dashboardService) : base(navigationService, mapper, logger, dialogService)
         {
             SettingsCommand = new DelegateCommand(async () => await OnSettingsTapped());
+            ActivitiesCommand = new DelegateCommand(async () => await OnActivitiesTapped());
         }
 
         private async Task OnSettingsTapped()
         {
             await NavigationService.NavigateAsync("TrineNavigationPage/SettingsView");
+        }
+
+        private async Task OnActivitiesTapped()
+        {
+            await NavigationService.NavigateAsync("TrineNavigationPage/HomeView");
         }
     }
 }

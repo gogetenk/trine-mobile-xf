@@ -3,6 +3,5 @@
   <PropertyGroup>
     <SelectedDevice>OnePlus A6003</SelectedDevice>
     <DefaultDevice>pixel_2_pie_9_0_api_28</DefaultDevice>
-    <AndroidDesignerPreferredTheme>Theme.AppCompat.Light.NoActionBar</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>

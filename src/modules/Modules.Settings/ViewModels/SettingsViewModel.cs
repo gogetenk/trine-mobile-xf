@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Com.OneSignal;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
@@ -73,6 +74,7 @@ namespace Modules.Settings.ViewModels
             await NavigationService.NavigateAsync("../LoginView");
             AppSettings.CurrentUser = null;
             SecureStorage.Remove(CacheKeys._CurrentUser);
+            OneSignal.Current.RemoveExternalUserId();
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)

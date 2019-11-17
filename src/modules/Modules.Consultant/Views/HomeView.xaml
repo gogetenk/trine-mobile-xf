@@ -4,8 +4,16 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
+             xmlns:local="clr-namespace:Trine.Mobile.Components.Converters;assembly=Trine.Mobile.Components"
              mc:Ignorable="d"
              x:Class="Modules.Consultant.Views.HomeView">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ActivityStatusToBoolConverter x:Key="statusToBool" />
+            <local:IsActivityCompletedConverter x:Key="isActivityCompleted" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <NavigationPage.TitleView>
         <StackLayout Margin="0,15,0,0"
@@ -50,28 +58,60 @@
         <Grid Grid.RowSpan="2"
               Padding="0,35,0,0">
             <Frame Margin="20,10,20,10"
+                   Padding="0"
                    HasShadow="True"
                    CornerRadius="5"
-                   Visual="Material"
-                   HeightRequest="320">
+                   Visual="Material">
                 <StackLayout>
-                    <Label Text="16 décembre 2019" TextColor="{StaticResource AccentColor}" FontSize="20" />
-                    <Label Text="Compte rendu d'activité"
-                           TextColor="#707070"
-                           FontSize="14" />
-                    
-                    <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
-                                                   DaySettingsCommand="{Binding AbsenceCommand}"
-                                                   x:Name="calendar"
-                                                   IsInputEnabled="True"
-                                                   Margin="0,35,0,0"
-                                                   CellBackgroundColor="#CCCCCC"
-                                                   CellForegroundColor="White"
-                                                   AbsenceCellBackgroundColor="#FF5A39"
-                                                   CellFontSize="12"
-                                                   WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
-                                                   HorizontalOptions="Center"
-                                                   VerticalOptions="Center" />
+                    <StackLayout Padding="20">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout>
+                                <Label Text="{Binding Activity.StartDate, StringFormat='{0:MMMM yyyy}'}"
+                                       TextColor="{StaticResource AccentColor}"
+                                       FontSize="20" />
+                                <Label Text="Compte rendu d'activité"
+                                       TextColor="#707070"
+                                       FontSize="14" />
+                                <Label Text="{Binding Activity.TranscodedStatus}"
+                                       TextColor="#707070"
+                                       FontSize="14" />
+                            </StackLayout>
+                            <Frame CornerRadius="120"
+                                   HasShadow="False"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="EndAndExpand"
+                                   Padding="10"
+                                   BackgroundColor="#F6F6F6">
+                                <Label Text="{Binding Activity.DaysNb}"
+                                       TextColor="#464646" />
+                            </Frame>
+                        </StackLayout>
+
+                        <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
+                                                       DaySettingsCommand="{Binding AbsenceCommand}"
+                                                       x:Name="calendar"
+                                                       IsInputEnabled="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
+                                                       Margin="0,35,0,10"
+                                                       CellBackgroundColor="#CCCCCC"
+                                                       CellForegroundColor="White"
+                                                       AbsenceCellBackgroundColor="#FF5A39"
+                                                       CellFontSize="12"
+                                                       WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center" />
+
+                    </StackLayout>
+
+                    <Button Text="Sauvegarder"
+                            Command="{Binding SaveActivityCommand}"
+                            HeightRequest="50"
+                            Margin="0,10,0,0"
+                            VerticalOptions="EndAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="#F6F6F6"
+                            TextColor="#464646"
+                            IsEnabled="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
+                            CornerRadius="5" />
                 </StackLayout>
             </Frame>
 
@@ -90,18 +130,25 @@
                      Margin="20,10,20,10">
             <Button Visual="Material"
                     HeightRequest="50"
+                    Command="{Binding DownloadActivityCommand}"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    IsVisible="{Binding Activity.Status, Converter={StaticResource isActivityCompleted}}"
+                    Text="Télécharger" />
+            <Button Visual="Material"
+                    HeightRequest="50"
                     Command="{Binding SignActivityCommand}"
                     BackgroundColor="{StaticResource AccentColor}"
+                    IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
                     Text="Valider et signer" />
-            <Button 
-                    HeightRequest="50"
+            <Button HeightRequest="50"
                     BackgroundColor="White"
                     Command="{Binding ResetCommand}"
                     BorderColor="{StaticResource AccentColor}"
                     TextColor="{StaticResource AccentColor}"
+                    IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
                     Text="Reinitialiser" />
         </StackLayout>
 
-    </Grid> 
+    </Grid>
 
 </ContentPage>

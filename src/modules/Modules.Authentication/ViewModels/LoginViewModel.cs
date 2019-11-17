@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Com.OneSignal;
+using Microsoft.AppCenter;
 using Prism.Commands;
 using Prism.Logging;
 using Prism.Modularity;
@@ -79,8 +81,9 @@ namespace Modules.Authentication.ViewModels
                     return;
 
                 // Setting the user id to app center
-                // AppCenter.SetUserId(userId);
-
+                AppCenter.SetUserId(userId);
+                // Setting the user id to One Signal
+                OneSignal.Current.SetExternalUserId(userId);
                 // Loading the corresponding module depending on user type
                 LoadModuleFromUserType();
                 await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
@@ -98,6 +101,7 @@ namespace Modules.Authentication.ViewModels
                 IsLoading = false;
             }
         }
+
 
         private void LoadModuleFromUserType()
         {

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Logging;
+using Prism.Modularity;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
@@ -48,12 +49,14 @@ namespace Modules.Authentication.ViewModels
         private readonly IAccountService _accountService;
         private readonly IPageDialogService _dialogService;
         private readonly ISupportService _supportService;
+        private readonly IModuleManager _moduleManager;
 
-        public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, ISupportService supportService) : base(navigationService, mapper, logger, dialogService)
+        public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, ISupportService supportService, IModuleManager moduleManager) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
             _dialogService = dialogService;
             _supportService = supportService;
+            _moduleManager = moduleManager;
 
             SubmitCommand = new DelegateCommand(async () => await OnSubmit(), () => !IsLoading);
             LoginCommand = new DelegateCommand(async () => await OnLogin());
@@ -76,13 +79,35 @@ namespace Modules.Authentication.ViewModels
                     return;
 
                 AppSettings.CurrentUser = JsonConvert.DeserializeObject<UserModel>(userJson);
-                await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/DashboardView");
+                // Loading the corresponding module depending on user type
+                LoadModuleFromUserType();
+                await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
             }
             catch (Exception ex)
             {
                 // Possible that device doesn't support secure storage on device.
             }
 
+        }
+
+        private void LoadModuleFromUserType()
+        {
+            string moduleName;
+            switch (AppSettings.CurrentUser.GlobalRole)
+            {
+                case UserModel.GlobalRoleEnum.Admin:
+                    moduleName = "CommercialModule";
+                    break;
+                case UserModel.GlobalRoleEnum.Consultant:
+                    moduleName = "ConsultantModule";
+                    break;
+                case UserModel.GlobalRoleEnum.Customer:
+                    moduleName = "CustomerModule";
+                    break;
+                default:
+                    throw new BusinessException("Votre compte utilisateur n'est pas adapté à cette version de Trine. Veuillez créer un nouveau compte ou contacter le support client.");
+            }
+            _moduleManager.LoadModule(moduleName);
         }
 
         private async Task OnEmailEntered()

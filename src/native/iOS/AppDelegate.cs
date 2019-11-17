@@ -1,7 +1,9 @@
 ﻿using Binding.Intercom.iOS;
+using Com.OneSignal;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using InstabugLib;
+using Plugin.DownloadManager;
 using Prism;
 using Prism.Ioc;
 using Sharpnado.Presentation.Forms.iOS;
@@ -54,6 +56,12 @@ namespace Trine.Mobile.iOS
 
                 // Intercom
                 Intercom.SetApiKey("ios_sdk-be15dd592c71d03d0f5245caece3fd0a40ae6435", "v4l26lv4");
+
+                // OneSignal
+                OneSignal
+                   .Current
+                   .StartInit("12785512-a98b-4c91-89ca-05959a685120")
+                   .EndInit();
             }
             catch (Exception exception)
             {
@@ -63,38 +71,48 @@ namespace Trine.Mobile.iOS
         }
 
 
-        // The following Exports are needed to run OneSignal in the iOS Simulator.
-        //   The simulator doesn't support push however this prevents a crash due to a Xamarin bug
+        //The following Exports are needed to run OneSignal in the iOS Simulator.
+        //  The simulator doesn't support push however this prevents a crash due to a Xamarin bug
         //   https://bugzilla.xamarin.com/show_bug.cgi?id=52660
-        //[Export("oneSignalApplicationDidBecomeActive:")]
-        //public void OneSignalApplicationDidBecomeActive(UIApplication application)
-        //{
-        //    // Remove line if you don't have a OnActivated method.
-        //    OnActivated(application);
-        //}
+        [Export("oneSignalApplicationDidBecomeActive:")]
+        public void OneSignalApplicationDidBecomeActive(UIApplication application)
+        {
+            // Remove line if you don't have a OnActivated method.
+            OnActivated(application);
+        }
 
-        //[Export("oneSignalApplicationWillResignActive:")]
-        //public void OneSignalApplicationWillResignActive(UIApplication application)
-        //{
-        //    // Remove line if you don't have a OnResignActivation method.
-        //    OnResignActivation(application);
-        //}
+        [Export("oneSignalApplicationWillResignActive:")]
+        public void OneSignalApplicationWillResignActive(UIApplication application)
+        {
+            // Remove line if you don't have a OnResignActivation method.
+            OnResignActivation(application);
+        }
 
-        //[Export("oneSignalApplicationDidEnterBackground:")]
-        //public void OneSignalApplicationDidEnterBackground(UIApplication application)
-        //{
-        //    // Remove line if you don't have a DidEnterBackground method.
-        //    DidEnterBackground(application);
-        //}
+        [Export("oneSignalApplicationDidEnterBackground:")]
+        public void OneSignalApplicationDidEnterBackground(UIApplication application)
+        {
+            // Remove line if you don't have a DidEnterBackground method.
+            DidEnterBackground(application);
+        }
 
-        //[Export("oneSignalApplicationWillTerminate:")]
-        //public void OneSignalApplicationWillTerminate(UIApplication application)
-        //{
-        //    // Remove line if you don't have a WillTerminate method.
-        //    WillTerminate(application);
-        //}
+        [Export("oneSignalApplicationWillTerminate:")]
+        public void OneSignalApplicationWillTerminate(UIApplication application)
+        {
+            // Remove line if you don't have a WillTerminate method.
+            WillTerminate(application);
+        }
 
         // Note: Similar exports are needed if you add other AppDelegate overrides.
+
+
+        /**
+         * Save the completion-handler we get when the app opens from the background.
+         * This method informs iOS that the app has finished all internal processing and can sleep again.
+         */
+        public override void HandleEventsForBackgroundUrl(UIApplication application, string sessionIdentifier, Action completionHandler)
+        {
+            CrossDownloadManager.BackgroundSessionCompletionHandler = completionHandler;
+        }
     }
 
     public class iOSInitializer : IPlatformInitializer
