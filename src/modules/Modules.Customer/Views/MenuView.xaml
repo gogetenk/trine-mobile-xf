@@ -51,6 +51,9 @@
                BackgroundColor="#FBFBFB"
                CornerRadius="5"
                HeightRequest="23">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding SettingsCommand}" />
+            </Frame.GestureRecognizers>
             <StackLayout Orientation="Horizontal">
                 <Label Text="&#xf2d8;"
                        FontSize="{OnPlatform Default='Title', iOS='Subtitle'}"
