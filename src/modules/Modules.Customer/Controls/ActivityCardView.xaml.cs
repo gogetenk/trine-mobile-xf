@@ -21,8 +21,11 @@ namespace Modules.Customer.Controls
             {
                 SetValue(ActivityProperty, value);
                 CreateCalendar();
+                InitActionButtons();
             }
         }
+
+
 
         public static readonly BindableProperty AcceptCommandProperty = BindableProperty.Create(nameof(AcceptCommand), typeof(ICommand), typeof(ActivityCardView), default(ICommand));
         public ICommand AcceptCommand
@@ -65,11 +68,11 @@ namespace Modules.Customer.Controls
 
         private async Task Open(Frame frame)
         {
-            bt_download.IsVisible = true;
+            //bt_download.IsVisible = true;
             lb_expand.RotateTo(-180, 250, Easing.CubicInOut);
             _isExpanded = true;
             CreateCalendar();
-            bt_download.FadeTo(1, 250, Easing.CubicInOut);
+            //bt_download.FadeTo(1, 250, Easing.CubicInOut);
         }
 
 
@@ -78,8 +81,15 @@ namespace Modules.Customer.Controls
             lb_expand.RotateTo(0, 250, Easing.CubicInOut);
             _isExpanded = false;
             calendar_placeholder.Children.Clear();
-            bt_download.Opacity = 0;
-            bt_download.IsVisible = false;
+            //bt_download.Opacity = 0;
+            //bt_download.IsVisible = false;
+        }
+
+        private void InitActionButtons()
+        {
+            bt_accept.IsVisible = Activity.Status == ActivityStatusEnum.ConsultantSigned;
+            bt_refuse.IsVisible = Activity.Status == ActivityStatusEnum.ConsultantSigned;
+            bt_download.IsVisible = Activity.Status == ActivityStatusEnum.CustomerSigned;
         }
 
         private void CreateCalendar()

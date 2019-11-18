@@ -29,7 +29,7 @@
                    Style="{StaticResource Paragraph}"
                    LineHeight="1.2"
                    TextColor="#474747"
-                   FontSize="14" />
+                   FontSize="13" />
             
             <Frame Margin="0,35,0,0"
                    BorderColor="#DCDEE6"

@@ -10,25 +10,6 @@
              x:Name="HomeViewPage"
              x:Class="Modules.Customer.Views.HomeView">
 
-    <!--<NavigationPage.TitleView>
-        <StackLayout Margin="0,15,0,0"
-                     Spacing="0">
-            <Label Text="Bienvenue"
-                   TextColor="White"
-                   FontSize="14"
-                   Opacity=".6" />
-            <Label Text="Yannis Tocreau"
-                   TextColor="White"
-                   FontSize="18">
-                <Label.IsVisible>
-                    <OnPlatform x:TypeArguments="x:Boolean"
-                                iOS="False"
-                                Android="True" />
-                </Label.IsVisible>
-            </Label>
-        </StackLayout>
-    </NavigationPage.TitleView>-->
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25*" />
