@@ -79,13 +79,13 @@
                                     <StackLayout>
                                         <Label Text="{Binding Activity.StartDate, StringFormat='{0:MMMM yyyy}'}"
                                                TextColor="{StaticResource AccentColor}"
-                                               FontSize="20" />
+                                               FontSize="{StaticResource TitleFontSize}" />
                                         <Label Text="Compte rendu d'activité"
                                                TextColor="#707070"
-                                               FontSize="14" />
+                                               FontSize="{StaticResource RegularFontSize}" />
                                         <Label Text="{Binding Activity.TranscodedStatus}"
                                                TextColor="#707070"
-                                               FontSize="14" />
+                                               FontSize="{StaticResource RegularFontSize}" />
                                     </StackLayout>
                                     <Frame CornerRadius="{OnPlatform Default='120', iOS='10'}"
                                            Visual="Default"
