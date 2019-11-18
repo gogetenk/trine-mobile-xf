@@ -81,9 +81,7 @@ namespace Modules.Consultant.ViewModels
 
                 // If not, we just generate a new empty one
                 if (activity is null)
-                {
                     Activity = Mapper.Map<ActivityDto>(await _activityService.CreateActivity(_mission.Id, DateTime.UtcNow));
-                }
                 else
                     Activity = activity;
             }
