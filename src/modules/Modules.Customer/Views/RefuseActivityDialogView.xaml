@@ -5,7 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
       xmlns:prism="http://prismlibrary.com"
-      prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.75, Desktop=0.5}"
+      prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.85, Desktop=0.5}"
       prism:DialogLayout.CloseOnBackgroundTapped="True"
       x:Class="Modules.Customer.Views.RefuseActivityDialogView">
     <Frame CornerRadius="5"
@@ -22,7 +22,7 @@
                    Style="{StaticResource Paragraph}"
                    LineHeight="1.2"
                    TextColor="#474747"
-                   FontSize="14" />
+                   FontSize="13" />
 
             <Frame Margin="0,35,0,35" BorderColor="#DCDEE6" CornerRadius="5" HasShadow="False" HeightRequest="100">
                 <Editor Text="{Binding Comment}"
