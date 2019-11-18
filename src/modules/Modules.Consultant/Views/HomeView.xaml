@@ -58,6 +58,7 @@
               Grid.Row="0"
               Padding="0,35,0,0">
             <Frame Margin="20,10,20,10"
+                   VerticalOptions="Start"
                    Padding="0"
                    HasShadow="True"
                    CornerRadius="5"
@@ -71,6 +72,7 @@
                                        FontSize="20" />
                                 <Label Text="Compte rendu d'activité"
                                        TextColor="#707070"
+                                       
                                        FontSize="14" />
                                 <Label Text="{Binding Activity.TranscodedStatus}"
                                        TextColor="#707070"
