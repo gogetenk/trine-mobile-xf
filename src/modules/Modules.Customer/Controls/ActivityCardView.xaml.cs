@@ -48,7 +48,6 @@ namespace Modules.Customer.Controls
             set => SetValue(DownloadCommandProperty, value);
         }
 
-
         public ActivityCardView()
         {
             InitializeComponent();

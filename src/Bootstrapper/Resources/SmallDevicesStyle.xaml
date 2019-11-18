@@ -11,6 +11,7 @@
                  Android="10"
                  Default="40"
                  x:Key="PageSpacing" />
+
     <OnPlatform  x:TypeArguments="Thickness"
                  iOS="10"
                  Android="15"
@@ -28,6 +29,17 @@
               Default="30"
               x:Key="ActivityRowHeight" />
 
+    <OnPlatform  x:TypeArguments="x:Double"
+                 iOS="16"
+                 Android="14"
+                 Default="14"
+                 x:Key="TitleFontSize" />
+    <OnPlatform  x:TypeArguments="x:Double"
+                 iOS="10"
+                 Android="12"
+                 Default="12"
+                 x:Key="RegularFontSize" />
+
     <Style x:Key="H1"
            TargetType="Label">
         <Setter Property="TextColor"
@@ -35,13 +47,13 @@
         <Setter Property="FontFamily"
                 Value="{StaticResource BoldFont}" />
         <Setter Property="FontSize"
-                Value="16" />
+                Value="{OnPlatform Default=16, iOS=14}" />
     </Style>
 
     <Style x:Key="H2"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="14" />
+                Value="{OnPlatform Default=14, iOS=12}" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextColor"
@@ -51,7 +63,7 @@
     <Style x:Key="Paragraph"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="12" />
+                Value="{OnPlatform Default=12, iOS=10}" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextColor"
@@ -71,7 +83,7 @@
     <Style x:Key="TertiaryText"
            TargetType="Label">
         <Setter Property="FontSize"
-                Value="10" />
+                Value="{OnPlatform Default=10, iOS=8}" />
         <Setter Property="FontFamily"
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextDecorations"

@@ -13,6 +13,7 @@
         <ResourceDictionary>
             <local:ActivityStatusToBoolConverter x:Key="statusToBool" />
             <local:IsActivityCompletedConverter x:Key="isActivityCompleted" />
+            <local:IsActivityRefusedConverter x:Key="refusedStatusToBool" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -67,25 +68,24 @@
 
                 <StackLayout>
 
-                    <Frame Margin="{OnPlatform Default='20,130,20,10', iOS='20,100,20,10'}"
+                    <Frame Margin="{OnPlatform Default='20,100,20,10', iOS='20,100,20,10'}"
                            VerticalOptions="StartAndExpand"
                            Padding="0"
                            HasShadow="True"
                            CornerRadius="5"
                            Visual="Material">
-                        <StackLayout>
                             <StackLayout Padding="20,20,20,0">
                                 <StackLayout Orientation="Horizontal">
                                     <StackLayout>
                                         <Label Text="{Binding Activity.StartDate, StringFormat='{0:MMMM yyyy}'}"
                                                TextColor="{StaticResource AccentColor}"
-                                               FontSize="20" />
+                                               FontSize="{StaticResource TitleFontSize}" />
                                         <Label Text="Compte rendu d'activité"
                                                TextColor="#707070"
-                                               FontSize="14" />
+                                               FontSize="{StaticResource RegularFontSize}" />
                                         <Label Text="{Binding Activity.TranscodedStatus}"
                                                TextColor="#707070"
-                                               FontSize="14" />
+                                               FontSize="{StaticResource RegularFontSize}" />
                                     </StackLayout>
                                     <Frame CornerRadius="{OnPlatform Default='120', iOS='10'}"
                                            Visual="Default"
@@ -113,55 +113,125 @@
                                                                VerticalOptions="Center" />
 
                             </StackLayout>
-
-                            <Button Text="Sauvegarder"
-                                    Command="{Binding SaveActivityCommand}"
-                                    HeightRequest="50"
-                                    Margin="0,0,0,0"
-                                    VerticalOptions="EndAndExpand"
-                                    HorizontalOptions="FillAndExpand"
-                                    BackgroundColor="#F6F6F6"
-                                    TextColor="#464646"
-                                    IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
-                                    IsEnabled="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
-                                    CornerRadius="5" />
-                        </StackLayout>
                     </Frame>
 
-                    <StackLayout VerticalOptions="EndAndExpand"
-                                 Margin="20,10,20,10">
-                        <Button Visual="Material"
-                                HeightRequest="50"
-                                Command="{Binding DownloadActivityCommand}"
-                                BackgroundColor="{StaticResource AccentColor}"
-                                IsVisible="{Binding Activity.Status, Converter={StaticResource isActivityCompleted}}"
-                                Text="Télécharger" />
-                        <Button Visual="Material"
-                                HeightRequest="50"
-                                Command="{Binding SignActivityCommand}"
-                                BackgroundColor="{StaticResource AccentColor}"
-                                IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
-                                Text="Valider et signer" />
-                        <Button HeightRequest="50"
-                                BackgroundColor="White"
-                                Command="{Binding ResetCommand}"
-                                BorderColor="{StaticResource AccentColor}"
-                                TextColor="{StaticResource AccentColor}"
-                                IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
-                                Text="Reinitialiser" />
-                    </StackLayout>
+                    <!-- Commentaire -->
+                    <Frame Margin="20,0,20,30"
+                           IsVisible="{Binding Activity.Status, Converter={StaticResource refusedStatusToBool}}"
+                           Padding="0"
+                           Visual="Material"
+                           IsClippedToBounds="True"
+                           CornerRadius="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <!--<BoxView BackgroundColor="#FF5A39"
+                                     Grid.Row="0" />-->
+
+                            <StackLayout Grid.Row="1"
+                                         Padding="20">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="&#xf2d5;"
+                                           Margin="{OnPlatform Android='0,-33,10,0', Default='0,0,10,0'}"
+                                           Grid.Row="1"
+                                           FontSize="Large"
+                                           TextColor="#FF5A39"
+                                           FontFamily="{StaticResource IconFont}" />
+                                    <Label Text="Compte rendu d'activité refusé"
+                                           TextColor="#FF5A39"
+                                           Style="{StaticResource H2}" />
+                                </StackLayout>
+
+                                <Label Text="L'une des parties a refusé le compte rendu d'activité en vous laissant un commentaire."
+                                       Grid.Row="1"
+                                       Margin="{OnPlatform Android='0,-15,10,0', Default='0,0,0,0'}"
+                                       TextColor="#707070"
+                                       Style="{StaticResource TertiaryText}"
+                                       TextDecorations="None" />
+
+                                <Frame CornerRadius="5"
+                                       HasShadow="False"
+                                       Margin="0,15,0,0"
+                                       BorderColor="#F5F5F7"
+                                       Padding="10">
+                                    <Label Text="{Binding Activity.ModificationProposals[0].Comment}"
+                                           Grid.Row="1"
+                                           TextColor="#707070"
+                                           Style="{StaticResource Paragraph}"
+                                           TextDecorations="None" />
+                                </Frame>
+                            </StackLayout>
+
+                        </Grid>
+                    </Frame>
+                    
+
                 </StackLayout>
             </ScrollView>
 
             <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}"
                                Color="#5C5EDC"
                                HeightRequest="50"
                                WidthRequest="50"
                                Margin="20"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
-
+            
         </Grid>
 
+        <StackLayout Grid.RowSpan="2"
+                     VerticalOptions="EndAndExpand"
+                     HorizontalOptions="EndAndExpand">
+           
+            <Frame Padding="0"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource FrameButtonStyle}"
+                   CornerRadius="{OnPlatform Default=120, iOS=23}"
+                   HeightRequest="40"
+                   WidthRequest="40"
+                   BackgroundColor="{StaticResource AccentColor}"
+                   IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
+                   Margin="0,0,25,5">
+                <Button Text="&#xe3c9;"
+                        FontFamily="{StaticResource MaterialIcons}"
+                        TextColor="#95989A"
+                        FontSize="24"
+                        BackgroundColor="#F5F5F7"
+                        Command="{Binding SignActivityCommand}"
+                        CornerRadius="{OnPlatform Default=120, iOS=23}"
+                        Padding="0,0,0,0" />
+            </Frame>
+            <Frame Padding="0"
+                   Style="{StaticResource FrameButtonStyle}"
+                   IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
+                   CornerRadius="{OnPlatform Default=120, iOS=30}"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   Margin="0,0,25,40">
+                <Button Text="&#xe161;"
+                        FontSize="24"
+                        Style="{StaticResource ActionButtonStyle}"
+                        Command="{Binding SaveActivityCommand}"
+                        CornerRadius="{OnPlatform Default=120, iOS=30}"
+                        Padding="0,0,0,0" />
+            </Frame>
+            <Frame Padding="0"
+                   IsVisible="{Binding Activity.Status, Converter={StaticResource isActivityCompleted}}"
+                   Style="{StaticResource FrameButtonStyle}"
+                   CornerRadius="{OnPlatform Default=120, iOS=30}"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   Margin="0,0,25,40">
+                <Button Text="&#xe2c4;"
+                        FontSize="24"
+                        Style="{StaticResource ActionButtonStyle}"
+                        Command="{Binding DownloadActivityCommand}"
+                        CornerRadius="{OnPlatform Default=120, iOS=30}"
+                        Padding="0,0,0,0" />
+            </Frame>
+        </StackLayout>
     </Grid>
 </ContentPage>
