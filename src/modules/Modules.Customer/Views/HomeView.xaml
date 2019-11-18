@@ -26,7 +26,7 @@
               Grid.RowSpan="2"
               HeightRequest="120"
               Padding="20,20,20,20">
-            <StackLayout Margin="0,15,0,0"
+            <StackLayout Margin="{OnPlatform Default='0,15,0,0', iOS='0,30,0,0'}"
                          Spacing="0">
                 <Label Text="Bienvenue,"
                        TextColor="White"
@@ -40,14 +40,13 @@
         </Grid>
 
         <!-- MAIN CONTENT -->
-        <Grid Grid.RowSpan="2"
-              Margin="20,0,20,0">
+        <Grid Grid.RowSpan="2">
             <ScrollView Scrolled="ScrollView_Scrolled">
                 <StackLayout BindableLayout.ItemsSource="{Binding Activities}"
                              Spacing="0"
                              VerticalOptions="FillAndExpand"
                              HorizontalOptions="FillAndExpand"
-                             Margin="0,130,0,0">
+                         Margin="{OnPlatform Default='20,130,20,10', iOS='20,90,20,10'}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <controls1:ActivityCardView Margin="0,2,0,2"
