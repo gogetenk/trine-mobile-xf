@@ -19,9 +19,9 @@
                VerticalOptions="Fill"
                Visual="Default"
                Padding="0">
-            <Frame.GestureRecognizers>
+            <!--<Frame.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-            </Frame.GestureRecognizers>
+            </Frame.GestureRecognizers>-->
             <AbsoluteLayout  VerticalOptions="Fill"
                              HorizontalOptions="Fill">
                 <BoxView Color="{StaticResource AccentColor}"
