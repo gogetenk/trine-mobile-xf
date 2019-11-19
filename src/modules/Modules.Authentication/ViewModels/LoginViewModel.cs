@@ -13,6 +13,7 @@ using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Model;
+using static Trine.Mobile.Dto.UserDto;
 
 namespace Modules.Authentication.ViewModels
 {
@@ -82,8 +83,9 @@ namespace Modules.Authentication.ViewModels
 
                 // Setting the user id to app center
                 AppCenter.SetUserId(userId);
-                // Setting the user id to One Signal
+                // Setting the user id to One Signal, and assigning tag
                 OneSignal.Current.SetExternalUserId(userId);
+                OneSignal.Current.SendTag("user_type", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser.GlobalRole));
                 // Loading the corresponding module depending on user type
                 LoadModuleFromUserType();
                 await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
