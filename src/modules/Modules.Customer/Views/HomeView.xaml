@@ -70,6 +70,27 @@
 
         </Grid>
 
+        <Frame HorizontalOptions="Center"
+               Grid.Row="1"
+               Margin="20,-50,20,20"
+               VerticalOptions="Start"
+               Visual="Material">
+            <StackLayout>
+                <Label Text="C'est calme ici ! 😉"
+                       FontSize="Medium"
+                       TextColor="{StaticResource AccentColor}" />
+                <Label Text="Vous n'avez pas de CRA à signer pour le moment."
+                       FontSize="Small"
+                       TextColor="#707070" />
+                <!--<Button Text="Consulter l'historique"
+                        FontSize="12"
+                        Margin="0,20,0,0"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        Visual="Default" />-->
+            </StackLayout>
+        </Frame>
+
     </Grid>
 
 </ContentPage>

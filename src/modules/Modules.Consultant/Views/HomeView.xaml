@@ -118,6 +118,7 @@
                     <!-- Commentaire -->
                     <Frame Margin="20,0,20,30"
                            IsVisible="{Binding Activity.Status, Converter={StaticResource refusedStatusToBool}}"
+                           x:Name="frame_comment"
                            Padding="0"
                            Visual="Material"
                            IsClippedToBounds="True"
