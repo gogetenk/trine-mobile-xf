@@ -31,6 +31,9 @@ namespace Modules.Customer.ViewModels
         private bool _isLoading;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
 
+        private bool _isEmptyState;
+        public bool IsEmptyState { get => _isEmptyState; set { _isEmptyState = value; RaisePropertyChanged(); } }
+
         public DelegateCommand<string> AcceptActivityCommand { get; set; }
         public DelegateCommand<string> RefuseActivityCommand { get; set; }
         public DelegateCommand<string> DownloadActivityCommand { get; set; }
@@ -68,12 +71,16 @@ namespace Modules.Customer.ViewModels
             try
             {
                 IsLoading = true;
+                IsEmptyState = false;
 
                 // Getting all active activities for the user
                 Activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromUser(AppSettings.CurrentUser.Id))
                     .Where(x => x.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned)
                     .ToList(); // TODO: faire une requete speciale pour ça
                 var ids = Activities.Select(x => x.Id).ToList();
+
+                if (Activities is null || !Activities.Any())
+                    IsEmptyState = true;
             }
             catch (BusinessException bExc)
             {
