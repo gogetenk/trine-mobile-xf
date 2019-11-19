@@ -14,7 +14,6 @@ using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
-using Xamarin.Essentials;
 
 namespace Modules.Customer.ViewModels
 {
@@ -27,6 +26,9 @@ namespace Modules.Customer.ViewModels
 
         private ActivityDto _activity;
         public ActivityDto Activity { get => _activity; set { _activity = value; RaisePropertyChanged(); } }
+
+        private string _currentUser;
+        public string CurrentUser { get => _currentUser; set { _currentUser = value; RaisePropertyChanged(); } }
 
         private bool _isLoading;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
@@ -56,7 +58,6 @@ namespace Modules.Customer.ViewModels
             _dialogService = dialogService;
             RefuseActivityCommand = new DelegateCommand<string>((id) => OnRefuseActivity(id));
             AcceptActivityCommand = new DelegateCommand<string>((id) => OnAcceptActivity(id));
-            DownloadActivityCommand = new DelegateCommand<string>(async (id) => await OnDownloadActivity(id));
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -73,14 +74,9 @@ namespace Modules.Customer.ViewModels
                 IsLoading = true;
                 IsEmptyState = false;
 
+                CurrentUser = Mapper.Map<UserDto>(AppSettings.CurrentUser).DisplayName;
                 // Getting all active activities for the user
-                Activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromUser(AppSettings.CurrentUser.Id))
-                    .Where(x => x.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned)
-                    .ToList(); // TODO: faire une requete speciale pour ça
-                var ids = Activities.Select(x => x.Id).ToList();
-
-                if (Activities is null || !Activities.Any())
-                    IsEmptyState = true;
+                Activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromUser(AppSettings.CurrentUser.Id, Trine.Mobile.Model.ActivityStatusEnum.ConsultantSigned));
             }
             catch (BusinessException bExc)
             {
@@ -93,6 +89,9 @@ namespace Modules.Customer.ViewModels
             finally
             {
                 IsLoading = false;
+
+                if (Activities is null || !Activities.Any())
+                    IsEmptyState = true;
             }
         }
 
@@ -197,33 +196,5 @@ namespace Modules.Customer.ViewModels
 
         #endregion
 
-        private async Task OnDownloadActivity(string id)
-        {
-            try
-            {
-                if (IsLoading)
-                    return;
-
-                IsLoading = true;
-
-                await Browser.OpenAsync($"{AppSettings.ApiUrls.FirstOrDefault().Value}/api/activities/{id}/export", BrowserLaunchMode.SystemPreferred);
-                //var file = _downloadManager.CreateDownloadFile($"{AppSettings.ApiUrls.FirstOrDefault().Value}/api/activities/{Activity.Id}/export");
-                //_downloadManager.Start(file);
-                //if (file is null)
-                //throw new BusinessException("Une erreur s'est produite lors du téléchargement du CRA");
-            }
-            catch (BusinessException bExc)
-            {
-                await LogAndShowBusinessError(bExc);
-            }
-            catch (Exception exc)
-            {
-                LogTechnicalError(exc);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
-        }
     }
 }

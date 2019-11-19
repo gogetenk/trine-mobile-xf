@@ -17,20 +17,6 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!--<NavigationPage.TitleView>
-        <StackLayout Margin="{OnPlatform Default='0,15,0,0', iOS='0,0,0,0'}"
-                     Spacing="0">
-            <Label Text="Bienvenue"
-                   TextColor="White"
-                   FontSize="14"
-                   Opacity=".6" />
-            <Label Text="Yannis Tocreau"
-                   TextColor="White"
-                   FontSize="18">
-            </Label>
-        </StackLayout>
-    </NavigationPage.TitleView>-->
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25*" />
@@ -53,9 +39,9 @@
                        TextColor="White"
                        FontSize="14"
                        Opacity=".6" />
-                <Label Text="Yannis Tocreau"
+                <Label Text="{Binding Activity.Consultant.FullName}"
                        TextColor="White"
-                       FontSize="18">
+                       FontSize="24">
                 </Label>
             </StackLayout>
         </Grid>

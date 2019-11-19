@@ -21,6 +21,6 @@ namespace Trine.Mobile.Bll
         Task<ObservableCollection<ActivityModel>> GetFromMission(string missionId);
         Task RefuseActivity(ActivityModel activityModel);
         List<DateTime> GetMissionPeriods(MissionModel mission);
-        Task<List<ActivityModel>> GetFromUser(string id);
+        Task<List<ActivityModel>> GetFromUser(string id, ActivityStatusEnum status);
     }
 }

@@ -20,12 +20,8 @@ namespace Modules.Customer.Controls
             set
             {
                 SetValue(ActivityProperty, value);
-                CreateCalendar();
-                InitActionButtons();
             }
         }
-
-
 
         public static readonly BindableProperty AcceptCommandProperty = BindableProperty.Create(nameof(AcceptCommand), typeof(ICommand), typeof(ActivityCardView), default(ICommand));
         public ICommand AcceptCommand
@@ -46,6 +42,22 @@ namespace Modules.Customer.Controls
         {
             get => (ICommand)GetValue(DownloadCommandProperty);
             set => SetValue(DownloadCommandProperty, value);
+        }
+
+        private bool _showDownloadButton;
+        public bool ShowDownloadButton
+        {
+            get => _showDownloadButton;
+            set
+            {
+                _showDownloadButton = value;
+                if (value)
+                {
+                    bt_download.IsVisible = true;
+                    bt_accept.IsVisible = false;
+                    bt_refuse.IsVisible = false;
+                }
+            }
         }
 
         public ActivityCardView()
@@ -86,8 +98,8 @@ namespace Modules.Customer.Controls
 
         private void InitActionButtons()
         {
-            bt_accept.IsVisible = Activity.Status == ActivityStatusEnum.ConsultantSigned;
-            bt_refuse.IsVisible = Activity.Status == ActivityStatusEnum.ConsultantSigned;
+            //bt_accept.IsVisible = Activity.Status == ActivityStatusEnum.ConsultantSigned;
+            //bt_refuse.IsVisible = Activity.Status == ActivityStatusEnum.ConsultantSigned;
             bt_download.IsVisible = Activity.Status == ActivityStatusEnum.CustomerSigned;
         }
 

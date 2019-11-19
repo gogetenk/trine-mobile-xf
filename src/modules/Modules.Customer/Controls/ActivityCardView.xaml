@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              mc:Ignorable="d"
              x:Class="Modules.Customer.Controls.ActivityCardView">
 
@@ -19,7 +18,7 @@
         <StackLayout>
             <StackLayout Orientation="Horizontal">
                 <StackLayout>
-                    <Label Text="{Binding CreationDate, StringFormat='{0:MMMM yyyy}'}"
+                    <Label Text="{Binding CreationDate, StringFormat='{0:MMMM yyyy}'}" 
                            TextColor="{StaticResource AccentColor}"
                            FontSize="20" />
                     <Label Text="{Binding Consultant.FullName}"
@@ -70,7 +69,7 @@
                             Text="&#xe2c4;"
                             FontSize="20"
                             IsVisible="False"
-                            TextColor="#FF5A39"
+                            TextColor="{StaticResource AccentColor}"
                             Padding="0"
                             HeightRequest="47"
                             Visual="Default"
