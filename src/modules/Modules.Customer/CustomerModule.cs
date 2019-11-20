@@ -1,7 +1,7 @@
-﻿using Prism.Ioc;
-using Prism.Modularity;
+﻿using Modules.Customer.ViewModels;
 using Modules.Customer.Views;
-using Modules.Customer.ViewModels;
+using Prism.Ioc;
+using Prism.Modularity;
 
 namespace Modules.Customer
 {
@@ -18,6 +18,7 @@ namespace Modules.Customer
             containerRegistry.RegisterForNavigation<MenuRootView, MenuRootViewModel>();
             containerRegistry.RegisterForNavigation<TestView, TestViewModel>();
             containerRegistry.RegisterForNavigation<HomeView, HomeViewModel>();
+            containerRegistry.RegisterForNavigation<ActivityHistoryView, ActivityHistoryViewModel>();
 
             containerRegistry.RegisterDialog<AcceptActivityDialogView, SignActivityDialogViewModel>(); // Same VM
             containerRegistry.RegisterDialog<RefuseActivityDialogView, RefuseActivityDialogViewModel>();

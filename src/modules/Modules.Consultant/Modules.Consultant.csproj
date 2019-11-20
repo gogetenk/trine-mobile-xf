@@ -18,7 +18,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Controls\ActivityCardView.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="Views\AbsenceDialogView.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ActivityHistoryView.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
     <Compile Update="Views\MenuRootView.xaml.cs">

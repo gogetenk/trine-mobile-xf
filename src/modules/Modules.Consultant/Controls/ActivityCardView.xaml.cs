@@ -6,13 +6,12 @@ using Trine.Mobile.Dto;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Modules.Customer.Controls
+namespace Modules.Consultant.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ActivityCardView : ContentView
     {
         private bool _isExpanded;
-
 
         public static readonly BindableProperty ActivityProperty = BindableProperty.Create(nameof(Activity), typeof(ActivityDto), typeof(ActivityCardView), default(ActivityDto));
         public ActivityDto Activity
@@ -51,7 +50,6 @@ namespace Modules.Customer.Controls
             get => (bool)GetValue(ShowDownloadButtonProperty);
             set => SetValue(ShowDownloadButtonProperty, value);
         }
-
 
         private static void OnPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {

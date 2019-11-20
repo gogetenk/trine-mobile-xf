@@ -239,11 +239,11 @@ namespace Trine.Mobile.Bll.Impl.Services
             return diff;
         }
 
-        public async Task<List<ActivityModel>> GetFromUser(string id)
+        public async Task<List<ActivityModel>> GetFromUser(string id, ActivityStatusEnum status)
         {
             try
             {
-                return _mapper.Map<List<ActivityModel>>(await _gatewayRepository.ApiActivitiesUsersByUserIdGetAsync(id, _activityApiVersion));
+                return _mapper.Map<List<ActivityModel>>(await _gatewayRepository.ApiActivitiesUsersByUserIdGetAsync(id, (int)status, _activityApiVersion));
             }
             catch (ApiException dalExc)
             {

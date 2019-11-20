@@ -7,6 +7,7 @@
              Title="Menu"
              IconImageSource="menu_small.png"
              BackgroundColor="White">
+    
     <StackLayout>
 
         <!--<StackLayout BackgroundColor="#F5F5F5"
@@ -66,14 +67,14 @@
             </StackLayout>
         </Frame>
 
-        <!--<Frame Margin="20,5,20,2"
+        <Frame Margin="20,5,20,2"
                Padding="15"
                HasShadow="False"
                BackgroundColor="#FBFBFB"
                CornerRadius="5"
                HeightRequest="23">
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding SettingsCommand}" />
+                <TapGestureRecognizer Command="{Binding HistoryCommand}" />
             </Frame.GestureRecognizers>
             <StackLayout Orientation="Horizontal">
                 <Label Text="&#xf2d1;"
@@ -85,7 +86,7 @@
                        FontSize="16"
                        TextColor="Black" />
             </StackLayout>
-        </Frame>-->
+        </Frame>
 
         <Button FontFamily="{StaticResource MaterialIcons}"
                 Text="&#xe8b8;"
