@@ -3,22 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              mc:Ignorable="d"
              x:Class="Modules.Customer.Controls.ActivityCardView">
 
-    <Frame HasShadow="True"
-           Margin="0,4,0,4"
-           Padding="20,20,20,0"
-           CornerRadius="5"
-           Visual="Material">
-        <Frame.GestureRecognizers>
+    <controls:ElevationFrame HasShadow="True"
+                             Margin="20,4,20,4"
+                             Elevation="50"
+                             Padding="20,20,20,0"
+                             CornerRadius="5">
+        <controls:ElevationFrame.GestureRecognizers>
             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-        </Frame.GestureRecognizers>
+        </controls:ElevationFrame.GestureRecognizers>
 
         <StackLayout>
             <StackLayout Orientation="Horizontal">
                 <StackLayout>
-                    <Label Text="{Binding CreationDate, StringFormat='{0:MMMM yyyy}'}" 
+                    <Label Text="{Binding CreationDate, StringFormat='{0:MMMM yyyy}'}"
                            TextColor="{StaticResource AccentColor}"
                            FontSize="20" />
                     <Label Text="{Binding Consultant.FullName}"
@@ -103,5 +104,5 @@
                    FontFamily="{StaticResource MaterialIcons}"
                    FontSize="20" />
         </StackLayout>
-    </Frame>
+    </controls:ElevationFrame>
 </ContentView>

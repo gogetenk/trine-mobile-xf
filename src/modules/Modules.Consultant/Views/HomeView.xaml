@@ -54,8 +54,8 @@
 
                 <StackLayout>
 
-                    <Frame Margin="{OnPlatform Default='20,100,20,10', iOS='20,100,20,10'}"
-                           VerticalOptions="StartAndExpand"
+                    <Frame Margin="{OnPlatform Default='0,100,0,10', iOS='0,100,0,10'}"
+                        VerticalOptions="StartAndExpand"
                            Padding="0"
                            HasShadow="True"
                            CornerRadius="5"
