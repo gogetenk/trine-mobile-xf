@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls1="clr-namespace:Modules.Consultant.Controls"
+             NavigationPage.HasNavigationBar="False"
+             mc:Ignorable="d"
+             x:Name="ActivityHistoryViewPage"
+             x:Class="Modules.Consultant.Views.ActivityHistoryView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="75*" />
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <Grid Grid.Row="0"
+              x:Name="grid_header"
+              BackgroundColor="{StaticResource AccentColor}" />
+
+        <Grid Margin="0"
+              x:Name="grid_header_title"
+              Grid.RowSpan="2"
+              HeightRequest="120"
+              Padding="20,20,20,20">
+            <StackLayout Margin="{OnPlatform Default='0,15,0,0', iOS='0,30,0,0'}"
+                         Spacing="0">
+                <Label Text="Historique"
+                       TextColor="White"
+                       FontSize="14"
+                       Opacity=".6" />
+                <Label Text="Vos rapport signés"
+                       TextColor="White"
+                       FontSize="24" />
+            </StackLayout>
+        </Grid>
+
+        <!-- MAIN CONTENT -->
+        <Grid Grid.RowSpan="2">
+            <ScrollView Scrolled="ScrollView_Scrolled">
+                <StackLayout BindableLayout.ItemsSource="{Binding Activities}"
+                             Spacing="0"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand"
+                             Margin="{OnPlatform Default='0,130,0,10', iOS='0,90,0,10'}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <controls1:ActivityCardView Margin="0,2,0,2"
+                                                        ShowDownloadButton="True"
+                                                        DownloadCommand="{Binding BindingContext.DownloadActivityCommand, Source={x:Reference ActivityHistoryViewPage} }"
+                                                        Activity="{Binding}" />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}"
+                               Color="#5C5EDC"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               Margin="20"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+
+        </Grid>
+
+        <Frame HorizontalOptions="Center"
+               Grid.Row="1"
+               IsVisible="{Binding IsEmptyState}"
+               Margin="20,-50,20,20"
+               VerticalOptions="Start"
+               Visual="Material">
+            <StackLayout>
+                <Label Text="C'est calme ici ! 😉"
+                       FontSize="Medium"
+                       TextColor="{StaticResource AccentColor}" />
+                <Label Text="Vous n'avez pas de CRA à signer pour le moment."
+                       FontSize="Small"
+                       TextColor="#707070" />
+                <Button Text="Consulter l'historique"
+                        Command="{Binding HistoryCommand}"
+                        FontSize="12"
+                        Margin="0,20,0,0"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        Visual="Default" />
+            </StackLayout>
+        </Frame>
+
+    </Grid>
+
+</ContentPage>

@@ -19,6 +19,7 @@ namespace Modules.Consultant.ViewModels
 
         public ICommand SettingsCommand { get; set; }
         public ICommand ActivitiesCommand { get; set; }
+        public ICommand HistoryCommand { get; set; }
 
         #endregion 
 
@@ -26,6 +27,7 @@ namespace Modules.Consultant.ViewModels
         {
             SettingsCommand = new DelegateCommand(async () => await OnSettingsTapped());
             ActivitiesCommand = new DelegateCommand(async () => await OnActivitiesTapped());
+            HistoryCommand = new DelegateCommand(async () => await OnHistoryTapped());
         }
 
         private async Task OnSettingsTapped()
@@ -36,6 +38,11 @@ namespace Modules.Consultant.ViewModels
         private async Task OnActivitiesTapped()
         {
             await NavigationService.NavigateAsync("TrineNavigationPage/HomeView");
+        }
+
+        private async Task OnHistoryTapped()
+        {
+            await NavigationService.NavigateAsync("TrineNavigationPage/ActivityHistoryView");
         }
     }
 }

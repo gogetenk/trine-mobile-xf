@@ -14,7 +14,7 @@ using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Xamarin.Essentials;
 
-namespace Modules.Customer.ViewModels
+namespace Modules.Consultant.ViewModels
 {
     public class ActivityHistoryViewModel : ViewModelBase
     {
