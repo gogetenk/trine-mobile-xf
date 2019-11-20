@@ -28,12 +28,19 @@ namespace Modules.Customer.ViewModels
         private ActivityDto _activity;
         public ActivityDto Activity { get => _activity; set { _activity = value; RaisePropertyChanged(); } }
 
+        private string _currentUser;
+        public string CurrentUser { get => _currentUser; set { _currentUser = value; RaisePropertyChanged(); } }
+
         private bool _isLoading;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
+
+        private bool _isEmptyState;
+        public bool IsEmptyState { get => _isEmptyState; set { _isEmptyState = value; RaisePropertyChanged(); } }
 
         public DelegateCommand<string> AcceptActivityCommand { get; set; }
         public DelegateCommand<string> RefuseActivityCommand { get; set; }
         public DelegateCommand<string> DownloadActivityCommand { get; set; }
+        public DelegateCommand HistoryCommand { get; set; }
 
         #endregion
 
@@ -54,6 +61,7 @@ namespace Modules.Customer.ViewModels
             RefuseActivityCommand = new DelegateCommand<string>((id) => OnRefuseActivity(id));
             AcceptActivityCommand = new DelegateCommand<string>((id) => OnAcceptActivity(id));
             DownloadActivityCommand = new DelegateCommand<string>(async (id) => await OnDownloadActivity(id));
+            HistoryCommand = new DelegateCommand(async () => await OnHistoryTapped());
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -68,12 +76,11 @@ namespace Modules.Customer.ViewModels
             try
             {
                 IsLoading = true;
+                IsEmptyState = false;
 
+                CurrentUser = Mapper.Map<UserDto>(AppSettings.CurrentUser).DisplayName;
                 // Getting all active activities for the user
-                Activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromUser(AppSettings.CurrentUser.Id))
-                    .Where(x => x.Status == Trine.Mobile.Dto.ActivityStatusEnum.ConsultantSigned)
-                    .ToList(); // TODO: faire une requete speciale pour ça
-                var ids = Activities.Select(x => x.Id).ToList();
+                Activities = Mapper.Map<List<ActivityDto>>(await _activityService.GetFromUser(AppSettings.CurrentUser.Id, Trine.Mobile.Model.ActivityStatusEnum.ConsultantSigned));
             }
             catch (BusinessException bExc)
             {
@@ -86,6 +93,9 @@ namespace Modules.Customer.ViewModels
             finally
             {
                 IsLoading = false;
+
+                if (Activities is null || !Activities.Any())
+                    IsEmptyState = true;
             }
         }
 
@@ -217,6 +227,11 @@ namespace Modules.Customer.ViewModels
             {
                 IsLoading = false;
             }
+        }
+
+        private async Task OnHistoryTapped()
+        {
+            await NavigationService.NavigateAsync("TrineNavigationPage/ActivityHistoryView");
         }
     }
 }

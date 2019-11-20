@@ -110,11 +110,12 @@ namespace Trine.Mobile.Dal.Swagger
         System.Threading.Tasks.Task ApiActivitiesByIdValidateChangePostAsync(string id, string userId = null, string api_version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>Gets all the activities an user is involved in.</summary>
+        /// <param name="status">The state of the activities required. Default : Generated status</param>
         /// <param name="api_version">The requested API version</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Activity>> ApiActivitiesUsersByUserIdGetAsync(string userId, string api_version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Activity>> ApiActivitiesUsersByUserIdGetAsync(string userId, int status, string api_version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>Gets all the days of the current month, with a flag specifying if the day is workable.</summary>
         /// <param name="api_version">The requested API version</param>
@@ -1792,11 +1793,12 @@ namespace Trine.Mobile.Dal.Swagger
         }
 
         /// <summary>Gets all the activities an user is involved in.</summary>
+        /// <param name="status">The state of the activities required. Default : Generated status</param>
         /// <param name="api_version">The requested API version</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Activity>> ApiActivitiesUsersByUserIdGetAsync(string userId, string api_version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Activity>> ApiActivitiesUsersByUserIdGetAsync(string userId, int status, string api_version = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (userId == null)
                 throw new System.ArgumentNullException("userId");
@@ -1804,6 +1806,10 @@ namespace Trine.Mobile.Dal.Swagger
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/activities/users/{userId}?");
             urlBuilder_.Replace("{userId}", System.Uri.EscapeDataString(ConvertToString(userId, System.Globalization.CultureInfo.InvariantCulture)));
+            if (status != null)
+            {
+                urlBuilder_.Append("status=").Append(System.Uri.EscapeDataString(ConvertToString(status, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (api_version != null)
             {
                 urlBuilder_.Append("api-version=").Append(System.Uri.EscapeDataString(ConvertToString(api_version, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -8253,6 +8259,20 @@ namespace Trine.Mobile.Dal.Swagger
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<Invite>(data);
         }
+
+    }
+
+    /// <summary>The state of the activities required. Default : Generated status</summary>
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.12.2.0 (Newtonsoft.Json v11.0.0.0)")]
+    public enum Status
+    {
+        _0 = 0,
+
+        _1 = 1,
+
+        _2 = 2,
+
+        _3 = 3,
 
     }
 
