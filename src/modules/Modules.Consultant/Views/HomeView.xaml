@@ -95,7 +95,7 @@
                                                            CellBackgroundColor="#CCCCCC"
                                                            CellForegroundColor="White"
                                                            AbsenceCellBackgroundColor="#FF5A39"
-                                                           CellFontSize="8"
+                                                           CellFontSize="10"
                                                            WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
                                                            HorizontalOptions="Center"
                                                            VerticalOptions="Center" />
@@ -105,6 +105,7 @@
 
                     <!-- Commentaire -->
                     <controls:ElevationFrame Margin="20,0,20,30"
+                                             Elevation="50"
                                              IsVisible="{Binding Activity.Status, Converter={StaticResource refusedStatusToBool}}"
                                              x:Name="frame_comment"
                                              Padding="0"
@@ -209,8 +210,8 @@
                    IsVisible="{Binding Activity.Status, Converter={StaticResource isActivityCompleted}}"
                    Style="{StaticResource FrameButtonStyle}"
                    CornerRadius="{OnPlatform Default=120, iOS=30}"
-                   HeightRequest="60"
-                   WidthRequest="60"
+                   HeightRequest="40"
+                   WidthRequest="40"
                    Margin="0,0,25,40">
                 <Button Text="&#xe2c4;"
                         FontSize="24"

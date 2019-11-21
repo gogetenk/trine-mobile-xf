@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Trine.Mobile.Components.Controls.ActivityCalendarView">
     <Grid>
-        <Image x:Name="image" IsVisible="False" />
+        <Image x:Name="image"
+               IsVisible="False" />
         <StackLayout x:Name="layout">
             <Grid HorizontalOptions="Center">
                 <Grid.ColumnDefinitions>
@@ -77,12 +78,12 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
-                    <RowDefinition Height="16*" />
-                    <RowDefinition Height="16*" />
-                    <RowDefinition Height="16*" />
-                    <RowDefinition Height="16*" />
-                    <RowDefinition Height="16*" />
-                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
                 </Grid.RowDefinitions>
 
             </Grid>
