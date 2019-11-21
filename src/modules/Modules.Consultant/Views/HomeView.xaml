@@ -79,13 +79,13 @@
                                     <StackLayout>
                                         <Label Text="{Binding Activity.StartDate, StringFormat='{0:MMMM yyyy}'}"
                                                TextColor="{StaticResource AccentColor}"
-                                               FontSize="20" />
+                                               FontSize="Large" />
                                         <Label Text="Compte rendu d'activité"
                                                TextColor="#707070"
-                                               FontSize="14" />
+                                               FontSize="Small" />
                                         <Label Text="{Binding Activity.TranscodedStatus}"
                                                TextColor="#707070"
-                                               FontSize="14" />
+                                               FontSize="Small" />
                                     </StackLayout>
                                     <Frame CornerRadius="{OnPlatform Default='120', iOS='10'}"
                                            Visual="Default"
@@ -95,6 +95,7 @@
                                            Padding="10"
                                            BackgroundColor="#F6F6F6">
                                         <Label Text="{Binding Activity.DaysNb}"
+                                               FontSize="Small"
                                                TextColor="#464646" />
                                     </Frame>
                                 </StackLayout>
@@ -107,7 +108,7 @@
                                                                CellBackgroundColor="#CCCCCC"
                                                                CellForegroundColor="White"
                                                                AbsenceCellBackgroundColor="#FF5A39"
-                                                               CellFontSize="12"
+                                                               CellFontSize="{OnPlatform Default=12, iOS=10}"
                                                                WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
                                                                HorizontalOptions="Center"
                                                                VerticalOptions="Center" />
