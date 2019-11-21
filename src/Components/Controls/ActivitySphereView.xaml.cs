@@ -114,6 +114,16 @@ namespace Trine.Mobile.Components.Controls
             }
         }
 
+        private void MultiGestureView_LongPressed_1(object sender, EventArgs e)
+        {
+            var param = GridDay;
+            if (LongPressCommand?.CanExecute(param) ?? true)
+            {
+                //LongPressed?.Invoke(this, e);
+                LongPressCommand?.Execute(param);
+            }
+        }
+
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             if (!IsInputEnabled)
@@ -193,14 +203,6 @@ namespace Trine.Mobile.Components.Controls
             //DayClicked.Execute(DayPart);
         }
 
-        private void MultiGestureView_LongPressed_1(object sender, EventArgs e)
-        {
-            var param = GridDay;
-            if (LongPressCommand?.CanExecute(param) ?? true)
-            {
-                //LongPressed?.Invoke(this, e);
-                LongPressCommand?.Execute(param);
-            }
-        }
+
     }
 }
