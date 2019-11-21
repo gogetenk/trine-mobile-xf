@@ -28,6 +28,17 @@
               Default="40"
               x:Key="ActivityRowHeight" />
 
+    <OnPlatform  x:TypeArguments="x:Double"
+                 iOS="20"
+                 Android="20"
+                 Default="20"
+                 x:Key="TitleFontSize" />
+    <OnPlatform  x:TypeArguments="x:Double"
+                 iOS="14"
+                 Android="14"
+                 Default="14"
+                 x:Key="RegularFontSize" />
+
     <Style x:Key="H1"
            TargetType="Label">
         <Setter Property="TextColor"
