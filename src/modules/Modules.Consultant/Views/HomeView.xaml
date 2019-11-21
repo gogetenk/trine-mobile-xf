@@ -40,8 +40,8 @@
                        FontSize="14"
                        Opacity=".6" />
                 <Label Text="{Binding Activity.Consultant.FullName}"
-                       TextColor="White"
-                       FontSize="24">
+                       FontSize="{StaticResource TitleFontSize}"
+                       TextColor="White">
                 </Label>
             </StackLayout>
         </Grid>
@@ -54,7 +54,7 @@
 
                 <StackLayout>
 
-                    <controls:ElevationFrame Margin="{OnPlatform Default='20,100,20,10', iOS='20,100,20,10'}"
+                    <controls:ElevationFrame Margin="{OnPlatform Default='20,100,20,10', iOS='20,90,20,10'}"
                                              Elevation="50"
                                              VerticalOptions="StartAndExpand"
                                              Padding="0"
@@ -71,10 +71,10 @@
                                            TextColor="#707070"
                                            FontSize="{StaticResource RegularFontSize}" />
                                     <Label Text="{Binding Activity.TranscodedStatus}"
-                                           TextColor="#707070"
-                                           FontSize="{StaticResource RegularFontSize}" />
+                                           FontSize="{StaticResource RegularFontSize}"
+                                           TextColor="#707070" />
                                 </StackLayout>
-                                <Frame CornerRadius="{OnPlatform Default='120', iOS='10'}"
+                                <Frame CornerRadius="{OnPlatform Default='120', iOS='15'}"
                                        Visual="Default"
                                        HasShadow="False"
                                        VerticalOptions="Center"
@@ -82,6 +82,7 @@
                                        Padding="10"
                                        BackgroundColor="#F6F6F6">
                                     <Label Text="{Binding Activity.DaysNb}"
+                                           FontSize="{StaticResource RegularFontSize}"
                                            TextColor="#464646" />
                                 </Frame>
                             </StackLayout>
@@ -94,7 +95,7 @@
                                                            CellBackgroundColor="#CCCCCC"
                                                            CellForegroundColor="White"
                                                            AbsenceCellBackgroundColor="#FF5A39"
-                                                           CellFontSize="12"
+                                                           CellFontSize="8"
                                                            WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
                                                            HorizontalOptions="Center"
                                                            VerticalOptions="Center" />
@@ -104,11 +105,11 @@
 
                     <!-- Commentaire -->
                     <controls:ElevationFrame Margin="20,0,20,30"
-                           IsVisible="{Binding Activity.Status, Converter={StaticResource refusedStatusToBool}}"
-                           x:Name="frame_comment"
-                           Padding="0"
-                           IsClippedToBounds="True"
-                           CornerRadius="5">
+                                             IsVisible="{Binding Activity.Status, Converter={StaticResource refusedStatusToBool}}"
+                                             x:Name="frame_comment"
+                                             Padding="0"
+                                             IsClippedToBounds="True"
+                                             CornerRadius="5">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="4" />

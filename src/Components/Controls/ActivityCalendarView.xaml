@@ -77,12 +77,12 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
-                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
-                    <RowDefinition Height="{StaticResource ActivityRowHeight}" />
+                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="16*" />
+                    <RowDefinition Height="16*" />
                 </Grid.RowDefinitions>
 
             </Grid>

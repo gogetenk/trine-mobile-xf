@@ -45,8 +45,8 @@ namespace Trine.Mobile.iOS.Renderers
             Layer.ShadowRadius = materialFrame.Elevation;
             Layer.ShadowColor = UIColor.Black.CGColor;
             Layer.ShadowOffset = new CGSize(2, 2);
-            Layer.ShadowOpacity = 0.10f;
-            Layer.ShadowPath = UIBezierPath.FromRect(Layer.Bounds).CGPath;
+            Layer.ShadowOpacity = 0.20f;
+            //Layer.ShadowPath = UIBezierPath.FromRect(Layer.Bounds).CGPath;
             Layer.MasksToBounds = false;
 
         }

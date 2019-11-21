@@ -11,14 +11,14 @@
         
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="15*" />
             <RowDefinition Height="65*" />
         </Grid.RowDefinitions>
 
         <Grid BackgroundColor="{StaticResource AccentColor}" Grid.Row="0">
-                <Grid HeightRequest="120"
-                      WidthRequest="120"
+                <Grid HeightRequest="100"
+                      WidthRequest="100"
                       HorizontalOptions="Center"
                       VerticalOptions="Start">
                     <abstractions:CircleImage BorderColor="White"
@@ -51,7 +51,7 @@
         <StackLayout Grid.Row="1"
                      Grid.RowSpan="2">
             <Frame CornerRadius="5"
-                   Margin="40,0,40,25"
+                   Margin="20,0,20,25"
                    Padding="30"
                    Visual="Material"
                    VerticalOptions="Start"
@@ -100,18 +100,21 @@
             <Button Text="Sauvegarder"
                     Command="{Binding SaveCommand}"
                     HorizontalOptions="FillAndExpand"
-                    VerticalOptions="EndAndExpand"
-                    Margin="40,2,40,2"
-                    HeightRequest="50"
-                    Style="{StaticResource PrimaryButtonStyle}" />
+                    VerticalOptions="End"
+                    Margin="20,2,20,2"
+                        FontSize="{StaticResource RegularFontSize}"
+                        HeightRequest="{OnPlatform Default=50, iOS=40}"
+                        Style="{StaticResource PrimaryButtonStyle}" />
             
             <Button Text="Supprimer le compte"
                     Command="{Binding DeleteCommand}"
-                    HorizontalOptions="FillAndExpand"
-                    Margin="40,2,40,30"
-                    HeightRequest="50"
+                        VerticalOptions="End"
+                        HorizontalOptions="FillAndExpand"
+                    Margin="20,2,20,0"
+                    HeightRequest="{OnPlatform Default=50, iOS=40}"
                     Visual="Material"
-                    BorderColor="Red"
+                        FontSize="{StaticResource RegularFontSize}"
+                        BorderColor="Red"
                     CornerRadius="5"
                     BorderWidth="1"
                     BackgroundColor="White"
