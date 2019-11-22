@@ -45,11 +45,13 @@ namespace Modules.Authentication.ViewModels
 
         private readonly IAccountService _accountService;
         private readonly IModuleManager _moduleManager;
+        private readonly ISupportService _supportService;
 
-        public LoginViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, IModuleManager moduleManager) : base(navigationService, mapper, logger, dialogService)
+        public LoginViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, IModuleManager moduleManager, ISupportService supportService) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
             _moduleManager = moduleManager;
+            _supportService = supportService;
 
             LoginCommand = new DelegateCommand(async () => await OnLogin(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible && !IsLoading);
             ForgotPasswordCommand = new DelegateCommand(async () => await OnForgotPassword());
@@ -82,6 +84,8 @@ namespace Modules.Authentication.ViewModels
                 if (string.IsNullOrEmpty(userId))
                     return;
 
+                // Tracking user in intercom
+                _supportService.RegisterUser(AppSettings.CurrentUser);
                 // Tracking event
                 var userRole = Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
                 Logger.TrackEvent("[Retention] User logged in to the app.", new Dictionary<string, string> {

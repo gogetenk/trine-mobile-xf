@@ -38,12 +38,13 @@ namespace Modules.Authentication.ViewModels
         private RegisterUserDto _userToCreate;
         private readonly IAccountService _accountService;
         private readonly IModuleManager _moduleManager;
+        private readonly ISupportService _supportService;
 
-        public Signup3ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, IModuleManager moduleManager) : base(navigationService, mapper, logger, dialogService)
+        public Signup3ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, IModuleManager moduleManager, ISupportService supportService) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
             _moduleManager = moduleManager;
-
+            _supportService = supportService;
             ConsultantCommand = new DelegateCommand(async () => await OnConsultantPicked());
             CommercialCommand = new DelegateCommand(async () => await OnCommercialPicked());
             CustomerCommand = new DelegateCommand(async () => await OnCustomerPicked());
@@ -103,6 +104,8 @@ namespace Modules.Authentication.ViewModels
                 if (string.IsNullOrEmpty(id))
                     throw new TechnicalException("Error while subscribing the user.");
 
+                // Tracking user in intercom
+                _supportService.RegisterUser(AppSettings.CurrentUser);
                 // Tracking event
                 var userRole = Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
                 Logger.TrackEvent("[Acquisition] A new user subscribed from the app.", new Dictionary<string, string> {

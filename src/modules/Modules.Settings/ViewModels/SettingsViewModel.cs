@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
@@ -33,8 +34,12 @@ namespace Modules.Settings.ViewModels
 
         #endregion
 
-        public SettingsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
+        private readonly ISupportService _supportService;
+
+        public SettingsViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, ISupportService supportService) : base(navigationService, mapper, logger, dialogService)
         {
+            _supportService = supportService;
+
             DisconnectCommand = new DelegateCommand(async () => await OnDisconnect());
             EditUserCommand = new DelegateCommand(async () => await OnEditUser());
             ChangePasswordCommand = new DelegateCommand(async () => await OnChangePassword());
