@@ -14,7 +14,7 @@ using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
-using Xamarin.Essentials;
+using static Trine.Mobile.Dto.UserDto;
 
 namespace Modules.Customer.ViewModels
 {
@@ -39,7 +39,6 @@ namespace Modules.Customer.ViewModels
 
         public DelegateCommand<string> AcceptActivityCommand { get; set; }
         public DelegateCommand<string> RefuseActivityCommand { get; set; }
-        public DelegateCommand<string> DownloadActivityCommand { get; set; }
         public DelegateCommand HistoryCommand { get; set; }
 
         #endregion
@@ -60,7 +59,6 @@ namespace Modules.Customer.ViewModels
             _dialogService = dialogService;
             RefuseActivityCommand = new DelegateCommand<string>((id) => OnRefuseActivity(id));
             AcceptActivityCommand = new DelegateCommand<string>((id) => OnAcceptActivity(id));
-            DownloadActivityCommand = new DelegateCommand<string>(async (id) => await OnDownloadActivity(id));
             HistoryCommand = new DelegateCommand(async () => await OnHistoryTapped());
         }
 
@@ -126,6 +124,14 @@ namespace Modules.Customer.ViewModels
 
                 Activities.Remove(Activity);
                 Activity = null;
+
+                // Tracking event
+                Logger.TrackEvent("[Retention] User signed an activity.", new Dictionary<string, string> {
+                    { "UserId", AppSettings.CurrentUser.Id },
+                    { "ActivityId", activity.Id },
+                    { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
+                    { "UserType", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole) }
+                });
             }
             catch (BusinessException bExc)
             {
@@ -181,6 +187,14 @@ namespace Modules.Customer.ViewModels
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
+                // Tracking event
+                Logger.TrackEvent("[Retention] User refused an activity.", new Dictionary<string, string> {
+                    { "UserId", AppSettings.CurrentUser.Id },
+                    { "ActivityId", activity.Id },
+                    { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
+                    { "UserType", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole) }
+                });
+
                 Activity = null;
                 await LoadActivities();
             }
@@ -199,35 +213,6 @@ namespace Modules.Customer.ViewModels
         }
 
         #endregion
-
-        private async Task OnDownloadActivity(string id)
-        {
-            try
-            {
-                if (IsLoading)
-                    return;
-
-                IsLoading = true;
-
-                await Browser.OpenAsync($"{AppSettings.ApiUrls.FirstOrDefault().Value}/api/activities/{id}/export", BrowserLaunchMode.SystemPreferred);
-                //var file = _downloadManager.CreateDownloadFile($"{AppSettings.ApiUrls.FirstOrDefault().Value}/api/activities/{Activity.Id}/export");
-                //_downloadManager.Start(file);
-                //if (file is null)
-                //throw new BusinessException("Une erreur s'est produite lors du téléchargement du CRA");
-            }
-            catch (BusinessException bExc)
-            {
-                await LogAndShowBusinessError(bExc);
-            }
-            catch (Exception exc)
-            {
-                LogTechnicalError(exc);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
-        }
 
         private async Task OnHistoryTapped()
         {

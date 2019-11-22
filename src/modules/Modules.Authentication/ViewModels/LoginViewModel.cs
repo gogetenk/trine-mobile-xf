@@ -8,6 +8,7 @@ using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Settings;
@@ -81,11 +82,18 @@ namespace Modules.Authentication.ViewModels
                 if (string.IsNullOrEmpty(userId))
                     return;
 
+                // Tracking event
+                var userRole = Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
+                Logger.TrackEvent("[Retention] User logged in to the app.", new Dictionary<string, string> {
+                    { "UserId", userId },
+                    { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
+                    { "UserType", userRole }
+                });
                 // Setting the user id to app center
                 AppCenter.SetUserId(userId);
                 // Setting the user id to One Signal, and assigning tag
                 OneSignal.Current.SetExternalUserId(userId);
-                OneSignal.Current.SendTag("user_type", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser.GlobalRole));
+                OneSignal.Current.SendTag("user_type", userRole);
                 // Loading the corresponding module depending on user type
                 LoadModuleFromUserType();
                 await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
