@@ -13,6 +13,7 @@ using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Xamarin.Essentials;
+using static Trine.Mobile.Dto.UserDto;
 
 namespace Modules.Customer.ViewModels
 {
@@ -93,6 +94,15 @@ namespace Modules.Customer.ViewModels
                 //_downloadManager.Start(file);
                 //if (file is null)
                 //throw new BusinessException("Une erreur s'est produite lors du téléchargement du CRA");
+
+                // Tracking event
+                Logger.TrackEvent("[Retention] User downloaded an activity.", new Dictionary<string, string> {
+                    { "UserId", AppSettings.CurrentUser.Id },
+                    { "ActivityId", id },
+                    { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
+                    { "UserType", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole) }
+                });
+
             }
             catch (BusinessException bExc)
             {

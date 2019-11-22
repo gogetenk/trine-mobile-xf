@@ -1,6 +1,7 @@
 ﻿using AutoFixture;
 using Modules.Authentication.ViewModels;
 using Moq;
+using Prism.Modularity;
 using Prism.Navigation;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
@@ -29,12 +30,13 @@ namespace Modules.Authentication.UnitTests.ViewModels
             var credentials = new Fixture().Create<RegisterUserDto>();
             var navparams = new NavigationParameters();
             navparams.Add(NavigationParameterKeys._User, credentials);
+            var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Admin)))
                 .ReturnsAsync(id);
 
-            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object);
+            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
             viewmodel.OnNavigatedTo(navparams);
 
             // Act
@@ -52,12 +54,13 @@ namespace Modules.Authentication.UnitTests.ViewModels
             var credentials = new Fixture().Create<RegisterUserDto>();
             var navparams = new NavigationParameters();
             navparams.Add(NavigationParameterKeys._User, credentials);
+            var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Consultant)))
                 .ReturnsAsync(id);
 
-            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object);
+            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
             viewmodel.OnNavigatedTo(navparams);
 
             // Act
@@ -75,12 +78,13 @@ namespace Modules.Authentication.UnitTests.ViewModels
             var credentials = new Fixture().Create<RegisterUserDto>();
             var navparams = new NavigationParameters();
             navparams.Add(NavigationParameterKeys._User, credentials);
+            var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Customer)))
                 .ReturnsAsync(id);
 
-            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object);
+            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
             viewmodel.OnNavigatedTo(navparams);
 
             // Act
@@ -98,12 +102,13 @@ namespace Modules.Authentication.UnitTests.ViewModels
             var credentials = new Fixture().Create<RegisterUserDto>();
             var navparams = new NavigationParameters();
             navparams.Add(NavigationParameterKeys._User, credentials);
+            var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Customer)))
                 .ThrowsAsync(It.IsAny<Exception>());
 
-            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object);
+            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
             viewmodel.OnNavigatedTo(navparams);
 
             // Act
@@ -123,12 +128,13 @@ namespace Modules.Authentication.UnitTests.ViewModels
             var exception = new Fixture().Create<BusinessException>();
             var navparams = new NavigationParameters();
             navparams.Add(NavigationParameterKeys._User, credentials);
+            var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Customer)))
                 .ThrowsAsync(exception);
 
-            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object);
+            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
             viewmodel.OnNavigatedTo(navparams);
 
             // Act

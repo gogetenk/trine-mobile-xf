@@ -18,6 +18,7 @@ using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
 using Xamarin.Essentials;
+using static Trine.Mobile.Dto.UserDto;
 
 namespace Modules.Consultant.ViewModels
 {
@@ -171,6 +172,14 @@ namespace Modules.Consultant.ViewModels
                 // Sending notif to customer
                 // TODO: a faire dans le back
                 SendNotificationToCustomer();
+
+                // Tracking event
+                Logger.TrackEvent("[Retention] User signed an activity.", new Dictionary<string, string> {
+                    { "UserId", activity.Consultant.Id },
+                    { "ActivityId", activity.Id },
+                    { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
+                    { "UserType", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole) }
+                });
             }
             catch (BusinessException bExc)
             {
@@ -234,6 +243,14 @@ namespace Modules.Consultant.ViewModels
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
                 Activity = Mapper.Map<ActivityDto>(activity);
+
+                // Tracking event
+                Logger.TrackEvent("[Retention] User updated an activity.", new Dictionary<string, string> {
+                    { "UserId", activity.Consultant.Id },
+                    { "ActivityId", activity.Id },
+                    { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
+                    { "UserType", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole) }
+                });
             }
             catch (BusinessException bExc)
             {

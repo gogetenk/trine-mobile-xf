@@ -4,6 +4,8 @@ using Prism.Commands;
 using Prism.Logging;
 using Prism.Navigation;
 using Prism.Services;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Trine.Mobile.Bll.Impl.Settings;
@@ -11,6 +13,7 @@ using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Xamarin.Essentials;
+using static Trine.Mobile.Dto.UserDto;
 
 namespace Modules.Settings.ViewModels
 {
@@ -72,6 +75,14 @@ namespace Modules.Settings.ViewModels
         private async Task OnDisconnect()
         {
             await NavigationService.NavigateAsync("../LoginView");
+
+            // Tracking event
+            Logger.TrackEvent("User disconnected from the app.", new Dictionary<string, string> {
+                    { "UserId", AppSettings.CurrentUser.Id },
+                    { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
+                    { "UserType", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole) }
+                });
+
             AppSettings.CurrentUser = null;
             SecureStorage.Remove(CacheKeys._CurrentUser);
             OneSignal.Current.RemoveExternalUserId();

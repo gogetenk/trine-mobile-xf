@@ -8,6 +8,7 @@ using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Trine.Mobile.Bll;
@@ -102,6 +103,14 @@ namespace Modules.Authentication.ViewModels
                 if (string.IsNullOrEmpty(id))
                     throw new TechnicalException("Error while subscribing the user.");
 
+                // Tracking event
+                var userRole = Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
+                Logger.TrackEvent("[Acquisition] A new user subscribed from the app.", new Dictionary<string, string> {
+                    { "UserId", id },
+                    { "UserName", $"{_userToCreate?.FirstName} {_userToCreate?.LastName}"},
+                    { "UserType", userRole }
+                });
+
                 var navParams = new NavigationParameters();
                 navParams.Add(NavigationParameterKeys._IsLaterTextVisible, true);
                 //await NavigationService.NavigateAsync("OrganizationChoiceView", navParams);
@@ -111,7 +120,7 @@ namespace Modules.Authentication.ViewModels
                 AppCenter.SetUserId(id);
                 // Setting the user id to One Signal, and assigning tag
                 OneSignal.Current.SetExternalUserId(id);
-                OneSignal.Current.SendTag("user_type", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser.GlobalRole));
+                OneSignal.Current.SendTag("user_type", userRole);
                 // Loading the corresponding module depending on user type
                 LoadModuleFromUserType();
                 await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");

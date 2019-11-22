@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Com.OneSignal;
 using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -8,6 +9,7 @@ using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
@@ -16,6 +18,7 @@ using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
 using Xamarin.Essentials;
+using static Trine.Mobile.Dto.UserDto;
 
 namespace Modules.Settings.ViewModels
 {
@@ -108,6 +111,13 @@ namespace Modules.Settings.ViewModels
                 User = user;
                 AppSettings.CurrentUser = Mapper.Map<UserModel>(user);
                 await UpdateCacheAsync();
+
+                // Tracking event
+                Logger.TrackEvent("[Loss] User edited his profile from the app.", new Dictionary<string, string> {
+                    { "UserId", AppSettings.CurrentUser.Id },
+                    { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
+                    { "UserType", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole) }
+                });
             }
             catch (BusinessException bExc)
             {
@@ -149,6 +159,18 @@ namespace Modules.Settings.ViewModels
 
                 IsLoading = true;
                 await _userService.DeleteUser(User.Id);
+
+                // Tracking event
+                Logger.TrackEvent("[Loss] User deleted his account from the app.", new Dictionary<string, string> {
+                    { "UserId", AppSettings.CurrentUser.Id },
+                    { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
+                    { "UserType", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole) }
+                });
+
+                AppSettings.CurrentUser = null;
+                SecureStorage.Remove(CacheKeys._CurrentUser);
+                OneSignal.Current.RemoveExternalUserId();
+                await NavigationService.NavigateAsync("../LoginView");
             }
             catch (BusinessException bExc)
             {
