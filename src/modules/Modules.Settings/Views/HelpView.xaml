@@ -7,12 +7,13 @@
              Title="Support"
              x:Class="Modules.Settings.Views.HelpView">
 
+    <ScrollView>
     <StackLayout VerticalOptions="Center">
         
         <StackLayout Padding="40,40,40,10">
 
             <Image x:Name="img"
-                   WidthRequest="100"
+                   WidthRequest="70"
                    Margin="0,0,0,50"
                    HorizontalOptions="Center"
                    VerticalOptions="Start" />
@@ -130,4 +131,5 @@
         </StackLayout>
 
     </StackLayout>
+    </ScrollView>
 </ContentPage>

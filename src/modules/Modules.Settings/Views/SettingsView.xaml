@@ -6,172 +6,177 @@
              NavigationPage.HasNavigationBar="True"
              Title="Réglages">
 
-    <StackLayout>
+    <ScrollView>
+        <StackLayout>
 
-        <StackLayout BackgroundColor="{StaticResource AccentColor}"
-                     Padding="40,20,40,30"
-                     Orientation="Horizontal">
-            <abstractions:CircleImage HeightRequest="55"
-                                      WidthRequest="55"
-                                      BorderColor="White"
-                                      BorderThickness="2"
-                                      HorizontalOptions="Start"
-                                      VerticalOptions="Center"
-                                      Aspect="AspectFill"
-                                      Source="{Binding User.ProfilePicUrl}" />
-            <StackLayout Margin="20,0,0,0" VerticalOptions="Center">
-                <Label Text="Bonjour,"
-                       TextColor="White"
-                       Opacity="0.7"
-                       Style="{StaticResource Paragraph}" />
-                <Label Text="{Binding User.DisplayName}"
-                       TextColor="White"
-                       Style="{StaticResource H2}" /> 
+            <StackLayout BackgroundColor="{StaticResource AccentColor}"
+                         Padding="40,20,40,30"
+                         Orientation="Horizontal">
+                <abstractions:CircleImage HeightRequest="55"
+                                          WidthRequest="55"
+                                          BorderColor="White"
+                                          BorderThickness="2"
+                                          HorizontalOptions="Start"
+                                          VerticalOptions="Center"
+                                          Aspect="AspectFill"
+                                          Source="{Binding User.ProfilePicUrl}" />
+                <StackLayout Margin="20,0,0,0"
+                             VerticalOptions="Center">
+                    <Label Text="Bonjour,"
+                           TextColor="White"
+                           Opacity="0.7"
+                           Style="{StaticResource Paragraph}" />
+                    <Label Text="{Binding User.DisplayName}"
+                           TextColor="White"
+                           Style="{StaticResource H2}" />
+                </StackLayout>
+
+                <Button CornerRadius="{OnPlatform Default=120, iOS=16}"
+                        HorizontalOptions="EndAndExpand"
+                        TextColor="White"
+                        BackgroundColor="#8C69E3"
+                        Command="{Binding EditUserCommand}"
+                        Padding="0"
+                        FontSize="18"
+                        VerticalOptions="Center"
+                        HeightRequest="32"
+                        WidthRequest="32"
+                        Text="&#xe3c9;"
+                        FontFamily="{StaticResource MaterialIcons}" />
             </StackLayout>
 
-            <Button CornerRadius="{OnPlatform Default=120, iOS=16}"
-                    HorizontalOptions="EndAndExpand"
-                    TextColor="White"
-                    BackgroundColor="#8C69E3"
-                    Command="{Binding EditUserCommand}"
-                    Padding="0"
-                    FontSize="18"
-                    VerticalOptions="Center"
-                    HeightRequest="32"
-                    WidthRequest="32"
-                    Text="&#xe3c9;" FontFamily="{StaticResource MaterialIcons}" />
+            <StackLayout Padding="20">
+                <Grid RowSpacing="-15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+
+                    <Frame CornerRadius="5"
+                           Grid.RowSpan="2"
+                           BackgroundColor="#F5F5F7"
+                           HasShadow="False" />
+
+                    <StackLayout Grid.Row="0"
+                                 Padding="20"
+                                 VerticalOptions="FillAndExpand"
+                                 Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NotificationsCommand}" />
+                        </StackLayout.GestureRecognizers>
+                        <Label Style="{StaticResource Paragraph}"
+                               VerticalOptions="Center"
+                               Text="Notifications" />
+                        <Label Style="{StaticResource Paragraph}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="EndAndExpand"
+                               FontFamily="{StaticResource MaterialIcons}"
+                               FontSize="20"
+                               Text="&#xe5cc;" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="1"
+                                 Padding="20"
+                                 VerticalOptions="FillAndExpand"
+                                 Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding IntegrationsCommand}" />
+                        </StackLayout.GestureRecognizers>
+                        <Label Style="{StaticResource Paragraph}"
+                               VerticalOptions="Center"
+                               Text="Intégrations" />
+                        <Label Style="{StaticResource Paragraph}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="EndAndExpand"
+                               FontFamily="{StaticResource MaterialIcons}"
+                               FontSize="20"
+                               Text="&#xe5cc;" />
+                    </StackLayout>
+
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Padding="20,0,20,0">
+                <Grid RowSpacing="-15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+
+                    <Frame CornerRadius="5"
+                           Grid.RowSpan="2"
+                           BackgroundColor="#F5F5F7"
+                           HasShadow="False" />
+
+                    <StackLayout Grid.Row="0"
+                                 Padding="20"
+                                 VerticalOptions="FillAndExpand"
+                                 Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
+                        </StackLayout.GestureRecognizers>
+                        <Label Style="{StaticResource Paragraph}"
+                               VerticalOptions="Center"
+                               Text="Changer de mot de passe" />
+                        <Label Style="{StaticResource Paragraph}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="EndAndExpand"
+                               FontFamily="{StaticResource MaterialIcons}"
+                               FontSize="20"
+                               Text="&#xe5cc;" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="1"
+                                 Padding="20"
+                                 VerticalOptions="FillAndExpand"
+                                 Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding HelpCommand}" />
+                        </StackLayout.GestureRecognizers>
+                        <Label Style="{StaticResource Paragraph}"
+                               VerticalOptions="Center"
+                               Text="Support" />
+                        <Label Style="{StaticResource Paragraph}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="EndAndExpand"
+                               FontFamily="{StaticResource MaterialIcons}"
+                               FontSize="20"
+                               Text="&#xe5cc;" />
+                    </StackLayout>
+
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Padding="20,15,20,0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DisconnectCommand}" />
+                </StackLayout.GestureRecognizers>
+
+                <Grid RowSpacing="-15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70" />
+                    </Grid.RowDefinitions>
+
+                    <Frame CornerRadius="5"
+                           Grid.RowSpan="2"
+                           BackgroundColor="#F5F5F7"
+                           HasShadow="False" />
+
+                    <StackLayout Grid.Row="0"
+                                 Padding="20"
+                                 VerticalOptions="FillAndExpand"
+                                 Orientation="Horizontal">
+                        <Label Style="{StaticResource Paragraph}"
+                               VerticalOptions="Center"
+                               Margin="0,-12,0,0"
+                               TextColor="#FF5A39"
+                               Text="Déconnexion" />
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
         </StackLayout>
 
-        <StackLayout Padding="40,40,40,20">
-            <Grid RowSpacing="-15">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                    <RowDefinition Height="60" />
-                </Grid.RowDefinitions>
-
-                <Frame CornerRadius="5"
-                       Grid.RowSpan="2"
-                       BackgroundColor="#F5F5F7"
-                       HasShadow="False"/>
-                
-                <StackLayout Grid.Row="0"
-                             Padding="20"
-                             VerticalOptions="FillAndExpand"
-                             Orientation="Horizontal">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding NotificationsCommand}" />
-                    </StackLayout.GestureRecognizers>
-                    <Label Style="{StaticResource Paragraph}"
-                           VerticalOptions="Center"
-                           Text="Notifications" />
-                    <Label Style="{StaticResource Paragraph}"
-                           VerticalOptions="Center"
-                           HorizontalOptions="EndAndExpand"
-                           FontFamily="{StaticResource MaterialIcons}"
-                           FontSize="20"
-                           Text="&#xe5cc;" />
-                </StackLayout>
-
-                <StackLayout Grid.Row="1"
-                             Padding="20"
-                             VerticalOptions="FillAndExpand"
-                             Orientation="Horizontal">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding IntegrationsCommand}" />
-                    </StackLayout.GestureRecognizers>
-                    <Label Style="{StaticResource Paragraph}"
-                           VerticalOptions="Center"
-                           Text="Intégrations" />
-                    <Label Style="{StaticResource Paragraph}"
-                           VerticalOptions="Center"
-                           HorizontalOptions="EndAndExpand"
-                           FontFamily="{StaticResource MaterialIcons}"
-                           FontSize="20"
-                           Text="&#xe5cc;" />
-                </StackLayout>
-
-            </Grid>
-        </StackLayout>
-
-        <StackLayout Padding="40,0,40,0">
-            <Grid RowSpacing="-15">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                    <RowDefinition Height="60" />
-                </Grid.RowDefinitions>
-
-                <Frame CornerRadius="5"
-                       Grid.RowSpan="2"
-                       BackgroundColor="#F5F5F7"
-                       HasShadow="False" />
-
-                <StackLayout Grid.Row="0"
-                             Padding="20"
-                             VerticalOptions="FillAndExpand"
-                             Orientation="Horizontal">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
-                    </StackLayout.GestureRecognizers>
-                    <Label Style="{StaticResource Paragraph}"
-                           VerticalOptions="Center"
-                           Text="Changer de mot de passe" />
-                    <Label Style="{StaticResource Paragraph}"
-                           VerticalOptions="Center"
-                           HorizontalOptions="EndAndExpand"
-                           FontFamily="{StaticResource MaterialIcons}"
-                           FontSize="20"
-                           Text="&#xe5cc;" />
-                </StackLayout>
-
-                <StackLayout Grid.Row="1"
-                             Padding="20"
-                             VerticalOptions="FillAndExpand"
-                             Orientation="Horizontal">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding HelpCommand}" />
-                    </StackLayout.GestureRecognizers>
-                    <Label Style="{StaticResource Paragraph}"
-                           VerticalOptions="Center"
-                           Text="Support" />
-                    <Label Style="{StaticResource Paragraph}"
-                           VerticalOptions="Center"
-                           HorizontalOptions="EndAndExpand"
-                           FontFamily="{StaticResource MaterialIcons}"
-                           FontSize="20"
-                           Text="&#xe5cc;" />
-                </StackLayout> 
-
-            </Grid>
-        </StackLayout>
-
-        <StackLayout Padding="40,20,40,0"> 
-            <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding DisconnectCommand}" />
-            </StackLayout.GestureRecognizers>
-            
-            <Grid RowSpacing="-15">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="70" />
-                </Grid.RowDefinitions>
-
-                <Frame CornerRadius="5"
-                       Grid.RowSpan="2"
-                       BackgroundColor="#F5F5F7"
-                       HasShadow="False" />
-
-                <StackLayout Grid.Row="0"
-                             Padding="20"
-                             VerticalOptions="FillAndExpand"
-                             Orientation="Horizontal">
-                    <Label Style="{StaticResource Paragraph}"
-                           VerticalOptions="Center"
-                           Margin="0,-12,0,0"
-                           TextColor="#FF5A39"
-                           Text="Déconnexion" />
-                </StackLayout>
-            </Grid>
-        </StackLayout>
-
-    </StackLayout>
+    </ScrollView>
 
 </ContentPage>

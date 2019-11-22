@@ -14,14 +14,11 @@
                HasShadow="False"
                x:Name="frame"
                IsClippedToBounds="True"
-               CornerRadius="{OnPlatform Default=120, iOS=20}"
+               CornerRadius="{StaticResource ActivitySphereCornerRadius}"
                HorizontalOptions="Fill"
                VerticalOptions="Fill"
                Visual="Default"
                Padding="0">
-            <!--<Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-            </Frame.GestureRecognizers>-->
             <AbsoluteLayout  VerticalOptions="Fill"
                              HorizontalOptions="Fill">
                 <BoxView Color="{StaticResource AccentColor}"

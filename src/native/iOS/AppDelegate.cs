@@ -3,6 +3,7 @@ using Com.OneSignal;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using InstabugLib;
+using MultiGestureViewPlugin.iOS;
 using Plugin.DownloadManager;
 using Prism;
 using Prism.Ioc;
@@ -43,6 +44,9 @@ namespace Trine.Mobile.iOS
         {
             try
             {
+                // For linker only
+                MultiGestureViewRenderer multiGestureViewRenderer = new MultiGestureViewRenderer();
+
                 ImageCircleRenderer.Init();
                 FormsMaterial.Init();
                 SharpnadoInitializer.Initialize(enableInternalLogger: true);

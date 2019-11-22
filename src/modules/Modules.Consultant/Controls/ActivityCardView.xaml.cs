@@ -114,7 +114,7 @@ namespace Modules.Consultant.Controls
                 InputTransparent = true,
                 IsInputEnabled = false,
                 Margin = new Thickness(0, 25, 0, 0),
-                CellFontSize = 12,
+                CellFontSize = 10,
                 CellBackgroundColor = Color.FromHex("#CCCCCC"),
                 CellForegroundColor = Color.White,
                 AbsenceCellBackgroundColor = Color.FromHex("#FF5A39")
