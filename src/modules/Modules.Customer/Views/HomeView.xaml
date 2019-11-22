@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls1="clr-namespace:Modules.Customer.Controls"
+             xmlns:controls="clr-namespace:Trine.Mobile.Components.Controls;assembly=Trine.Mobile.Components"
              NavigationPage.HasNavigationBar="False"
              mc:Ignorable="d"
              x:Name="HomeViewPage"
@@ -69,7 +70,8 @@
 
         </Grid>
 
-        <Frame HorizontalOptions="Center"
+        <controls:ElevationFrame HorizontalOptions="Center"
+                                 Elevation="50"
                Grid.Row="1"
                IsVisible="{Binding IsEmptyState}"
                Margin="20,-50,20,20"
@@ -90,7 +92,7 @@
                         TextColor="Black"
                         Visual="Default" />
             </StackLayout>
-        </Frame>
+        </controls:ElevationFrame>
 
     </Grid>
 

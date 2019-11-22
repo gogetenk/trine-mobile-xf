@@ -9,7 +9,7 @@ namespace Trine.Mobile.Components.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (((ActivityStatusEnum)value) == ActivityStatusEnum.ModificationsRequired);
+            return value != null && (((ActivityStatusEnum)value) == ActivityStatusEnum.ModificationsRequired);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
