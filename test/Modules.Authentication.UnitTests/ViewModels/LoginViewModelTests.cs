@@ -25,13 +25,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
             string email = new Fixture().Create<string>();
             string password = new Fixture().Create<string>();
             string userId = new Fixture().Create<string>();
+            var supportServiceMock = new Mock<ISupportService>();
             var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.Login(email, password))
                 .ReturnsAsync(userId);
 
-            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
+            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
             viewmodel.Email = email;
             viewmodel.Password = password;
 
@@ -49,13 +50,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
             string email = new Fixture().Create<string>();
             string password = new Fixture().Create<string>();
             string userId = new Fixture().Create<string>();
+            var supportServiceMock = new Mock<ISupportService>();
             var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.Login(email, password))
                 .ThrowsAsync(It.IsAny<Exception>());
 
-            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
+            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
             viewmodel.Email = email;
             viewmodel.Password = password;
 
@@ -75,13 +77,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
             string userId = new Fixture().Create<string>();
             var exception = new Fixture().Create<BusinessException>();
 
+            var supportServiceMock = new Mock<ISupportService>();
             var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.Login(email, password))
                 .ThrowsAsync(exception);
 
-            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
+            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
             viewmodel.Email = email;
             viewmodel.Password = password;
 
@@ -101,13 +104,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
             string userId = new Fixture().Create<string>();
             var exception = new Fixture().Create<BusinessException>();
 
+            var supportServiceMock = new Mock<ISupportService>();
             var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.Login(email, password))
                 .ReturnsAsync(value: null);
 
-            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
+            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
             viewmodel.Email = email;
             viewmodel.Password = password;
 
@@ -122,13 +126,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
             string email = new Fixture().Create<string>();
             string password = new Fixture().Create<string>();
             string userId = new Fixture().Create<string>();
+            var supportServiceMock = new Mock<ISupportService>();
             var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.Login(email, password))
                 .ReturnsAsync(userId);
 
-            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
+            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
             viewmodel.Email = null;
             viewmodel.Password = password;
 
@@ -148,12 +153,13 @@ namespace Modules.Authentication.UnitTests.ViewModels
             string password = new Fixture().Create<string>();
             string userId = new Fixture().Create<string>();
             var moduleManagerMock = new Mock<IModuleManager>();
+            var supportServiceMock = new Mock<ISupportService>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.Login(email, password))
                 .ReturnsAsync(userId);
 
-            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
+            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
             viewmodel.Email = email;
             viewmodel.Password = null;
 
@@ -172,13 +178,14 @@ namespace Modules.Authentication.UnitTests.ViewModels
             string email = new Fixture().Create<string>();
             string password = new Fixture().Create<string>();
             string userId = new Fixture().Create<string>();
+            var supportServiceMock = new Mock<ISupportService>();
             var moduleManagerMock = new Mock<IModuleManager>();
             var accountServiceMock = new Mock<IAccountService>();
             accountServiceMock
                 .Setup(x => x.Login(email, password))
                 .ReturnsAsync(userId);
 
-            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object);
+            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
             viewmodel.Email = null;
             viewmodel.Password = null;
 
