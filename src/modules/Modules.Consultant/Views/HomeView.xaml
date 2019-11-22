@@ -39,9 +39,9 @@
                        TextColor="White"
                        FontSize="14"
                        Opacity=".6" />
-                <Label Text="{Binding Activity.Consultant.FullName}"
-                       FontSize="{StaticResource TitleFontSize}"
-                       TextColor="White">
+                <Label Text="{Binding CurrentUser}"
+                       TextColor="White"
+                       FontSize="24">
                 </Label>
             </StackLayout>
         </Grid>
@@ -54,38 +54,41 @@
 
                 <StackLayout>
 
+                    <!-- Calendar & comment -->
+                    <StackLayout IsVisible="{Binding IsCalendarShown}">
+
+                        <!-- Calendar card -->
                     <controls:ElevationFrame Margin="{OnPlatform Default='20,100,20,10', iOS='20,90,20,10'}"
-                                             Elevation="50"
-                                             VerticalOptions="StartAndExpand"
-                                             Padding="0"
-                                             HasShadow="True"
-                                             CornerRadius="5"
-                                             Visual="Material">
-                        <StackLayout Padding="20,20,20,0">
-                            <StackLayout Orientation="Horizontal">
-                                <StackLayout>
-                                    <Label Text="{Binding Activity.StartDate, StringFormat='{0:MMMM yyyy}'}"
-                                           TextColor="{StaticResource AccentColor}"
-                                           FontSize="{StaticResource TitleFontSize}" />
-                                    <Label Text="Compte rendu d'activité"
-                                           TextColor="#707070"
-                                           FontSize="{StaticResource RegularFontSize}" />
-                                    <Label Text="{Binding Activity.TranscodedStatus}"
-                                           FontSize="{StaticResource RegularFontSize}"
-                                           TextColor="#707070" />
-                                </StackLayout>
+                                                 Elevation="50"
+                                                 VerticalOptions="StartAndExpand"
+                                                 Padding="0"
+                                                 HasShadow="True"
+                                                 CornerRadius="5"
+                                                 Visual="Material">
+                            <StackLayout Padding="20,20,20,0">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout>
+                                        <Label Text="{Binding Activity.StartDate, StringFormat='{0:MMMM yyyy}'}"
+                                               TextColor="{StaticResource AccentColor}"
+                                               FontSize="{StaticResource TitleFontSize}" />
+                                        <Label Text="Compte rendu d'activité"
+                                               TextColor="#707070"
+                                               FontSize="{StaticResource RegularFontSize}" />
+                                        <Label Text="{Binding Activity.TranscodedStatus}"
+                                               TextColor="#707070"
+                                               FontSize="{StaticResource RegularFontSize}" />
+                                    </StackLayout>
                                 <Frame CornerRadius="{OnPlatform Default='120', iOS='15'}"
-                                       Visual="Default"
-                                       HasShadow="False"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="EndAndExpand"
-                                       Padding="10"
-                                       BackgroundColor="#F6F6F6">
-                                    <Label Text="{Binding Activity.DaysNb}"
-                                           FontSize="{StaticResource RegularFontSize}"
-                                           TextColor="#464646" />
-                                </Frame>
-                            </StackLayout>
+                                           Visual="Default"
+                                           HasShadow="False"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="EndAndExpand"
+                                           Padding="10"
+                                           BackgroundColor="#F6F6F6">
+                                        <Label Text="{Binding Activity.DaysNb}"
+                                               TextColor="#464646" />
+                                    </Frame>
+                                </StackLayout>
 
                             <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
                                                            DaySettingsCommand="{Binding AbsenceCommand}"
@@ -100,8 +103,8 @@
                                                            HorizontalOptions="Center"
                                                            VerticalOptions="Center" />
 
-                        </StackLayout>
-                    </controls:ElevationFrame>
+                            </StackLayout>
+                        </controls:ElevationFrame>
 
                     <!-- Commentaire -->
                     <controls:ElevationFrame Margin="20,0,20,30"
@@ -119,41 +122,68 @@
                             <!--<BoxView BackgroundColor="#FF5A39"
                                      Grid.Row="0" />-->
 
-                            <StackLayout Grid.Row="1"
-                                         Padding="20">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="&#xf2d5;"
-                                           Margin="{OnPlatform Android='0,-33,10,0', Default='0,0,10,0'}"
+                                <StackLayout Grid.Row="1"
+                                             Padding="20">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="&#xf2d5;"
+                                               Margin="{OnPlatform Android='0,-33,10,0', Default='0,0,10,0'}"
+                                               Grid.Row="1"
+                                               FontSize="Large"
+                                               TextColor="#FF5A39"
+                                               FontFamily="{StaticResource IconFont}" />
+                                        <Label Text="Compte rendu d'activité refusé"
+                                               TextColor="#FF5A39"
+                                               Style="{StaticResource H2}" />
+                                    </StackLayout>
+
+                                    <Label Text="L'une des parties a refusé le compte rendu d'activité en vous laissant un commentaire."
                                            Grid.Row="1"
-                                           FontSize="Large"
-                                           TextColor="#FF5A39"
-                                           FontFamily="{StaticResource IconFont}" />
-                                    <Label Text="Compte rendu d'activité refusé"
-                                           TextColor="#FF5A39"
-                                           Style="{StaticResource H2}" />
+                                           Margin="{OnPlatform Android='0,-15,10,0', Default='0,0,0,0'}"
+                                           TextColor="#707070"
+                                           Style="{StaticResource TertiaryText}"
+                                           TextDecorations="None" />
+
+                                    <Frame CornerRadius="5"
+                                           HasShadow="False"
+                                           Margin="0,15,0,0"
+                                           BorderColor="#F5F5F7"
+                                           Padding="10">
+                                        <Label Text="{Binding Activity.ModificationProposals[0].Comment}"
+                                               Grid.Row="1"
+                                               TextColor="#707070"
+                                               Style="{StaticResource Paragraph}"
+                                               TextDecorations="None" />
+                                    </Frame>
                                 </StackLayout>
 
-                                <Label Text="L'une des parties a refusé le compte rendu d'activité en vous laissant un commentaire."
-                                       Grid.Row="1"
-                                       Margin="{OnPlatform Android='0,-15,10,0', Default='0,0,0,0'}"
-                                       TextColor="#707070"
-                                       Style="{StaticResource TertiaryText}"
-                                       TextDecorations="None" />
+                            </Grid>
+                        </controls:ElevationFrame>
 
-                                <Frame CornerRadius="5"
-                                       HasShadow="False"
-                                       Margin="0,15,0,0"
-                                       BorderColor="#F5F5F7"
-                                       Padding="10">
-                                    <Label Text="{Binding Activity.ModificationProposals[0].Comment}"
-                                           Grid.Row="1"
-                                           TextColor="#707070"
-                                           Style="{StaticResource Paragraph}"
-                                           TextDecorations="None" />
-                                </Frame>
-                            </StackLayout>
+                    </StackLayout>
 
-                        </Grid>
+                    <!-- Empty state -->
+                    <controls:ElevationFrame HorizontalOptions="Center"
+                                             Elevation="50"
+                                             Grid.Row="1"
+                                             IsVisible="{Binding IsEmptyState}"
+                                             Margin="{OnPlatform Default='20,100,20,10', iOS='20,100,20,10'}"
+                                             VerticalOptions="Start"
+                                             Visual="Material">
+                        <StackLayout>
+                            <Label Text="C'est calme ici ! 😉"
+                                   FontSize="Medium"
+                                   TextColor="{StaticResource AccentColor}" />
+                            <Label Text="Vous n'avez pas encore de mission pour laquelle remplir votre CRA."
+                                   FontSize="Small"
+                                   TextColor="#707070" />
+                            <Button Text="Consulter l'historique"
+                                    Command="{Binding HistoryCommand}"
+                                    FontSize="12"
+                                    Margin="0,20,0,0"
+                                    BackgroundColor="White"
+                                    TextColor="Black"
+                                    Visual="Default" />
+                        </StackLayout>
                     </controls:ElevationFrame>
 
                 </StackLayout>
@@ -171,6 +201,7 @@
         </Grid>
 
         <StackLayout Grid.RowSpan="2"
+                     IsVisible="{Binding IsCalendarShown}"
                      VerticalOptions="EndAndExpand"
                      HorizontalOptions="EndAndExpand">
 
@@ -210,8 +241,8 @@
                    IsVisible="{Binding Activity.Status, Converter={StaticResource isActivityCompleted}}"
                    Style="{StaticResource FrameButtonStyle}"
                    CornerRadius="{OnPlatform Default=120, iOS=30}"
-                   HeightRequest="40"
-                   WidthRequest="40"
+                   HeightRequest="60"
+                   WidthRequest="60"
                    Margin="0,0,25,40">
                 <Button Text="&#xe2c4;"
                         FontSize="24"

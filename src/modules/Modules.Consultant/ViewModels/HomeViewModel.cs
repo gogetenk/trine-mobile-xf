@@ -31,10 +31,20 @@ namespace Modules.Consultant.ViewModels
         private bool _isLoading;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
 
+        private bool _isEmptyState;
+        public bool IsEmptyState { get => _isEmptyState; set { _isEmptyState = value; RaisePropertyChanged(); } }
+
+        private bool _isCalendarShown = true;
+        public bool IsCalendarShown { get => _isCalendarShown; set { _isCalendarShown = value; RaisePropertyChanged(); } }
+
+        private string _currentUser;
+        public string CurrentUser { get => _currentUser; set { _currentUser = value; RaisePropertyChanged(); } }
+
         public DelegateCommand SignActivityCommand { get; set; }
         public DelegateCommand SaveActivityCommand { get; set; }
         public DelegateCommand<GridDayDto> AbsenceCommand { get; set; }
         public DelegateCommand DayClickedCommand { get; set; }
+        public DelegateCommand HistoryCommand { get; set; }
         public DelegateCommand DownloadActivityCommand { get; set; }
 
         #endregion
@@ -55,8 +65,8 @@ namespace Modules.Consultant.ViewModels
             SignActivityCommand = new DelegateCommand(() => OnSignActivity());
             SaveActivityCommand = new DelegateCommand(async () => await OnSaveActivity());
             AbsenceCommand = new DelegateCommand<GridDayDto>((gridDay) => OnAbsenceSettingsOpened(gridDay as GridDayDto));
-            //DayClickedCommand = new DelegateCommand(async () => await OnSaveActivity());
             DownloadActivityCommand = new DelegateCommand(async () => await OnDownloadActivity());
+            HistoryCommand = new DelegateCommand(async () => await OnHistoryTapped());
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -70,11 +80,18 @@ namespace Modules.Consultant.ViewModels
             try
             {
                 IsLoading = true;
+                IsEmptyState = false;
+
+                CurrentUser = Mapper.Map<UserDto>(AppSettings.CurrentUser).DisplayName;
 
                 // Getting current mission
                 _mission = await _missionService.GetConsultantCurrentMission(AppSettings.CurrentUser.Id);
                 if (_mission is null)
-                    throw new BusinessException("Vous n'avez pas encore été invité à une mission, vous ne pourrez donc pas remplir de CRA pour le moment.");
+                {
+                    IsEmptyState = true;
+                    IsCalendarShown = false;
+                }
+                //throw new BusinessException("Vous n'avez pas encore été invité à une mission, vous ne pourrez donc pas remplir de CRA pour le moment.");
 
                 // Check if there's already an activity report for this month
                 var activity = Mapper.Map<ActivityDto>(await _activityService.GetFromMissionAndMonth(_mission.Id, DateTime.UtcNow));
@@ -261,6 +278,11 @@ namespace Modules.Consultant.ViewModels
             {
                 IsLoading = false;
             }
+        }
+
+        private async Task OnHistoryTapped()
+        {
+            await NavigationService.NavigateAsync("TrineNavigationPage/ActivityHistoryView");
         }
     }
 }
