@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Com.OneSignal;
+using Microsoft.AppCenter;
 using Prism.Commands;
 using Prism.Logging;
+using Prism.Modularity;
 using Prism.Navigation;
 using Prism.Services;
 using Sogetrel.Sinapse.Framework.Exceptions;
@@ -8,10 +11,12 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
+using static Trine.Mobile.Dto.RegisterUserDto;
 
 namespace Modules.Authentication.ViewModels
 {
@@ -31,10 +36,12 @@ namespace Modules.Authentication.ViewModels
 
         private RegisterUserDto _userToCreate;
         private readonly IAccountService _accountService;
+        private readonly IModuleManager _moduleManager;
 
-        public Signup3ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
+        public Signup3ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, IModuleManager moduleManager) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
+            _moduleManager = moduleManager;
 
             ConsultantCommand = new DelegateCommand(async () => await OnConsultantPicked());
             CommercialCommand = new DelegateCommand(async () => await OnCommercialPicked());
@@ -97,7 +104,17 @@ namespace Modules.Authentication.ViewModels
 
                 var navParams = new NavigationParameters();
                 navParams.Add(NavigationParameterKeys._IsLaterTextVisible, true);
-                await NavigationService.NavigateAsync("OrganizationChoiceView", navParams);
+                //await NavigationService.NavigateAsync("OrganizationChoiceView", navParams);
+                //TODO: remettre la création d'orga quand on sera prêts
+
+                // Setting the user id to app center
+                AppCenter.SetUserId(id);
+                // Setting the user id to One Signal, and assigning tag
+                OneSignal.Current.SetExternalUserId(id);
+                OneSignal.Current.SendTag("user_type", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser.GlobalRole));
+                // Loading the corresponding module depending on user type
+                LoadModuleFromUserType();
+                await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
             }
             catch (BusinessException bExc)
             {
@@ -111,6 +128,26 @@ namespace Modules.Authentication.ViewModels
             {
                 IsLoading = false;
             }
+        }
+
+        private void LoadModuleFromUserType()
+        {
+            string moduleName;
+            switch (AppSettings.CurrentUser.GlobalRole)
+            {
+                case UserModel.GlobalRoleEnum.Admin:
+                    moduleName = "CommercialModule";
+                    break;
+                case UserModel.GlobalRoleEnum.Consultant:
+                    moduleName = "ConsultantModule";
+                    break;
+                case UserModel.GlobalRoleEnum.Customer:
+                    moduleName = "CustomerModule";
+                    break;
+                default:
+                    throw new BusinessException("Votre compte utilisateur n'est pas adapté à cette version de Trine. Veuillez créer un nouveau compte ou contacter le support client.");
+            }
+            _moduleManager.LoadModule(moduleName);
         }
     }
 }

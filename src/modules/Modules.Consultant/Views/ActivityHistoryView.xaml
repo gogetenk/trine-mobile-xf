@@ -70,23 +70,16 @@
         <Frame HorizontalOptions="Center"
                Grid.Row="1"
                IsVisible="{Binding IsEmptyState}"
-               Margin="20,-50,20,20"
+               Margin="0,-50,0,20"
                VerticalOptions="Start"
                Visual="Material">
             <StackLayout>
-                <Label Text="C'est calme ici ! 😉"
+                <Label Text="Rien à signaler !"
                        FontSize="Medium"
                        TextColor="{StaticResource AccentColor}" />
-                <Label Text="Vous n'avez pas de CRA à signer pour le moment."
+                <Label Text="Vous n'avez pas encore signé de CRA."
                        FontSize="Small"
                        TextColor="#707070" />
-                <Button Text="Consulter l'historique"
-                        Command="{Binding HistoryCommand}"
-                        FontSize="12"
-                        Margin="0,20,0,0"
-                        BackgroundColor="White"
-                        TextColor="Black"
-                        Visual="Default" />
             </StackLayout>
         </Frame>
 

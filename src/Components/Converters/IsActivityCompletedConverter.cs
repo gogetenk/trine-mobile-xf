@@ -10,7 +10,7 @@ namespace Trine.Mobile.Components.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             // Can consultant modify ?
-            return (((ActivityStatusEnum)value) == ActivityStatusEnum.CustomerSigned);
+            return value != null && (((ActivityStatusEnum)value) == ActivityStatusEnum.CustomerSigned);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
