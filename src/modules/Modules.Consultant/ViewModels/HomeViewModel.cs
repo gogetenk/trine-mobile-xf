@@ -53,7 +53,6 @@ namespace Modules.Consultant.ViewModels
         private readonly IActivityService _activityService;
         private readonly IMissionService _missionService;
         private readonly IDialogService _dialogService;
-        private readonly IDownloadManager _downloadManager;
         private MissionModel _mission;
 
         public HomeViewModel(INavigationService navigationService, IMapper mapper, Prism.Logging.ILogger logger, IPageDialogService pageDialogService, IActivityService activityService, IMissionService missionService, IDialogService dialogService, IDownloadManager downloadManager) : base(navigationService, mapper, logger, pageDialogService)
@@ -61,7 +60,6 @@ namespace Modules.Consultant.ViewModels
             _activityService = activityService;
             _missionService = missionService;
             _dialogService = dialogService;
-            _downloadManager = downloadManager;
 
             SignActivityCommand = new DelegateCommand(() => OnSignActivity());
             SaveActivityCommand = new DelegateCommand(async () => await OnSaveActivity());

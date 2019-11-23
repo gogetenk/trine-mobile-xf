@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Sogetrel.Sinapse.Framework.Exceptions;
+using System.Collections.Generic;
 using Trine.Mobile.Model;
+using Xamarin.Essentials;
 
 namespace Trine.Mobile.Bll.Impl.Settings
 {
@@ -7,7 +10,25 @@ namespace Trine.Mobile.Bll.Impl.Settings
     {
         public static AppSettings Instance { get; } = new AppSettings();
 
-        public static TokenModel AccessToken { get; set; }
+        private static TokenModel _accesstoken;
+        public static TokenModel AccessToken
+        {
+            get
+            {
+                if (_accesstoken != null)
+                    return _accesstoken;
+
+                _accesstoken = JsonConvert.DeserializeObject<TokenModel>(SecureStorage.GetAsync(CacheKeys._CurrentToken).Result);
+                if (_accesstoken is null)
+                    throw new TechnicalException("Authentication error. You have to reconnect to the app.");
+
+                return _accesstoken;
+            }
+            set
+            {
+                SecureStorage.SetAsync(CacheKeys._CurrentToken, JsonConvert.SerializeObject(value)).GetAwaiter().GetResult();
+            }
+        }
         public static Dictionary<string, string> ApiUrls { get; private set; }
         public static UserModel CurrentUser { get; set; }
 
@@ -26,9 +47,14 @@ namespace Trine.Mobile.Bll.Impl.Settings
         private AppSettings()
         {
             ApiUrls = new Dictionary<string, string>();
+
+            //TODO: Faire mieux un jour
+
+#if DEBUG
+            ApiUrls.Add("GatewayApi", "https://app-assistance-dev.azurewebsites.net");
+#else
             ApiUrls.Add("GatewayApi", "https://app-assistance.azurewebsites.net");
-            //ApiUrls.Add("GatewayApi", "https://gateway-dot-trine-dev.appspot.com");
-            //ApiUrls.Add("GatewayApi", "http://localhost:5001/");
+#endif
         }
     }
 }
