@@ -99,7 +99,6 @@
     <Compile Include="Effects\iOSLongPressedEffect.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderers\ElevationFrameRenderer.cs" />
     <Compile Include="Renderers\MaterialEntryRenderer.cs" />
     <Compile Include="Services\IntercomService.cs" />
     <None Include="Entitlements.plist" />
@@ -271,11 +270,6 @@
     <ProjectReference Include="..\..\Model\Trine.Mobile.Model\Model.csproj">
       <Project>{3FA8D1D0-F3B3-40CF-91C9-4B6CD052015A}</Project>
       <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OneSignalNotificationServiceExtension\OneSignalNotificationServiceExtension.csproj">
-      <IsAppExtension>true</IsAppExtension>
-      <Project>{BD83BF1B-77A2-430A-87B1-5A88DF85998E}</Project>
-      <Name>OneSignalNotificationServiceExtension</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
