@@ -50,12 +50,12 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>Apple Development: Rémi Roycourt (CLUR4NKXWV)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignExtraArgs />
     <CodesignResourceRules />
     <MtouchLink>Full</MtouchLink>
+    <CodesignProvision>iOS Team Provisioning Profile: com.hellotrine.app</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -65,7 +65,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>Apple Development: Rémi Roycourt (CLUR4NKXWV)</CodesignKey>
     <CodesignEntitlements>
     </CodesignEntitlements>
   </PropertyGroup>
@@ -270,6 +270,11 @@
     <ProjectReference Include="..\..\Model\Trine.Mobile.Model\Model.csproj">
       <Project>{3FA8D1D0-F3B3-40CF-91C9-4B6CD052015A}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OneSignalNotificationServiceExtension\OneSignalNotificationServiceExtension.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{BD83BF1B-77A2-430A-87B1-5A88DF85998E}</Project>
+      <Name>OneSignalNotificationServiceExtension</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
