@@ -34,16 +34,15 @@ namespace Trine.Mobile.Bll.Impl.Services
                 if (token == null || string.IsNullOrEmpty(token.UserId))
                     throw new BusinessException(ErrorMessages.unknownUserBodyText);
 
+                var tokenModel = _mapper.Map<TokenModel>(token);
+                AppSettings.AccessToken = tokenModel;
+
                 var entity = await _gatewayRepository.ApiAccountsUsersByIdGetAsync(token.UserId);
                 user = _mapper.Map<UserModel>(entity);
+                AppSettings.CurrentUser = user;
 
                 if (user == null || string.IsNullOrEmpty(user.Id))
                     throw new BusinessException(ErrorMessages.unknownUserBodyText);
-
-                var tokenModel = _mapper.Map<TokenModel>(token);
-                AppSettings.AccessToken = tokenModel;
-                AppSettings.CurrentUser = user;
-                //await BlobCache.UserAccount.InsertObject(CacheKeys._CurrentUser, user);
 
                 try
                 {
