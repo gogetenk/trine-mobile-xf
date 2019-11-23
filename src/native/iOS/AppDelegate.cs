@@ -61,11 +61,7 @@ namespace Trine.Mobile.iOS
                 // Intercom
                 Intercom.SetApiKey("ios_sdk-be15dd592c71d03d0f5245caece3fd0a40ae6435", "v4l26lv4");
 
-                // OneSignal
-                OneSignal
-                   .Current
-                   .StartInit("12785512-a98b-4c91-89ca-05959a685120")
-                   .EndInit();
+
             }
             catch (Exception exception)
             {
