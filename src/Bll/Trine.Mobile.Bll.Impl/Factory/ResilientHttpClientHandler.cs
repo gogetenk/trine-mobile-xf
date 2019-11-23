@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +15,8 @@ namespace Trine.Mobile.Bll.Impl.Factory
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            // Adding JWT in header
+
             var message = await base.SendAsync(request, cancellationToken);
             if (message.StatusCode == System.Net.HttpStatusCode.InternalServerError)
             {

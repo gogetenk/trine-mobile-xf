@@ -26,9 +26,14 @@ namespace Trine.Mobile.Bll.Impl.Settings
         private AppSettings()
         {
             ApiUrls = new Dictionary<string, string>();
+
+            //TODO: Faire mieux un jour
+
+#if DEBUG
+            ApiUrls.Add("GatewayApi", "https://app-assistance-dev.azurewebsites.net");
+#else
             ApiUrls.Add("GatewayApi", "https://app-assistance.azurewebsites.net");
-            //ApiUrls.Add("GatewayApi", "https://gateway-dot-trine-dev.appspot.com");
-            //ApiUrls.Add("GatewayApi", "http://localhost:5001/");
+#endif
         }
     }
 }
