@@ -47,14 +47,12 @@ namespace Modules.Authentication.ViewModels
         #endregion
 
         private readonly IAccountService _accountService;
-        private readonly IPageDialogService _dialogService;
         private readonly ISupportService _supportService;
         private readonly IModuleManager _moduleManager;
 
         public SignupViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, ISupportService supportService, IModuleManager moduleManager) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
-            _dialogService = dialogService;
             _supportService = supportService;
             _moduleManager = moduleManager;
 
@@ -71,7 +69,6 @@ namespace Modules.Authentication.ViewModels
             base.OnNavigatedTo(parameters);
 
             // If the user is already logged in, we just fetch the user in cache and navigate to his dashboard
-            //var user = await BlobCache.UserAccount.GetObject<UserModel>(CacheKeys._CurrentUser);
             try
             {
                 var userJson = await SecureStorage.GetAsync(CacheKeys._CurrentUser);
