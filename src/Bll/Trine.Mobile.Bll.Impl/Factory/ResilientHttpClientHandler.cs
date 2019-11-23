@@ -18,7 +18,7 @@ namespace Trine.Mobile.Bll.Impl.Factory
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             // Adding JWT in header
-            if (AppSettings.AccessToken != null && string.IsNullOrEmpty(AppSettings.AccessToken.AccessToken))
+            if (AppSettings.AccessToken != null && !string.IsNullOrEmpty(AppSettings.AccessToken.AccessToken))
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AppSettings.AccessToken.AccessToken);
 
             var message = await base.SendAsync(request, cancellationToken);
