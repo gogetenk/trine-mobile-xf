@@ -31,10 +31,19 @@ namespace Modules.Authentication.ViewModels
         public bool _isEmailErrorVisible = false;
         public bool IsEmailErrorVisible { get => _isEmailErrorVisible; set { _isEmailErrorVisible = value; RaisePropertyChanged(); } }
 
+#if DEBUG
         public string _email = "ytocreau@trine.com";
+#else
+        public string _email;
+#endif
         public string Email { get => _email; set { _email = value; RaisePropertyChanged(); } }
 
+
+#if DEBUG
         public string _password = "123";
+#else
+        public string _password;
+#endif
         public string Password { get => _password; set { _password = value; RaisePropertyChanged(); } }
 
         public DelegateCommand SignupCommand { get; set; }

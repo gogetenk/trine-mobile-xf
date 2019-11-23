@@ -30,9 +30,9 @@ namespace Trine.Mobile.Bll.Impl.Settings
             //TODO: Faire mieux un jour
 
 #if DEBUG
-            ApiUrls.Add(GatewayApi, "https://app-assistance-dev.azurewebsites.net");
+            ApiUrls.Add("GatewayApi", "https://app-assistance-dev.azurewebsites.net");
 #else
-            ApiUrls.Add(GatewayApi, "https://app-assistance.azurewebsites.net");
+            ApiUrls.Add("GatewayApi", "https://app-assistance.azurewebsites.net");
 #endif
         }
     }
