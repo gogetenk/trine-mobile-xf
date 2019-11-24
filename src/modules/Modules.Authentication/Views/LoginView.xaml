@@ -33,7 +33,10 @@
             <Label Text="E-mail"
                    Style="{StaticResource Paragraph}" />
             <Entry AutomationId="tb_email"
+                   Keyboard="Email"
                    Style="{StaticResource EntryStyle}"
+                   IsSpellCheckEnabled="False"
+                   IsTextPredictionEnabled="True"
                    Placeholder="ex : toto@titi.com"
                    Text="{Binding Email}" />
             <Label Text="Veuillez spécifier un e-mail valide"

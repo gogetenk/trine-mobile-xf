@@ -10,7 +10,6 @@ namespace Modules.Authentication.Views
         public Signup2View()
         {
             InitializeComponent();
-
         }
     }
 }
