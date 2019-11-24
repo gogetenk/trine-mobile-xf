@@ -35,9 +35,10 @@ namespace Trine.Mobile.Components.ViewModels
         {
         }
 
-        public virtual void LogTechnicalError(Exception exc)
+        public virtual async void LogTechnicalError(Exception exc)
         {
             Logger.Report(exc, null);
+            await DialogService.DisplayAlertAsync(ErrorMessages.error, ErrorMessages.RandomNetworkErrorMessage, "Ok");
         }
 
         public virtual async Task LogAndShowBusinessError(BusinessException bExc)

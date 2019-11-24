@@ -44,11 +44,10 @@
                        HasShadow="False"
                        Grid.Column="0"
                        BackgroundColor="White"
-                       Visual="Material"
+                       Visual="{OnPlatform Default='Material', iOS='Default'}"
                        BorderColor="#DCDEE6">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding CommercialCommand}"
-                                              Tapped="TapGestureRecognizer_Tapped" />
+                        <TapGestureRecognizer Command="{Binding CommercialCommand}"/>
                     </Frame.GestureRecognizers>
                     <StackLayout HorizontalOptions="Center">
                         <Label FontFamily="{StaticResource IconFont}"
@@ -66,12 +65,11 @@
                 <Frame Padding="15"
                        Grid.Column="1"
                        HasShadow="False"
-                       Visual="Material"
+                       Visual="{OnPlatform Default='Material', iOS='Default'}"
                        BackgroundColor="White"
                        BorderColor="#DCDEE6">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ConsultantCommand}"
-                                              Tapped="TapGestureRecognizer_Tapped" />
+                        <TapGestureRecognizer Command="{Binding ConsultantCommand}" />
                     </Frame.GestureRecognizers>
                     <StackLayout HorizontalOptions="Center">
                         <Label FontFamily="{StaticResource IconFont}"
@@ -89,12 +87,11 @@
                 <Frame Padding="15"
                        Grid.Column="2"
                        HasShadow="False"
-                       Visual="Material"
+                       Visual="{OnPlatform Default='Material', iOS='Default'}"
                        BackgroundColor="White"
                        BorderColor="#DCDEE6">
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding CustomerCommand}"
-                                              Tapped="TapGestureRecognizer_Tapped" />
+                        <TapGestureRecognizer Command="{Binding CustomerCommand}" />
                     </Frame.GestureRecognizers>
                     <StackLayout HorizontalOptions="Center">
                         <Label FontFamily="{StaticResource IconFont}"

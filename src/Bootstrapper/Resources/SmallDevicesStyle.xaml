@@ -130,6 +130,8 @@
                 Value="{StaticResource NormalFont}" />
         <Setter Property="TextColor"
                 Value="{StaticResource NormalTextColor}" />
+        <Setter Property="BackgroundColor"
+                Value="White" />
     </Style>
 
     <Style x:Key="PrimaryButtonStyle"

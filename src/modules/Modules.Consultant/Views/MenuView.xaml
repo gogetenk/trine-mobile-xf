@@ -45,7 +45,7 @@
                     FontFamily="{StaticResource MaterialIcons}" /> 
         </StackLayout>-->
 
-        <Frame Margin="20,20,20,2"
+        <Frame Margin="20,100,20,2"
                Padding="15"
                HasShadow="False"
                BackgroundColor="#FBFBFB"

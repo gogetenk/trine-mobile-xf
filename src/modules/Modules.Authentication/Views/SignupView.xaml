@@ -38,6 +38,7 @@
                    Style="{StaticResource Paragraph}" />
             <Entry AutomationId="tb_email"
                    Style="{StaticResource EntryStyle}"
+                   Keyboard="Email"
                    IsSpellCheckEnabled="False"
                    IsTextPredictionEnabled="True"
                    Placeholder="exemple@hellotrine.com"
