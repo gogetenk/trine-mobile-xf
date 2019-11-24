@@ -166,7 +166,7 @@
                                              Elevation="50"
                                              Grid.Row="1"
                                              IsVisible="{Binding IsEmptyState}"
-                                             Margin="{OnPlatform Default='20,100,20,10', iOS='20,100,20,10'}"
+                                             Margin="{OnPlatform Default='20,100,20,10', iOS='20,90,20,10'}"
                                              VerticalOptions="Start"
                                              Visual="Material">
                         <StackLayout>

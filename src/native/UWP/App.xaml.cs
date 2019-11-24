@@ -43,10 +43,7 @@ namespace Trine.Mobile.Bootstrapper.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
                 Xamarin.Forms.Forms.Init(e);
-                ImageCircleRenderer.Init();
-
                 ImageCircleRenderer.Init();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)

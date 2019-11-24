@@ -120,6 +120,9 @@ namespace Modules.Consultant.ViewModels
 
         private void OnAbsenceSettingsOpened(GridDayDto gridDay)
         {
+            if (Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.Generated || Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired)
+                return;
+
             var dialogParams = new DialogParameters();
             dialogParams.Add(NavigationParameterKeys._Absence, gridDay);
             _dialogService.ShowDialog("AbsenceDialogView", dialogParams, result => OnAbsenceSettingsClosed(result.Parameters));

@@ -72,11 +72,11 @@
 
         <controls:ElevationFrame HorizontalOptions="Center"
                                  Elevation="50"
-               Grid.Row="1"
-               IsVisible="{Binding IsEmptyState}"
-               Margin="20,-50,20,20"
-               VerticalOptions="Start"
-               Visual="Material">
+                                 Grid.Row="1"
+                                 IsVisible="{Binding IsEmptyState}"
+                                 Margin="20,-50,20,20"
+                                 VerticalOptions="Start"
+                                 Visual="Material">
             <StackLayout>
                 <Label Text="C'est calme ici ! 😉"
                        FontSize="Medium"
