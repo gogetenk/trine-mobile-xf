@@ -44,7 +44,7 @@
                        HasShadow="False"
                        Grid.Column="0"
                        BackgroundColor="White"
-                       Visual="Material"
+                       Visual="{OnPlatform Default='Material', iOS='Default'}"
                        BorderColor="#DCDEE6">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding CommercialCommand}"/>
@@ -65,7 +65,7 @@
                 <Frame Padding="15"
                        Grid.Column="1"
                        HasShadow="False"
-                       Visual="Material"
+                       Visual="{OnPlatform Default='Material', iOS='Default'}"
                        BackgroundColor="White"
                        BorderColor="#DCDEE6">
                     <Frame.GestureRecognizers>
@@ -87,7 +87,7 @@
                 <Frame Padding="15"
                        Grid.Column="2"
                        HasShadow="False"
-                       Visual="Material"
+                       Visual="{OnPlatform Default='Material', iOS='Default'}"
                        BackgroundColor="White"
                        BorderColor="#DCDEE6">
                     <Frame.GestureRecognizers>
