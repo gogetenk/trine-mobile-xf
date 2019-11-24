@@ -17,6 +17,7 @@
         public static readonly string _Absence = "Absence";
         public static readonly string _Period = "Period";
         public static readonly string _IsLaterTextVisible = "IsLaterTextVisible";
+        public static readonly string _Bytes = "Bytes";
 
     }
 }

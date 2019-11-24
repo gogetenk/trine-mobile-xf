@@ -6,6 +6,7 @@ using Prism.Services.Dialogs;
 using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
@@ -118,7 +119,11 @@ namespace Modules.Customer.ViewModels
 
                 IsLoading = true;
 
-                var activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity)));
+                var bytes = result.GetValue<byte[]>(NavigationParameterKeys._Bytes);
+                if (bytes is null)
+                    throw new TechnicalException("Bytes should not be null");
+
+                var activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity), new MemoryStream(bytes)));
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 

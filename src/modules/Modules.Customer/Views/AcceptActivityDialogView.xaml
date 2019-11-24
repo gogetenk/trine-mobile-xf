@@ -45,8 +45,8 @@
                         FontSize="13"
                         CornerRadius="5"
                         BackgroundColor="White"
-                        BorderColor="White"
-                        Command="{Binding CancelCommand}" />
+                        Clicked="Button_Clicked"
+                        BorderColor="White" />
                 <Button Text="Signer"
                         Grid.Column="1"
                         CornerRadius="5"

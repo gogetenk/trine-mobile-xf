@@ -14,13 +14,11 @@ namespace Modules.Customer.ViewModels
     public class SignActivityDialogViewModel : ViewModelBase, IDialogAware
     {
         public ICommand SignCommand { get; set; }
-        public ICommand CancelCommand { get; set; }
         public event Action<IDialogParameters> RequestClose;
 
         public SignActivityDialogViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService) : base(navigationService, mapper, logger, dialogService)
         {
             SignCommand = new DelegateCommand(() => OnSignActivity());
-            CancelCommand = new DelegateCommand(() => RequestClose.Invoke(null));
         }
 
         private void OnSignActivity()

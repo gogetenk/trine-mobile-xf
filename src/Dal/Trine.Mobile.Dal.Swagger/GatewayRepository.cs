@@ -7292,6 +7292,8 @@ namespace Trine.Mobile.Dal.Swagger
 
         [Newtonsoft.Json.JsonProperty("signatureDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTime? SignatureDate { get; set; }
+        [Newtonsoft.Json.JsonProperty("signatureUri", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string SignatureUri { get; set; }
 
         public string ToJson()
         {
