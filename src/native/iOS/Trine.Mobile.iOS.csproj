@@ -97,6 +97,7 @@
     <Compile Include="Effects\iOSLongPressedEffect.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\ElevationFrameRenderer.cs" />
     <Compile Include="Renderers\MaterialEntryRenderer.cs" />
     <Compile Include="Services\IntercomService.cs" />
     <None Include="Entitlements.plist" />
