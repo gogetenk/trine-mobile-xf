@@ -52,5 +52,7 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/TrineIcons.appiconset</string>
 </dict>
 </plist>
