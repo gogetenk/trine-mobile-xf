@@ -55,8 +55,11 @@ namespace Trine.Mobile.Components.Builders
                 cfg.CreateMap<User, UserDto>()
                     .ForMember(x => x.DisplayName, opts => opts.MapFrom(x => $"{x.Firstname} {x.Lastname.ToUpperInvariant()}"));
 
+                cfg.CreateMap<UserActivity, UserActivityModel>()
+                   .ForMember(x => x.Fullname, opts => opts.MapFrom(x => $"{x.Firstname} {x.Lastname.ToUpperInvariant()}"));
+
                 cfg.CreateMap<UserActivityModel, UserActivityDto>()
-                   .ForMember(x => x.FullName, opts => opts.MapFrom(x => $"{x.FirstName} {x.LastName.ToUpperInvariant()}"));
+                   .ForMember(x => x.Fullname, opts => opts.MapFrom(x => $"{x.Firstname} {x.Lastname.ToUpperInvariant()}"));
 
                 cfg.CreateMap<ActivityModel, ActivityDto>()
                     .ForMember(x => x.PinColor, opts => opts.MapFrom(x => GetPinFromActivityStatus(x.Status)))
