@@ -47,11 +47,7 @@ namespace Trine.Mobile.Bll.Impl.Settings
         private AppSettings()
         {
             ApiUrls = new Dictionary<string, string>();
-
-            //TODO: Faire mieux un jour
-
             ApiUrls.Add("GatewayApi", "https://app-assistance-dev.azurewebsites.net");
-            //ApiUrls.Add("GatewayApi", "https://app-assistance.azurewebsites.net"); --> Indiquer cette URL pour la prod avant de deploy sur master
         }
     }
 }
