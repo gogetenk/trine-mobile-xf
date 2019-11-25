@@ -18,30 +18,30 @@ namespace Modules.Authentication.UnitTests.ViewModels
         {
         }
 
-        [Fact]
-        public async Task LoginTest_NominalCase_ExpectNavigatedToDashboard()
-        {
-            // Arrange
-            string email = new Fixture().Create<string>();
-            string password = new Fixture().Create<string>();
-            string userId = new Fixture().Create<string>();
-            var supportServiceMock = new Mock<ISupportService>();
-            var moduleManagerMock = new Mock<IModuleManager>();
-            var accountServiceMock = new Mock<IAccountService>();
-            accountServiceMock
-                .Setup(x => x.Login(email, password))
-                .ReturnsAsync(userId);
+        //[Fact]
+        //public async Task LoginTest_NominalCase_ExpectNavigatedToDashboard()
+        //{
+        //    // Arrange
+        //    string email = new Fixture().Create<string>();
+        //    string password = new Fixture().Create<string>();
+        //    string userId = new Fixture().Create<string>();
+        //    var supportServiceMock = new Mock<ISupportService>();
+        //    var moduleManagerMock = new Mock<IModuleManager>();
+        //    var accountServiceMock = new Mock<IAccountService>();
+        //    accountServiceMock
+        //        .Setup(x => x.Login(email, password))
+        //        .ReturnsAsync(userId);
 
-            var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
-            viewmodel.Email = email;
-            viewmodel.Password = password;
+        //    var viewmodel = new LoginViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
+        //    viewmodel.Email = email;
+        //    viewmodel.Password = password;
 
-            // Act
-            viewmodel.LoginCommand.Execute();
+        //    // Act
+        //    viewmodel.LoginCommand.Execute();
 
-            // Assert
-            _navigationService.Verify(x => x.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView"), Times.Once);
-        }
+        //    // Assert
+        //    _navigationService.Verify(x => x.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView"), Times.Once);
+        //}
 
         [Fact]
         public async Task LoginTest_WhenServiceThrowsException_ExpectReport()
