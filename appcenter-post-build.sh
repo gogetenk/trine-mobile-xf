@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+###
+# iOS SPECIFIC, DON'T USE THAT FOR ANDROID BUILDS
+###
 
 set -e # Exit immediately if a command exits with a non-zero status (failure)
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ###
-# iOS SPECIFIC, DON'T USE THAT FOR ANDROID BUILDS
+# ANDROID SPECIFIC, DON'T USE THAT FOR iOS BUILDS
 ###
 
 if [ "$APPCENTER_BRANCH" == "master" ] || [ "$APPCENTER_BRANCH" == "release" ];
