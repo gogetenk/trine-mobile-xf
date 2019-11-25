@@ -22,106 +22,106 @@ namespace Modules.Authentication.UnitTests.ViewModels
         {
         }
 
-        [Fact]
-        public async Task SubmitCommercial_NominalCase_ExpectNavigatedToSignup()
-        {
-            // Arrange
-            var id = "1337";
-            var credentials = new Fixture().Create<RegisterUserDto>();
-            var navparams = new NavigationParameters();
-            navparams.Add(NavigationParameterKeys._User, credentials);
-            var supportServiceMock = new Mock<ISupportService>();
-            var moduleManagerMock = new Mock<IModuleManager>();
-            var accountServiceMock = new Mock<IAccountService>();
-            accountServiceMock
-                .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Admin)))
-                .ReturnsAsync(id);
+        //[Fact]
+        //public async Task SubmitCommercial_NominalCase_ExpectNavigatedToSignup()
+        //{
+        //    // Arrange
+        //    var id = "1337";
+        //    var credentials = new Fixture().Create<RegisterUserDto>();
+        //    var navparams = new NavigationParameters();
+        //    navparams.Add(NavigationParameterKeys._User, credentials);
+        //    var supportServiceMock = new Mock<ISupportService>();
+        //    var moduleManagerMock = new Mock<IModuleManager>();
+        //    var accountServiceMock = new Mock<IAccountService>();
+        //    accountServiceMock
+        //        .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Admin)))
+        //        .ReturnsAsync(id);
 
-            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
-            viewmodel.OnNavigatedTo(navparams);
+        //    var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
+        //    viewmodel.OnNavigatedTo(navparams);
 
-            // Act
-            viewmodel.CommercialCommand.Execute(null);
+        //    // Act
+        //    viewmodel.CommercialCommand.Execute(null);
 
-            // Assert
-            _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView", It.IsAny<NavigationParameters>()), Times.Once);
-        }
+        //    // Assert
+        //    _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView", It.IsAny<NavigationParameters>()), Times.Once);
+        //}
 
-        [Fact]
-        public async Task SubmitConsultant_NominalCase_ExpectNavigatedToSignup()
-        {
-            // Arrange
-            var id = "1337";
-            var credentials = new Fixture().Create<RegisterUserDto>();
-            var navparams = new NavigationParameters();
-            navparams.Add(NavigationParameterKeys._User, credentials);
-            var supportServiceMock = new Mock<ISupportService>();
-            var moduleManagerMock = new Mock<IModuleManager>();
-            var accountServiceMock = new Mock<IAccountService>();
-            accountServiceMock
-                .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Consultant)))
-                .ReturnsAsync(id);
+        //[Fact]
+        //public async Task SubmitConsultant_NominalCase_ExpectNavigatedToSignup()
+        //{
+        //    // Arrange
+        //    var id = "1337";
+        //    var credentials = new Fixture().Create<RegisterUserDto>();
+        //    var navparams = new NavigationParameters();
+        //    navparams.Add(NavigationParameterKeys._User, credentials);
+        //    var supportServiceMock = new Mock<ISupportService>();
+        //    var moduleManagerMock = new Mock<IModuleManager>();
+        //    var accountServiceMock = new Mock<IAccountService>();
+        //    accountServiceMock
+        //        .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Consultant)))
+        //        .ReturnsAsync(id);
 
-            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
-            viewmodel.OnNavigatedTo(navparams);
+        //    var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
+        //    viewmodel.OnNavigatedTo(navparams);
 
-            // Act
-            viewmodel.ConsultantCommand.Execute(null);
+        //    // Act
+        //    viewmodel.ConsultantCommand.Execute(null);
 
-            // Assert
-            _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView", It.IsAny<NavigationParameters>()), Times.Once);
-        }
+        //    // Assert
+        //    _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView", It.IsAny<NavigationParameters>()), Times.Once);
+        //}
 
-        [Fact]
-        public async Task SubmitCustomer_NominalCase_ExpectNavigatedToSignup()
-        {
-            // Arrange
-            var id = "1337";
-            var credentials = new Fixture().Create<RegisterUserDto>();
-            var navparams = new NavigationParameters();
-            navparams.Add(NavigationParameterKeys._User, credentials);
-            var supportServiceMock = new Mock<ISupportService>();
-            var moduleManagerMock = new Mock<IModuleManager>();
-            var accountServiceMock = new Mock<IAccountService>();
-            accountServiceMock
-                .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Customer)))
-                .ReturnsAsync(id);
+        //[Fact]
+        //public async Task SubmitCustomer_NominalCase_ExpectNavigatedToSignup()
+        //{
+        //    // Arrange
+        //    var id = "1337";
+        //    var credentials = new Fixture().Create<RegisterUserDto>();
+        //    var navparams = new NavigationParameters();
+        //    navparams.Add(NavigationParameterKeys._User, credentials);
+        //    var supportServiceMock = new Mock<ISupportService>();
+        //    var moduleManagerMock = new Mock<IModuleManager>();
+        //    var accountServiceMock = new Mock<IAccountService>();
+        //    accountServiceMock
+        //        .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Customer)))
+        //        .ReturnsAsync(id);
 
-            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
-            viewmodel.OnNavigatedTo(navparams);
+        //    var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
+        //    viewmodel.OnNavigatedTo(navparams);
 
-            // Act
-            viewmodel.CustomerCommand.Execute(null);
+        //    // Act
+        //    viewmodel.CustomerCommand.Execute(null);
 
-            // Assert
-            _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView", It.IsAny<NavigationParameters>()), Times.Once);
-        }
+        //    // Assert
+        //    _navigationService.Verify(x => x.NavigateAsync("OrganizationChoiceView", It.IsAny<NavigationParameters>()), Times.Once);
+        //}
 
-        [Fact]
-        public async Task Submit_WhenServiceThrowsException_ExpectReport()
-        {
-            // Arrange
-            var id = "1337";
-            var credentials = new Fixture().Create<RegisterUserDto>();
-            var navparams = new NavigationParameters();
-            navparams.Add(NavigationParameterKeys._User, credentials);
-            var supportServiceMock = new Mock<ISupportService>();
-            var moduleManagerMock = new Mock<IModuleManager>();
-            var accountServiceMock = new Mock<IAccountService>();
-            accountServiceMock
-                .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Customer)))
-                .ThrowsAsync(It.IsAny<Exception>());
+        //[Fact]
+        //public async Task Submit_WhenServiceThrowsException_ExpectReport()
+        //{
+        //    // Arrange
+        //    var id = "1337";
+        //    var credentials = new Fixture().Create<RegisterUserDto>();
+        //    var navparams = new NavigationParameters();
+        //    navparams.Add(NavigationParameterKeys._User, credentials);
+        //    var supportServiceMock = new Mock<ISupportService>();
+        //    var moduleManagerMock = new Mock<IModuleManager>();
+        //    var accountServiceMock = new Mock<IAccountService>();
+        //    accountServiceMock
+        //        .Setup(x => x.RegisterUser(It.Is<RegisterUserModel>(y => y.GlobalRole == RegisterUserModel.GlobalRoleEnum.Customer)))
+        //        .ThrowsAsync(It.IsAny<Exception>());
 
-            var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
-            viewmodel.OnNavigatedTo(navparams);
+        //    var viewmodel = new Signup3ViewModel(_navigationService.Object, _mapper, _logger.Object, accountServiceMock.Object, _pageDialogService.Object, moduleManagerMock.Object, supportServiceMock.Object);
+        //    viewmodel.OnNavigatedTo(navparams);
 
-            // Act
-            viewmodel.CustomerCommand.Execute(null);
+        //    // Act
+        //    viewmodel.CustomerCommand.Execute(null);
 
-            // Assert
-            _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
-            _pageDialogService.Verify(x => x.DisplayAlertAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-        }
+        //    // Assert
+        //    _logger.Verify(x => x.Report(It.IsAny<Exception>(), null), Times.Once);
+        //    _pageDialogService.Verify(x => x.DisplayAlertAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        //}
 
         [Fact]
         public async Task Submit_WhenServiceThrowsBusinessException_ExpectLogAndPopup()
