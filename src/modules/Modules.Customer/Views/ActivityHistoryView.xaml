@@ -80,13 +80,6 @@
                 <Label Text="Vous n'avez pas de CRA à signer pour le moment."
                        FontSize="Small"
                        TextColor="#707070" />
-                <Button Text="Consulter l'historique"
-                        Command="{Binding HistoryCommand}"
-                        FontSize="12"
-                        Margin="0,20,0,0"
-                        BackgroundColor="White"
-                        TextColor="Black"
-                        Visual="Default" />
             </StackLayout>
         </Frame>
 
