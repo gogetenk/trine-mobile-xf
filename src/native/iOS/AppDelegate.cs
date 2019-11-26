@@ -1,5 +1,4 @@
 ﻿using Binding.Intercom.iOS;
-using Com.OneSignal;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using InstabugLib;
@@ -22,6 +21,15 @@ namespace Trine.Mobile.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
+        // DEV ONLY
+        //private const string instabugToken = "ee39ba65bc0171ea932b98e05acab1f2";
+        //private const string intercomToken = "nb4w5hji";
+        //private const string intercomApiKey = "ios_sdk-b655535b4f9815c9ead33d059c2cb43020d9431d";
+        // PROD ONLY
+        private const string instabugToken = "2be1819819cfe4eda2b908b5bba59b73";
+        private const string intercomToken = "v4l26lv4";
+        private const string intercomApiKey = "ios_sdk-be15dd592c71d03d0f5245caece3fd0a40ae6435";
+
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window
@@ -29,9 +37,9 @@ namespace Trine.Mobile.iOS
         //
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
+
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             InitializeLibs();
 
@@ -50,7 +58,9 @@ namespace Trine.Mobile.iOS
                 ImageCircleRenderer.Init();
                 FormsMaterial.Init();
                 SharpnadoInitializer.Initialize(enableInternalLogger: true);
-                Instabug.StartWithToken("ee39ba65bc0171ea932b98e05acab1f2", IBGInvocationEvent.Shake | IBGInvocationEvent.TwoFingersSwipeLeft | IBGInvocationEvent.Screenshot);
+
+                Instabug.StartWithToken(instabugToken, IBGInvocationEvent.Shake | IBGInvocationEvent.TwoFingersSwipeLeft | IBGInvocationEvent.Screenshot);
+
                 Instabug.ShouldCaptureViewHierarchy = true;
                 Instabug.TintColor = UIColor.FromHSB(257, 81, 84);
                 Instabug.SetLocale(IBGLocale.French);
@@ -59,7 +69,7 @@ namespace Trine.Mobile.iOS
                 IBGReplies.Enabled = false;
 
                 // Intercom
-                Intercom.SetApiKey("ios_sdk-be15dd592c71d03d0f5245caece3fd0a40ae6435", "v4l26lv4");
+                Intercom.SetApiKey(intercomApiKey, intercomToken);
 
 
             }
