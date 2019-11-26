@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Graphics;
 using Android.Runtime;
-using Binding.Intercom.Android;
 using Com.Instabug.Library;
 using Com.Instabug.Library.Core;
 using Com.Instabug.Library.Invocation;
@@ -32,7 +31,7 @@ namespace Trine.Mobile.Bootstrapper.Droid
         {
             base.OnCreate();
 
-            Intercom.Initialize(this, intercomApiKey, intercomToken);
+            //Intercom.Initialize(this, intercomApiKey, intercomToken);
             new Instabug
                 .Builder(this, instabugToken)
                 .SetInvocationEvents(InstabugInvocationEvent.Shake, InstabugInvocationEvent.TwoFingerSwipeLeft, InstabugInvocationEvent.Screenshot)
