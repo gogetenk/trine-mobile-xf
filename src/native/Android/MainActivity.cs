@@ -48,7 +48,6 @@ namespace Trine.Mobile.Android
         }
     }
 
-
     public class AndroidInitializer : IPlatformInitializer
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
