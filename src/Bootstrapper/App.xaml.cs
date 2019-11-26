@@ -30,7 +30,6 @@ using Trine.Mobile.Dal.AzureBlobStorage.Repositories;
 using Trine.Mobile.Dal.Configuration;
 using Trine.Mobile.Dal.Swagger;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -80,14 +79,14 @@ namespace Trine.Mobile.Bootstrapper
             base.OnStart();
 
             // DEV ONLY
-            AppCenter.Start("android=69a27482-869f-4f32-8532-0ab77337dfc4;" +
-                  "ios=805f888f-e673-4bfa-a1f6-78ab376c7bc5",
-                  typeof(Analytics), typeof(Crashes));
+            //AppCenter.Start("android=69a27482-869f-4f32-8532-0ab77337dfc4;" +
+            //      "ios=805f888f-e673-4bfa-a1f6-78ab376c7bc5",
+            //      typeof(Analytics), typeof(Crashes));
 
             // PROD ONLY
-            //AppCenter.Start("android=9cfc99dc-15cc-4652-b794-44df21413075;" +
-            //      "ios=8a841e14-34c8-4774-b034-c8ed5991f943",
-            //      typeof(Analytics), typeof(Crashes));
+            AppCenter.Start("android=9cfc99dc-15cc-4652-b794-44df21413075;" +
+                  "ios=8a841e14-34c8-4774-b034-c8ed5991f943",
+                  typeof(Analytics), typeof(Crashes));
         }
 
         protected override void CleanUp()
