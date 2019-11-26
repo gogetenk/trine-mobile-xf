@@ -2,7 +2,6 @@
 using Binding.Intercom.Android.Identity;
 using Java.Lang;
 using Trine.Mobile.Bll;
-using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Model;
 
 namespace Trine.Mobile.Bootstrapper.Droid.Services
@@ -24,8 +23,7 @@ namespace Trine.Mobile.Bootstrapper.Droid.Services
                 return;
             }
 
-            var currentUser = AppSettings.CurrentUser;
-
+            var currentUser = user;
             Company company = null;
 
             if (currentUser.Company != null)

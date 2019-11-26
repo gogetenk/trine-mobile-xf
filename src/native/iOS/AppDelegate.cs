@@ -24,9 +24,11 @@ namespace Trine.Mobile.iOS
         // DEV ONLY
         private const string instabugToken = "ee39ba65bc0171ea932b98e05acab1f2";
         private const string intercomToken = "nb4w5hji";
+        private const string intercomApiKey = "ios_sdk-b655535b4f9815c9ead33d059c2cb43020d9431d";
         // PROD ONLY
         //private const string instabugToken = "2be1819819cfe4eda2b908b5bba59b73";
         //private const string intercomToken = "v4l26lv4";
+        //private const string intercomApiKey = "ios_sdk-be15dd592c71d03d0f5245caece3fd0a40ae6435";
 
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
@@ -67,7 +69,7 @@ namespace Trine.Mobile.iOS
                 IBGReplies.Enabled = false;
 
                 // Intercom
-                Intercom.SetApiKey("ios_sdk-be15dd592c71d03d0f5245caece3fd0a40ae6435", intercomToken);
+                Intercom.SetApiKey(intercomApiKey, intercomToken);
 
 
             }
