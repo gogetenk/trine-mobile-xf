@@ -1,4 +1,4 @@
-﻿using Java.Lang;
+using Java.Lang;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Model;
 
