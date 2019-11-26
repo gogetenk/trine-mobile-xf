@@ -284,10 +284,14 @@ namespace Modules.Consultant.ViewModels
                 IsLoading = true;
 
                 await Browser.OpenAsync($"{AppSettings.ApiUrls.FirstOrDefault().Value}/api/activities/{Activity.Id}/export", BrowserLaunchMode.SystemPreferred);
-                //var file = _downloadManager.CreateDownloadFile($"{AppSettings.ApiUrls.FirstOrDefault().Value}/api/activities/{Activity.Id}/export");
-                //_downloadManager.Start(file);
-                //if (file is null)
-                //throw new BusinessException("Une erreur s'est produite lors du téléchargement du CRA");
+
+                // Tracking event
+                Logger.TrackEvent("[Retention] User downloaded an activity.", new Dictionary<string, string> {
+                    { "UserId", AppSettings.CurrentUser.Id },
+                    { "ActivityId", Activity.Id },
+                    { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
+                    { "UserType", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole) }
+                });
             }
             catch (BusinessException bExc)
             {
