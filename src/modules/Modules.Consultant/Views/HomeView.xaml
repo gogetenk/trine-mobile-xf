@@ -214,6 +214,24 @@
                    BackgroundColor="{StaticResource AccentColor}"
                    IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
                    Margin="0,0,25,5">
+                <Button Text="&#xe2c4;"
+                        FontFamily="{StaticResource MaterialIcons}"
+                        TextColor="#95989A"
+                        FontSize="24"
+                        BackgroundColor="#F5F5F7"
+                        Command="{Binding DownloadActivityCommand}"
+                        CornerRadius="{OnPlatform Default=120, iOS=23}"
+                        Padding="0,0,0,0" />
+            </Frame>
+            <Frame Padding="0"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource FrameButtonStyle}"
+                   CornerRadius="{OnPlatform Default=120, iOS=23}"
+                   HeightRequest="40"
+                   WidthRequest="40"
+                   BackgroundColor="{StaticResource AccentColor}"
+                   IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
+                   Margin="0,0,25,5">
                 <Button Text="&#xe3c9;"
                         FontFamily="{StaticResource MaterialIcons}"
                         TextColor="#95989A"
