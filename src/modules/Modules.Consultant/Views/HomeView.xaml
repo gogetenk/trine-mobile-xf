@@ -58,7 +58,7 @@
                     <StackLayout IsVisible="{Binding IsCalendarShown}">
 
                         <!-- Calendar card -->
-                    <controls:ElevationFrame Margin="{OnPlatform Default='20,100,20,10', iOS='20,90,20,10'}"
+                        <controls:ElevationFrame Margin="{OnPlatform Default='20,100,20,10', iOS='20,90,20,10'}"
                                                  Elevation="50"
                                                  VerticalOptions="StartAndExpand"
                                                  Padding="0"
@@ -78,7 +78,7 @@
                                                TextColor="#707070"
                                                FontSize="{StaticResource RegularFontSize}" />
                                     </StackLayout>
-                                <Frame CornerRadius="{OnPlatform Default='120', iOS='15'}"
+                                    <Frame CornerRadius="{OnPlatform Default='120', iOS='15'}"
                                            Visual="Default"
                                            HasShadow="False"
                                            VerticalOptions="Center"
@@ -90,36 +90,36 @@
                                     </Frame>
                                 </StackLayout>
 
-                            <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
-                                                           DaySettingsCommand="{Binding AbsenceCommand}"
-                                                           x:Name="calendar"
-                                                           IsInputEnabled="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
-                                                           Margin="0,40,0,0"
-                                                           CellBackgroundColor="#CCCCCC"
-                                                           CellForegroundColor="White"
-                                                           AbsenceCellBackgroundColor="#FF5A39"
-                                                           CellFontSize="10"
-                                                           WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
-                                                           HorizontalOptions="Center"
-                                                           VerticalOptions="Center" />
+                                <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
+                                                               DaySettingsCommand="{Binding AbsenceCommand}"
+                                                               x:Name="calendar"
+                                                               IsInputEnabled="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
+                                                               Margin="0,40,0,0"
+                                                               CellBackgroundColor="#CCCCCC"
+                                                               CellForegroundColor="White"
+                                                               AbsenceCellBackgroundColor="#FF5A39"
+                                                               CellFontSize="10"
+                                                               WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
+                                                               HorizontalOptions="Center"
+                                                               VerticalOptions="Center" />
 
                             </StackLayout>
                         </controls:ElevationFrame>
 
-                    <!-- Commentaire -->
-                    <controls:ElevationFrame Margin="20,0,20,30"
-                                             Elevation="50"
-                                             IsVisible="{Binding Activity.Status, Converter={StaticResource refusedStatusToBool}}"
-                                             x:Name="frame_comment"
-                                             Padding="0"
-                                             IsClippedToBounds="True"
-                                             CornerRadius="5">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="4" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <!--<BoxView BackgroundColor="#FF5A39"
+                        <!-- Commentaire -->
+                        <controls:ElevationFrame Margin="20,0,20,30"
+                                                 Elevation="50"
+                                                 IsVisible="{Binding Activity.Status, Converter={StaticResource refusedStatusToBool}}"
+                                                 x:Name="frame_comment"
+                                                 Padding="0"
+                                                 IsClippedToBounds="True"
+                                                 CornerRadius="5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <!--<BoxView BackgroundColor="#FF5A39"
                                      Grid.Row="0" />-->
 
                                 <StackLayout Grid.Row="1"
@@ -201,7 +201,6 @@
         </Grid>
 
         <StackLayout Grid.RowSpan="2"
-                     IsVisible="{Binding IsCalendarShown}"
                      VerticalOptions="EndAndExpand"
                      HorizontalOptions="EndAndExpand">
 
@@ -212,45 +211,66 @@
                    HeightRequest="40"
                    WidthRequest="40"
                    BackgroundColor="{StaticResource AccentColor}"
-                   IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
                    Margin="0,0,25,5">
-                <Button Text="&#xe3c9;"
+                <Button Text="&#xe2c4;"
                         FontFamily="{StaticResource MaterialIcons}"
                         TextColor="#95989A"
                         FontSize="24"
                         BackgroundColor="#F5F5F7"
-                        Command="{Binding SignActivityCommand}"
+                        Command="{Binding DownloadActivityCommand}"
                         CornerRadius="{OnPlatform Default=120, iOS=23}"
                         Padding="0,0,0,0" />
             </Frame>
-            <Frame Padding="0"
-                   Style="{StaticResource FrameButtonStyle}"
-                   IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
-                   CornerRadius="{OnPlatform Default=120, iOS=30}"
-                   HeightRequest="60"
-                   WidthRequest="60"
-                   Margin="0,0,25,40">
-                <Button Text="&#xe161;"
-                        FontSize="24"
-                        Style="{StaticResource ActionButtonStyle}"
-                        Command="{Binding SaveActivityCommand}"
-                        CornerRadius="{OnPlatform Default=120, iOS=30}"
-                        Padding="0,0,0,0" />
-            </Frame>
-            <Frame Padding="0"
-                   IsVisible="{Binding Activity.Status, Converter={StaticResource isActivityCompleted}}"
-                   Style="{StaticResource FrameButtonStyle}"
-                   CornerRadius="{OnPlatform Default=120, iOS=30}"
-                   HeightRequest="60"
-                   WidthRequest="60"
-                   Margin="0,0,25,40">
-                <Button Text="&#xe2c4;"
-                        FontSize="24"
-                        Style="{StaticResource ActionButtonStyle}"
-                        Command="{Binding DownloadActivityCommand}"
-                        CornerRadius="{OnPlatform Default=120, iOS=30}"
-                        Padding="0,0,0,0" />
-            </Frame>
+
+            <StackLayout IsVisible="{Binding IsCalendarShown}">
+
+                <Frame Padding="0"
+                       HorizontalOptions="Center"
+                       Style="{StaticResource FrameButtonStyle}"
+                       CornerRadius="{OnPlatform Default=120, iOS=23}"
+                       HeightRequest="40"
+                       WidthRequest="40"
+                       BackgroundColor="{StaticResource AccentColor}"
+                       IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
+                       Margin="0,0,25,5">
+                    <Button Text="&#xe3c9;"
+                            FontFamily="{StaticResource MaterialIcons}"
+                            TextColor="#95989A"
+                            FontSize="24"
+                            BackgroundColor="#F5F5F7"
+                            Command="{Binding SignActivityCommand}"
+                            CornerRadius="{OnPlatform Default=120, iOS=23}"
+                            Padding="0,0,0,0" />
+                </Frame>
+                <Frame Padding="0"
+                       Style="{StaticResource FrameButtonStyle}"
+                       IsVisible="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
+                       CornerRadius="{OnPlatform Default=120, iOS=30}"
+                       HeightRequest="60"
+                       WidthRequest="60"
+                       Margin="0,0,25,40">
+                    <Button Text="&#xe161;"
+                            FontSize="24"
+                            Style="{StaticResource ActionButtonStyle}"
+                            Command="{Binding SaveActivityCommand}"
+                            CornerRadius="{OnPlatform Default=120, iOS=30}"
+                            Padding="0,0,0,0" />
+                </Frame>
+                <Frame Padding="0"
+                       IsVisible="{Binding Activity.Status, Converter={StaticResource isActivityCompleted}}"
+                       Style="{StaticResource FrameButtonStyle}"
+                       CornerRadius="{OnPlatform Default=120, iOS=30}"
+                       HeightRequest="60"
+                       WidthRequest="60"
+                       Margin="0,0,25,40">
+                    <Button Text="&#xe2c4;"
+                            FontSize="24"
+                            Style="{StaticResource ActionButtonStyle}"
+                            Command="{Binding DownloadActivityCommand}"
+                            CornerRadius="{OnPlatform Default=120, iOS=30}"
+                            Padding="0,0,0,0" />
+                </Frame>
+            </StackLayout>
         </StackLayout>
     </Grid>
 </ContentPage>
