@@ -113,6 +113,7 @@
     <ITunesArtwork Include="iTunesArtwork%402x" />
     <None Include="proxima-thin.woff" />
     <BundleResource Include="Resources\proxima-thin.otf" />
+    <BundleResource Include="Resources\navigation-menu.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json">
@@ -278,9 +279,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\menu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\menu_small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
