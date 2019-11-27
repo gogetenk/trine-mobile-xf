@@ -6,6 +6,7 @@
 echo "=> prebuild ios ${APPCENTER_BRANCH}"
 
 if [ "$APPCENTER_BRANCH" == "master" ]
+then
   sed -i .bak 's/app-assistance-dev.azurewebsites.net/app-assistance.azurewebsites.net/g' ../../Bll/Trine.Mobile.Bll.Impl/Settings/AppSettings.cs
   sed -i .bak 's/ee39ba65bc0171ea932b98e05acab1f2/2be1819819cfe4eda2b908b5bba59b73/g' ./CustomVariables.cs
   sed -i .bak 's/nb4w5hji/v4l26lv4/g' ./CustomVariables.cs
@@ -15,5 +16,4 @@ if [ "$APPCENTER_BRANCH" == "master" ]
   echo "=> Changement du bundle id\n"
   sed -i .bak 's/io.trine.trineapp.dev/io.trine.trineapp/g' ./Properties/AndroidManifest.xml
   sed -i .bak 's/io.trine.trineapp.dev/io.trine.trineapp/g' ../../modules/Modules.Authentication.UITests/AppInitializer.cs
-then
 fi

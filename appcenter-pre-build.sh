@@ -3,6 +3,7 @@
 echo "=> prebuild ${APPCENTER_BRANCH}"
 
 if [ "$APPCENTER_BRANCH" == "master" ]
+then
   sed -i .bak 's/app-assistance-dev.azurewebsites.net/app-assistance.azurewebsites.net/g' ./src/Bll/Trine.Mobile.Bll.Impl/Settings/AppSettings.cs
   
   echo "=> Définition des variables de l'application\n"
@@ -13,6 +14,4 @@ if [ "$APPCENTER_BRANCH" == "master" ]
   # sed -i .bak 's/io.trine.trineapp.dev/io.trine.trineapp/g' ./src/modules/Modules.Authentication.UITests/AppInitializer.cs
   sed -i .bak 's/com.hellotrine.app.dev/com.hellotrine.app/g' ./src/native/iOS/Info.plist
   sed -i .bak 's/Trine Dev/Trine/g' ./src/native/iOS/Info.plist
-
-then
 fi
