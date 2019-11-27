@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Com.OneSignal;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -15,7 +16,6 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
 using Sogetrel.Sinapse.Framework.Mobile.Extensions;
-using System;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Factory;
 using Trine.Mobile.Bll.Impl.Services;

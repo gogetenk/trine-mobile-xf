@@ -45,9 +45,9 @@
 		<string>MaterialIcons-Regular.ttf</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>Trine</string>
+	<string>Trine Dev</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.hellotrine.app</string>
+	<string>com.hellotrine.app.dev</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
