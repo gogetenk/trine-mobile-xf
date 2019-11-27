@@ -91,10 +91,10 @@
                     <Label Text="E-mail"
                            Style="{StaticResource TertiaryText}"
                            TextDecorations="None" />
-                    <Editor Text="{Binding User.Mail}"
-                            BackgroundColor="White"
-                            Visual="Default"
-                            Style="{StaticResource Paragraph}" />
+                    <Label Text="{Binding User.Mail}"
+                           BackgroundColor="White"
+                           Visual="Default"
+                           Style="{StaticResource Paragraph}" />
 
                 </StackLayout>
             </Frame>
