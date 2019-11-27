@@ -30,7 +30,6 @@ using Trine.Mobile.Dal.AzureBlobStorage.Repositories;
 using Trine.Mobile.Dal.Configuration;
 using Trine.Mobile.Dal.Swagger;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -40,6 +39,9 @@ namespace Trine.Mobile.Bootstrapper
     {
         private const int smallWightResolution = 768;
         private const int smallHeightResolution = 1280;
+
+        public const string ONE_SIGNAL_ID = "12785512-a98b-4c91-89ca-05959a685120";
+        public const string APP_CENTER_KEY = "android=69a27482-869f-4f32-8532-0ab77337dfc4;ios=805f888f-e673-4bfa-a1f6-78ab376c7bc5";
 
         /* 
          * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
@@ -60,7 +62,7 @@ namespace Trine.Mobile.Bootstrapper
 
                 OneSignal
                    .Current
-                   .StartInit("12785512-a98b-4c91-89ca-05959a685120") // TODO: créer un autre projet OneSignal pour bien différencier la prod et la dev 
+                   .StartInit(ONE_SIGNAL_ID)
                    .EndInit();
 
 #if DEBUG
@@ -78,16 +80,7 @@ namespace Trine.Mobile.Bootstrapper
         protected override void OnStart()
         {
             base.OnStart();
-
-            // DEV ONLY
-            //AppCenter.Start("android=69a27482-869f-4f32-8532-0ab77337dfc4;" +
-            //      "ios=805f888f-e673-4bfa-a1f6-78ab376c7bc5",
-            //      typeof(Analytics), typeof(Crashes));
-
-            // PROD ONLY
-            AppCenter.Start("android=9cfc99dc-15cc-4652-b794-44df21413075;" +
-                  "ios=8a841e14-34c8-4774-b034-c8ed5991f943",
-                  typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(APP_CENTER_KEY ,typeof(Analytics), typeof(Crashes));
         }
 
         protected override void CleanUp()

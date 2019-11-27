@@ -10,10 +10,10 @@ namespace Modules.Authentication.UITests
         {
             if (platform == Platform.Android)
             {
-                return ConfigureApp.Android.InstalledApp("io.trine.trineapp").StartApp();
+                return ConfigureApp.Android.InstalledApp("io.trine.trineapp.dev").StartApp();
             }
 
-            return ConfigureApp.iOS.InstalledApp("io.trine.trineapp").StartApp();
+            return ConfigureApp.iOS.InstalledApp("io.trine.trineapp.dev").StartApp();
         }
     }
 }
