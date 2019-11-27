@@ -38,13 +38,23 @@ namespace Trine.Mobile.Components.ViewModels
 
         public virtual async void LogTechnicalError(Exception exc)
         {
-            Logger.Report(exc, null);
+            var userRole = Enum.GetName(typeof(UserModel.GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
+            var logParams = new Dictionary<string, string>();
+            logParams.Add("UserId", AppSettings.CurrentUser?.Id);
+            logParams.Add("UserName", AppSettings.CurrentUser?.Firstname + " " + AppSettings.CurrentUser?.Lastname);
+            logParams.Add("UserType", userRole);
+            Logger.Report(exc, logParams);
             await DialogService.DisplayAlertAsync(ErrorMessages.error, ErrorMessages.RandomNetworkErrorMessage, "Ok");
         }
 
         public virtual async Task LogAndShowBusinessError(BusinessException bExc)
         {
-            Logger.Log(bExc.Message);
+            var userRole = Enum.GetName(typeof(UserModel.GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
+            var logParams = new Dictionary<string, string>();
+            logParams.Add("UserId", AppSettings.CurrentUser?.Id);
+            logParams.Add("UserName", AppSettings.CurrentUser?.Firstname + " " + AppSettings.CurrentUser?.Lastname);
+            logParams.Add("UserType", userRole);
+            Logger.Log(bExc.Message, logParams);
             await DialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
         }
 
