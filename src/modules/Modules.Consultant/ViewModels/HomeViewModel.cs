@@ -43,17 +43,21 @@ namespace Modules.Consultant.ViewModels
         public string CurrentUser { get => _currentUser; set { _currentUser = value; RaisePropertyChanged(); } }
 
         private float _numberOfDays;
-        public float NumberOfDays {
+        public float NumberOfDays
+        {
             get => _numberOfDays;
-            set {
+            set
+            {
                 _numberOfDays = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged("FormattedNumberOfDays");
             }
         }
 
-        public string FormattedNumberOfDays {
-            get {
+        public string FormattedNumberOfDays
+        {
+            get
+            {
                 return NumberOfDays > 1 ? $"{NumberOfDays} jours" : $"{NumberOfDays} jour";
             }
         }
@@ -142,7 +146,7 @@ namespace Modules.Consultant.ViewModels
 
         private void OnAbsenceSettingsOpened(GridDayDto gridDay)
         {
-            if (Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.Generated || Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired)
+            if (Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.Generated && Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired)
                 return;
 
             var dialogParams = new DialogParameters();

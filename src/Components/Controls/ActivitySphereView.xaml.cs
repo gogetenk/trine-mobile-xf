@@ -202,7 +202,5 @@ namespace Trine.Mobile.Components.Controls
 
             //DayClicked.Execute(DayPart);
         }
-
-
     }
 }
