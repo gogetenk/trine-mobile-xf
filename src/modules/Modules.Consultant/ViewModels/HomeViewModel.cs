@@ -42,6 +42,22 @@ namespace Modules.Consultant.ViewModels
         private string _currentUser;
         public string CurrentUser { get => _currentUser; set { _currentUser = value; RaisePropertyChanged(); } }
 
+        private float _numberOfDays;
+        public float NumberOfDays {
+            get => _numberOfDays;
+            set {
+                _numberOfDays = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged("FormattedNumberOfDays");
+            }
+        }
+
+        public string FormattedNumberOfDays {
+            get {
+                return NumberOfDays > 1 ? $"{NumberOfDays} jours" : $"{NumberOfDays} jour";
+            }
+        }
+
         public DelegateCommand SignActivityCommand { get; set; }
         public DelegateCommand SaveActivityCommand { get; set; }
         public DelegateCommand<GridDayDto> AbsenceCommand { get; set; }
@@ -98,9 +114,15 @@ namespace Modules.Consultant.ViewModels
 
                 // If not, we just generate a new empty one
                 if (activity is null)
+                {
                     Activity = Mapper.Map<ActivityDto>(await _activityService.CreateActivity(_mission.Id, DateTime.UtcNow));
+                }
                 else
+                {
                     Activity = activity;
+                }
+
+                NumberOfDays = _activity.DaysNb;
             }
             catch (BusinessException bExc)
             {

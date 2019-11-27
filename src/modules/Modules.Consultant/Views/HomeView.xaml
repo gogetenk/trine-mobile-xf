@@ -66,8 +66,13 @@
                                                  CornerRadius="5"
                                                  Visual="Material">
                             <StackLayout Padding="20,20,20,0">
-                                <StackLayout Orientation="Horizontal">
-                                    <StackLayout>
+                                <Grid>
+                                      <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="70" />
+                                      </Grid.ColumnDefinitions>
+
+                                    <StackLayout Grid.Column="0">
                                         <Label Text="{Binding Activity.StartDate, StringFormat='{0:MMMM yyyy}'}"
                                                TextColor="{StaticResource AccentColor}"
                                                FontSize="{StaticResource TitleFontSize}" />
@@ -78,30 +83,28 @@
                                                TextColor="#707070"
                                                FontSize="{StaticResource RegularFontSize}" />
                                     </StackLayout>
-                                    <Frame CornerRadius="{OnPlatform Default='120', iOS='15'}"
-                                           Visual="Default"
-                                           HasShadow="False"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="EndAndExpand"
-                                           Padding="10"
-                                           BackgroundColor="#F6F6F6">
-                                        <Label Text="{Binding Activity.DaysNb}"
-                                               TextColor="#464646" />
-                                    </Frame>
-                                </StackLayout>
 
-                                <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
-                                                               DaySettingsCommand="{Binding AbsenceCommand}"
-                                                               x:Name="calendar"
-                                                               IsInputEnabled="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
-                                                               Margin="0,40,0,0"
-                                                               CellBackgroundColor="#CCCCCC"
-                                                               CellForegroundColor="White"
-                                                               AbsenceCellBackgroundColor="#FF5A39"
-                                                               CellFontSize="10"
-                                                               WorkedDays="{Binding Activity.DaysNb, Mode=TwoWay}"
-                                                               HorizontalOptions="Center"
-                                                               VerticalOptions="Center" />
+                                    <RelativeLayout Grid.Column="1">
+                                        <Grid HeightRequest="35" WidthRequest="70">
+                                            <BoxView Grid.Row="0" Grid.Column="0" HeightRequest="35"  WidthRequest="70" CornerRadius="18" BackgroundColor="#F5F5F5" />
+                                            <Label TextColor="#6969E5" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding FormattedNumberOfDays}" />
+                                        </Grid>
+                                    </RelativeLayout>
+
+                                </Grid>
+
+                            <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
+                                                           DaySettingsCommand="{Binding AbsenceCommand}"
+                                                           x:Name="calendar"
+                                                           IsInputEnabled="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
+                                                           Margin="0,40,0,0"
+                                                           CellBackgroundColor="#CCCCCC"
+                                                           CellForegroundColor="White"
+                                                           AbsenceCellBackgroundColor="#FF5A39"
+                                                           CellFontSize="10"
+                                                           WorkedDays="{Binding NumberOfDays, Mode=TwoWay}"
+                                                           HorizontalOptions="Center"
+                                                           VerticalOptions="Center" />
 
                             </StackLayout>
                         </controls:ElevationFrame>
