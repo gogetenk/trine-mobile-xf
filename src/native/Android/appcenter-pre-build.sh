@@ -3,6 +3,8 @@
 # ANDROID SPECIFIC, DON'T USE THAT FOR iOS BUILDS
 ###
 
+echo "=> prebuild ${APPCENTER_BRANCH}"
+
 if [ $APPCENTER_BRANCH == "master" ];
 
   echo "\n####### PRE-BUILD SCRIPT #######\n"
