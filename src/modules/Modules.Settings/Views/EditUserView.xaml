@@ -75,10 +75,10 @@
                     <Label Text="Profil"
                            Style="{StaticResource TertiaryText}"
                            TextDecorations="None" />
-                    <Picker SelectedItem="{Binding User.Role}"
-                            BackgroundColor="White"
-                            Visual="Default"
-                            Style="{StaticResource Paragraph}" />
+                    <Label Text="{Binding User.Role}"
+                           BackgroundColor="White"
+                           Visual="Default"
+                           Style="{StaticResource Paragraph}" />
 
                     <Label Text="Téléphone"
                            Style="{StaticResource TertiaryText}"
