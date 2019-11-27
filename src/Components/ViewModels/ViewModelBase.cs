@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Model;
 
 namespace Trine.Mobile.Components.ViewModels
 {
@@ -62,9 +63,19 @@ namespace Trine.Mobile.Components.ViewModels
         /// <param name="parameters">Optional parameters</param>
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
-            var logParams = new Dictionary<string, string>();
-            logParams.Add("UserId", AppSettings.CurrentUser?.Id);
-            Logger.TrackEvent($"[{GetType().Name}] Navigated To", logParams);
+            try
+            {
+                var userRole = Enum.GetName(typeof(UserModel.GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
+                var logParams = new Dictionary<string, string>();
+                logParams.Add("UserId", AppSettings.CurrentUser?.Id);
+                logParams.Add("UserName", AppSettings.CurrentUser?.Firstname + " " + AppSettings.CurrentUser?.Lastname);
+                logParams.Add("UserType", userRole);
+                Logger.TrackEvent($"[{GetType().Name}] Navigated To", logParams);
+            }
+            catch
+            {
+                return;
+            }
         }
 
         public virtual async Task<bool> CanNavigateAsync(INavigationParameters parameters)
