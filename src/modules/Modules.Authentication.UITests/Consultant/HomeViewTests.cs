@@ -6,9 +6,13 @@ using Xamarin.UITest.Queries;
 
 namespace Trine.Mobile.UITests.Consultant
 {
+    [TestFixture(Platform.Android)]
+    [TestFixture(Platform.iOS)]
     public class HomeViewTests
     {
-        private const string _DummyUserEmail = "testconsultant@sogetrel.fr";
+        //private const string _DummyUserEmail = "testconsultant@sogetrel.fr";
+        //private const string _DummyUserPassword = "123";
+        private const string _DummyUserEmail = "ytocreau@trine.com";
         private const string _DummyUserPassword = "123";
 
         private IApp _app;
@@ -39,7 +43,11 @@ namespace Trine.Mobile.UITests.Consultant
             _loginPage.EnterEmail(_DummyUserEmail);
             _loginPage.EnterPassword(_DummyUserPassword);
             _loginPage.TapLoginButton();
+        }
 
+        [Test]
+        public void HomePageIsDisplayed()
+        {
             AppResult[] results = _app.WaitForElement(c => c.Marked("grid_header"));
             Assert.IsTrue(results.Any());
         }

@@ -19,11 +19,13 @@ namespace Trine.Mobile.UITests.Pages
 
         public void EnterEmail(string email)
         {
+            _app.ClearText(_mailEntry);
             _app.EnterText(_mailEntry, email);
         }
 
         public void EnterPassword(string password)
         {
+            _app.ClearText(_passwordEntry);
             _app.EnterText(_passwordEntry, password);
         }
 
