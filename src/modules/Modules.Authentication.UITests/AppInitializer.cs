@@ -2,7 +2,7 @@
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
-namespace Modules.Authentication.UITests
+namespace Trine.Mobile.UITests
 {
     public class AppInitializer
     {

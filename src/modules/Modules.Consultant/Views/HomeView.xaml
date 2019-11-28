@@ -26,6 +26,7 @@
         <!-- HEADER -->
         <Grid Grid.Row="0"
               x:Name="grid_header"
+              AutomationId="grid_header"
               BackgroundColor="{StaticResource AccentColor}" />
 
         <Grid Margin="0"
