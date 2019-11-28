@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B19C892E-2628-4CA7-AD27-08D406A3B14B}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Modules.Authentication.UITests</RootNamespace>
-    <AssemblyName>Modules.Authentication.UITests</AssemblyName>
+    <RootNamespace>Trine.Mobile.UITests</RootNamespace>
+    <AssemblyName>Trine.Mobile.UITests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -40,8 +40,11 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consultant\HomeViewTests.cs" />
+    <Compile Include="Pages\ConsultantHomePage.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\SignupPage.cs" />
-    <Compile Include="SignupTests.cs" />
+    <Compile Include="Authentication\SignupTests.cs" />
     <Compile Include="AppInitializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

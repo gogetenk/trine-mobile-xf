@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using Modules.Authentication.UITests.Pages;
 using NUnit.Framework;
+using Trine.Mobile.UITests.Pages;
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
-namespace Modules.Authentication.UITests
+namespace Trine.Mobile.UITests.Authentication
 {
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
