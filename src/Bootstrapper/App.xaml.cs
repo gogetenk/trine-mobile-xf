@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using Com.OneSignal;
+using Com.OneSignal.Abstractions;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -81,7 +82,7 @@ namespace Trine.Mobile.Bootstrapper
         protected override void OnStart()
         {
             base.OnStart();
-            AppCenter.Start(APP_CENTER_KEY ,typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(APP_CENTER_KEY, typeof(Analytics), typeof(Crashes));
         }
 
         protected override void CleanUp()
@@ -200,6 +201,7 @@ namespace Trine.Mobile.Bootstrapper
             containerRegistry.Register<IImageAttachmentStorageConfiguration, ImageAttachmentStorageConfiguration>();
 
             containerRegistry.RegisterInstance<IDownloadManager>(CrossDownloadManager.Current);
+            containerRegistry.RegisterInstance<IOneSignal>(OneSignal.Current);
         }
 
         #endregion
