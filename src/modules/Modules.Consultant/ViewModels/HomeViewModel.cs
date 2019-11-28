@@ -241,7 +241,7 @@ namespace Modules.Consultant.ViewModels
         {
             var notification = new Dictionary<string, object>();
             notification["contents"] = new Dictionary<string, string>() { { "en", "Un rapport d'activité vient de vous être soumis !" } };
-            notification["include_external_user_ids"] = new List<string>() { _mission.Customer.Id };
+            notification["include_external_user_ids"] = new List<string>() { _mission?.Customer?.Id };
 
             OneSignal.Current.PostNotification(notification, (responseSuccess) =>
             {
