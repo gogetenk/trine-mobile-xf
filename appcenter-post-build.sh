@@ -43,7 +43,7 @@ set -e # Exit immediately if a command exits with a non-zero status (failure)
 			appCenterLoginApiToken=$AppCenterLoginForAutomatedUITests # this comes from the build environment variables
 			echo $appCenterLoginApiToken
 		
-			APKFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.apk | head -1`
+			APKFile=`find "$APPCENTER_SOURCE_DIRECTORY" -name *.ipa | head -1`
 			echo APKFile: $APKFile
 
 			UITestVersionNumber=`grep '[0-9]' $UITestProject | grep Xamarin.UITest|grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'`
@@ -59,5 +59,5 @@ set -e # Exit immediately if a command exits with a non-zero status (failure)
 			appcenter login --token $appCenterLoginApiToken 
 			echo "Logged in successfully !"
 			echo "Running uitests..."
-			appcenter test run uitest --app "Trine-App/Trine-Android" --devices "Trine-App/alpha-testers" --app-path $APKFile  --test-series "ui-tests" --locale "fr_FR" --build-dir $UITestBuildDir --uitest-tools-dir $TestCloudExeDirectory --async
+			appcenter test run uitest --app "Trine-App/Trine-iOS" --devices "d40b3e3a" --app-path $APKFile  --test-series "ui-tests" --locale "fr_FR" --build-dir $UITestBuildDir --uitest-tools-dir $TestCloudExeDirectory --async
 		fi

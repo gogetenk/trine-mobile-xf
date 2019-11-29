@@ -5,7 +5,7 @@ namespace Trine.Mobile.UITests
     public class AppInitializer
     {
         private const string _ApkFileName = "io.trine.trineapp.dev";
-        private const string _IpaFileName = "io.trine.trineapp.dev";
+        private const string _IpaFileName = "com.hellotrine.app.dev";
 
         public static IApp StartApp(Platform platform)
         {

@@ -34,18 +34,18 @@ namespace Trine.Mobile.UITests.Authentication
             Assert.IsTrue(results.Any());
         }
 
-        [Test]
-        public void SignUp_NominalCase()
-        {
-            _signupPage.EnterEmail("toto@titi.fr");
-            _app.DismissKeyboard();
-            _signupPage.EnterPassword("1234");
-            _app.DismissKeyboard();
-            _signupPage.TapStartButton();
+        //[Test]
+        //public void SignUp_NominalCase()
+        //{
+        //    _signupPage.EnterEmail("toto@titi.fr");
+        //    _app.DismissKeyboard();
+        //    _signupPage.EnterPassword("1234");
+        //    _app.DismissKeyboard();
+        //    _signupPage.TapStartButton();
 
-            AppResult[] results = _app.WaitForElement(c => c.Marked("Nous voudrions mieux vous connaître."));
-            Assert.IsTrue(results.Any());
-        }
+        //    AppResult[] results = _app.WaitForElement(c => c.Marked("Nous voudrions mieux vous connaître."));
+        //    Assert.IsTrue(results.Any());
+        //}
 
         //[Test]
         //public void SignUp_WhenEmailIsEmpty_ExpectErrorMessage()
