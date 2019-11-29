@@ -51,6 +51,7 @@ namespace Trine.Mobile.Components.ViewModels
             catch
             {
                 Logger.Report(exc, null);
+                await DialogService.DisplayAlertAsync(ErrorMessages.error, ErrorMessages.RandomNetworkErrorMessage, "Ok");
             }
         }
 
@@ -70,6 +71,7 @@ namespace Trine.Mobile.Components.ViewModels
             catch
             {
                 Logger.Log(bExc.Message, null);
+                await DialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
             }
         }
 

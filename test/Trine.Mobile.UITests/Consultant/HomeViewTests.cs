@@ -10,7 +10,7 @@ namespace Trine.Mobile.UITests.Consultant
     [TestFixture(Platform.iOS)]
     public class HomeViewTests
     {
-        private const string _DummyUserEmail = "testconsultant@sogetrel.fr";
+        private const string _DummyUserEmail = "testconsultant@trine.com";
         private const string _DummyUserPassword = "123";
         //private const string _DummyUserEmail = "ytocreau@trine.com";
         //private const string _DummyUserPassword = "123";
