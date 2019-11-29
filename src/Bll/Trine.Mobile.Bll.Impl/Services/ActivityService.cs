@@ -110,7 +110,10 @@ namespace Trine.Mobile.Bll.Impl.Services
                     FileName = "signature.png"
                 };
                 form.Add(content);
-                var response = await client.PostAsync($"{AppSettings.ApiUrls["GatewayApi"]}/api/activities/sign?activityId={activity.Id}&userId={user.Id}", form);
+                var response = await client.PostAsync($"{AppSettings.ApiUrls["GatewayApi"]}/api/activities/sign?activityId={activity?.Id}&userId={user?.Id}", form);
+                if (!response.IsSuccessStatusCode)
+                    throw new BusinessException("Une erreur s'est produite lors de la signature.");
+
                 var result = await response.Content.ReadAsStringAsync();
                 if (result == null)
                     throw new TechnicalException("An error occured while signing. Please proceed again.");

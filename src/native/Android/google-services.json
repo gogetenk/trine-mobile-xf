@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:885512798511:android:abb96b6173fe5c41",
+        "mobilesdk_app_id": "1:885512798511:android:b6819a1c682b09120c21da",
         "android_client_info": {
-          "package_name": "io.trine.trineapp"
+          "package_name": "com.trine.trineapp.dev"
         }
       },
       "oauth_client": [
@@ -37,9 +37,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:885512798511:android:d2abfd23ff5c862e0c21da",
+        "mobilesdk_app_id": "1:885512798511:android:abb96b6173fe5c41",
         "android_client_info": {
-          "package_name": "io.trine.trineapp.dev"
+          "package_name": "io.trine.trineapp"
         }
       },
       "oauth_client": [

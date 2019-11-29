@@ -24,7 +24,7 @@
                    LineHeight="1.2"
                    TextColor="#474747"
                    FontSize="13" />
- 
+
             <controls:SignaturePadView x:Name="signatureView"
                                        StrokeWidth="3"
                                        Margin="15"
@@ -45,16 +45,16 @@
                         FontSize="13"
                         CornerRadius="5"
                         BackgroundColor="White"
-                        Clicked="Button_Clicked"
+                        Command="{Binding CancelCommand}"
                         BorderColor="White" />
                 <Button Text="Signer"
                         Grid.Column="1"
                         CornerRadius="5"
+                        Clicked="Button_Clicked"
                         FontSize="13"
                         BackgroundColor="{StaticResource AccentColor}"
                         Visual="Material"
-                        HorizontalOptions="Fill"
-                        Command="{Binding SignCommand}" />
+                        HorizontalOptions="Fill" />
             </Grid>
 
         </StackLayout>

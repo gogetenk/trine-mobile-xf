@@ -5,7 +5,7 @@
              x:Class="Modules.Customer.Views.MenuView"
              NavigationPage.HasBackButton="False"
              Title="Menu"
-             IconImageSource="menu_small.png"
+             IconImageSource="navigation-menu.png"
              BackgroundColor="White">
     
     <StackLayout>

@@ -42,6 +42,26 @@ namespace Modules.Consultant.ViewModels
         private string _currentUser;
         public string CurrentUser { get => _currentUser; set { _currentUser = value; RaisePropertyChanged(); } }
 
+        private float _numberOfDays;
+        public float NumberOfDays
+        {
+            get => _numberOfDays;
+            set
+            {
+                _numberOfDays = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged("FormattedNumberOfDays");
+            }
+        }
+
+        public string FormattedNumberOfDays
+        {
+            get
+            {
+                return NumberOfDays > 1 ? $"{NumberOfDays} jours" : $"{NumberOfDays} jour";
+            }
+        }
+
         public DelegateCommand SignActivityCommand { get; set; }
         public DelegateCommand SaveActivityCommand { get; set; }
         public DelegateCommand<GridDayDto> AbsenceCommand { get; set; }
@@ -98,9 +118,15 @@ namespace Modules.Consultant.ViewModels
 
                 // If not, we just generate a new empty one
                 if (activity is null)
+                {
                     Activity = Mapper.Map<ActivityDto>(await _activityService.CreateActivity(_mission.Id, DateTime.UtcNow));
+                }
                 else
+                {
                     Activity = activity;
+                }
+
+                NumberOfDays = _activity.DaysNb;
             }
             catch (BusinessException bExc)
             {
@@ -120,7 +146,7 @@ namespace Modules.Consultant.ViewModels
 
         private void OnAbsenceSettingsOpened(GridDayDto gridDay)
         {
-            if (Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.Generated || Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired)
+            if (Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.Generated && Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired)
                 return;
 
             var dialogParams = new DialogParameters();
@@ -215,7 +241,7 @@ namespace Modules.Consultant.ViewModels
         {
             var notification = new Dictionary<string, object>();
             notification["contents"] = new Dictionary<string, string>() { { "en", "Un rapport d'activité vient de vous être soumis !" } };
-            notification["include_external_user_ids"] = new List<string>() { _mission.Customer.Id };
+            notification["include_external_user_ids"] = new List<string>() { _mission?.Customer?.Id };
 
             OneSignal.Current.PostNotification(notification, (responseSuccess) =>
             {

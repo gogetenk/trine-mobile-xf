@@ -22,7 +22,7 @@
                     <Label Text="{Binding CreationDate, StringFormat='{0:MMMM yyyy}'}"
                            TextColor="{StaticResource AccentColor}"
                            FontSize="20" />
-                    <Label Text="{Binding Consultant.FullName}"
+                    <Label Text="{Binding Consultant.Fullname}"
                            TextColor="#707070"
                            FontSize="14" />
                     <Label Text="{Binding DaysNb, StringFormat='{0} jours'}"

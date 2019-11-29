@@ -70,7 +70,7 @@
         <Frame HorizontalOptions="Center"
                Grid.Row="1"
                IsVisible="{Binding IsEmptyState}"
-               Margin="0,-50,0,20"
+               Margin="20,-50,20,20"
                VerticalOptions="Start"
                Visual="Material">
             <StackLayout>

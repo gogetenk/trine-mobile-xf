@@ -127,9 +127,6 @@ namespace Modules.Customer.ViewModels
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
-                Activities.Remove(Activity);
-                Activity = null;
-
                 // Tracking event
                 Logger.TrackEvent("[Retention] User signed an activity.", new Dictionary<string, string> {
                     { "UserId", AppSettings.CurrentUser.Id },
@@ -137,6 +134,9 @@ namespace Modules.Customer.ViewModels
                     { "UserName", $"{AppSettings.CurrentUser.Firstname} {AppSettings.CurrentUser.Lastname}"},
                     { "UserType", Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole) }
                 });
+
+                // Reloading
+                await LoadActivities();
             }
             catch (BusinessException bExc)
             {
