@@ -41,14 +41,16 @@ namespace Trine.Mobile.UITests.Consultant
         {
             _signupPage.TapLoginButton();
             _loginPage.EnterEmail(_DummyUserEmail);
+            _app.DismissKeyboard();
             _loginPage.EnterPassword(_DummyUserPassword);
+            _app.DismissKeyboard();
             _loginPage.TapLoginButton();
         }
 
         [Test]
         public void HomePageIsDisplayed()
         {
-            AppResult[] results = _app.WaitForElement(c => c.Marked("grid_header"));
+            AppResult[] results = _app.WaitForElement(c => c.Marked("grid_header"), timeout: new System.TimeSpan(0, 0, 40));
             Assert.IsTrue(results.Any());
         }
     }
