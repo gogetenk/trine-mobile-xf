@@ -11,7 +11,7 @@ then
   
   echo "=> Changement du bundle id\n"
   sed -i .bak 's/io.trine.trineapp.dev/io.trine.trineapp/g' ./src/native/Android/Properties/AndroidManifest.xml
-  # sed -i .bak 's/io.trine.trineapp.dev/io.trine.trineapp/g' ./src/modules/Modules.Authentication.UITests/AppInitializer.cs
+  sed -i .bak 's/io.trine.trineapp.dev/io.trine.trineapp/g' ./test/Trine.Mobile.UITests/AppInitializer.cs
   sed -i .bak 's/com.hellotrine.app.dev/com.hellotrine.app/g' ./src/native/iOS/Info.plist
   sed -i .bak 's/Trine Dev/Trine/g' ./src/native/iOS/Info.plist
 fi

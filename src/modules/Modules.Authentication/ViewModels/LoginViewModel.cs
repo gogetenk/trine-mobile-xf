@@ -123,6 +123,7 @@ namespace Modules.Authentication.ViewModels
             }
             catch (BusinessException bExc)
             {
+                await DialogService.DisplayAlertAsync("erreur", bExc.Message, "ok");
                 await LogAndShowBusinessError(bExc);
             }
             catch (Exception exc)

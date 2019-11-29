@@ -1,13 +1,10 @@
-﻿using System;
-using Xamarin.UITest;
-using Xamarin.UITest.Queries;
+﻿using Xamarin.UITest;
 
 namespace Trine.Mobile.UITests
 {
     public class AppInitializer
     {
-        private const string _ApkFileName = "io.trine.trineapp";
-        //private const string _ApkFileName = "io.trine.trineapp.dev";
+        private const string _ApkFileName = "io.trine.trineapp.dev";
         private const string _IpaFileName = "io.trine.trineapp.dev";
 
         public static IApp StartApp(Platform platform)
