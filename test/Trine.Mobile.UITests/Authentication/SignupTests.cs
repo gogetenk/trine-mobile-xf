@@ -47,41 +47,41 @@ namespace Trine.Mobile.UITests.Authentication
             Assert.IsTrue(results.Any());
         }
 
-        [Test]
-        public void SignUp_WhenEmailIsEmpty_ExpectErrorMessage()
-        {
-            _app.EnterText(c => c.Marked("tb_password"), "1234");
-            _app.DismissKeyboard();
-            _app.Tap(c => c.Marked("Commencer"));
+        //[Test]
+        //public void SignUp_WhenEmailIsEmpty_ExpectErrorMessage()
+        //{
+        //    _app.EnterText(c => c.Marked("tb_password"), "1234");
+        //    _app.DismissKeyboard();
+        //    _app.Tap(c => c.Marked("Commencer"));
 
-            AppResult[] results = _app.WaitForElement(c => c.Marked("Veuillez spécifier un e-mail valide"));
+        //    AppResult[] results = _app.WaitForElement(c => c.Marked("Veuillez spécifier un e-mail valide"));
 
-            Assert.IsTrue(results.Count() == 1);
-        }
+        //    Assert.IsTrue(results.Count() == 1);
+        //}
 
-        [Test]
-        public void SignUp_WhenPasswordIsEmpty_ExpectErrorMessage()
-        {
-            _app.EnterText(c => c.Marked("tb_email"), "toto@titi.fr");
-            _app.DismissKeyboard();
-            _app.Tap(c => c.Marked("Commencer"));
+        //[Test]
+        //public void SignUp_WhenPasswordIsEmpty_ExpectErrorMessage()
+        //{
+        //    _app.EnterText(c => c.Marked("tb_email"), "toto@titi.fr");
+        //    _app.DismissKeyboard();
+        //    _app.Tap(c => c.Marked("Commencer"));
 
-            AppResult[] results = _app.WaitForElement(c => c.Marked("Veuillez spécifier un mot de passe valide"));
+        //    AppResult[] results = _app.WaitForElement(c => c.Marked("Veuillez spécifier un mot de passe valide"));
 
-            Assert.IsTrue(results.Count() == 1);
-        }
+        //    Assert.IsTrue(results.Count() == 1);
+        //}
 
-        [Test]
-        public void SignUp_WhenBothEntriesAreEmpty_ExpectBothErrorMessages()
-        {
-            _app.Tap(c => c.Marked("Commencer"));
+        //[Test]
+        //public void SignUp_WhenBothEntriesAreEmpty_ExpectBothErrorMessages()
+        //{
+        //    _app.Tap(c => c.Marked("Commencer"));
 
-            AppResult[] results = _app.WaitForElement(c => c.Marked("Veuillez spécifier un mot de passe valide"));
-            Assert.IsTrue(results.Count() == 1);
+        //    AppResult[] results = _app.WaitForElement(c => c.Marked("Veuillez spécifier un mot de passe valide"));
+        //    Assert.IsTrue(results.Count() == 1);
 
-            results = _app.WaitForElement(c => c.Marked("Veuillez spécifier un e-mail valide"));
-            Assert.IsTrue(results.Count() == 1);
-        }
+        //    results = _app.WaitForElement(c => c.Marked("Veuillez spécifier un e-mail valide"));
+        //    Assert.IsTrue(results.Count() == 1);
+        //}
 
         [Test]
         public void AlreadyAnAccount_NominalCase_ExpectNavigated()
