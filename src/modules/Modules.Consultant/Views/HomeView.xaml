@@ -68,10 +68,10 @@
                                                  Visual="Material">
                             <StackLayout Padding="20,20,20,0">
                                 <Grid>
-                                      <Grid.ColumnDefinitions>
+                                    <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="90" />
-                                      </Grid.ColumnDefinitions>
+                                    </Grid.ColumnDefinitions>
 
                                     <StackLayout Grid.Column="0">
                                         <Label Text="{Binding Activity.StartDate, StringFormat='{0:MMMM yyyy}'}"
@@ -94,7 +94,7 @@
 
                                 </Grid>
 
-                            <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
+                                <controls:ActivityCalendarView CurrentActivity="{Binding Activity}"
                                                            DaySettingsCommand="{Binding AbsenceCommand}"
                                                            x:Name="calendar"
                                                            IsInputEnabled="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
@@ -241,6 +241,8 @@
                             FontFamily="{StaticResource MaterialIcons}"
                             TextColor="#95989A"
                             FontSize="24"
+                            AutomationId="bt_sign"
+                            x:Name="bt_sign"
                             BackgroundColor="#F5F5F7"
                             Command="{Binding SignActivityCommand}"
                             CornerRadius="{OnPlatform Default=120, iOS=23}"
@@ -254,6 +256,8 @@
                        WidthRequest="60"
                        Margin="0,0,25,40">
                     <Button Text="&#xe161;"
+                            x:Name="bt_save"
+                            AutomationId="bt_save"
                             FontSize="24"
                             Style="{StaticResource ActionButtonStyle}"
                             Command="{Binding SaveActivityCommand}"

@@ -12,6 +12,7 @@
 
         <Frame BackgroundColor="{Binding CellBackgroundColor}"
                HasShadow="False"
+               AutomationId="calendar_sphere"
                x:Name="frame"
                IsClippedToBounds="True"
                CornerRadius="{StaticResource ActivitySphereCornerRadius}"

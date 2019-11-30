@@ -49,10 +49,29 @@ namespace Trine.Mobile.UITests.Consultant
         }
 
         [Test]
-        public void HomePageIsDisplayed()
+        public void ConsultantNavigatesToHomeAndManipulatesActivity()
         {
-            AppResult[] results = _app.WaitForElement(c => c.Marked("grid_header"), timeout: new System.TimeSpan(0, 0, 40));
+            AppResult[] results = _app.WaitForElement(c => c.Marked("grid_header"));
             Assert.IsTrue(results.Any());
+            _app.Screenshot("Home page is displayed.");
+
+            AppResult[] calendarSpheres = _app.WaitForElement(c => c.Marked("calendar_sphere"), timeout: new System.TimeSpan(0, 1, 0));
+            Assert.IsTrue(results.Any());
+            _app.Screenshot("Calendar is displayed and buttons are ready to be used.");
+
+            _homePage.TapSaveButton();
+            _app.Screenshot("Saving the activity.");
+
+            _homePage.TapSignButton();
+            _app.Screenshot("Signing the activity.");
+
+            AppResult[] cancelButtonResults = _app.WaitForElement(_homePage.cancelSignatureButton);
+            Assert.IsTrue(results.Any());
+            _app.Screenshot("Signing popup is displayed successfully.");
+
+            _homePage.TapCancelSignatureButton();
+            _app.Screenshot("Canceled signing popup successfully.");
         }
+
     }
 }

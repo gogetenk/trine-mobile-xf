@@ -9,11 +9,13 @@
       prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.85, Desktop=0.5}"
       prism:DialogLayout.CloseOnBackgroundTapped="True"
       x:Class="Modules.Consultant.Views.SignActivityDialogView">
+    
     <Frame CornerRadius="5"
            Padding="35"
            BackgroundColor="White">
         <StackLayout>
             <Label Text="Signer le compte rendu ?"
+                   x:Name="lb_sign_title"
                    Style="{StaticResource H1}"
                    TextColor="#000000"
                    FontSize="18" />
@@ -41,6 +43,7 @@
                 <Button Text="J'ai un doute"
                         Grid.Column="0"
                         HorizontalOptions="Start"
+                        AutomationId="bt_cancel_signature"
                         TextColor="#707070"
                         FontSize="13"
                         CornerRadius="5"
@@ -50,6 +53,7 @@
                 <Button Text="Signer"
                         Grid.Column="1"
                         CornerRadius="5"
+                        AutomationId="bt_confirm_sign"
                         FontSize="13"
                         Clicked="Button_Clicked"
                         BackgroundColor="{StaticResource AccentColor}"
