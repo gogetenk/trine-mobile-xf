@@ -4,22 +4,22 @@ using Trine.Mobile.UITests.Pages;
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
-namespace Trine.Mobile.UITests.Consultant
+namespace Trine.Mobile.UITests.Customer
 {
     /// <summary>
-    /// Consultant side
+    /// Customer side
     /// </summary>
     [TestFixture(Platform.Android)]
     [TestFixture(Platform.iOS)]
-    public class HomeViewTests
+    public class HomeViewTests 
     {
-        private const string _DummyUserEmail = "ytocreau@trine.com"; // Overriden by CI
+        private const string _DummyUserEmail = "remiroycourt@trine.com"; // Overriden by CI
         private const string _DummyUserPassword = "123"; 
 
         private IApp _app;
         private readonly Platform platform;
         private SignupPage _signupPage;
-        private ConsultantHomePage _homePage;
+        private CustomerHomePage _homePage;
         private LoginPage _loginPage;
 
         public HomeViewTests(Platform platform)
@@ -32,7 +32,7 @@ namespace Trine.Mobile.UITests.Consultant
         {
             _app = AppInitializer.StartApp(platform);
             _signupPage = new SignupPage(_app);
-            _homePage = new ConsultantHomePage(_app);
+            _homePage = new CustomerHomePage(_app);
             _loginPage = new LoginPage(_app);
 
             NavigateToHomePage();

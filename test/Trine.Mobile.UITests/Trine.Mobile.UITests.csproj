@@ -37,10 +37,11 @@
     </PackageReference>
     <PackageReference Include="Xamarin.UITest" Version="3.0.3" />
   </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="Consultant\HomeViewTests.cs" />
+    <Compile Include="Customer\HomeViewTests.cs" />
+    <Compile Include="Pages\CustomerHomePage.cs" />
     <Compile Include="Pages\ConsultantHomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\SignupPage.cs" />
