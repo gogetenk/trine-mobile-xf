@@ -11,7 +11,7 @@ then
   # UI Tests
   sed -i .bak 's/io.trine.trineapp.dev/io.trine.trineapp/g' ./test/Trine.Mobile.UITests/AppInitializer.cs
   sed -i .bak 's/com.hellotrine.app.dev/com.hellotrine.app/g' ./test/Trine.Mobile.UITests/AppInitializer.cs
-  sed -i .bak 's/s/ytocreau@trine.com/testconsultant@trine.com/g' ./test/Trine.Mobile.UITests/Consultant/HomeViewTests.cs
+  sed -i .bak 's/ytocreau@trine.com/testconsultant@trine.com/g' ./test/Trine.Mobile.UITests/Consultant/HomeViewTests.cs
   sed -i .bak 's/ytocreau@trine.com/testconsultant@trine.com/g' ./src/modules/Modules.Authentication/ViewModels/LoginViewModel.cs
 
   echo "=> Changement du bundle id\n"
