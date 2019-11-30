@@ -44,6 +44,7 @@
             <ScrollView Scrolled="ScrollView_Scrolled">
                 <StackLayout BindableLayout.ItemsSource="{Binding Activities}"
                              Spacing="0"
+                             AutomationId="sl_activities"
                              VerticalOptions="FillAndExpand"
                              HorizontalOptions="FillAndExpand"
                              Margin="{OnPlatform Default='0,130,0,10', iOS='0,90,0,10'}">

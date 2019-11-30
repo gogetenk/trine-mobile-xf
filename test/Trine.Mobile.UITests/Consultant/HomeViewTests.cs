@@ -56,7 +56,7 @@ namespace Trine.Mobile.UITests.Consultant
             _app.Screenshot("Home page is displayed.");
 
             AppResult[] calendarSpheres = _app.WaitForElement(c => c.Marked("calendar_sphere"), timeout: new System.TimeSpan(0, 1, 0));
-            Assert.IsTrue(results.Any());
+            Assert.IsTrue(calendarSpheres.Any());
             _app.Screenshot("Calendar is displayed and buttons are ready to be used.");
 
             _homePage.TapSaveButton();
@@ -66,7 +66,7 @@ namespace Trine.Mobile.UITests.Consultant
             _app.Screenshot("Signing the activity.");
 
             AppResult[] cancelButtonResults = _app.WaitForElement(_homePage.cancelSignatureButton);
-            Assert.IsTrue(results.Any());
+            Assert.IsTrue(cancelButtonResults.Any());
             _app.Screenshot("Signing popup is displayed successfully.");
 
             _homePage.TapCancelSignatureButton();

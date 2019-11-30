@@ -49,10 +49,37 @@ namespace Trine.Mobile.UITests.Customer
         }
 
         [Test]
-        public void HomePageIsDisplayed()
+        public void CustomerNavigatesToHomeAndManipulatesActivity()
         {
-            AppResult[] results = _app.WaitForElement(c => c.Marked("grid_header"), timeout: new System.TimeSpan(0, 0, 40));
-            Assert.IsTrue(results.Any());
+            //AppResult[] results = _app.WaitForElement(c => c.Marked("grid_header"));
+            //Assert.IsTrue(results.Any());
+            //_app.Screenshot("Home page is displayed.");
+
+            AppResult[] activityList = _app.WaitForElement(_homePage.activityList, timeout: new System.TimeSpan(0, 1, 0));
+            Assert.IsTrue(activityList.Any());
+            _app.Screenshot("Activities are displayed.");
+
+            _homePage.TapActivityCard(0);
+            _app.Tap(x => x.Marked("card_activity"));
+            AppResult[] calendar = _app.WaitForElement(c => c.Marked("calendar"));
+            Assert.IsTrue(calendar.Any());
+            _app.Screenshot("Tapped the first card and got the activity calendar displayed.");
+
+            _homePage.TapRefuseButton(0);
+            AppResult[] refusalPopup = _app.WaitForElement(_homePage.refusalPopup);
+            Assert.IsTrue(refusalPopup.Any());
+            _app.Screenshot("Tapped refuse button and got the refusal popup displayed.");
+
+            _homePage.TapCancelActivityButton();
+            _app.Screenshot("Canceled refuse popup successfully.");
+
+            _homePage.TapAcceptButton(0);
+            AppResult[] signupPopup = _app.WaitForElement(_homePage.acceptPopup);
+            Assert.IsTrue(signupPopup.Any());
+            _app.Screenshot("Tapped accept button and got the signature popup displayed.");
+
+            _homePage.TapCancelActivityButton();
+            _app.Screenshot("Canceled accept popup successfully.");
         }
     }
 }

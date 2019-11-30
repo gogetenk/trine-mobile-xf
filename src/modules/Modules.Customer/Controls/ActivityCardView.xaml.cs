@@ -111,6 +111,7 @@ namespace Modules.Customer.Controls
         {
             var cal = new ActivityCalendarView()
             {
+                AutomationId = "calendar",
                 CurrentActivity = Activity,
                 IsEnabled = false,
                 InputTransparent = true,

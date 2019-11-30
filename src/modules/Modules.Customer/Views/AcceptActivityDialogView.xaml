@@ -8,7 +8,8 @@
       xmlns:controls="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
       prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.85, Desktop=0.5}"
       prism:DialogLayout.CloseOnBackgroundTapped="True"
-      x:Class="Modules.Customer.Views.AcceptActivityDialogView">
+      x:Class="Modules.Customer.Views.AcceptActivityDialogView"
+      AutomationId="popup_signature">
     <Frame CornerRadius="5"
            Padding="35"
            BackgroundColor="White">
@@ -39,6 +40,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Text="J'ai un doute"
+                        AutomationId="bt_cancel"
                         Grid.Column="0"
                         HorizontalOptions="Start"
                         TextColor="#707070"
@@ -48,6 +50,7 @@
                         Command="{Binding CancelCommand}"
                         BorderColor="White" />
                 <Button Text="Signer"
+                        AutomationId="bt_sign"
                         Grid.Column="1"
                         CornerRadius="5"
                         Clicked="Button_Clicked"
