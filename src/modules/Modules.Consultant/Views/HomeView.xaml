@@ -88,7 +88,8 @@
                                     <RelativeLayout Grid.Column="1">
                                         <Grid HeightRequest="35" WidthRequest="90">
                                             <BoxView Grid.Row="0" Grid.Column="0" HeightRequest="35"  WidthRequest="90" CornerRadius="18" BackgroundColor="#F5F5F5" />
-                                            <Label TextColor="#6969E5" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Text="{Binding FormattedNumberOfDays}" />
+                                            <Label TextColor="#6969E5" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                                   FontSize="{StaticResource RegularFontSize}" Text="{Binding FormattedNumberOfDays}" />
                                         </Grid>
                                     </RelativeLayout>
 
@@ -98,7 +99,7 @@
                                                            DaySettingsCommand="{Binding AbsenceCommand}"
                                                            x:Name="calendar"
                                                            IsInputEnabled="{Binding Activity.Status, Converter={StaticResource statusToBool}}"
-                                                           Margin="0,40,0,0"
+                                                           Margin="0,40,0,40"
                                                            CellBackgroundColor="#CCCCCC"
                                                            CellForegroundColor="White"
                                                            AbsenceCellBackgroundColor="#FF5A39"

@@ -9,9 +9,9 @@
 
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30*" />
             <RowDefinition Height="20*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
         </Grid.RowDefinitions>
 
         <Grid BackgroundColor="{StaticResource AccentColor}"
@@ -103,7 +103,7 @@
             <Button Text="Sauvegarder"
                     Command="{Binding SaveCommand}"
                     HorizontalOptions="FillAndExpand"
-                    VerticalOptions="End"
+                    VerticalOptions="EndAndExpand"
                     Margin="20,2,20,2"
                     FontSize="{StaticResource RegularFontSize}"
                     HeightRequest="{OnPlatform Default=50, iOS=40}"
@@ -113,7 +113,7 @@
                     Command="{Binding DeleteCommand}"
                     VerticalOptions="End"
                     HorizontalOptions="FillAndExpand"
-                    Margin="20,2,20,0"
+                    Margin="20,2,20,10"
                     HeightRequest="{OnPlatform Default=50, iOS=40}"
                     Visual="Material"
                     FontSize="{StaticResource RegularFontSize}"
