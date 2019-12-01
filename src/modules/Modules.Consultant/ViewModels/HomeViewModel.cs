@@ -156,13 +156,11 @@ namespace Modules.Consultant.ViewModels
 
         public void OnAbsenceSettingsClosed(IDialogParameters parameters)
         {
-            var updatedDay = parameters.GetValue<GridDayDto>(NavigationParameterKeys._Absence);
+            var updatedDay = parameters?.GetValue<GridDayDto>(NavigationParameterKeys._Absence);
             if (updatedDay is null)
                 return;
 
-            if (updatedDay.Absence is null)
-                return;
-
+            // If the absence is null we deselect the day in the UI
             var dayIndex = Activity.Days.FindIndex(x => x.Day == updatedDay.Day);
             Activity.Days[dayIndex] = updatedDay;
         }

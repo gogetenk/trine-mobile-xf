@@ -175,7 +175,7 @@ namespace Trine.Mobile.Components.Controls
                 var sphere = new ActivitySphereView()
                 {
                     GridDay = day,
-                    CellBackgroundColor = (day.Absence == null) ? CellBackgroundColor : AbsenceCellBackgroundColor,
+                    CellBackgroundColor = (day.Absence == null || day.Absence.Reason == ReasonEnum.None) ? CellBackgroundColor : AbsenceCellBackgroundColor,
                     CellForegroundColor = CellForegroundColor,
                     CellFontSize = CellFontSize,
                     ActivityDate = day.Day,

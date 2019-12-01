@@ -43,6 +43,7 @@
                         Visual="Default"> 
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
+                            <x:String>Aucun</x:String>
                             <x:String>Congé</x:String>
                             <x:String>Formation</x:String>
                             <x:String>Absence non prévue</x:String>
