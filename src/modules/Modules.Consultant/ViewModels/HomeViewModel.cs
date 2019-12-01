@@ -185,13 +185,13 @@ namespace Modules.Consultant.ViewModels
                 if (bytes is null)
                     throw new TechnicalException("Bytes should not be null");
 
+                // Saving the activity first
+                await OnSaveActivity();
+
                 if (IsLoading)
                     return;
 
                 IsLoading = true;
-
-                // Saving the activity first
-                await OnSaveActivity();
                 var activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity), new MemoryStream(bytes)));
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
