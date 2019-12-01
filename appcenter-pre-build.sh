@@ -11,9 +11,9 @@ then
   # UI Tests
   sed -i .bak 's/io.trine.trineapp.dev/io.trine.trineapp/g' ./test/Trine.Mobile.UITests/AppInitializer.cs
   sed -i .bak 's/com.hellotrine.app.dev/com.hellotrine.app/g' ./test/Trine.Mobile.UITests/AppInitializer.cs
-  sed -i .bak 's/ytocreau@trine.com/testconsultant@trine.com/g' ./test/Trine.Mobile.UITests/Consultant/HomeViewTests.cs
-  sed -i .bak 's/remiroycourt@trine.com/testcustomer@trine.com/g' ./test/Trine.Mobile.UITests/Customer/HomeViewTests.cs
-  sed -i .bak 's/ytocreau@trine.com/testconsultant@trine.com/g' ./src/modules/Modules.Authentication/ViewModels/LoginViewModel.cs
+  sed -i .bak 's/ytocreau@trine.com/uitests-consultant@trine.com/g' ./test/Trine.Mobile.UITests/Consultant/HomeViewTests.cs
+  sed -i .bak 's/remiroycourt@trine.com/uitests-customer@trine.com/g' ./test/Trine.Mobile.UITests/Customer/HomeViewTests.cs
+  sed -i .bak 's/ytocreau@trine.com/uitests-consultant@trine.com/g' ./src/modules/Modules.Authentication/ViewModels/LoginViewModel.cs
 
   echo "=> Changement du bundle id\n"
   sed -i .bak 's/io.trine.trineapp.dev/io.trine.trineapp/g' ./src/native/Android/Properties/AndroidManifest.xml
