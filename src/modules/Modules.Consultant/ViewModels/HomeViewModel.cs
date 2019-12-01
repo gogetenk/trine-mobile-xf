@@ -332,7 +332,7 @@ namespace Modules.Consultant.ViewModels
 
         private async Task OnHistoryTapped()
         {
-            await NavigationService.NavigateAsync("../TrineNavigationPage/ActivityHistoryView");
+            await NavigationService.NavigateAsync("TrineNavigationPage/ActivityHistoryView");
         }
     }
 }
