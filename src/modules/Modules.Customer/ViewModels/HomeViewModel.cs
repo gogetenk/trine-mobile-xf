@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Com.OneSignal;
+using Com.OneSignal.Abstractions;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -192,6 +194,8 @@ namespace Modules.Customer.ViewModels
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
 
+                SendNotificationToConsultant();
+
                 // Tracking event
                 Logger.TrackEvent("[Retention] User refused an activity.", new Dictionary<string, string> {
                     { "UserId", AppSettings.CurrentUser.Id },
@@ -217,11 +221,30 @@ namespace Modules.Customer.ViewModels
             }
         }
 
+
         #endregion
 
         private async Task OnHistoryTapped()
         {
             await NavigationService.NavigateAsync("TrineNavigationPage/ActivityHistoryView");
         }
+
+        private void SendNotificationToConsultant()
+        {
+            var notification = new Dictionary<string, object>();
+            notification["contents"] = new Dictionary<string, string>() { { "en", "Votre rapport d'activité à été refusé par le client." } };
+            notification["include_external_user_ids"] = new List<string>() { _activity?.Consultant?.Id };
+
+            OneSignal.Current.PostNotification(notification, (responseSuccess) =>
+            {
+                var oneSignalDebugMessage = "Notification posted successful! Delayed by about 30 secounds to give you time to press the home button to see a notification vs an in-app alert.\n" + Json.Serialize(responseSuccess);
+                Logger.Log(oneSignalDebugMessage, new Dictionary<string, string>() { { "Notifcation Data", Json.Serialize(notification) } });
+            }, (responseFailure) =>
+            {
+                var oneSignalDebugMessage = "Notification failed to post:\n" + Json.Serialize(responseFailure);
+                Logger.Log(oneSignalDebugMessage, new Dictionary<string, string>() { { "Notifcation Data", Json.Serialize(notification) } });
+            });
+        }
+
     }
 }

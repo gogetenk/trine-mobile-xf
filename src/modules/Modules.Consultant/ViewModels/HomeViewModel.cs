@@ -183,18 +183,17 @@ namespace Modules.Consultant.ViewModels
                 if (!result.GetValue<bool>(NavigationParameterKeys._IsActivitySigned))
                     return;
 
+                var bytes = result.GetValue<byte[]>(NavigationParameterKeys._Bytes);
+                if (bytes is null)
+                    throw new TechnicalException("Bytes should not be null");
+
                 if (IsLoading)
                     return;
 
                 IsLoading = true;
 
-                var bytes = result.GetValue<byte[]>(NavigationParameterKeys._Bytes);
-                if (bytes is null)
-                    throw new TechnicalException("Bytes should not be null");
-
-                // If the activity doesnt exist yet, we create it
-                await CreateActivityIfNeeded();
-
+                // Saving the activity first
+                await OnSaveActivity();
                 var activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity), new MemoryStream(bytes)));
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
