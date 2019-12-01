@@ -7,6 +7,7 @@ using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll;
+using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.ViewModels;
 using Trine.Mobile.Dto;
 using Trine.Mobile.Model;
@@ -59,6 +60,13 @@ namespace Modules.Authentication.ViewModels
             SubmitCommand = new DelegateCommand(async () => await OnSubmit());
             GoBackCommand = new DelegateCommand(async () => await OnGoBack());
             EmailUnfocusedCommand = new DelegateCommand(async () => await OnEmailEntered());
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            Email = AppSettings.CurrentUser?.Mail;
         }
 
         private async Task OnSignUp()
