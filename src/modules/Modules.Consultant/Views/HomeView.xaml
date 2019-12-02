@@ -115,7 +115,7 @@
                         <controls:ElevationFrame Margin="20,0,20,30"
                                                  Elevation="50"
                                                  IsVisible="{Binding Activity.Status, Converter={StaticResource refusedStatusToBool}}"
-                                                 x:Name="frame_comment"
+                                                 x:Name="   "
                                                  Padding="0"
                                                  IsClippedToBounds="True"
                                                  CornerRadius="5">
