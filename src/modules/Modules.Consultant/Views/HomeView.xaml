@@ -114,8 +114,8 @@
                         <!-- Commentaire -->
                         <controls:ElevationFrame Margin="20,0,20,30"
                                                  Elevation="50"
-                                                 IsVisible="{Binding Activity.Status, Converter={StaticResource refusedStatusToBool}}"
-                                                 x:Name="   "
+                                                 IsVisible="{Binding AreCommentsShown}"
+                                                 x:Name="frame_comment"
                                                  Padding="0"
                                                  IsClippedToBounds="True"
                                                  CornerRadius="5">
@@ -206,6 +206,7 @@
         </Grid>
 
         <StackLayout Grid.RowSpan="2"
+                    IsVisible="{Binding AreButtonsShown}"
                      VerticalOptions="EndAndExpand"
                      HorizontalOptions="EndAndExpand">
 

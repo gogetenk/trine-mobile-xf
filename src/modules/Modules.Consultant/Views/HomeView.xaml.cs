@@ -9,8 +9,6 @@ namespace Modules.Consultant.Views
         public HomeView()
         {
             InitializeComponent();
-
-            frame_comment.IsVisible = false;
         }
     }
 }
