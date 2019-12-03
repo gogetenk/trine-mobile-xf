@@ -31,7 +31,7 @@
                        TextColor="White"
                        FontSize="14"
                        Opacity=".6" />
-                <Label Text="Vos rapport signés"
+                <Label Text="Comptes rendus d'activité"
                        TextColor="White"
                        FontSize="24" />
             </StackLayout>
