@@ -33,6 +33,12 @@ namespace Modules.Consultant.ViewModels
         private bool _isLoading;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
 
+        private bool _areButtonsShown;
+        public bool AreButtonsShown { get => _areButtonsShown; set { _areButtonsShown = value; RaisePropertyChanged(); } }
+
+        private bool _areCommentsShown;
+        public bool AreCommentsShown { get => _areCommentsShown; set { _areCommentsShown = value; RaisePropertyChanged(); } }
+
         private bool _isEmptyState;
         public bool IsEmptyState { get => _isEmptyState; set { _isEmptyState = value; RaisePropertyChanged(); } }
 
@@ -127,6 +133,8 @@ namespace Modules.Consultant.ViewModels
                 }
 
                 NumberOfDays = _activity.DaysNb;
+                AreButtonsShown = true;
+                AreCommentsShown = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired;
             }
             catch (BusinessException bExc)
             {
