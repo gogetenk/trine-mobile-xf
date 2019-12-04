@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Trine.Mobile.Components.Controls;
 using Trine.Mobile.Dto;
@@ -53,7 +51,6 @@ namespace Modules.Customer.Controls
             set => SetValue(ShowDownloadButtonProperty, value);
         }
 
-
         private static void OnPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var value = (bool)newValue;
@@ -70,153 +67,41 @@ namespace Modules.Customer.Controls
             InitializeComponent();
         }
 
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             var frame = sender as Frame;
             if (frame is null)
                 return;
 
             if (_isExpanded)
-                Close(frame);
-            else
-                Open(frame);
-        }
-
-        private async Task Open(Frame frame)
-        {
-            //bt_download.IsVisible = true;
-            lb_expand.RotateTo(-180, 250, Easing.CubicInOut);
-            _isExpanded = true;
-            CreateCalendar();
-            //bt_download.FadeTo(1, 250, Easing.CubicInOut);
-        }
-
-
-        private async Task Close(Frame frame)
-        {
-            lb_expand.RotateTo(0, 250, Easing.CubicInOut);
-            _isExpanded = false;
-            calendar_placeholder.Children.Clear();
-            //bt_download.Opacity = 0;
-            //bt_download.IsVisible = false;
-        }
-
-        private void InitActionButtons()
-        {
-            //bt_accept.IsVisible = Activity.Status == ActivityStatusEnum.ConsultantSigned;
-            //bt_refuse.IsVisible = Activity.Status == ActivityStatusEnum.ConsultantSigned;
-            bt_download.IsVisible = Activity.Status == ActivityStatusEnum.CustomerSigned;
-        }
-
-        private int GetIndexFromDayOfWeek(DayOfWeek dayOfWeek)
-        {
-            switch (dayOfWeek)
             {
-                case DayOfWeek.Monday:
-                    return 0;
-                case DayOfWeek.Tuesday:
-                    return 1;
-                case DayOfWeek.Wednesday:
-                    return 2;
-                case DayOfWeek.Thursday:
-                    return 3;
-                case DayOfWeek.Friday:
-                    return 4;
-                case DayOfWeek.Saturday:
-                    return 5;
-                case DayOfWeek.Sunday:
-                    return 6;
-                default:
-                    return 0;
+                Close();
             }
+            else
+            {
+                Open();
+            }
+        }
+
+        private void Open()
+        {
+            _ = lb_expand.RotateTo(-180, 250, Easing.CubicInOut);
+            ActivityCalendar.IsVisible = true;
+            _isExpanded = true;
+        }
+
+
+        private void Close()
+        {
+            _ = lb_expand.RotateTo(0, 250, Easing.CubicInOut);
+            ActivityCalendar.IsVisible = false;
+            _isExpanded = false;
         }
 
         public DateTime GetStartOfWeek(DateTime dt, DayOfWeek startOfWeek)
         {
             int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
             return dt.AddDays(-1 * diff).Date;
-        }
-
-        private void CreateCalendar()
-        {
-            var width = (2 * this.Width) / 3;
-            var columnWidth = width  / 7;
-
-            var firstDayOfActivity = this.Activity.Days.FirstOrDefault();
-  
-            var grid = new Grid() { Margin = new Thickness(0, 0, 0, 20) };
-           
-
-            var columnIndex = GetIndexFromDayOfWeek(firstDayOfActivity.Day.DayOfWeek) - 1;
-            var rowIndex = 0;
-
-            var legendLayout = new StackLayout();
-            var legend = new Grid() { Margin = new Thickness(0, 20, 0, 0) };
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Lu" }, 0, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Ma" }, 1, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Me" }, 2, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Je" }, 3, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Ve" }, 4, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Sa" }, 5, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Di" }, 6, 0);
-            legendLayout.Children.Add(legend);
-            legendLayout.Children.Add(new BoxView() { HeightRequest = 1, BackgroundColor = Color.FromHex("#F1F1F1") });
-            calendar_placeholder.Children.Add(legendLayout);
-
-            foreach (var day in this.Activity.Days)
-            {
-
-                if (columnIndex < 6)
-                {
-                    columnIndex++;
-                }
-                else
-                {
-                    columnIndex = 0;
-                    rowIndex++;
-                }
-
-                var flexLayout = new FlexLayout()
-                {
-                    JustifyContent = FlexJustify.Center,
-                    AlignItems = FlexAlignItems.Center
-                };
-
-                var circle = new BoxView()
-                {
-                    BackgroundColor = Color.FromHex("#6969E5"),
-                    WidthRequest = columnWidth,
-                    HeightRequest = columnWidth,
-                    CornerRadius = columnWidth / 2
-                };
-
-                var isFullDay = day.WorkedPart == DayPartEnum.Full;
-
-                var label = new Label()
-                {
-                    FontAttributes = isFullDay ? FontAttributes.Bold : FontAttributes.None,
-                    TextColor = isFullDay ? Color.White : Color.FromHex("#3E3E3E"),
-                    Text = day.Day.ToString("dd"),
-                    VerticalTextAlignment = TextAlignment.Center,
-                    HorizontalTextAlignment = TextAlignment.Center
-                };
-
-                if (isFullDay)
-                {
-                    flexLayout.Children.Add(circle);
-                }
-                else
-                {
-                    label.FontSize = 12;
-                }
-
-                grid.Children.Add(flexLayout, columnIndex, rowIndex);
-                grid.Children.Add(label, columnIndex, rowIndex);
-            }
-
-
-            calendar_placeholder.Children.Add(grid);
-
         }
 
         private void bt_refuse_Clicked(object sender, EventArgs e)

@@ -85,21 +85,7 @@
                 </StackLayout>
             </StackLayout>
 
-            <StackLayout x:Name="calendar_placeholder" AutomationId="calendar_placeholder" />
-
-            <!--<controls:ActivityCalendarView CurrentActivity="{Binding}"
-                                           CascadeInputTransparent="True" 
-                                           x:Name="calendar"
-                                           IsEnabled="False"
-                                           IsVisible="False"
-                                           IsInputEnabled="False"
-                                           Margin="0,25,0,0"
-                                           CellBackgroundColor="#CCCCCC"
-                                           CellForegroundColor="White"
-                                           AbsenceCellBackgroundColor="#FF5A39"
-                                           CellFontSize="12"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center" />-->
+            <controls:ActivityCalendar x:Name="ActivityCalendar" HorizontalOptions="FillAndExpand" Activity="{Binding}" />
 
             <Label x:Name="lb_expand"
                    Text="&#xe5cf;"

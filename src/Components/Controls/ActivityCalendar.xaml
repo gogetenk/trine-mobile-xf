@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Trine.Mobile.Components.Controls.ActivityCalendar">
+    <StackLayout HorizontalOptions="FillAndExpand">
+        <Grid Margin="0, 20, 0, 0">
+            <Label Grid.Column="0" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="#ADAEC7">Lu</Label>
+            <Label Grid.Column="1" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="#ADAEC7">Ma</Label>
+            <Label Grid.Column="2" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="#ADAEC7">Me</Label>
+            <Label Grid.Column="3" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="#ADAEC7">Je</Label>
+            <Label Grid.Column="4" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="#ADAEC7">Ve</Label>
+            <Label Grid.Column="5" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="#ADAEC7">Sa</Label>
+            <Label Grid.Column="6" VerticalOptions="Center" HorizontalTextAlignment="Center" TextColor="#ADAEC7">Di</Label>
+        </Grid>
+        <BoxView HeightRequest="1" BackgroundColor="#F1F1F1" />
+    <Grid HorizontalOptions="FillAndExpand" Margin="0, 0, 0, 20" x:Name="Container" />
+    </StackLayout>
+</ContentView>

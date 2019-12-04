@@ -35,6 +35,9 @@
     <Compile Update="Controls\TrinePickerView.xaml.cs">
       <DependentUpon>TrinePickerView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Controls\ActivityCalendar.xaml.cs">
+      <DependentUpon>ActivityCalendar.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
