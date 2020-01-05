@@ -85,7 +85,8 @@
                 </StackLayout>
             </StackLayout>
 
-            <Grid x:Name="calendar_placeholder" AutomationId="calendar_placeholder" />
+            <StackLayout x:Name="calendar_placeholder" AutomationId="calendar_placeholder" />
+
             <!--<controls:ActivityCalendarView CurrentActivity="{Binding}"
                                            CascadeInputTransparent="True" 
                                            x:Name="calendar"
