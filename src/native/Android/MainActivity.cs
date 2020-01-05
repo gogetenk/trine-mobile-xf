@@ -9,7 +9,6 @@ using Prism;
 using Prism.Ioc;
 using Trine.Mobile.Bll;
 using Trine.Mobile.Bootstrapper;
-using Trine.Mobile.Bootstrapper.Droid;
 using Trine.Mobile.Bootstrapper.Droid.Services;
 using Xamarin.Forms;
 
@@ -20,8 +19,8 @@ namespace Trine.Mobile.Android
     {
         protected override void OnCreate(Bundle bundle)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
+            TabLayoutResource = Trine.Mobile.Bootstrapper.Droid.Resource.Layout.Tabbar;
+            ToolbarResource = Trine.Mobile.Bootstrapper.Droid.Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
 
