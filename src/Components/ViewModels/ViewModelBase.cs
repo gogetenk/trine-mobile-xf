@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Bll.Impl.Settings;
+using Trine.Mobile.Model;
 
 namespace Trine.Mobile.Components.ViewModels
 {
@@ -37,14 +38,41 @@ namespace Trine.Mobile.Components.ViewModels
 
         public virtual async void LogTechnicalError(Exception exc)
         {
-            Logger.Report(exc, null);
-            await DialogService.DisplayAlertAsync(ErrorMessages.error, ErrorMessages.RandomNetworkErrorMessage, "Ok");
+            try
+            {
+                var userRole = Enum.GetName(typeof(UserModel.GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
+                var logParams = new Dictionary<string, string>();
+                logParams.Add("UserId", AppSettings.CurrentUser?.Id);
+                logParams.Add("UserName", AppSettings.CurrentUser?.Firstname + " " + AppSettings.CurrentUser?.Lastname);
+                logParams.Add("UserType", userRole);
+                Logger.Report(exc, logParams);
+                await DialogService.DisplayAlertAsync(ErrorMessages.error, ErrorMessages.RandomNetworkErrorMessage, "Ok");
+            }
+            catch
+            {
+                Logger.Report(exc, null);
+                await DialogService.DisplayAlertAsync(ErrorMessages.error, ErrorMessages.RandomNetworkErrorMessage, "Ok");
+            }
         }
 
         public virtual async Task LogAndShowBusinessError(BusinessException bExc)
         {
-            Logger.Log(bExc.Message);
-            await DialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+            try
+            {
+
+                var userRole = Enum.GetName(typeof(UserModel.GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
+                var logParams = new Dictionary<string, string>();
+                logParams.Add("UserId", AppSettings.CurrentUser?.Id);
+                logParams.Add("UserName", AppSettings.CurrentUser?.Firstname + " " + AppSettings.CurrentUser?.Lastname);
+                logParams.Add("UserType", userRole);
+                Logger.Log(bExc.Message, logParams);
+                await DialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+            }
+            catch
+            {
+                Logger.Log(bExc.Message, null);
+                await DialogService.DisplayAlertAsync(ErrorMessages.error, bExc.Message, "Ok");
+            }
         }
 
         /// <summary>
@@ -62,9 +90,19 @@ namespace Trine.Mobile.Components.ViewModels
         /// <param name="parameters">Optional parameters</param>
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
-            var logParams = new Dictionary<string, string>();
-            logParams.Add("UserId", AppSettings.CurrentUser?.Id);
-            Logger.TrackEvent($"[{GetType().Name}] Navigated To", logParams);
+            try
+            {
+                var userRole = Enum.GetName(typeof(UserModel.GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
+                var logParams = new Dictionary<string, string>();
+                logParams.Add("UserId", AppSettings.CurrentUser?.Id);
+                logParams.Add("UserName", AppSettings.CurrentUser?.Firstname + " " + AppSettings.CurrentUser?.Lastname);
+                logParams.Add("UserType", userRole);
+                Logger.TrackEvent($"[{GetType().Name}] Navigated To", logParams);
+            }
+            catch
+            {
+                Logger.TrackEvent($"[{GetType().Name}] Navigated To", null);
+            }
         }
 
         public virtual async Task<bool> CanNavigateAsync(INavigationParameters parameters)

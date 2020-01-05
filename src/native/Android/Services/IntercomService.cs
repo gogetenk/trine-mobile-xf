@@ -1,4 +1,5 @@
-﻿using Trine.Mobile.Bll;
+using Java.Lang;
+using Trine.Mobile.Bll;
 using Trine.Mobile.Model;
 
 namespace Trine.Mobile.Bootstrapper.Droid.Services

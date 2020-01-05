@@ -44,6 +44,7 @@
             <ScrollView Scrolled="ScrollView_Scrolled">
                 <StackLayout BindableLayout.ItemsSource="{Binding Activities}"
                              Spacing="0"
+                             AutomationId="sl_activities"
                              VerticalOptions="FillAndExpand"
                              HorizontalOptions="FillAndExpand"
                              Margin="{OnPlatform Default='0,130,0,10', iOS='0,90,0,10'}">
@@ -70,7 +71,7 @@
 
         </Grid>
 
-        <controls:ElevationFrame HorizontalOptions="Center"
+        <controls:ElevationFrame HorizontalOptions="Fill"
                                  Elevation="50"
                                  Grid.Row="1"
                                  IsVisible="{Binding IsEmptyState}"
@@ -83,11 +84,11 @@
                        TextColor="{StaticResource AccentColor}" />
                 <Label Text="Vous n'avez pas de CRA à signer pour le moment."
                        FontSize="Small"
+                        Margin="0,10,0,0"
                        TextColor="#707070" />
                 <Button Text="Consulter l'historique"
                         Command="{Binding HistoryCommand}"
                         FontSize="12"
-                        Margin="0,20,0,0"
                         BackgroundColor="White"
                         TextColor="Black"
                         Visual="Default" />

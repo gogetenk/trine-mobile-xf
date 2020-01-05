@@ -23,10 +23,19 @@ namespace Trine.Mobile.Bootstrapper.Droid.Renderers
             if (e.NewElement == null)
                 return;
 
-            // Setting shadow style
-            SetOutlineSpotShadowColor(Color.Argb(100, 0, 0, 0));
-            SetOutlineAmbientShadowColor(Color.Argb(100, 0, 0, 0));
-            UpdateElevation();
+            try
+            {
+                // Setting shadow style
+                SetOutlineSpotShadowColor(Color.Argb(100, 0, 0, 0));
+                SetOutlineAmbientShadowColor(Color.Argb(100, 0, 0, 0));
+                UpdateElevation();
+            }
+            catch
+            {
+                UpdateElevation();
+                return;
+            }
+
         }
 
         private void UpdateElevation()

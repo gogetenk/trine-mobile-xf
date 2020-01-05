@@ -33,6 +33,12 @@ namespace Modules.Consultant.ViewModels
         private bool _isLoading;
         public bool IsLoading { get => _isLoading; set { _isLoading = value; RaisePropertyChanged(); } }
 
+        private bool _areButtonsShown;
+        public bool AreButtonsShown { get => _areButtonsShown; set { _areButtonsShown = value; RaisePropertyChanged(); } }
+
+        private bool _areCommentsShown;
+        public bool AreCommentsShown { get => _areCommentsShown; set { _areCommentsShown = value; RaisePropertyChanged(); } }
+
         private bool _isEmptyState;
         public bool IsEmptyState { get => _isEmptyState; set { _isEmptyState = value; RaisePropertyChanged(); } }
 
@@ -41,6 +47,26 @@ namespace Modules.Consultant.ViewModels
 
         private string _currentUser;
         public string CurrentUser { get => _currentUser; set { _currentUser = value; RaisePropertyChanged(); } }
+
+        private float _numberOfDays;
+        public float NumberOfDays
+        {
+            get => _numberOfDays;
+            set
+            {
+                _numberOfDays = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged("FormattedNumberOfDays");
+            }
+        }
+
+        public string FormattedNumberOfDays
+        {
+            get
+            {
+                return NumberOfDays > 1 ? $"{NumberOfDays} jours" : $"{NumberOfDays} jour";
+            }
+        }
 
         public DelegateCommand SignActivityCommand { get; set; }
         public DelegateCommand SaveActivityCommand { get; set; }
@@ -98,9 +124,17 @@ namespace Modules.Consultant.ViewModels
 
                 // If not, we just generate a new empty one
                 if (activity is null)
+                {
                     Activity = Mapper.Map<ActivityDto>(await _activityService.CreateActivity(_mission.Id, DateTime.UtcNow));
+                }
                 else
+                {
                     Activity = activity;
+                }
+
+                NumberOfDays = _activity.DaysNb;
+                AreButtonsShown = true;
+                AreCommentsShown = Activity.Status == Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired;
             }
             catch (BusinessException bExc)
             {
@@ -120,7 +154,7 @@ namespace Modules.Consultant.ViewModels
 
         private void OnAbsenceSettingsOpened(GridDayDto gridDay)
         {
-            if (Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.Generated || Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired)
+            if (Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.Generated && Activity.Status != Trine.Mobile.Dto.ActivityStatusEnum.ModificationsRequired)
                 return;
 
             var dialogParams = new DialogParameters();
@@ -130,13 +164,11 @@ namespace Modules.Consultant.ViewModels
 
         public void OnAbsenceSettingsClosed(IDialogParameters parameters)
         {
-            var updatedDay = parameters.GetValue<GridDayDto>(NavigationParameterKeys._Absence);
+            var updatedDay = parameters?.GetValue<GridDayDto>(NavigationParameterKeys._Absence);
             if (updatedDay is null)
                 return;
 
-            if (updatedDay.Absence is null)
-                return;
-
+            // If the absence is null we deselect the day in the UI
             var dayIndex = Activity.Days.FindIndex(x => x.Day == updatedDay.Day);
             Activity.Days[dayIndex] = updatedDay;
         }
@@ -157,18 +189,17 @@ namespace Modules.Consultant.ViewModels
                 if (!result.GetValue<bool>(NavigationParameterKeys._IsActivitySigned))
                     return;
 
-                if (IsLoading)
-                    return;
-
-                IsLoading = true;
-
                 var bytes = result.GetValue<byte[]>(NavigationParameterKeys._Bytes);
                 if (bytes is null)
                     throw new TechnicalException("Bytes should not be null");
 
-                // If the activity doesnt exist yet, we create it
-                await CreateActivityIfNeeded();
+                // Saving the activity first
+                await OnSaveActivity();
 
+                if (IsLoading)
+                    return;
+
+                IsLoading = true;
                 var activity = Mapper.Map<ActivityDto>(await _activityService.SignActivityReport(AppSettings.CurrentUser, Mapper.Map<ActivityModel>(Activity), new MemoryStream(bytes)));
                 if (activity is null)
                     throw new BusinessException("Une erreur s'est produite lors de la mise à jour du CRA");
@@ -215,7 +246,7 @@ namespace Modules.Consultant.ViewModels
         {
             var notification = new Dictionary<string, object>();
             notification["contents"] = new Dictionary<string, string>() { { "en", "Un rapport d'activité vient de vous être soumis !" } };
-            notification["include_external_user_ids"] = new List<string>() { _mission.Customer.Id };
+            notification["include_external_user_ids"] = new List<string>() { _mission?.Customer?.Id };
 
             OneSignal.Current.PostNotification(notification, (responseSuccess) =>
             {

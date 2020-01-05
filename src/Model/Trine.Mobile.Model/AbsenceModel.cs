@@ -8,6 +8,7 @@
 
     public enum ReasonEnum
     {
+        None,
         Formation,
         Holiday,
         Absent,

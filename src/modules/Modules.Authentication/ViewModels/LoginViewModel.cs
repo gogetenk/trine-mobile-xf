@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Com.OneSignal;
+using Com.OneSignal.Abstractions;
 using Microsoft.AppCenter;
 using Prism.Commands;
 using Prism.Logging;
@@ -55,13 +55,22 @@ namespace Modules.Authentication.ViewModels
         private readonly IAccountService _accountService;
         private readonly IModuleManager _moduleManager;
         private readonly ISupportService _supportService;
+        private readonly IOneSignal _oneSignal;
 
-        public LoginViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, IModuleManager moduleManager, ISupportService supportService) : base(navigationService, mapper, logger, dialogService)
+        public LoginViewModel(
+            INavigationService navigationService,
+            IMapper mapper,
+            ILogger logger,
+            IAccountService accountService,
+            IPageDialogService dialogService,
+            IModuleManager moduleManager,
+            ISupportService supportService,
+            IOneSignal oneSignal) : base(navigationService, mapper, logger, dialogService)
         {
             _accountService = accountService;
             _moduleManager = moduleManager;
             _supportService = supportService;
-
+            _oneSignal = oneSignal;
             LoginCommand = new DelegateCommand(async () => await OnLogin(), () => !IsEmailErrorVisible && !IsPasswordErrorVisible && !IsLoading);
             ForgotPasswordCommand = new DelegateCommand(async () => await OnForgotPassword());
             SignupCommand = new DelegateCommand(async () => await OnSignup());
@@ -95,6 +104,7 @@ namespace Modules.Authentication.ViewModels
 
                 // Tracking user in intercom
                 _supportService.RegisterUser(AppSettings.CurrentUser);
+
                 // Tracking event
                 var userRole = Enum.GetName(typeof(GlobalRoleEnum), AppSettings.CurrentUser?.GlobalRole);
                 Logger.TrackEvent("[Retention] User logged in to the app.", new Dictionary<string, string> {
@@ -105,14 +115,15 @@ namespace Modules.Authentication.ViewModels
                 // Setting the user id to app center
                 AppCenter.SetUserId(userId);
                 // Setting the user id to One Signal, and assigning tag
-                OneSignal.Current.SetExternalUserId(userId);
-                OneSignal.Current.SendTag("user_type", userRole);
+                _oneSignal.SetExternalUserId(userId);
+                _oneSignal.SendTag("user_type", userRole);
                 // Loading the corresponding module depending on user type
                 LoadModuleFromUserType();
                 await NavigationService.NavigateAsync("MenuRootView/TrineNavigationPage/HomeView");
             }
             catch (BusinessException bExc)
             {
+                await DialogService.DisplayAlertAsync("erreur", bExc.Message, "ok");
                 await LogAndShowBusinessError(bExc);
             }
             catch (Exception exc)

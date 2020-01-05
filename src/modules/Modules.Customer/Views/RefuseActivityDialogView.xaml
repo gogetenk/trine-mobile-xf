@@ -7,7 +7,8 @@
       xmlns:prism="http://prismlibrary.com"
       prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.85, Desktop=0.5}"
       prism:DialogLayout.CloseOnBackgroundTapped="True"
-      x:Class="Modules.Customer.Views.RefuseActivityDialogView">
+      x:Class="Modules.Customer.Views.RefuseActivityDialogView"
+      AutomationId="popup_refusal">
     <Frame CornerRadius="5"
            Padding="35"
            BackgroundColor="White">
@@ -38,6 +39,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Text="Annuler"
+                        AutomationId="bt_cancel"
                         Grid.Column="0"
                         HorizontalOptions="Start"
                         TextColor="#707070"

@@ -5,7 +5,7 @@
              x:Class="Modules.Consultant.Views.MenuView"
              NavigationPage.HasBackButton="False"
              Title="Menu"
-             IconImageSource="menu_small.png"
+             IconImageSource="navigation-menu.png"
              BackgroundColor="White">
     <StackLayout>
 
@@ -45,7 +45,7 @@
                     FontFamily="{StaticResource MaterialIcons}" /> 
         </StackLayout>-->
 
-        <Frame Margin="20,100,20,2"
+        <Frame Margin="20,80,20,2"
                Padding="15"
                HasShadow="False"
                BackgroundColor="#FBFBFB"

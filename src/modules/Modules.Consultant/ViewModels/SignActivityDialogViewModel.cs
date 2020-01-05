@@ -6,7 +6,9 @@ using Prism.Navigation;
 using Prism.Services;
 using Prism.Services.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.Windows.Input;
+using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Components.Navigation;
 using Trine.Mobile.Components.ViewModels;
 using Xamarin.Forms;
@@ -26,10 +28,19 @@ namespace Modules.Consultant.ViewModels
 
             MessagingCenter.Subscribe<SignActivityDialogView, byte[]>(subscriber: this, message: "SignatureBytes", callback: (sender, arg) =>
            {
-               var dialogParams = new DialogParameters();
-               dialogParams.Add(NavigationParameterKeys._IsActivitySigned, true);
-               dialogParams.Add(NavigationParameterKeys._Bytes, arg);
-               RequestClose.Invoke(dialogParams);
+               try
+               {
+                   var dialogParams = new DialogParameters();
+                   dialogParams.Add(NavigationParameterKeys._IsActivitySigned, true);
+                   dialogParams.Add(NavigationParameterKeys._Bytes, arg);
+                   RequestClose.Invoke(dialogParams);
+               }
+               catch (Exception exc)
+               {
+                   logger.Report(exc, new Dictionary<string, string> {
+                    { "UserId", AppSettings.CurrentUser.Id },
+                    { "UserName", $"{AppSettings.CurrentUser?.Firstname} {AppSettings.CurrentUser?.Lastname}"} }); ;
+               }
            });
         }
 

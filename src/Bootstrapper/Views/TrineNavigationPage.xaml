@@ -8,7 +8,8 @@
 		     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              ios:NavigationPage.IsNavigationBarTranslucent="False"
              ios:NavigationPage.HideNavigationBarSeparator="True"
-             ios:NavigationPage.PrefersLargeTitles="true"
+             ios:NavigationPage.PrefersLargeTitles="False"
+             ios:Page.UseSafeArea="True"
              BackgroundColor="White"
              BarBackgroundColor="{DynamicResource DynamicNavigationBarColor}"
              BarTextColor="White">

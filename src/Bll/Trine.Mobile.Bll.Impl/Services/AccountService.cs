@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Sogetrel.Sinapse.Framework.Exceptions;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Trine.Mobile.Bll.Impl.Messages;
@@ -71,9 +72,12 @@ namespace Trine.Mobile.Bll.Impl.Services
                 var result = await _gatewayRepository.ApiAccountsUsersExistsGetAsync(model.Email);
                 return (result != null);
             }
-            catch // Il est normal d'avoir une exception ici (code 404 comme quoi l'user n'existe pas)
+            catch (ApiException apiExc)
             {
-                return false;
+                if (apiExc.StatusCode == 404)
+                    throw new BusinessException("Cet utilisateur n'existe pas. Veuillez vous inscrire via la page précédente.");
+                else
+                    throw new TechnicalException(ErrorMessages.serverErrorText + apiExc.StatusCode);
             }
         }
 

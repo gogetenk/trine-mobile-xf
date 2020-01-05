@@ -21,7 +21,7 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>Trine</string>
+	<string>Trine Dev</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -43,9 +43,9 @@
 		<string>MaterialIcons-Regular.ttf</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>Trine</string>
+	<string>Trine Dev</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.hellotrine.app</string>
+	<string>com.hellotrine.app.dev</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

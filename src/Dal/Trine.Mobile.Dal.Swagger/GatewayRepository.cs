@@ -8395,6 +8395,8 @@ namespace Trine.Mobile.Dal.Swagger
 
         _4 = 4,
 
+        _5 = 5
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.12.2.0 (Newtonsoft.Json v11.0.0.0)")]

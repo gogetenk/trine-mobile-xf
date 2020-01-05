@@ -2,7 +2,7 @@
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
-namespace Modules.Authentication.UITests.Pages
+namespace Trine.Mobile.UITests.Pages
 {
     public class SignupPage
     {

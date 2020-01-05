@@ -117,6 +117,9 @@ namespace Trine.Mobile.Components.Builders
                 case Model.ActivityStatusEnum.ConsultantSigned:
                     statusName = "Signé par le consultant";
                     break;
+                case Model.ActivityStatusEnum.ModificationsRequired:
+                    statusName = "Modifications requises";
+                    break;
                 default:
                     statusName = "error";
                     break;

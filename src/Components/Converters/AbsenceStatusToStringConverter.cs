@@ -18,6 +18,9 @@ namespace Trine.Mobile.Components.Converters
 
             switch (status)
             {
+                case ReasonEnum.None:
+                    statusString = "Aucun";
+                    break;
                 case ReasonEnum.Absent:
                     statusString = "Autre";
                     break;
@@ -34,7 +37,7 @@ namespace Trine.Mobile.Components.Converters
                     statusString = "Maladie";
                     break;
                 default:
-                    statusString = "Autre";
+                    statusString = "Aucun";
                     break;
             }
 
@@ -52,6 +55,9 @@ namespace Trine.Mobile.Components.Converters
 
             switch (status)
             {
+                case "Aucun":
+                    statusEnum = ReasonEnum.None;
+                    break;
                 case "Autre":
                     statusEnum = ReasonEnum.Absent;
                     break;

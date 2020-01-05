@@ -6,7 +6,7 @@
              NavigationPage.HasNavigationBar="True"
              Title="Réglages">
 
-    <ScrollView>
+
         <StackLayout>
 
             <StackLayout BackgroundColor="{StaticResource AccentColor}"
@@ -45,6 +45,7 @@
                         FontFamily="{StaticResource MaterialIcons}" />
             </StackLayout>
 
+            
             <StackLayout Padding="20">
                 <Grid RowSpacing="-15">
                     <Grid.RowDefinitions>
@@ -174,9 +175,5 @@
                     </StackLayout>
                 </Grid>
             </StackLayout>
-
         </StackLayout>
-
-    </ScrollView>
-
 </ContentPage>

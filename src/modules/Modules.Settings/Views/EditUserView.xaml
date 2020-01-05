@@ -9,9 +9,9 @@
 
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="15*" />
-            <RowDefinition Height="15*" />
-            <RowDefinition Height="70*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
         </Grid.RowDefinitions>
 
         <Grid BackgroundColor="{StaticResource AccentColor}"
@@ -75,10 +75,11 @@
                     <Label Text="Profil"
                            Style="{StaticResource TertiaryText}"
                            TextDecorations="None" />
-                    <Picker SelectedItem="{Binding User.Role}"
-                            BackgroundColor="White"
-                            Visual="Default"
-                            Style="{StaticResource Paragraph}" />
+                    <Label Text="{Binding User.GlobalRole}"
+                           BackgroundColor="White"
+                           Visual="Default"
+                           Margin="5"
+                           Style="{StaticResource Paragraph}" />
 
                     <Label Text="Téléphone"
                            Style="{StaticResource TertiaryText}"
@@ -91,18 +92,22 @@
                     <Label Text="E-mail"
                            Style="{StaticResource TertiaryText}"
                            TextDecorations="None" />
-                    <Editor Text="{Binding User.Mail}"
-                            BackgroundColor="White"
-                            Visual="Default"
-                            Style="{StaticResource Paragraph}" />
+                    <Label Text="{Binding User.Mail}"
+                           BackgroundColor="White"
+                           Visual="Default"
+                           Style="{StaticResource Paragraph}" />
 
                 </StackLayout>
             </Frame>
 
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               VerticalOptions="Center"
+                               Margin="0" />
+            
             <Button Text="Sauvegarder"
                     Command="{Binding SaveCommand}"
                     HorizontalOptions="FillAndExpand"
-                    VerticalOptions="End"
+                    VerticalOptions="EndAndExpand"
                     Margin="20,2,20,2"
                     FontSize="{StaticResource RegularFontSize}"
                     HeightRequest="{OnPlatform Default=50, iOS=40}"
@@ -112,7 +117,7 @@
                     Command="{Binding DeleteCommand}"
                     VerticalOptions="End"
                     HorizontalOptions="FillAndExpand"
-                    Margin="20,2,20,0"
+                    Margin="20,2,20,10"
                     HeightRequest="{OnPlatform Default=50, iOS=40}"
                     Visual="Material"
                     FontSize="{StaticResource RegularFontSize}"
