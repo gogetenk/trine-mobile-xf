@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Trine.Mobile.Components.Controls;
 using Trine.Mobile.Dto;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -140,32 +139,28 @@ namespace Modules.Customer.Controls
         private void CreateCalendar()
         {
             var width = (2 * this.Width) / 3;
-            var columnWidth = width  / 7;
-
+            var columnWidth = width / 7;
             var firstDayOfActivity = this.Activity.Days.FirstOrDefault();
-  
             var grid = new Grid() { Margin = new Thickness(0, 0, 0, 20) };
-           
 
             var columnIndex = GetIndexFromDayOfWeek(firstDayOfActivity.Day.DayOfWeek) - 1;
             var rowIndex = 0;
 
             var legendLayout = new StackLayout();
             var legend = new Grid() { Margin = new Thickness(0, 20, 0, 0) };
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Lu" }, 0, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Ma" }, 1, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Me" }, 2, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Je" }, 3, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Ve" }, 4, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Sa" }, 5, 0);
-            legend.Children.Add(new Label() { TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Di" }, 6, 0);
+            legend.Children.Add(new Label() { FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)), TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Lu" }, 0, 0);
+            legend.Children.Add(new Label() { FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)), TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Ma" }, 1, 0);
+            legend.Children.Add(new Label() { FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)), TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Me" }, 2, 0);
+            legend.Children.Add(new Label() { FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)), TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Je" }, 3, 0);
+            legend.Children.Add(new Label() { FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)), TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Ve" }, 4, 0);
+            legend.Children.Add(new Label() { FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)), TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Sa" }, 5, 0);
+            legend.Children.Add(new Label() { FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)), TextColor = Color.FromHex("#ADAEC7"), VerticalTextAlignment = TextAlignment.Center, HorizontalTextAlignment = TextAlignment.Center, Text = "Di" }, 6, 0);
+
             legendLayout.Children.Add(legend);
-            legendLayout.Children.Add(new BoxView() { HeightRequest = 1, BackgroundColor = Color.FromHex("#F1F1F1") });
             calendar_placeholder.Children.Add(legendLayout);
 
             foreach (var day in this.Activity.Days)
             {
-
                 if (columnIndex < 6)
                 {
                     columnIndex++;
@@ -184,7 +179,7 @@ namespace Modules.Customer.Controls
 
                 var circle = new BoxView()
                 {
-                    BackgroundColor = Color.FromHex("#6969E5"),
+                    BackgroundColor = Color.FromHex("#5A28D6"),
                     WidthRequest = columnWidth,
                     HeightRequest = columnWidth,
                     CornerRadius = columnWidth / 2
@@ -194,8 +189,8 @@ namespace Modules.Customer.Controls
 
                 var label = new Label()
                 {
-                    FontAttributes = isFullDay ? FontAttributes.Bold : FontAttributes.None,
-                    TextColor = isFullDay ? Color.White : Color.FromHex("#3E3E3E"),
+                    FontAttributes = FontAttributes.None,
+                    TextColor = isFullDay ? Color.White : Color.White,
                     Text = day.Day.ToString("dd"),
                     VerticalTextAlignment = TextAlignment.Center,
                     HorizontalTextAlignment = TextAlignment.Center
@@ -207,16 +202,14 @@ namespace Modules.Customer.Controls
                 }
                 else
                 {
-                    label.FontSize = 12;
+                    label.FontSize = 10;
                 }
 
                 grid.Children.Add(flexLayout, columnIndex, rowIndex);
                 grid.Children.Add(label, columnIndex, rowIndex);
             }
 
-
             calendar_placeholder.Children.Add(grid);
-
         }
 
         private void bt_refuse_Clicked(object sender, EventArgs e)
