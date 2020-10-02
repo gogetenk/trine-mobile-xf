@@ -24,6 +24,7 @@ using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Bootstrapper.Configuration;
 using Trine.Mobile.Bootstrapper.Resources;
 using Trine.Mobile.Bootstrapper.Views;
+using Trine.Mobile.Bootstrapper.Wrappers;
 using Trine.Mobile.Components.Builders;
 using Trine.Mobile.Components.Logging;
 using Trine.Mobile.Dal;
@@ -166,7 +167,7 @@ namespace Trine.Mobile.Bootstrapper
 #else
             containerRegistry.RegisterSingleton<Prism.Logging.ILogger, Prism.Logging.AppCenter.AppCenterLogger>();
 #endif
-            containerRegistry.RegisterSingleton<Microsoft.Extensions.Logging.ILogger, PrismLoggerWrapper>();
+            containerRegistry.RegisterSingleton<Microsoft.Extensions.Logging.ILogger, Sogetrel.Sinapse.Framework.Mobile.Logging.PrismLoggerWrapper>();
             containerRegistry.Register(typeof(ILogger<>), typeof(PrismLoggerWrapper<>));
         }
 
@@ -188,7 +189,8 @@ namespace Trine.Mobile.Bootstrapper
 
         private void RegisterServices(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository(AppSettings.ApiUrls[AppSettings.GatewayApi], HttpClientFactory.GetClient()));
+            containerRegistry.RegisterSingleton<IAppSettings, AppSettings>();
+            containerRegistry.RegisterInstance<IGatewayRepository>(new GatewayRepository("https://app-assistance-dev.azurewebsites.net", new System.Net.Http.HttpClient()));
             containerRegistry.Register<IImageAttachmentStorageRepository, ImageAttachmentStorageRepository>();
 
             containerRegistry.Register<IAccountService, AccountService>();
@@ -202,6 +204,7 @@ namespace Trine.Mobile.Bootstrapper
 
             containerRegistry.RegisterInstance<IDownloadManager>(CrossDownloadManager.Current);
             containerRegistry.RegisterInstance<IOneSignal>(OneSignal.Current);
+            containerRegistry.RegisterInstance<ISecureStorage>(SecureStorageWrapper.Current);
         }
 
         #endregion

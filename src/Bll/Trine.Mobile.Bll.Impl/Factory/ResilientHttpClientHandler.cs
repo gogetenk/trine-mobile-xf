@@ -13,9 +13,11 @@ namespace Trine.Mobile.Bll.Impl.Factory
 {
     public class ResilientHttpClientHandler : HttpClientHandler
     {
-        public ResilientHttpClientHandler() : base()
-        {
+        public IAppSettings AppSettings { get; }
 
+        public ResilientHttpClientHandler(IAppSettings appSettings) : base()
+        {
+            AppSettings = appSettings;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)

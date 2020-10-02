@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="Com.OneSignal" Version="3.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.1.0-preview2.19528.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.1.0-preview2.19528.8" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.1.0-preview2.19528.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.1.0-preview2.19528.8" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.0" />
+    <PackageReference Include="Xam.Plugins.DownloadManager" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Bll\Trine.Mobile.Bll.Impl\Bll.Impl.csproj" />
+    <ProjectReference Include="..\..\..\Components\Trine.Mobile.Components.csproj" />
+    <ProjectReference Include="..\..\..\Dal\Trine.Mobile.Dal.AzureBlobStorage\Dal.AzureBlobStorage.csproj" />
+    <ProjectReference Include="..\..\..\Dal\Trine.Mobile.Dal.Swagger\Dal.Swagger.csproj" />
+  </ItemGroup>
+
+</Project>

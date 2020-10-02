@@ -3,14 +3,25 @@ using CacheCow.Client;
 
 namespace Trine.Mobile.Bll.Impl.Factory
 {
-    public sealed class HttpClientFactory
+    public sealed class HttpClientFactory : IHttpClientFactory
     {
-        public static HttpClientFactory Instance { get; } = new HttpClientFactory();
-        private static readonly HttpClient _httpClient = ClientExtensions.CreateClient(new ResilientHttpClientHandler());
+        private readonly IAppSettings appSettings;
 
-        public static HttpClient GetClient()
+        public HttpClientFactory(IAppSettings appSettings)
         {
+            this.appSettings = appSettings;
+        }
+
+
+        public HttpClient CreateClient(string name)
+        {
+            HttpClient _httpClient = ClientExtensions.CreateClient(new ResilientHttpClientHandler(appSettings));
             return _httpClient;
+        }
+
+        public HttpClient GetClient()
+        {
+            return CreateClient(string.Empty);
         }
     }
 }

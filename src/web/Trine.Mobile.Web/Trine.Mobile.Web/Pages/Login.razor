@@ -1,0 +1,28 @@
+﻿@page "/login"
+@using Trine.Mobile.Bll;
+@using ViewModels;
+@inject IAccountService _accountService
+
+
+<h1>Login</h1>
+
+<EditForm Model="@_loginViewModel" OnValidSubmit="@HandleSubmit">
+    <InputText type="email" @bind-Value="_loginViewModel.Email" />
+    <InputText type="password" @bind-Value="_loginViewModel.Password" />
+    <button type="submit" class="btn btn-primary">Log in</button>
+</EditForm>
+
+<p>Logged: @isLogged</p>
+
+
+@code {
+    private LoginViewModel _loginViewModel = new LoginViewModel();
+    private bool isLogged = false;
+
+    private async Task HandleSubmit()
+    {
+        var t = await _accountService.Login(_loginViewModel.Email, _loginViewModel.Password);
+        if (!string.IsNullOrEmpty(t))
+            isLogged = true;
+    }
+}

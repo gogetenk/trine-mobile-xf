@@ -33,14 +33,14 @@ namespace Modules.Authentication.ViewModels
         public ICommand ConsultantCommand { get; set; }
         public ICommand LoginCommand { get; set; }
 
-        #endregion 
+        #endregion
 
         private RegisterUserDto _userToCreate;
         private readonly IAccountService _accountService;
         private readonly IModuleManager _moduleManager;
         private readonly ISupportService _supportService;
 
-        public Signup3ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, IModuleManager moduleManager, ISupportService supportService) : base(navigationService, mapper, logger, dialogService)
+        public Signup3ViewModel(INavigationService navigationService, IMapper mapper, ILogger logger, IAccountService accountService, IPageDialogService dialogService, IModuleManager moduleManager, ISupportService supportService, IAppSettings appSettings) : base(navigationService, mapper, logger, dialogService, appSettings)
         {
             _accountService = accountService;
             _moduleManager = moduleManager;

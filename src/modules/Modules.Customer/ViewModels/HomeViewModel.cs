@@ -55,8 +55,9 @@ namespace Modules.Customer.ViewModels
             Prism.Logging.ILogger logger,
             IPageDialogService pageDialogService,
             IActivityService activityService,
-            IDialogService dialogService)
-            : base(navigationService, mapper, logger, pageDialogService)
+            IDialogService dialogService,
+            IAppSettings appSettings)
+            : base(navigationService, mapper, logger, pageDialogService, appSettings)
         {
             _activityService = activityService;
             _dialogService = dialogService;

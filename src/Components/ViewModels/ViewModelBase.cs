@@ -8,6 +8,7 @@ using Sogetrel.Sinapse.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Trine.Mobile.Bll;
 using Trine.Mobile.Bll.Impl.Messages;
 using Trine.Mobile.Bll.Impl.Settings;
 using Trine.Mobile.Model;
@@ -23,13 +24,15 @@ namespace Trine.Mobile.Components.ViewModels
         public IMapper Mapper { get; }
         public ILogger Logger { get; }
         public IPageDialogService DialogService { get; }
+        public IAppSettings AppSettings { get; }
 
-        public ViewModelBase(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService)
+        public ViewModelBase(INavigationService navigationService, IMapper mapper, ILogger logger, IPageDialogService dialogService, IAppSettings appSettings)
         {
             NavigationService = navigationService;
             Mapper = mapper;
             Logger = logger;
             DialogService = dialogService;
+            AppSettings = appSettings;
         }
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)

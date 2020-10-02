@@ -82,12 +82,11 @@ namespace Modules.Consultant.ViewModels
         private readonly IDialogService _dialogService;
         private MissionModel _mission;
 
-        public HomeViewModel(INavigationService navigationService, IMapper mapper, Prism.Logging.ILogger logger, IPageDialogService pageDialogService, IActivityService activityService, IMissionService missionService, IDialogService dialogService, IDownloadManager downloadManager) : base(navigationService, mapper, logger, pageDialogService)
+        public HomeViewModel(INavigationService navigationService, IMapper mapper, Prism.Logging.ILogger logger, IPageDialogService pageDialogService, IActivityService activityService, IMissionService missionService, IDialogService dialogService, IDownloadManager downloadManager, IAppSettings appSettings) : base(navigationService, mapper, logger, pageDialogService, appSettings)
         {
             _activityService = activityService;
             _missionService = missionService;
             _dialogService = dialogService;
-
             SignActivityCommand = new DelegateCommand(() => OnSignActivity());
             SaveActivityCommand = new DelegateCommand(async () => await OnSaveActivity());
             AbsenceCommand = new DelegateCommand<GridDayDto>((gridDay) => OnAbsenceSettingsOpened(gridDay as GridDayDto));

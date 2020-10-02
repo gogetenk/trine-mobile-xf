@@ -16,8 +16,13 @@ namespace Trine.Mobile.Bll.Impl.Services
 {
     public class AccountService : ServiceBase, IAccountService
     {
-        public AccountService(IMapper mapper, Dal.Swagger.IGatewayRepository gatewayRepository, ILogger logger) : base(mapper, gatewayRepository, logger)
+        private readonly ISecureStorage _secureStorage;
+        public IAppSettings AppSettings { get; }
+
+        public AccountService(IMapper mapper, Dal.Swagger.IGatewayRepository gatewayRepository, ILogger logger, ISecureStorage secureStorage, IAppSettings appSettings) : base(mapper, gatewayRepository, logger)
         {
+            _secureStorage = secureStorage;
+            AppSettings = appSettings;
         }
 
         public async Task<string> Login(string email, string password)
@@ -47,7 +52,7 @@ namespace Trine.Mobile.Bll.Impl.Services
 
                 try
                 {
-                    await SecureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
+                    await _secureStorage.SetAsync(CacheKeys._CurrentUser, JsonConvert.SerializeObject(user));
                 }
                 catch
                 {

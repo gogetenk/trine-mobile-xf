@@ -16,8 +16,11 @@ namespace Trine.Mobile.Bll.Impl.Services
     {
         private const string _organizationApiVersion = "1.0";
 
-        public OrganizationService(IMapper mapper, IGatewayRepository gatewayRepository, ILogger logger) : base(mapper, gatewayRepository, logger)
+        public IAppSettings AppSettings { get; }
+
+        public OrganizationService(IMapper mapper, IGatewayRepository gatewayRepository, ILogger logger, IAppSettings appSettings) : base(mapper, gatewayRepository, logger)
         {
+            AppSettings = appSettings;
         }
 
         public async Task<OrganizationModel> CreateOrganization(string organizationName, string iconUrl)

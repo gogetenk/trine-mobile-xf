@@ -22,8 +22,11 @@ namespace Trine.Mobile.Bll.Impl.Services
         private const string _activityApiVersion = "1.0";
         private const string _userApiVersion = "1.0";
 
-        public ActivityService(IMapper mapper, IGatewayRepository gatewayRepository, ILogger logger) : base(mapper, gatewayRepository, logger)
+        public IAppSettings AppSettings { get; }
+
+        public ActivityService(IMapper mapper, IGatewayRepository gatewayRepository, ILogger logger, IAppSettings appSettings) : base(mapper, gatewayRepository, logger)
         {
+            AppSettings = appSettings;
         }
 
         public async Task<ActivityModel> CreateActivity(string missionId, DateTime date)

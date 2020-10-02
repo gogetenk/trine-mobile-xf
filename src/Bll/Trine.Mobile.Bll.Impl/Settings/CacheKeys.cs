@@ -2,7 +2,7 @@
 {
     public class CacheKeys
     {
-        internal static readonly string _CurrentToken = "CurrentToken";
+        public static readonly string _CurrentToken = "CurrentToken";
         public static string _CurrentUser = "CurrentUser";
     }
 }
