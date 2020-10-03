@@ -4,6 +4,8 @@ An app that makes the consultants activity reports filling cool, easy, and fast.
 ## Goal
 See our landing page at https://hellotrine.com if you provide your consultants to companies and at https://hellotrine.com/fr/customers if you have consultants working for your company.
 
+I have open sourced this app because I've stopped its development, and replaced it by a **React Native version** (sorry MS).
+
 ## Project Architecture
 This is a ***Xamarin.Forms*** project with a n-tiers architecture :
 - model layer
