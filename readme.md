@@ -19,6 +19,7 @@ This is a ***Xamarin.Forms*** project with a n-tiers architecture :
 Each layer has its own abstraction layer in order to avoid dependencies. 
 I'm using the ***Prism (with Autofac)*** IOC and DI engine.
 
+![](https://s3.amazonaws.com/media-p.slid.es/uploads/989184/images/6039435/ArchitectureDiagram.png)
 
 ### Modules
 The application is splitted in Prism Modules in order to enhance performances (lazy loading) and enforce loosely coupled components.
