@@ -42,8 +42,8 @@ namespace Trine.Mobile.Bootstrapper
         private const int smallWightResolution = 768;
         private const int smallHeightResolution = 1280;
 
-        public const string ONE_SIGNAL_ID = "12785512-a98b-4c91-89ca-05959a685120";
-        public const string APP_CENTER_KEY = "android=69a27482-869f-4f32-8532-0ab77337dfc4;ios=805f888f-e673-4bfa-a1f6-78ab376c7bc5";
+        public const string ONE_SIGNAL_ID = "overriden";
+        public const string APP_CENTER_KEY = "overriden";
 
         /* 
          * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.

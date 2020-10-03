@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Solution Items", "00 -
 		appcenter-pre-build.sh = appcenter-pre-build.sh
 		src\native\Android\appcenter-pre-build.sh = src\native\Android\appcenter-pre-build.sh
 		nuget.config = nuget.config
+		readme.md = readme.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - DAL", "01 - DAL", "{159FB821-DFD9-4AC1-88E9-9580183CD4B2}"

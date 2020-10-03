@@ -26,9 +26,9 @@ namespace Trine.Mobile.iOS
         //private const string intercomToken = "nb4w5hji";
         //private const string intercomApiKey = "ios_sdk-b655535b4f9815c9ead33d059c2cb43020d9431d";
         // PROD ONLY
-        private const string instabugToken = "2be1819819cfe4eda2b908b5bba59b73";
-        private const string intercomToken = "v4l26lv4";
-        private const string intercomApiKey = "ios_sdk-be15dd592c71d03d0f5245caece3fd0a40ae6435";
+        private const string instabugToken = "overriden";
+        private const string intercomToken = "overriden";
+        private const string intercomApiKey = "overriden";
 
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
@@ -45,9 +45,9 @@ namespace Trine.Mobile.iOS
 
             LoadApplication(new App(new iOSInitializer()));
 
-            #if ENABLE_TEST_CLOUD
+#if ENABLE_TEST_CLOUD
             Xamarin.Calabash.Start();
-            #endif
+#endif
 
             return base.FinishedLaunching(app, options);
         }
