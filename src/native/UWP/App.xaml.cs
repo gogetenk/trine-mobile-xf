@@ -1,4 +1,5 @@
 ﻿using ImageCircle.Forms.Plugin.UWP;
+using MultiGestureViewPlugin.UWP;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -21,6 +22,8 @@ namespace Trine.Mobile.Bootstrapper.UWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            // For linker only
+            MultiGestureViewRenderer multiGestureViewRenderer = new MultiGestureViewRenderer();
         }
 
         /// <summary>
