@@ -1,6 +1,9 @@
 # Trine Mobile
 An app that makes the consultants activity reports filling cool, easy, and fast.
 
+[![Build status](https://build.appcenter.ms/v0.1/apps/e5d75035-be14-4426-8c1c-1c93d1ad4cb7/branches/master/badge)](https://appcenter.ms)
+[![Build status](https://build.appcenter.ms/v0.1/apps/94499a8f-dde8-45a0-b376-74cff0282cb7/branches/dev/badge)](https://appcenter.ms)
+
 ## Goal
 See our landing page at https://hellotrine.com if you provide your consultants to companies and at https://hellotrine.com/fr/customers if you have consultants working for your company.
 
@@ -48,6 +51,8 @@ I'm using **Xamarin.UITests** library, that is using **nUnit** and Nespresso eng
 The **Page Object pattern** is used in order to facilitate the UI tests.
 Since those are **extremely** slow to execute in the CI/CD, I only test critical user paths, only when releasing production binaries.
 
+![](https://i.imgur.com/UkriRTk.png)
+
 ## Logging 
 I'm using **sentry.io** for exception and crash logging, and **Azure Application Insights** for functional logs.
 
@@ -59,5 +64,6 @@ So I'm using the Intercom SDK bindings for Xamarin.Forms in order to use directl
 I'm using **Instabug** so my users and I can just shake the device in order to report a bug, with additional cool features like screenshots, annotations, attachments, logs, view structure reports etc...
 
 ## Delivery
+![](https://i.imgur.com/AkXw1aT.png)
 I'm using **appcenter.ms** in order to build, test, release and monitor this application on all platforms.
 
